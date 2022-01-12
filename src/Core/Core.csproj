@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
@@ -17,6 +17,7 @@
 	<ItemGroup>
 	  <PackageReference Include="FluentValidation" Version="10.3.6" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="Octokit" Version="0.50.0" />
 	</ItemGroup>
 
 </Project>

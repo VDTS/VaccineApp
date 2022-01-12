@@ -1,4 +1,5 @@
 ﻿using Auth.Factory;
+using Core.Factory;
 using DAL.Factory;
 using Microsoft.Extensions.Configuration;
 using VaccineApp.Factory;
@@ -29,6 +30,8 @@ public static class MauiProgram
 				options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSettings:FirebaseBaseAddress").Value;
 			}
 		);
+
+		builder.Services.AddCoreServices();
 
 		builder.Services.AddAuth(
 			options =>

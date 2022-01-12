@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.App.FeedbackPage"
+             Title="FeedbackPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Feedback"
+             x:DataType="ViewModel:FeedbackViewModel"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+    <StackLayout>
+        <Entry Text="{Binding Feedback.Title}" Placeholder="Enter issue title"></Entry>
+        <Entry Text="{Binding Feedback.Body}" Placeholder="Enter issue body"></Entry>
+
+        <Button Text="Submit" Command="{Binding SubmitIssueOnGithubCommand}"></Button>
+    </StackLayout>
+</ContentPage>
