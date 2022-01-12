@@ -1,4 +1,5 @@
-﻿using DAL.Factory;
+﻿using Auth.Factory;
+using DAL.Factory;
 using Microsoft.Extensions.Configuration;
 using VaccineApp.Factory;
 
@@ -26,6 +27,13 @@ public static class MauiProgram
 			options => {
 				options.FirebaseApiKey = builder.Configuration.GetSection("AppSettings:FirebaseApiKey").Value;
 				options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSettings:FirebaseBaseAddress").Value;
+			}
+		);
+
+		builder.Services.AddAuth(
+			options =>
+            {
+				options.FirebaseApiKey = builder.Configuration.GetSection("AppSettings:FirebaseApiKey").Value;
 			}
 		);
 

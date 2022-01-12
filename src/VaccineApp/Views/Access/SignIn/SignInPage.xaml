@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Access.SignIn.SignInPage"
+             Title="SignInPage"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+    <StackLayout>
+        <Entry Text="{Binding UserEmailInput}" Placeholder="Enter user name"></Entry>
+        <Entry Text="{Binding UserPasswordInput}" Placeholder="Enter user password"></Entry>
+        <Button Command="{Binding SignInCommand}"></Button>
+    </StackLayout>
+</ContentPage>
