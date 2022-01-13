@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Access.SignIn"
+             x:DataType="ViewModel:SignInViewModel"
              x:Class="VaccineApp.Views.Access.SignIn.SignInPage"
-             Title="SignInPage"
+             Title="Signin"
              BackgroundColor="{DynamicResource SecondaryColor}">
-    <StackLayout>
-        <Entry Text="{Binding UserEmailInput}" Placeholder="Enter user name"></Entry>
-        <Entry Text="{Binding UserPasswordInput}" Placeholder="Enter user password"></Entry>
-        <Button Command="{Binding SignInCommand}"></Button>
-    </StackLayout>
+
+    <Grid RowSpacing="25"
+          Padding="{OnPlatform UWP='30', Android='20', Default='30'}"
+          RowDefinitions="Auto, Auto, Auto, Auto">
+
+        <StackLayout GridLayout.Row="0"
+                     WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                     HeightRequest="150"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            <Image Source="appicon.png"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </StackLayout>
+
+        <StackLayout GridLayout.Row="1"
+                     Spacing="10"
+                     WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            <Entry Text="{Binding UserEmailInput}"
+                   Placeholder="Enter user name" />
+            <Entry IsPassword="True"
+                   Text="{Binding UserPasswordInput}"
+                   Placeholder="Enter user password" />
+        </StackLayout>
+
+        <StackLayout Spacing="10"
+            GridLayout.Row="2"
+                     Orientation="Horizontal">
+            <!--<CheckBox IsChecked="True" />
+            <Label Text="Remember me" />
+            <Label Text="Forgot Password" />-->
+        </StackLayout>
+
+        <StackLayout GridLayout.Row="3"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
+            <Button Text="Sign In"
+                    Command="{Binding SignInCommand}"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    HorizontalOptions="Center" />
+        </StackLayout>
+        
+    </Grid>
+
 </ContentPage>

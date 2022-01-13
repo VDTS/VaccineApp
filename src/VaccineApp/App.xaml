@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="PrimaryColor">#512bdf</Color>
+            <Color x:Key="PrimaryColor">#2196F3</Color>
             <Color x:Key="SecondaryColor">White</Color>
             <Color x:Key="PageHeaderCardColor">#6CC6F8</Color>
             <Color x:Key="PageCardColor">#E8F5FD</Color>
