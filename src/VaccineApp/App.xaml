@@ -7,22 +7,36 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="PrimaryColor">#2196F3</Color>
-            <Color x:Key="SecondaryColor">White</Color>
+            <Color x:Key="PrimaryColor">#0067C0</Color>
+            <Color x:Key="SecondaryColor">#F8F9FC</Color>
             <Color x:Key="PageHeaderCardColor">#6CC6F8</Color>
             <Color x:Key="PageCardColor">#E8F5FD</Color>
             <Color x:Key="RefreshIconColor">#2196f3</Color>
 
+            <Color x:Key="PrimaryColorDark">#4CC2FF</Color>
+            <Color x:Key="SecondaryColorDark">#252731</Color>
+
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
-                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryColorDark}}" />
+                <Setter Property="FontFamily"
+                        Value="OpenSansRegular" />
             </Style>
 
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
-                <Setter Property="FontFamily" Value="OpenSansRegular" />
-                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
-                <Setter Property="Padding" Value="14,10" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource SecondaryColor}, Dark={StaticResource SecondaryColorDark}}" />
+                <Setter Property="FontFamily"
+                        Value="OpenSansRegular" />
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryColorDark}}" />
+                <Setter Property="Padding"
+                        Value="14,10" />
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource SecondaryColor}, Dark={StaticResource SecondaryColorDark}}" />
             </Style>
 
         </ResourceDictionary>

@@ -4,8 +4,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Access.SignIn"
              x:DataType="ViewModel:SignInViewModel"
              x:Class="VaccineApp.Views.Access.SignIn.SignInPage"
-             Title="Signin"
-             BackgroundColor="{DynamicResource SecondaryColor}">
+             Title="Signin">
 
     <Grid RowSpacing="25"
           Padding="{OnPlatform UWP='30', Android='20', Default='30'}"

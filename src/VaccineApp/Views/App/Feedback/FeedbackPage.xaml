@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.App.FeedbackPage"
              Title="FeedbackPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Feedback"
-             x:DataType="ViewModel:FeedbackViewModel"
-             BackgroundColor="{DynamicResource SecondaryColor}">
+             x:DataType="ViewModel:FeedbackViewModel">
     <StackLayout>
         <Entry Text="{Binding Feedback.Title}" Placeholder="Enter issue title"></Entry>
         <Entry Text="{Binding Feedback.Body}" Placeholder="Enter issue body"></Entry>
