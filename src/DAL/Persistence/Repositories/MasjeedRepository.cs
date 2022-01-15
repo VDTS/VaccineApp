@@ -1,13 +1,13 @@
 ﻿using DAL.Persistence.Core;
 using System.Net.Http.Json;
 using Core.Models;
+using DAL.Persistence;
 
 namespace DAL.Repositories;
 
 public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-
     public MasjeedRepository(IHttpClientFactory clientFactory)
     {
         _clientFactory = clientFactory;
@@ -19,13 +19,13 @@ public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>("Kandahar-Area/Masjeed/35d41d49-eeb8-40a1-a512-13499fcbd7fb.json");
+            var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>(DbNodePath.Masjeed());
 
             return s.Values.ToList();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            throw ex;
+            throw;
         }
     }
 }

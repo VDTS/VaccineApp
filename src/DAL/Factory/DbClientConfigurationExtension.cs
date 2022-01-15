@@ -1,4 +1,5 @@
 ﻿using DAL.Persistence;
+using DAL.Persistence.Repositories;
 using DAL.Repositories;
 
 namespace DAL.Factory;
@@ -18,6 +19,8 @@ public static class DbClientConfigurationExtension
 
         service.AddSingleton<UnitOfWork>();
         service.AddSingleton<MasjeedRepository>();
+        service.AddSingleton<ChildRepository>();
+
         service.AddHttpClient();
         service.AddHttpClient("meta", c =>
         {

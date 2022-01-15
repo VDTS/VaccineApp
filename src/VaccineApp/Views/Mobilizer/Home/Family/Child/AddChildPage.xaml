@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Family.Child.AddChildPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family.Child"
+             x:DataType="ViewModel:AddChildViewModel"
+             Title="AddChildPage">
+
+    <StackLayout Padding="40"
+                 Spacing="10"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Text="{Binding Child.FullName, Mode=TwoWay}"
+               Placeholder="Full Name" />
+        <Picker WidthRequest="{OnPlatform UWP='220', Default='220'}"
+                SelectedItem="{Binding Child.Gender, Mode=OneWayToSource}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Male</x:String>
+                    <x:String>Female</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Entry Text="{Binding Child.RINo, Mode=OneWayToSource}"
+               Placeholder="RI No." />
+        <DatePicker Date="{Binding Child.DOB, Mode=OneWayToSource}"
+                    WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+
+        <StackLayout Orientation="Horizontal"
+                     Spacing="10">
+            <CheckBox IsChecked="{Binding Child.OPV0, Mode=TwoWay}" />
+            <Label Text="OPV0" />
+        </StackLayout>
+
+        <Button Text="Save"
+                TranslationY="50"
+                WidthRequest="130"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Command="{Binding PostCommand}"
+                Margin="20"></Button>
+    </StackLayout>
+
+</ContentPage>

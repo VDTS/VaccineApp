@@ -1,21 +1,29 @@
 ﻿using Core.Models;
 using DAL.Persistence.Core;
+using DAL.Persistence.Repositories;
 using DAL.Repositories;
 
 namespace DAL.Persistence;
 
 public class UnitOfWork
 {
-    private readonly IMasjeedRepository<MasjeedModel> masjeedRepository;
+    private readonly IMasjeedRepository<MasjeedModel> _masjeedRepository;
+    private readonly ChildRepository _childRepository;
 
-    public UnitOfWork(MasjeedRepository masjeedRepository)
+    public UnitOfWork(MasjeedRepository masjeedRepository, ChildRepository childRepository)
     {
-        this.masjeedRepository = masjeedRepository;
+        _masjeedRepository = masjeedRepository;
+        _childRepository = childRepository;
     }
 
     public async Task<IEnumerable<MasjeedModel>> GetMasjeeds()
     {
-        return await masjeedRepository.GetMasjeeds();
+        return await _masjeedRepository.GetMasjeeds();
+    }
+
+    public async Task<ChildModel> AddChild(ChildModel child, string familyId)
+    {
+        return await _childRepository.AddChild(child, familyId);
     }
 
 }
