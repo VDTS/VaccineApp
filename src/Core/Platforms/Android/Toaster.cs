@@ -8,4 +8,9 @@ public class Toaster : IToast
     {
         Toast.MakeText(Platform.AppContext, message, ToastLength.Long).Show();
     }
+
+    public void MakeToast(string title, string message)
+    {
+        Application.Current.MainPage.DisplayAlert(title, message, "Ok");
+    }
 }

@@ -35,7 +35,7 @@ public class AddChildViewModel : ViewModelBase
         }
         else
         {
-            _toast.MakeToast($"{validationResult.Errors[0].PropertyName}, {validationResult.Errors[0].ErrorMessage}");
+            _toast.MakeToast(validationResult.Errors[0].PropertyName, validationResult.Errors[0].ErrorMessage);
         }
     }
 
@@ -51,6 +51,4 @@ public class AddChildViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-
-
 }
