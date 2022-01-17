@@ -22,6 +22,7 @@ public static class MauiProgram
 		builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 		builder.Services.AddViewModels();
+		builder.Services.AddModels();
 		builder.Services.AddViewPages();
 
 		builder.Services.AddDAL(

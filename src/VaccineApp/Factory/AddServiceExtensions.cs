@@ -1,4 +1,5 @@
-﻿using VaccineApp.ViewModels.Access.SignIn;
+﻿using Core.Models;
+using VaccineApp.ViewModels.Access.SignIn;
 using VaccineApp.ViewModels.App.Feedback;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
 using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
@@ -20,6 +21,13 @@ public static class AddServiceExtensions
         Services.AddScoped<AddChildViewModel>();
 
         return Services;
+    }
+
+    public static IServiceCollection AddModels(this IServiceCollection services)
+    {
+        services.AddScoped<ChildModel>();
+
+        return services;
     }
 
     public static IServiceCollection AddViewPages(this IServiceCollection services)

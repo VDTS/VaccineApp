@@ -13,11 +13,11 @@ public class AddChildViewModel : ViewModelBase
     ChildValidator _childValidator { get; set; }
 
 
-    public AddChildViewModel(UnitOfWork unitOfWork, IToast toast)
+    public AddChildViewModel(UnitOfWork unitOfWork, ChildModel child, IToast toast)
     {
         _unitOfWork = unitOfWork;
         _toast = toast;
-        _child = new();
+        _child = child;
         _childValidator = new();
 
         PostCommand = new Command(Post);
