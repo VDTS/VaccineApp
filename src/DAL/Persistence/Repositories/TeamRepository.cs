@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using DAL.Persistence.Core;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace DAL.Persistence.Repositories;
 public class TeamRepository : ITeamRepository<TeamModel>
@@ -33,6 +34,22 @@ public class TeamRepository : ITeamRepository<TeamModel>
             {
                 throw new Exception(s.ReasonPhrase);
             }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<TeamModel>> GetTeams()
+    {
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            var s = await client.GetFromJsonAsync<Dictionary<string, TeamModel>>(DbNodePath.Team());
+
+            return s.Values.ToList();
         }
         catch (Exception)
         {

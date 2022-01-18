@@ -48,4 +48,9 @@ public class UnitOfWork
     {
         return await _clusterRepository.GetClusters();
     }
+
+    public async Task<IEnumerable<TeamModel>> GetTeams()
+    {
+        return await _teamRepository.GetTeams();
+    }
 }
