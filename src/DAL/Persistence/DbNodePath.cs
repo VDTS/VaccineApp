@@ -23,4 +23,5 @@ public static class DbNodePath
 
     public static string Masjeed() => $"{TeamId}/Masjeed.json";
     public static string Child(string FamilyId) => $"{FamilyId}/Child.json";
+    public static string Cluster() => $"Cluster.json";
 }

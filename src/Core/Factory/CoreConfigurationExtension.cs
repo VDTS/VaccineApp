@@ -1,4 +1,5 @@
 ﻿using Core.Features;
+using Core.Models;
 using Core.Services;
 
 namespace Core.Factory;
@@ -11,6 +12,10 @@ public static class CoreConfigurationExtension
 
         // Device Features
         service.AddSingleton<IToast, Toaster>();
+
+        // Models
+        service.AddSingleton<ClusterModel>();
+
         return service;
     }
 }

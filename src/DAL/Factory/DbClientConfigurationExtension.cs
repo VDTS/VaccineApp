@@ -20,6 +20,7 @@ public static class DbClientConfigurationExtension
         service.AddSingleton<UnitOfWork>();
         service.AddSingleton<MasjeedRepository>();
         service.AddSingleton<ChildRepository>();
+        service.AddSingleton<ClusterRepository>();
 
         service.AddHttpClient();
         service.AddHttpClient("meta", c =>

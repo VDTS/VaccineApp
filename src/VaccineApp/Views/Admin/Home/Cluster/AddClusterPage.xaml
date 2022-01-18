@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Admin.Home.Cluster.AddClusterPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.Cluster"
+             x:DataType="ViewModel:AddClusterViewModel"
+             Title="AddClusterPage">
+    
+    <StackLayout Padding="40"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Placeholder="Cluster Name"
+               Text="{Binding Cluster.ClusterName}"></Entry>
+        <Button Text="Post"
+                TranslationY="50"
+                WidthRequest="130"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Command="{Binding PostCommand}"></Button>
+    </StackLayout>
+    
+</ContentPage>
