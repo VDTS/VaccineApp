@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Admin.Home.Team.AddTeamPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.Team"
+             x:DataType="ViewModel:AddTeamViewModel"
+             Title="AddTeamPage">
+    <StackLayout Padding="40"
+                 Spacing="10"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Placeholder="Team No."
+               Text="{Binding Team.TeamNo}"></Entry>
+        <Entry Placeholder="CHW Name"
+               Text="{Binding Team.CHWName}"></Entry>
+        <Button Text="Post"
+                TranslationY="50"
+                WidthRequest="130"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Command="{Binding PostCommand}"></Button>
+    </StackLayout>
+</ContentPage>
