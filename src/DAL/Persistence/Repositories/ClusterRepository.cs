@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using DAL.Persistence.Core;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace DAL.Persistence.Repositories;
 public class ClusterRepository : IClusterRepository<ClusterModel>
@@ -33,6 +34,22 @@ public class ClusterRepository : IClusterRepository<ClusterModel>
             {
                 throw new Exception(s.ReasonPhrase);
             }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<ClusterModel>> GetClusters()
+    {
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            var s = await client.GetFromJsonAsync<Dictionary<string, ClusterModel>>(DbNodePath.Cluster());
+
+            return s.Values.ToList();
         }
         catch (Exception)
         {
