@@ -10,7 +10,7 @@ public class TeamModel
     public string CHWName { get; set; }
     public TeamModel()
     {
-        Id = new Guid();
+        Id = Guid.NewGuid();
     }
 }
 

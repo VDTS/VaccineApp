@@ -12,7 +12,7 @@ public class ChildModel
     public int RINo { get; set; }
     public ChildModel()
     {
-        Id = new Guid();
+        Id = Guid.NewGuid();
     }
 }
 

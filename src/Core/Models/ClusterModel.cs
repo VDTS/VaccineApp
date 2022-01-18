@@ -8,7 +8,7 @@ public class ClusterModel
     public string ClusterName { get; set; }
     public ClusterModel()
     {
-        Id = new Guid();
+        Id = Guid.NewGuid();
     }
 }
 public class ClusterValidator : AbstractValidator<ClusterModel>
