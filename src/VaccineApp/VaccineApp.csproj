@@ -85,6 +85,9 @@
 	  <MauiXaml Update="Views\Mobilizer\Home\Family\Child\AddChildPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Mobilizer\Home\Family\FamiliesListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

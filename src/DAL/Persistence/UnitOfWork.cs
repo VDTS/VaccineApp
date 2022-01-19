@@ -74,4 +74,9 @@ public class UnitOfWork
     {
         return await _familyRepository.AddFamily(family, teamId);
     }
+    
+    public async Task<IEnumerable<FamilyModel>> GetFamilies(string teamId = null)
+    {
+        return await _familyRepository.GetFamilies(teamId);
+    }
 }

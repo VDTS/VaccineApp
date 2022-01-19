@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using DAL.Persistence.Core;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace DAL.Persistence.Repositories;
 public class FamilyRepository : IFamilyRepository<FamilyModel>
@@ -32,6 +33,22 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
             {
                 throw new Exception(s.ReasonPhrase);
             }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<FamilyModel>> GetFamilies(string teamId = null)
+    {
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
+
+            return s.Values.ToList();
         }
         catch (Exception)
         {

@@ -30,6 +30,7 @@ public static class AddServiceExtensions
         Services.AddScoped<ClustersListViewModel>();
         Services.AddScoped<TeamsListViewModel>();
         Services.AddScoped<AddFamilyViewModel>();
+        Services.AddScoped<FamiliesListViewModel>();
 
         return Services;
     }
@@ -52,6 +53,7 @@ public static class AddServiceExtensions
         services.AddScoped<ClustersListPage>();
         services.AddScoped<TeamsListPage>();
         services.AddScoped<AddFamilyPage>();
+        services.AddScoped<FamiliesListPage>();
 
         return services;
     }
