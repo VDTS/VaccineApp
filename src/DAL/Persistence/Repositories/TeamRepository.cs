@@ -13,7 +13,7 @@ public class TeamRepository : ITeamRepository<TeamModel>
         _clientFactory = clientFactory;
     }
 
-    public async Task<TeamModel> AddTeam(TeamModel team)
+    public async Task<TeamModel> AddTeam(TeamModel team, string Id)
     {
         var client = _clientFactory.CreateClient("meta");
 
@@ -24,7 +24,7 @@ public class TeamRepository : ITeamRepository<TeamModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Team(), byteContent);
+            var s = await client.PostAsync(DbNodePath.Team(Id), byteContent);
 
             if (s.IsSuccessStatusCode)
             {

@@ -39,9 +39,9 @@ public class UnitOfWork
         return await _clusterRepository.AddCluster(cluster);
     }
 
-    public async Task<TeamModel> AddTeam(TeamModel teamModel)
+    public async Task<TeamModel> AddTeam(TeamModel teamModel, string Id)
     {
-        return await _teamRepository.AddTeam(teamModel);
+        return await _teamRepository.AddTeam(teamModel, Id);
     }
 
     public async Task<IEnumerable<ClusterModel>> GetClusters()

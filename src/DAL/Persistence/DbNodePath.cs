@@ -25,5 +25,13 @@ public static class DbNodePath
     public static string Masjeed() => $"{TeamId}/Masjeed.json";
     public static string Child(string FamilyId) => $"{FamilyId}/Child.json";
     public static string Cluster() => $"Cluster.json";
-    public static string Team() => $"{ClusterId}/Team.json";
+    public static string Team(string Id = null)
+    {
+        if (string.IsNullOrEmpty(Id))
+        {
+            return $"{ClusterId}/Team.json";
+        }
+        return $"{Id}/Team.json";
+    }
+        
 }
