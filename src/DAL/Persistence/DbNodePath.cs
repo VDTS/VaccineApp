@@ -33,5 +33,15 @@ public static class DbNodePath
         }
         return $"{Id}/Team.json";
     }
-        
+    public static string Family(string teamId)
+    {
+        if (string.IsNullOrEmpty(teamId))
+        {
+            return $"Family/{TeamId}.json";
+        }
+        else
+        {
+            return $"Family/{teamId}.json";
+        }
+    }
 }

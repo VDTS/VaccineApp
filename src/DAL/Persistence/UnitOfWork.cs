@@ -11,17 +11,20 @@ public class UnitOfWork
     private readonly ChildRepository _childRepository;
     private readonly ClusterRepository _clusterRepository;
     private readonly TeamRepository _teamRepository;
+    private readonly FamilyRepository _familyRepository;
 
     public UnitOfWork(
         MasjeedRepository masjeedRepository,
         ChildRepository childRepository,
         ClusterRepository clusterRepository,
-        TeamRepository teamRepository)
+        TeamRepository teamRepository,
+        FamilyRepository familyRepository)
     {
         _masjeedRepository = masjeedRepository;
         _childRepository = childRepository;
         _clusterRepository = clusterRepository;
         _teamRepository = teamRepository;
+        _familyRepository = familyRepository;
     }
 
     public async Task<IEnumerable<MasjeedModel>> GetMasjeeds()
@@ -66,5 +69,9 @@ public class UnitOfWork
         }
 
         return allTeams;
+    }
+    public async Task<FamilyModel> AddFamily(FamilyModel family, string teamId = null)
+    {
+        return await _familyRepository.AddFamily(family, teamId);
     }
 }

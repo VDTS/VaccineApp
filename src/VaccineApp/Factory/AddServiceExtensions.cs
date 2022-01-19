@@ -4,12 +4,14 @@ using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
 using VaccineApp.ViewModels.App.Feedback;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
+using VaccineApp.ViewModels.Mobilizer.Home.Family;
 using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Access.SignIn;
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
 using VaccineApp.Views.App;
 using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
+using VaccineApp.Views.Mobilizer.Home.Family;
 using VaccineApp.Views.Mobilizer.Home.Family.Child;
 
 namespace VaccineApp.Factory;
@@ -27,6 +29,7 @@ public static class AddServiceExtensions
         Services.AddScoped<AddTeamViewModel>();
         Services.AddScoped<ClustersListViewModel>();
         Services.AddScoped<TeamsListViewModel>();
+        Services.AddScoped<AddFamilyViewModel>();
 
         return Services;
     }
@@ -48,6 +51,7 @@ public static class AddServiceExtensions
         services.AddScoped<AddTeamPage>();
         services.AddScoped<ClustersListPage>();
         services.AddScoped<TeamsListPage>();
+        services.AddScoped<AddFamilyPage>();
 
         return services;
     }
