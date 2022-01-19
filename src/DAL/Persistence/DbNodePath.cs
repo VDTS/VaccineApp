@@ -22,16 +22,16 @@ public static class DbNodePath
     // ChildId
     //      VaccineIds
 
-    public static string Masjeed() => $"{TeamId}/Masjeed.json";
-    public static string Child(string FamilyId) => $"{FamilyId}/Child.json";
+    public static string Masjeed() => $"Masjeed/{TeamId}.json";
+    public static string Child(string FamilyId) => $"Child/{FamilyId}.json";
     public static string Cluster() => $"Cluster.json";
     public static string Team(string Id = null)
     {
         if (string.IsNullOrEmpty(Id))
         {
-            return $"{ClusterId}/Team.json";
+            return $"Team/{ClusterId}.json";
         }
-        return $"{Id}/Team.json";
+        return $"Team/{Id}.json";
     }
     public static string Family(string teamId)
     {
