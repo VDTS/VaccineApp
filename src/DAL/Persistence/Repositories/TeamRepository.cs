@@ -41,13 +41,13 @@ public class TeamRepository : ITeamRepository<TeamModel>
         }
     }
 
-    public async Task<IEnumerable<TeamModel>> GetTeams()
+    public async Task<IEnumerable<TeamModel>> GetTeams(string clusterId = null)
     {
         var client = _clientFactory.CreateClient("meta");
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, TeamModel>>(DbNodePath.Team());
+            var s = await client.GetFromJsonAsync<Dictionary<string, TeamModel>>(DbNodePath.Team(clusterId));
 
             return s.Values.ToList();
         }

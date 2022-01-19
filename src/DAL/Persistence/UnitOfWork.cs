@@ -49,8 +49,22 @@ public class UnitOfWork
         return await _clusterRepository.GetClusters();
     }
 
-    public async Task<IEnumerable<TeamModel>> GetTeams()
+    public async Task<IEnumerable<TeamModel>> GetTeams(string clusterId = null)
     {
-        return await _teamRepository.GetTeams();
+        return await _teamRepository.GetTeams(clusterId);
+    }
+
+    public async Task<IEnumerable<TeamModel>> GetAllTeams()
+    {
+        var allTeams = new List<TeamModel>();
+        var clusterId = await _clusterRepository.GetClusters();
+
+        foreach (var item in clusterId)
+        {
+            var teams = await GetTeams(item.Id.ToString());
+            allTeams.AddRange(teams);
+        }
+
+        return allTeams;
     }
 }

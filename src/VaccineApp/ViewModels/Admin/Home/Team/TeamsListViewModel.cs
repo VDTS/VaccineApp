@@ -19,7 +19,7 @@ public class TeamsListViewModel : ViewModelBase
 
     private async void Get()
     {
-        Teams = await _unitOfwork.GetTeams();
+        Teams = await _unitOfwork.GetAllTeams();
     }
 
     public IEnumerable<TeamModel> Teams
