@@ -17,6 +17,7 @@ public static class CoreConfigurationExtension
         service.AddSingleton<ClusterModel>();
         service.AddSingleton<TeamModel>();
         service.AddSingleton<FamilyModel>();
+        service.AddSingleton<ChildModel>();
 
         return service;
     }

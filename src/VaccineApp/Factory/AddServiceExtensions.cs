@@ -37,14 +37,6 @@ public static class AddServiceExtensions
 
         return Services;
     }
-
-    public static IServiceCollection AddModels(this IServiceCollection services)
-    {
-        services.AddScoped<ChildModel>();
-
-        return services;
-    }
-
     public static IServiceCollection AddViewPages(this IServiceCollection services)
     {
         services.AddScoped<MasjeedsListPage>();

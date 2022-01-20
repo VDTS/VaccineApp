@@ -23,7 +23,6 @@ public static class MauiProgram
 		builder.Services.Configure<FirebasePrivateKey>(builder.Configuration.GetSection("FirebasePrivateKey"));
 
 		builder.Services.AddViewModels();
-		builder.Services.AddModels();
 		builder.Services.AddViewPages();
 
 		builder.Services.AddDAL(
