@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Admin.Home.User.AddUserPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.User"
+             x:DataType="ViewModel:AddUserViewModel"
+             Title="AddUserPage">
+
+    <StackLayout Padding="40"
+                 Spacing="10"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Placeholder="Full Name"
+               Text="{Binding FullName}" />
+        <Entry Placeholder="Email"
+               Text="{Binding Email}" />
+
+        <Entry Placeholder="Phone Number"
+               Keyboard="Telephone"
+               Text="{Binding PhoneNumber}" />
+
+
+        <!--Custom Claims-->
+
+        <Picker ItemsSource="{Binding RolesList}"
+                SelectedItem="{Binding SelectedRole}"
+                SelectedIndexChanged="Click_Role"
+                x:Name="RolePicker"
+                WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+        <Picker ItemsSource="{Binding ClustersList}"
+                SelectedItem="{Binding SelectedCluster}"
+                ItemDisplayBinding="{Binding ClusterName }"
+                x:Name="ClusterPicker"
+                WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+        <Picker ItemsSource="{Binding TeamsList}"
+                SelectedItem="{Binding SelectedTeam}"
+                ItemDisplayBinding="{Binding TeamNo }"
+                x:Name="TeamPicker"
+                WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+        <Picker ItemsSource="{Binding FamiliesList}"
+                SelectedItem="{Binding SelectedFamily}"
+                ItemDisplayBinding="{Binding ParentName }"
+                x:Name="FamilyPicker"
+                WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+
+        <Button Text="Create User"
+                TranslationY="50"
+                WidthRequest="130"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Command="{Binding PostCommand}" />
+
+    </StackLayout>
+</ContentPage>

@@ -2,6 +2,7 @@
 using VaccineApp.ViewModels.Access.SignIn;
 using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
+using VaccineApp.ViewModels.Admin.Home.User;
 using VaccineApp.ViewModels.App.Feedback;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
 using VaccineApp.ViewModels.Mobilizer.Home.Family;
@@ -9,6 +10,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Access.SignIn;
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
+using VaccineApp.Views.Admin.Home.User;
 using VaccineApp.Views.App;
 using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
 using VaccineApp.Views.Mobilizer.Home.Family;
@@ -31,6 +33,7 @@ public static class AddServiceExtensions
         Services.AddScoped<TeamsListViewModel>();
         Services.AddScoped<AddFamilyViewModel>();
         Services.AddScoped<FamiliesListViewModel>();
+        Services.AddScoped<AddUserViewModel>();
 
         return Services;
     }
@@ -54,6 +57,7 @@ public static class AddServiceExtensions
         services.AddScoped<TeamsListPage>();
         services.AddScoped<AddFamilyPage>();
         services.AddScoped<FamiliesListPage>();
+        services.AddScoped<AddUserPage>();
 
         return services;
     }

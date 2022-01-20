@@ -20,6 +20,7 @@ public static class MauiProgram
 
 		builder.Configuration.AddUserSecrets<AppSettings>();
 		builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+		builder.Services.Configure<FirebasePrivateKey>(builder.Configuration.GetSection("FirebasePrivateKey"));
 
 		builder.Services.AddViewModels();
 		builder.Services.AddModels();
