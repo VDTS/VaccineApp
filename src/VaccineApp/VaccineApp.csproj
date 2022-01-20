@@ -92,7 +92,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.2-mauipre.1.22054.8" />
 	</ItemGroup>
 
 	<ItemGroup>

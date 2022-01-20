@@ -16,7 +16,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="10.3.6" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.2-mauipre.1.22054.8" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 		<PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
 	</ItemGroup>
