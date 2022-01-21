@@ -61,6 +61,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Shells\Views\Accessshell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Shells\Views\Appshell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Access\SignIn\SignInPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

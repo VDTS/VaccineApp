@@ -4,6 +4,8 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Access.SignIn"
              x:DataType="ViewModel:SignInViewModel"
              x:Class="VaccineApp.Views.Access.SignIn.SignInPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
              Title="Signin">
 
     <Grid RowSpacing="25"

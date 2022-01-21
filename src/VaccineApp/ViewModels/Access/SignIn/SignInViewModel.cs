@@ -2,6 +2,7 @@
 using Core.Models;
 using Newtonsoft.Json;
 using System.Windows.Input;
+using VaccineApp.Shells.Views;
 using VaccineApp.ViewModels.Base;
 
 namespace VaccineApp.ViewModels.Access.SignIn;
@@ -42,6 +43,8 @@ public class SignInViewModel : ViewModelBase
             var s = await _signInService.SignIn(UserEmailInput, UserPasswordInput);
 
             StoreTokens(s);
+
+            Application.Current.MainPage = new Appshell();
         }
         catch (Exception ex)
         {

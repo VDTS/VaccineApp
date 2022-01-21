@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using VaccineApp.Shells.Views;
 using VaccineApp.ViewModels.Access.SignIn;
 using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
@@ -50,6 +50,8 @@ public static class AddServiceExtensions
         services.AddScoped<AddFamilyPage>();
         services.AddScoped<FamiliesListPage>();
         services.AddScoped<AddUserPage>();
+        services.AddScoped<Appshell>();
+        services.AddScoped<Accessshell>();
 
         return services;
     }
