@@ -23,6 +23,10 @@ public static class DbClientConfigurationExtension
         service.AddSingleton<ClusterRepository>();
         service.AddSingleton<TeamRepository>();
         service.AddSingleton<FamilyRepository>();
+        service.AddSingleton<ClinicRepository>();
+        service.AddSingleton<DoctorRepository>();
+        service.AddSingleton<InfluencerRepository>();
+        service.AddSingleton<SchoolRepository>();
 
         service.AddHttpClient();
         service.AddHttpClient("meta", c =>

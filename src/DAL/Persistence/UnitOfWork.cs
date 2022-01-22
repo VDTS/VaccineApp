@@ -12,6 +12,10 @@ public class UnitOfWork
     private readonly ClusterRepository _clusterRepository;
     private readonly TeamRepository _teamRepository;
     private readonly FamilyRepository _familyRepository;
+    private readonly ClinicRepository _clinicRepository;
+    private readonly DoctorRepository _doctorRepository;
+    private readonly InfluencerRepository _influencerRepository;
+    private readonly SchoolRepository _schoolRepository;
     private string _clusterId;
     private string _teamId;
     private string _familyId;
@@ -21,14 +25,21 @@ public class UnitOfWork
         ChildRepository childRepository,
         ClusterRepository clusterRepository,
         TeamRepository teamRepository,
-        FamilyRepository familyRepository)
+        FamilyRepository familyRepository,
+        ClinicRepository clinicRepository,
+        DoctorRepository doctorRepository,
+        InfluencerRepository influencerRepository,
+        SchoolRepository schoolRepository)
     {
         _masjeedRepository = masjeedRepository;
         _childRepository = childRepository;
         _clusterRepository = clusterRepository;
         _teamRepository = teamRepository;
         _familyRepository = familyRepository;
-
+        _clinicRepository = clinicRepository;
+        _doctorRepository = doctorRepository;
+        _influencerRepository = influencerRepository;
+        _schoolRepository = schoolRepository;
         GetClaims();
     }
 
@@ -125,5 +136,25 @@ public class UnitOfWork
         {
             return await _familyRepository.GetFamilies(teamId);
         }
+    }
+
+    public async Task<IEnumerable<ClinicModel>> GetClinics()
+    {
+        return await _clinicRepository.GetClinics(_teamId);
+    }
+
+    public async Task<IEnumerable<DoctorModel>> GetDoctors()
+    {
+        return await _doctorRepository.GetDoctors(_teamId);
+    }
+
+    public async Task<IEnumerable<InfluencerModel>> GetInfluencers()
+    {
+        return await _influencerRepository.GetInfluencers(_teamId);
+    }
+
+    public async Task<IEnumerable<SchoolModel>> GetSchools()
+    {
+        return await _schoolRepository.GetSchools(_teamId);
     }
 }

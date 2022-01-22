@@ -1,5 +1,10 @@
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
+using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
+using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
+using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
+using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
+using VaccineApp.Views.Mobilizer.Home.Area.School;
 using VaccineApp.Views.Mobilizer.Home.Family;
 
 namespace VaccineApp.Shells.Views;
@@ -117,6 +122,43 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(FamiliesListPage))
         };
         family.Items.Add(familyPage);
+
+        ShellContent clinic = new()
+        {
+            Title = "Clinic",
+            Route = nameof(ClinicsListPage),
+            ContentTemplate = new DataTemplate(typeof(ClinicsListPage))
+        };
+        ShellContent doctor = new()
+        {
+            Title = "Doctor",
+            Route = nameof(DoctorsListPage),
+            ContentTemplate = new DataTemplate(typeof(DoctorsListPage))
+        };
+        ShellContent influencer = new()
+        {
+            Title = "Influencer",
+            Route = nameof(InfluencersListPage),
+            ContentTemplate = new DataTemplate(typeof(InfluencersListPage))
+        };
+        ShellContent masjeed = new()
+        {
+            Title = "Masjeed",
+            Route = nameof(MasjeedsListPage),
+            ContentTemplate = new DataTemplate(typeof(MasjeedsListPage))
+        };
+        ShellContent school = new()
+        {
+            Title = "School",
+            Route = nameof(SchoolsListPage),
+            ContentTemplate = new DataTemplate(typeof(SchoolsListPage))
+        };
+
+        area.Items.Add(clinic);
+        area.Items.Add(doctor);
+        area.Items.Add(influencer);
+        area.Items.Add(masjeed);
+        area.Items.Add(school);
 
         home.Items.Add(status);
         home.Items.Add(insights);

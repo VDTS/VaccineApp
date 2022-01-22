@@ -18,6 +18,10 @@ public static class CoreConfigurationExtension
         service.AddSingleton<TeamModel>();
         service.AddTransient<FamilyModel>();
         service.AddSingleton<ChildModel>();
+        service.AddTransient<ClinicModel>();
+        service.AddTransient<DoctorModel>();
+        service.AddTransient<InfluencerModel>();
+        service.AddTransient<SchoolModel>();
 
         return service;
     }

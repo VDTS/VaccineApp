@@ -31,4 +31,20 @@ public static class DbNodePath
     {
         return $"Family/{teamId}.json";
     }
+    public static string Clinic(string teamId)
+    {
+        return $"Clinic/{teamId}.json";
+    }
+    public static string Doctor(string teamId)
+    {
+        return $"Doctor/{teamId}.json";
+    }
+    public static string Influencer(string teamId)
+    {
+        return $"Influencer/{teamId}.json";
+    }
+    public static string School(string teamId)
+    {
+        return $"School/{teamId}.json";
+    }
 }

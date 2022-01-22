@@ -4,7 +4,11 @@ using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
 using VaccineApp.ViewModels.Admin.Home.User;
 using VaccineApp.ViewModels.App.Feedback;
+using VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
+using VaccineApp.ViewModels.Mobilizer.Home.Area.Doctor;
+using VaccineApp.ViewModels.Mobilizer.Home.Area.Influencer;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
+using VaccineApp.ViewModels.Mobilizer.Home.Area.School;
 using VaccineApp.ViewModels.Mobilizer.Home.Family;
 using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Access.SignIn;
@@ -12,7 +16,11 @@ using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
 using VaccineApp.Views.Admin.Home.User;
 using VaccineApp.Views.App;
+using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
+using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
+using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
 using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
+using VaccineApp.Views.Mobilizer.Home.Area.School;
 using VaccineApp.Views.Mobilizer.Home.Family;
 using VaccineApp.Views.Mobilizer.Home.Family.Child;
 
@@ -34,6 +42,10 @@ public static class AddServiceExtensions
         Services.AddScoped<AddFamilyViewModel>();
         Services.AddScoped<FamiliesListViewModel>();
         Services.AddScoped<AddUserViewModel>();
+        Services.AddScoped<ClinicsListViewModel>();
+        Services.AddScoped<DoctorsListViewModel>();
+        Services.AddScoped<InfluencersListViewModel>();
+        Services.AddScoped<SchoolsListViewModel>();
 
         return Services;
     }
@@ -52,6 +64,10 @@ public static class AddServiceExtensions
         services.AddScoped<AddUserPage>();
         services.AddScoped<Appshell>();
         services.AddScoped<Accessshell>();
+        services.AddScoped<ClinicsListPage>();
+        services.AddScoped<DoctorsListPage>();
+        services.AddScoped<InfluencersListPage>();
+        services.AddScoped<SchoolsListPage>();
 
         return services;
     }

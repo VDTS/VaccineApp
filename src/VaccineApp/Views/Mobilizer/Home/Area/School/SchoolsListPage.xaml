@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Area.School.SchoolsListPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.School"
+             x:DataType="ViewModel:SchoolsListViewModel"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
+             Title="SchoolsListPage">
+    <CollectionView SelectionMode="Single"
+                        ItemsSource="{Binding Schools}">
+        <CollectionView.Header>
+            <StackLayout VerticalOptions="Center">
+                <Label FontSize="Title"
+                           Text="Schools" />
+            </StackLayout>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:SchoolModel">
+                <StackLayout Padding="0,2,0,0">
+                    <Label Text="{Binding SchoolName}"></Label>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
