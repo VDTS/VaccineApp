@@ -16,7 +16,7 @@ public static class CoreConfigurationExtension
         // Models
         service.AddSingleton<ClusterModel>();
         service.AddSingleton<TeamModel>();
-        service.AddSingleton<FamilyModel>();
+        service.AddTransient<FamilyModel>();
         service.AddSingleton<ChildModel>();
 
         return service;

@@ -30,6 +30,8 @@ public class AddFamilyViewModel : ViewModelBase
         if (validationResult.IsValid)
         {
             var result = await _unitOfWork.AddFamily(Family);
+
+            await Shell.Current.GoToAsync("../");
             _toast.MakeToast($"{result.ParentName}'s family has been added");
         }
         else

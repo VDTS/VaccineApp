@@ -82,6 +82,9 @@ public partial class Appshell : Shell
     }
     public FlyoutItem MobilizerShellStructure()
     {
+        // Register those pages on the RouteFactory which are not added to the shell flyout
+        Routing.RegisterRoute(nameof(AddFamilyPage), typeof(AddFamilyPage));
+
         FlyoutItem home = new()
         {
             Title = "Home"

@@ -6,7 +6,11 @@
              x:DataType="ViewModel:FamiliesListViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="FamiliesListPage">
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Family" Command="{Binding AddFamilyCommand}" />
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="40"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
