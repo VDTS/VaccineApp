@@ -13,13 +13,13 @@ public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
         _clientFactory = clientFactory;
     }
 
-    public async Task<IEnumerable<MasjeedModel>> GetMasjeeds()
+    public async Task<IEnumerable<MasjeedModel>> GetMasjeeds(string teamId)
     {
         var client = _clientFactory.CreateClient("meta");
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>(DbNodePath.Masjeed());
+            var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>(DbNodePath.Masjeed(teamId));
 
             return s.Values.ToList();
         }

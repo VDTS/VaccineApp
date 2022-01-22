@@ -49,4 +49,45 @@ public class SignInService
             }
         }
     }
+
+    public async Task<string> AccountInfoLookup(string idToken)
+    {
+        var client = _clientFactory.CreateClient();
+
+        var requestUri = String.Concat(
+            "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=",
+            AuthConfigs.FirebaseApiKey);
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            throw new Exception("No internet connection");
+        }
+        else
+        {
+            try
+            {
+                IdTokenModel accessToken = new() { IdToken = idToken };
+                var content = JsonConvert.SerializeObject(accessToken);
+
+                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+                var byteContent = new ByteArrayContent(buffer);
+
+                var s = await client.PostAsync(requestUri, byteContent);
+
+                if (s.IsSuccessStatusCode)
+                {
+                    return await s.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception("Not authenticated");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+    }
 }

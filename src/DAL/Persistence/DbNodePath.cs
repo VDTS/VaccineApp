@@ -1,8 +1,6 @@
 ﻿namespace DAL.Persistence;
 public static class DbNodePath
 {
-    private static string TeamId = Preferences.Get("TeamId", "AnonymousTeam");
-    private static string ClusterId = Preferences.Get("ClusterId", "AnonymousCluster");
     // VaccineApp NoSQL Schema
 
     // Cluster
@@ -22,26 +20,15 @@ public static class DbNodePath
     // ChildId
     //      VaccineIds
 
-    public static string Masjeed() => $"Masjeed/{TeamId}.json";
-    public static string Child(string FamilyId) => $"Child/{FamilyId}.json";
+    public static string Masjeed(string teamId) => $"Masjeed/{teamId}.json";
+    public static string Child(string familyId) => $"Child/{familyId}.json";
     public static string Cluster() => $"Cluster.json";
-    public static string Team(string Id = null)
+    public static string Team(string Id)
     {
-        if (string.IsNullOrEmpty(Id))
-        {
-            return $"Team/{ClusterId}.json";
-        }
         return $"Team/{Id}.json";
     }
     public static string Family(string teamId)
     {
-        if (string.IsNullOrEmpty(teamId))
-        {
-            return $"Family/{TeamId}.json";
-        }
-        else
-        {
-            return $"Family/{teamId}.json";
-        }
+        return $"Family/{teamId}.json";
     }
 }

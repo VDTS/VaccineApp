@@ -2,5 +2,5 @@
 
 public interface IMasjeedRepository<T> where T : class
 {
-    public Task<IEnumerable<T>> GetMasjeeds();
+    public Task<IEnumerable<T>> GetMasjeeds(string teamId);
 }

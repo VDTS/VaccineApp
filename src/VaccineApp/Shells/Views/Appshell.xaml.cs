@@ -5,31 +5,28 @@ using VaccineApp.Views.Mobilizer.Home.Family;
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
 {
-    public Appshell()
+    public Appshell(string role)
     {
         InitializeComponent();
 
-        this.Items.Add(CurrentFlyout());
+        this.Items.Add(CurrentFlyout(role));
     }
 
-    public FlyoutItem CurrentFlyout()
+    public FlyoutItem CurrentFlyout(string role)
     {
-        // The role property will be extracted from UserClaims
-
-        var role = "admin";
-        if (role == "admin")
+        if (role == "Admin")
         {
             return AdminShellStructure();
         }
-        else if (role == "supervisor")
+        else if (role == "Supervisor")
         {
             return SupervisorShellStructure();
         }
-        else if (role == "mobilizer")
+        else if (role == "Mobilizer")
         {
             return MobilizerShellStructure();
         }
-        else if (role == "parent")
+        else if (role == "Parent")
         {
             return ParentShellStructure();
         }
@@ -38,7 +35,7 @@ public partial class Appshell : Shell
             return new FlyoutItem();
         }
     }
-    
+
     public FlyoutItem AdminShellStructure()
     {
         FlyoutItem home = new()

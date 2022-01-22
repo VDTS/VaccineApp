@@ -42,19 +42,55 @@ public class SignInViewModel : ViewModelBase
         {
             var s = await _signInService.SignIn(UserEmailInput, UserPasswordInput);
 
-            StoreTokens(s);
+            var idToken = StoreTokens(s);
 
-            Application.Current.MainPage = new Appshell();
+            var i = await _signInService.AccountInfoLookup(idToken);
+
+            var role = StoreClaims(i);
+
+            Application.Current.MainPage = new Appshell(role);
         }
         catch (Exception ex)
         {
             await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
         }
     }
-    private void StoreTokens(string json)
+    private string StoreTokens(string json)
     {
         var s = JsonConvert.DeserializeObject<SecureTokensModel>(json);
 
         SecureStorage.SetAsync(nameof(s.IdToken), s.IdToken);
+        SecureStorage.SetAsync(nameof(s.RefreshToken), s.RefreshToken);
+
+        return s.IdToken;
+    }
+    private string StoreClaims(string json)
+    {
+        var s = JsonConvert.DeserializeObject<AccountInfoLookupModel>(json);
+        var c = JsonConvert.DeserializeObject<CustomAttributes>(s.users[0].customAttributes);
+
+        Preferences.Set(nameof(c.Role), c.Role);
+
+        if (c.Role == "Admin")
+        {
+            // No claims to store for admin
+        }
+        else if (c.Role == "Supervisor")
+        {
+            Preferences.Set(nameof(c.ClusterId), c.ClusterId);
+        }
+        else if (c.Role == "Mobilizer")
+        {
+            Preferences.Set(nameof(c.ClusterId), c.ClusterId);
+            Preferences.Set(nameof(c.TeamId), c.TeamId);
+        }
+        else if (c.Role == "Parent")
+        {
+            Preferences.Set(nameof(c.ClusterId), c.ClusterId);
+            Preferences.Set(nameof(c.TeamId), c.TeamId);
+            Preferences.Set(nameof(c.FamilyId), c.FamilyId);
+        }
+
+        return c.Role;
     }
 }

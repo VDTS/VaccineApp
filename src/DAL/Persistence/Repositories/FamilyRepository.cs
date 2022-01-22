@@ -40,7 +40,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
         }
     }
 
-    public async Task<IEnumerable<FamilyModel>> GetFamilies(string teamId = null)
+    public async Task<IEnumerable<FamilyModel>> GetFamilies(string teamId)
     {
         var client = _clientFactory.CreateClient("meta");
 
