@@ -1,5 +1,6 @@
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
+using VaccineApp.Views.App.Profile;
 using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
 using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
@@ -47,6 +48,7 @@ public partial class Appshell : Shell
         {
             Title = "Home"
         };
+
         Tab cluster = new()
         {
             Title = "Cluster"
@@ -55,9 +57,15 @@ public partial class Appshell : Shell
         {
             Title = "Team"
         };
+
         Tab user = new()
         {
             Title = "User"
+        };
+
+        Tab profile = new()
+        {
+            Title = "Profile"
         };
 
         ShellContent clusterPage = new()
@@ -72,18 +80,48 @@ public partial class Appshell : Shell
             Route = nameof(TeamsListPage),
             ContentTemplate = new DataTemplate(typeof(TeamsListPage))
         };
+        ShellContent profilePage = new()
+        {
+            Title = "Profile",
+            Route = nameof(ProfilePage),
+            ContentTemplate = new DataTemplate(typeof(ProfilePage))
+        };
+
+        profile.Items.Add(profilePage);
+
 
         cluster.Items.Add(clusterPage);
         team.Items.Add(teamPage);
 
         home.Items.Add(cluster);
         home.Items.Add(team);
+        home.Items.Add(profile);
 
         return home;
     }
     public FlyoutItem SupervisorShellStructure()
     {
-        return new FlyoutItem();
+        FlyoutItem home = new()
+        {
+            Title = "Home"
+        };
+
+        Tab profile = new()
+        {
+            Title = "Profile"
+        };
+
+        ShellContent profilePage = new()
+        {
+            Title = "Profile",
+            Route = nameof(ProfilePage),
+            ContentTemplate = new DataTemplate(typeof(ProfilePage))
+        };
+
+        profile.Items.Add(profilePage);
+
+        home.Items.Add(profile);
+        return home;
     }
     public FlyoutItem MobilizerShellStructure()
     {
@@ -165,6 +203,15 @@ public partial class Appshell : Shell
         area.Items.Add(masjeed);
         area.Items.Add(school);
 
+        ShellContent profilePage = new()
+        {
+            Title = "Profile",
+            Route = nameof(ProfilePage),
+            ContentTemplate = new DataTemplate(typeof(ProfilePage))
+        };
+
+        profile.Items.Add(profilePage);
+
         home.Items.Add(status);
         home.Items.Add(insights);
         home.Items.Add(family);
@@ -175,6 +222,26 @@ public partial class Appshell : Shell
     }
     public FlyoutItem ParentShellStructure()
     {
-        return new FlyoutItem();
+        FlyoutItem home = new()
+        {
+            Title = "Home"
+        };
+
+        Tab profile = new()
+        {
+            Title = "Profile"
+        };
+
+        ShellContent profilePage = new()
+        {
+            Title = "Profile",
+            Route = nameof(ProfilePage),
+            ContentTemplate = new DataTemplate(typeof(ProfilePage))
+        };
+
+        profile.Items.Add(profilePage);
+
+        home.Items.Add(profile);
+        return home;
     }
 }

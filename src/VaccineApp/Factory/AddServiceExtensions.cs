@@ -4,6 +4,7 @@ using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
 using VaccineApp.ViewModels.Admin.Home.User;
 using VaccineApp.ViewModels.App.Feedback;
+using VaccineApp.ViewModels.App.Profile;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Doctor;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Influencer;
@@ -16,6 +17,7 @@ using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
 using VaccineApp.Views.Admin.Home.User;
 using VaccineApp.Views.App;
+using VaccineApp.Views.App.Profile;
 using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
 using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
@@ -51,6 +53,7 @@ public static class AddServiceExtensions
         Services.AddScoped<AddInfluencerViewModel>();
         Services.AddScoped<AddMasjeedViewModel>();
         Services.AddScoped<AddSchoolViewModel>();
+        Services.AddScoped<ProfileViewModel>();
 
         return Services;
     }
@@ -78,6 +81,7 @@ public static class AddServiceExtensions
         services.AddScoped<AddInfluencerPage>();
         services.AddScoped<AddMasjeedPage>();
         services.AddScoped<AddSchoolPage>();
+        services.AddScoped<ProfilePage>();
 
         return services;
     }

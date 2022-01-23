@@ -52,6 +52,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\appicon.svg" />
+	  <None Remove="Resources\Images\ProfileDefaultImage.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

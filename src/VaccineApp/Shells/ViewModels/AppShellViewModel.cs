@@ -13,6 +13,7 @@ public class AppShellViewModel
     private void Logout()
     {
         SecureStorage.RemoveAll();
+        Preferences.Clear();
         Application.Current.MainPage = new Accessshell();
     }
 
