@@ -6,6 +6,11 @@
              x:DataType="ViewModel:InfluencersListViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="InfluencersListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Influencer" Command="{Binding AddInfluencerCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Influencer}">
         <CollectionView.Header>

@@ -6,6 +6,11 @@
              x:DataType="ViewModel:SchoolsListViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="SchoolsListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add School" Command="{Binding AddSchoolCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Schools}">
         <CollectionView.Header>

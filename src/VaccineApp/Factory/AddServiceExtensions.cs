@@ -46,6 +46,11 @@ public static class AddServiceExtensions
         Services.AddScoped<DoctorsListViewModel>();
         Services.AddScoped<InfluencersListViewModel>();
         Services.AddScoped<SchoolsListViewModel>();
+        Services.AddScoped<AddClinicViewModel>();
+        Services.AddScoped<AddDoctorViewModel>();
+        Services.AddScoped<AddInfluencerViewModel>();
+        Services.AddScoped<AddMasjeedViewModel>();
+        Services.AddScoped<AddSchoolViewModel>();
 
         return Services;
     }
@@ -68,6 +73,11 @@ public static class AddServiceExtensions
         services.AddScoped<DoctorsListPage>();
         services.AddScoped<InfluencersListPage>();
         services.AddScoped<SchoolsListPage>();
+        services.AddScoped<AddClinicPage>();
+        services.AddScoped<AddDoctorPage>();
+        services.AddScoped<AddInfluencerPage>();
+        services.AddScoped<AddMasjeedPage>();
+        services.AddScoped<AddSchoolPage>();
 
         return services;
     }

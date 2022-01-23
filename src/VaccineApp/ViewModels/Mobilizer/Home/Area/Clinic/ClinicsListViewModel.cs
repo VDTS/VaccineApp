@@ -1,7 +1,9 @@
 ﻿using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
 
@@ -13,7 +15,7 @@ public class ClinicsListViewModel : ViewModelBase
     {
         _unitOfWork = unitOfWork;
         Clinics = new ObservableCollection<ClinicModel>();
-
+        AddClinicCommand = new Command(AddClinic);
         Get();
     }
 
@@ -26,8 +28,12 @@ public class ClinicsListViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-
-
+    public ICommand AddClinicCommand { private set; get; }
+    private async void AddClinic(object obj)
+    {
+        var route = $"{nameof(AddClinicPage)}";
+        await Shell.Current.GoToAsync(route);
+    }
     private async Task Get()
     {
         try

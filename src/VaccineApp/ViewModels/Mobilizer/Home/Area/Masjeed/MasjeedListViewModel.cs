@@ -3,6 +3,7 @@ using DAL.Persistence;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
 
@@ -17,6 +18,7 @@ public class MasjeedListViewModel : ViewModelBase
     {
         _unitOfwork = unitOfwork;
         Masjeeds = new ObservableCollection<MasjeedModel>();
+        AddMasjeedCommand = new Command(AddMasjeed);
         SelectedMasjeed = new();
 
         Get();
@@ -24,7 +26,12 @@ public class MasjeedListViewModel : ViewModelBase
     public ICommand PullRefreshCommand { private set; get; }
     public ICommand GoToDetailsPageCommand { private set; get; }
     public ICommand GoToPostPageCommand { private set; get; }
-
+    public ICommand AddMasjeedCommand { private set; get; }
+    private async void AddMasjeed(object obj)
+    {
+        var route = $"{nameof(AddMasjeedPage)}";
+        await Shell.Current.GoToAsync(route);
+    }
     public IEnumerable<MasjeedModel> Masjeeds
     {
         get { return _masjeeds; }

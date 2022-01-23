@@ -6,6 +6,11 @@
              x:DataType="ViewModel:DoctorsListViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="DoctorsListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Doctor" Command="{Binding AddDoctorCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Doctors}">
         <CollectionView.Header>

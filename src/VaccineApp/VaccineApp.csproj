@@ -82,16 +82,31 @@
 	  <MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\ClinicsListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Mobilizer\Home\Area\Doctor\AddDoctorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Mobilizer\Home\Area\Doctor\DoctorsListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Mobilizer\Home\Area\Influencer\AddInfluencerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Mobilizer\Home\Area\Influencer\InfluencersListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\AddMasjeedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\MasjeedsListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Mobilizer\Home\Area\School\AddSchoolPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Mobilizer\Home\Area\School\SchoolsListPage.xaml">

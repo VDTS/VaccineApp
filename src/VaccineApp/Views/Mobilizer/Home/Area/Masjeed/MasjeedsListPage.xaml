@@ -6,6 +6,11 @@
              xmlns:viewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed"
              x:DataType="viewModel:MasjeedListViewModel"
              Title="MasjeedsListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Masjeed" Command="{Binding AddMasjeedCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <CollectionView SelectionMode="Single"
                     ItemsSource="{Binding Masjeeds}"
                     SelectionChangedCommand="{Binding GoToDetailsPageCommand}"

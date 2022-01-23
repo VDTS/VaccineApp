@@ -89,6 +89,11 @@ public partial class Appshell : Shell
     {
         // Register those pages on the RouteFactory which are not added to the shell flyout
         Routing.RegisterRoute(nameof(AddFamilyPage), typeof(AddFamilyPage));
+        Routing.RegisterRoute(nameof(AddClinicPage), typeof(AddClinicPage));
+        Routing.RegisterRoute(nameof(AddDoctorPage), typeof(AddDoctorPage));
+        Routing.RegisterRoute(nameof(AddInfluencerPage), typeof(AddInfluencerPage));
+        Routing.RegisterRoute(nameof(AddMasjeedPage), typeof(AddMasjeedPage));
+        Routing.RegisterRoute(nameof(AddSchoolPage), typeof(AddSchoolPage));
 
         FlyoutItem home = new()
         {

@@ -1,7 +1,9 @@
 ﻿using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Influencer;
 
@@ -13,10 +15,10 @@ public class InfluencersListViewModel : ViewModelBase
     {
         _unitOfWork = unitOfWork;
         Influencer = new ObservableCollection<InfluencerModel>();
-
+        AddInfluencerCommand = new Command(AddInfluencer);
         Get();
     }
-
+    public ICommand AddInfluencerCommand { private set; get; }
     public IEnumerable<InfluencerModel> Influencer
     {
         get { return _influencers; }
@@ -27,7 +29,11 @@ public class InfluencersListViewModel : ViewModelBase
         }
     }
 
-
+    private async void AddInfluencer(object obj)
+    {
+        var route = $"{nameof(AddInfluencerPage)}";
+        await Shell.Current.GoToAsync(route);
+    }
     private async Task Get()
     {
         try

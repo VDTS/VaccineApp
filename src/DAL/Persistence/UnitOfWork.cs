@@ -157,4 +157,29 @@ public class UnitOfWork
     {
         return await _schoolRepository.GetSchools(_teamId);
     }
+
+    public async Task<ClinicModel> AddClinic(ClinicModel clinic)
+    {
+        return await _clinicRepository.AddClinic(clinic, _teamId);
+    }
+
+    public async Task<DoctorModel> AddDoctor(DoctorModel doctor)
+    {
+        return await _doctorRepository.AddDoctor(doctor, _teamId);
+    }
+
+    public async Task<InfluencerModel> AddInfluencer(InfluencerModel influencer)
+    {
+        return await _influencerRepository.AddInfluencer(influencer, _teamId);
+    }
+
+    public async Task<MasjeedModel> AddMasjeed(MasjeedModel masjeed)
+    {
+        return await _masjeedRepository.AddMasjeed(masjeed, _teamId);
+    }
+
+    public async Task<SchoolModel> AddSchool(SchoolModel school)
+    {
+        return await _schoolRepository.AddSchool(school, _teamId);
+    }
 }

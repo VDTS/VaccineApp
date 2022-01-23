@@ -22,6 +22,7 @@ public static class CoreConfigurationExtension
         service.AddTransient<DoctorModel>();
         service.AddTransient<InfluencerModel>();
         service.AddTransient<SchoolModel>();
+        service.AddTransient<MasjeedModel>();
 
         return service;
     }

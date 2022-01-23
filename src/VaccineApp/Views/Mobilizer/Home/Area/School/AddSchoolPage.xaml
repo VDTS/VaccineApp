@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Area.School.AddSchoolPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.School"
+             x:DataType="ViewModel:AddSchoolViewModel"
+             Title="AddSchoolPage">
+    
+    <StackLayout Padding="40"
+                 Spacing="10"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Text="{Binding School.SchoolName, Mode=TwoWay}"
+               Placeholder="School Name" />
+        <Entry Text="{Binding School.KeyInfluencer, Mode=OneWayToSource}"
+               Placeholder="School key influencer" />
+
+        <Button Text="Save"
+                TranslationY="50"
+                WidthRequest="130"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Command="{Binding PostCommand}"
+                Margin="20"/>
+    </StackLayout>
+</ContentPage>
