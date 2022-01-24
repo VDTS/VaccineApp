@@ -9,7 +9,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-    
+
 		<!-- Display name -->
 		<ApplicationTitle>VaccineApp</ApplicationTitle>
 
@@ -27,8 +27,8 @@
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
-	  <UserSecretsId>4e8f9b20-90e8-4492-974b-232a7cbc12b9</UserSecretsId>
-  </PropertyGroup>
+		<UserSecretsId>4e8f9b20-90e8-4492-974b-232a7cbc12b9</UserSecretsId>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -51,93 +51,96 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\appicon.svg" />
-	  <None Remove="Resources\Images\ProfileDefaultImage.svg" />
+		<None Remove="Resources\Images\appicon.svg" />
+		<None Remove="Resources\Images\home.svg" />
+		<None Remove="Resources\Images\logout.svg" />
+		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Auth\Auth.csproj" />
-	  <ProjectReference Include="..\Core\Core.csproj" />
-	  <ProjectReference Include="..\DAL\DAL.csproj" />
+		<ProjectReference Include="..\Auth\Auth.csproj" />
+		<ProjectReference Include="..\Core\Core.csproj" />
+		<ProjectReference Include="..\DAL\DAL.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Shells\Views\Accessshell.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Shells\Views\Appshell.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Access\SignIn\SignInPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Admin\Home\Cluster\ClustersListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Admin\Home\Team\AddTeamPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Admin\Home\Team\TeamsListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\ClinicsListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Doctor\AddDoctorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Doctor\DoctorsListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Influencer\AddInfluencerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Influencer\InfluencersListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\AddMasjeedPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\MasjeedsListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\School\AddSchoolPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Area\School\SchoolsListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Family\AddFamilyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Family\Child\AddChildPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mobilizer\Home\Family\FamiliesListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Shells\Views\Accessshell.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Shells\Views\Appshell.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Access\SignIn\SignInPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Admin\Home\Cluster\ClustersListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Admin\Home\Team\AddTeamPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Admin\Home\Team\TeamsListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\ClinicsListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Doctor\AddDoctorPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Doctor\DoctorsListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Influencer\AddInfluencerPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Influencer\InfluencersListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\AddMasjeedPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\MasjeedsListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\School\AddSchoolPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\School\SchoolsListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Family\AddFamilyPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Family\Child\AddChildPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Family\FamiliesListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.2-mauipre.1.22054.8" />
+		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.2-mauipre.1.22054.8" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Update="Resources\Images\appicon.svg">
-	    <Color>#FFFFFF</Color>
-	  </MauiImage>
+		<MauiImage Update="Resources\Images\appicon.svg">
+			<Color>#FFFFFF</Color>
+		</MauiImage>
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
 		<OutputType>WinExe</OutputType>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 	</PropertyGroup>
-	
+
 </Project>

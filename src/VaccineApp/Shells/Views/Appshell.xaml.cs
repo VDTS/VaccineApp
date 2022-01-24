@@ -46,9 +46,9 @@ public partial class Appshell : Shell
     {
         FlyoutItem home = new()
         {
-            Title = "Home"
+            Title = "Home",
+            Icon = "home.png"
         };
-
         Tab cluster = new()
         {
             Title = "Cluster"
@@ -103,7 +103,8 @@ public partial class Appshell : Shell
     {
         FlyoutItem home = new()
         {
-            Title = "Home"
+            Title = "Home",
+            Icon = "home.png"
         };
 
         Tab profile = new()
@@ -135,7 +136,8 @@ public partial class Appshell : Shell
 
         FlyoutItem home = new()
         {
-            Title = "Home"
+            Title = "Home",
+            Icon = "home.png"
         };
         Tab status = new()
         {
@@ -224,7 +226,8 @@ public partial class Appshell : Shell
     {
         FlyoutItem home = new()
         {
-            Title = "Home"
+            Title = "Home",
+            Icon = "home.png"
         };
 
         Tab profile = new()

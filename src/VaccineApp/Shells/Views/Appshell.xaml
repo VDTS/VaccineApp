@@ -11,6 +11,7 @@
     </Shell.BindingContext>
 
     <MenuItem Text="Logout"
+              IconImageSource="logout.png"
               Command="{Binding LogoutCommand}"/>
 
 </Shell>
