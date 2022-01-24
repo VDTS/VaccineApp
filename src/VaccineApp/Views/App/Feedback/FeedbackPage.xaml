@@ -3,12 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.App.FeedbackPage"
              Title="FeedbackPage"
+             Shell.TabBarIsVisible="False"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Feedback"
              x:DataType="ViewModel:FeedbackViewModel">
-    <StackLayout>
-        <Entry Text="{Binding Feedback.Title}" Placeholder="Enter issue title"></Entry>
-        <Entry Text="{Binding Feedback.Body}" Placeholder="Enter issue body"></Entry>
+    <StackLayout WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Text="{Binding Feedback.Title}"
+               Placeholder="Enter issue title"></Entry>
+        <Entry Text="{Binding Feedback.Body}"
+               Placeholder="Enter issue body"></Entry>
 
-        <Button Text="Submit" Command="{Binding SubmitIssueOnGithubCommand}"></Button>
+        <Button Text="Submit"
+                Command="{Binding SubmitIssueOnGithubCommand}"></Button>
     </StackLayout>
 </ContentPage>

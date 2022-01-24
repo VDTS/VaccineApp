@@ -1,5 +1,7 @@
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
+using VaccineApp.Views.App;
+using VaccineApp.Views.App.HelpSupport;
 using VaccineApp.Views.App.Profile;
 using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
@@ -22,6 +24,8 @@ public partial class Appshell : Shell
     {
         // Register routes for App pages
         Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
+        Routing.RegisterRoute(nameof(HelpSupportPage), typeof(HelpSupportPage));
+        Routing.RegisterRoute(nameof(FeedbackPage), typeof(FeedbackPage));
 
         // Selecting Current Shell based on Role
         if (role == "Admin")

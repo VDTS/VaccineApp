@@ -13,7 +13,10 @@
     <MenuItem Text="Profile"
               IconImageSource="userprofile.png"
               Command="{Binding ProfileCommand}"/>
-    
+
+    <MenuItem Text="Help and Support"
+              IconImageSource="helpandsupport.png"
+              Command="{Binding HelpSupportCommand}"/>
     <MenuItem Text="Logout"
               IconImageSource="logout.png"
               Command="{Binding LogoutCommand}"/>

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using VaccineApp.Shells.Views;
+using VaccineApp.Views.App.HelpSupport;
 using VaccineApp.Views.App.Profile;
 
 namespace VaccineApp.Shells.ViewModels;
@@ -10,6 +11,7 @@ public class AppShellViewModel
     {
         LogoutCommand = new Command(Logout);
         ProfileCommand = new Command(Profile);
+        HelpSupportCommand = new Command(HelpSupport);
     }
 
     private void Logout()
@@ -24,6 +26,12 @@ public class AppShellViewModel
         await Shell.Current.GoToAsync(nameof(ProfilePage));
     }
 
+    private async void HelpSupport()
+    {
+        await Shell.Current.GoToAsync(nameof(HelpSupportPage));
+    }
+
     public ICommand LogoutCommand { private set; get; }
     public ICommand ProfileCommand { private set; get; }
+    public ICommand HelpSupportCommand { private set; get; }
 }

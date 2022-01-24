@@ -52,6 +52,8 @@
 
 	<ItemGroup>
 		<None Remove="Resources\Images\appicon.svg" />
+		<None Remove="Resources\Images\feedback.svg" />
+		<None Remove="Resources\Images\helpandsupport.svg" />
 		<None Remove="Resources\Images\home.svg" />
 		<None Remove="Resources\Images\logout.svg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
@@ -85,6 +87,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\HelpSupport\HelpSupportPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
 			<Generator>MSBuild:Compile</Generator>

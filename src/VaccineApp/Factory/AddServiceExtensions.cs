@@ -17,6 +17,7 @@ using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
 using VaccineApp.Views.Admin.Home.User;
 using VaccineApp.Views.App;
+using VaccineApp.Views.App.HelpSupport;
 using VaccineApp.Views.App.Profile;
 using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
@@ -82,6 +83,7 @@ public static class AddServiceExtensions
         services.AddScoped<AddMasjeedPage>();
         services.AddScoped<AddSchoolPage>();
         services.AddScoped<ProfilePage>();
+        services.AddScoped<HelpSupportPage>();
 
         return services;
     }
