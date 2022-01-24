@@ -10,6 +10,10 @@
         <ViewModel:AppShellViewModel/>
     </Shell.BindingContext>
 
+    <MenuItem Text="Profile"
+              IconImageSource="userprofile.png"
+              Command="{Binding ProfileCommand}"/>
+    
     <MenuItem Text="Logout"
               IconImageSource="logout.png"
               Command="{Binding LogoutCommand}"/>

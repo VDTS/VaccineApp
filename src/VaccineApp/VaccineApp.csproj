@@ -55,6 +55,7 @@
 		<None Remove="Resources\Images\home.svg" />
 		<None Remove="Resources\Images\logout.svg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
+		<None Remove="Resources\Images\userprofile.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

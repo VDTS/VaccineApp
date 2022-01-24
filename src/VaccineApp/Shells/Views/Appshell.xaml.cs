@@ -20,6 +20,10 @@ public partial class Appshell : Shell
 
     public FlyoutItem CurrentFlyout(string role)
     {
+        // Register routes for App pages
+        Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
+
+        // Selecting Current Shell based on Role
         if (role == "Admin")
         {
             return AdminShellStructure();
@@ -63,11 +67,6 @@ public partial class Appshell : Shell
             Title = "User"
         };
 
-        Tab profile = new()
-        {
-            Title = "Profile"
-        };
-
         ShellContent clusterPage = new()
         {
             Title = "Cluster",
@@ -80,49 +79,18 @@ public partial class Appshell : Shell
             Route = nameof(TeamsListPage),
             ContentTemplate = new DataTemplate(typeof(TeamsListPage))
         };
-        ShellContent profilePage = new()
-        {
-            Title = "Profile",
-            Route = nameof(ProfilePage),
-            ContentTemplate = new DataTemplate(typeof(ProfilePage))
-        };
-
-        profile.Items.Add(profilePage);
-
 
         cluster.Items.Add(clusterPage);
         team.Items.Add(teamPage);
 
         home.Items.Add(cluster);
         home.Items.Add(team);
-        home.Items.Add(profile);
 
         return home;
     }
     public FlyoutItem SupervisorShellStructure()
     {
-        FlyoutItem home = new()
-        {
-            Title = "Home",
-            Icon = "home.png"
-        };
-
-        Tab profile = new()
-        {
-            Title = "Profile"
-        };
-
-        ShellContent profilePage = new()
-        {
-            Title = "Profile",
-            Route = nameof(ProfilePage),
-            ContentTemplate = new DataTemplate(typeof(ProfilePage))
-        };
-
-        profile.Items.Add(profilePage);
-
-        home.Items.Add(profile);
-        return home;
+        return new FlyoutItem();
     }
     public FlyoutItem MobilizerShellStructure()
     {
@@ -154,10 +122,6 @@ public partial class Appshell : Shell
         Tab area = new()
         {
             Title = "Area"
-        };
-        Tab profile = new()
-        {
-            Title = "Profile"
         };
 
         ShellContent familyPage = new()
@@ -205,46 +169,15 @@ public partial class Appshell : Shell
         area.Items.Add(masjeed);
         area.Items.Add(school);
 
-        ShellContent profilePage = new()
-        {
-            Title = "Profile",
-            Route = nameof(ProfilePage),
-            ContentTemplate = new DataTemplate(typeof(ProfilePage))
-        };
-
-        profile.Items.Add(profilePage);
-
         home.Items.Add(status);
         home.Items.Add(insights);
         home.Items.Add(family);
         home.Items.Add(area);
-        home.Items.Add(profile);
 
         return home;
     }
     public FlyoutItem ParentShellStructure()
     {
-        FlyoutItem home = new()
-        {
-            Title = "Home",
-            Icon = "home.png"
-        };
-
-        Tab profile = new()
-        {
-            Title = "Profile"
-        };
-
-        ShellContent profilePage = new()
-        {
-            Title = "Profile",
-            Route = nameof(ProfilePage),
-            ContentTemplate = new DataTemplate(typeof(ProfilePage))
-        };
-
-        profile.Items.Add(profilePage);
-
-        home.Items.Add(profile);
-        return home;
+        return new FlyoutItem();
     }
 }
