@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Parent.ParentFamilyPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Parent"
+             x:DataType="ViewModel:ParentFamilyViewModel"
+             Title="ParentFamilyPage">
+
+    <StackLayout>
+        <StackLayout Padding="40"
+                     Spacing="10"
+                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
+            <Label FontAttributes="Bold"
+                   Text="Family house number" />
+            <Label Text="{Binding Family.HouseNo}" />
+            <Label FontAttributes="Bold"
+                   Text="Family parent name" />
+            <Label Text="{Binding Family.ParentName}" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

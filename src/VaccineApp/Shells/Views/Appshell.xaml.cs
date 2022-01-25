@@ -9,6 +9,7 @@ using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
 using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
 using VaccineApp.Views.Mobilizer.Home.Area.School;
 using VaccineApp.Views.Mobilizer.Home.Family;
+using VaccineApp.Views.Parent;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -182,6 +183,27 @@ public partial class Appshell : Shell
     }
     public FlyoutItem ParentShellStructure()
     {
-        return new FlyoutItem();
+        FlyoutItem home = new()
+        {
+            Title = "Home",
+            Icon = "home.png"
+        };
+
+        Tab family = new()
+        {
+            Title = "Family"
+        };
+
+        ShellContent familyPage = new()
+        {
+            Title = "Family",
+            Route = nameof(ParentFamilyPage),
+            ContentTemplate = new DataTemplate(typeof(ParentFamilyPage))
+        };
+
+        family.Items.Add(familyPage);
+        home.Items.Add(family);
+
+        return home;
     }
 }
