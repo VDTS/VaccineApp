@@ -15,6 +15,7 @@ public static class AuthConfigurationExtensions
 
         service.AddHttpClient();
         service.AddScoped<SignInService>();
+        service.AddScoped<AccountService>();
 
         return service;
     }

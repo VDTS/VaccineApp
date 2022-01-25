@@ -7,6 +7,10 @@
              Shell.TabBarIsVisible="False"
              Title="ProfilePage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
         <StackLayout Padding="40">
             <StackLayout>

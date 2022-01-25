@@ -27,6 +27,7 @@ public partial class Appshell : Shell
         Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
         Routing.RegisterRoute(nameof(HelpSupportPage), typeof(HelpSupportPage));
         Routing.RegisterRoute(nameof(FeedbackPage), typeof(FeedbackPage));
+        Routing.RegisterRoute(nameof(EditProfilePage), typeof(EditProfilePage));
 
         // Selecting Current Shell based on Role
         if (role == "Admin")

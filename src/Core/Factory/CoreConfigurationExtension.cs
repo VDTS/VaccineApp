@@ -8,6 +8,8 @@ public static class CoreConfigurationExtension
     public static IServiceCollection AddCoreServices(
         this IServiceCollection service)
     {
+        //Add Services
+        service.AddAutoMapper(typeof(IAssemblyApi));
         service.AddSingleton<GitHubIssueSubmitService>();
 
         // Device Features
@@ -24,6 +26,7 @@ public static class CoreConfigurationExtension
         service.AddTransient<SchoolModel>();
         service.AddTransient<MasjeedModel>();
         service.AddTransient<ProfileModel>();
+        service.AddTransient<EditProfileModel>();
 
         return service;
     }

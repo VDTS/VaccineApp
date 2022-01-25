@@ -1,7 +1,9 @@
 ﻿using Auth.Services;
 using Core.Models;
 using Newtonsoft.Json;
+using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.App.Profile;
 
 namespace VaccineApp.ViewModels.App.Profile;
 public class ProfileViewModel : ViewModelBase
@@ -13,8 +15,15 @@ public class ProfileViewModel : ViewModelBase
     {
         _profile = profile;
         _signInService = signInService;
-
+        EditCommand = new Command(Edit);
         Get();
+    }
+
+    private async void Edit()
+    {
+        var result = JsonConvert.SerializeObject(Profile);
+        var route = $"{nameof(EditProfilePage)}?Profile={result}";
+        await Shell.Current.GoToAsync(route);
     }
 
     private async void Get()
@@ -37,6 +46,7 @@ public class ProfileViewModel : ViewModelBase
 
         Profile = new()
         {
+            LocalId = s.users[0].localId,
             DisplayName = s.users[0].displayName,
             Role = c.Role,
             PhoneNumber = s.users[0].phoneNumber,
@@ -54,4 +64,6 @@ public class ProfileViewModel : ViewModelBase
         get { return _profile; }
         set { _profile = value; OnPropertyChanged(); }
     }
+
+    public ICommand EditCommand { private set; get; }
 }
