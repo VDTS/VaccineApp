@@ -182,4 +182,9 @@ public class UnitOfWork
     {
         return await _schoolRepository.AddSchool(school, _teamId);
     }
+
+    public async Task<IEnumerable<ChildModel>> GetChilds(string familyId)
+    {
+        return await _childRepository.GetChilds(familyId);
+    }
 }

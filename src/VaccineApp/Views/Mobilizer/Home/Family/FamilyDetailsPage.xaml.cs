@@ -22,5 +22,6 @@ public partial class FamilyDetailsPage : ContentPage
         var result = JsonConvert.DeserializeObject<FamilyModel>(Family);
         _viewModel.GetQueryProperty(result);
         this.BindingContext = _viewModel;
+        _viewModel.Get();
     }
 }

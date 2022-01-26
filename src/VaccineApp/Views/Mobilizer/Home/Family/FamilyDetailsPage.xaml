@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Mobilizer.Home.Family.FamilyDetailsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              x:DataType="ViewModel:FamilyDetailsViewModel"
              Shell.TabBarIsVisible="False"
              Title="FamilyDetailsPage">
@@ -23,5 +24,21 @@
                    Text="Phone number" />
             <Label Text="{Binding Family.PhoneNumber }" />
         </StackLayout>
+        <Label Text="---------------------------------" />
+        <CollectionView ItemsSource="{Binding Childs}">
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontSize="Title"
+                           Text="Child Name" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:ChildModel">
+                    <StackLayout Padding="0,2,0,0">
+                        <Label Text="{Binding FullName}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentPage>

@@ -39,4 +39,20 @@ public class ChildRepository : IChildRepository<ChildModel>
             throw;
         }
     }
+
+    public async Task<IEnumerable<ChildModel>> GetChilds(string familyId)
+    {
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            var s = await client.GetFromJsonAsync<Dictionary<string, ChildModel>>(DbNodePath.Child(familyId));
+
+            return s.Values.ToList();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
 }
