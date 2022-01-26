@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Family.FamilyDetailsPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
+             x:DataType="ViewModel:FamilyDetailsViewModel"
+             Title="FamilyDetailsPage">
+    <StackLayout Padding="40">
+        <StackLayout Spacing="10">
+            <Label FontSize="Title"
+                   Text="Family info" />
+            <Label FontAttributes="Bold"
+                   Text="House No." />
+            <Label Text="{Binding Family.HouseNo }" />
+            <Label FontAttributes="Bold"
+                   Text="Parent name" />
+            <Label Text="{Binding Family.ParentName }" />
+            <Label FontAttributes="Bold"
+                   Text="Phone number" />
+            <Label Text="{Binding Family.PhoneNumber }" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -59,6 +59,7 @@ public static class AddServiceExtensions
         Services.AddScoped<ProfileViewModel>();
         Services.AddScoped<ParentFamilyViewModel>();
         Services.AddScoped<EditProfileViewModel>();
+        Services.AddScoped<FamilyDetailsViewModel>();
 
         return Services;
     }
@@ -90,6 +91,7 @@ public static class AddServiceExtensions
         services.AddScoped<HelpSupportPage>();
         services.AddScoped<ParentFamilyPage>();
         services.AddScoped<EditProfilePage>();
+        services.AddScoped<FamilyDetailsPage>();
 
         return services;
     }

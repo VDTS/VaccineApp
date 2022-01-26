@@ -15,7 +15,9 @@
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Families}">
+                        ItemsSource="{Binding Families}"
+                        SelectedItem="{Binding SelectedFamily}"
+                        SelectionChangedCommand="{Binding FamilyDetailsCommand}">
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
                     <Label FontSize="Title"
