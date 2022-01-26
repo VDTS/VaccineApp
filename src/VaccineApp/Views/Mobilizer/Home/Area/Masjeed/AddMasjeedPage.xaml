@@ -4,6 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Masjeed.AddMasjeedPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed"
              x:DataType="ViewModel:AddMasjeedViewModel"
+             Shell.TabBarIsVisible="False"
              Title="AddMasjeedPage">
 
     <StackLayout Padding="40"

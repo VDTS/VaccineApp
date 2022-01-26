@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Mobilizer.Home.Family.AddFamilyPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
+             x:DataType="ViewModel:AddFamilyViewModel"
+             Shell.TabBarIsVisible="False"
              Title="AddFamilyPage">
 
     <StackLayout Padding="40"

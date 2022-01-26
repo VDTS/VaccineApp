@@ -4,6 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Clinic.AddClinicPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic"
              x:DataType="ViewModel:AddClinicViewModel"
+             Shell.TabBarIsVisible="False"
              Title="AddClinicPage">
 
     <StackLayout Padding="40"
