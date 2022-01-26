@@ -44,6 +44,7 @@ public static class AddServiceExtensions
         Services.AddTransient<ParentFamilyViewModel>();
         Services.AddTransient<EditProfileViewModel>();
         Services.AddTransient<FamilyDetailsViewModel>();
+        Services.AddTransient<UsersListViewModel>();
 
         return Services;
     }

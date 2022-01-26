@@ -1,5 +1,7 @@
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
+using VaccineApp.Views.Admin.Home.User;
+using VaccineApp.Views.Admin.User;
 using VaccineApp.Views.App;
 using VaccineApp.Views.App.HelpSupport;
 using VaccineApp.Views.App.Profile;
@@ -55,6 +57,10 @@ public partial class Appshell : Shell
 
     public FlyoutItem AdminShellStructure()
     {
+        // Register routes for App pages
+        Routing.RegisterRoute(nameof(AddUserPage), typeof(AddUserPage));
+
+
         FlyoutItem home = new()
         {
             Title = "Home",
@@ -87,11 +93,20 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(TeamsListPage))
         };
 
+        ShellContent userPage = new()
+        {
+            Title = "User",
+            Route = nameof(UsersListPage),
+            ContentTemplate = new DataTemplate(typeof(UsersListPage))
+        };
+
         cluster.Items.Add(clusterPage);
         team.Items.Add(teamPage);
+        user.Items.Add(userPage);
 
         home.Items.Add(cluster);
         home.Items.Add(team);
+        home.Items.Add(user);
 
         return home;
     }

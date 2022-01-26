@@ -178,6 +178,8 @@ public class AddUserViewModel : ViewModelBase
 
             await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(userRecord.Uid, claims);
             _toast.MakeToast(userRecord.DisplayName, $"Password: {args.Password}");
+
+            await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
         {

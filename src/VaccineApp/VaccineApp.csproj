@@ -85,6 +85,9 @@
 		<MauiXaml Update="Views\Admin\Home\Team\TeamsListPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Admin\Home\User\UsersListPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
