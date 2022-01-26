@@ -4,12 +4,12 @@
              x:Class="VaccineApp.Views.Parent.ParentFamilyPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Parent"
              x:DataType="ViewModel:ParentFamilyViewModel"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="ParentFamilyPage">
 
-    <StackLayout>
-        <StackLayout Padding="40"
-                     Spacing="10"
-                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <StackLayout Padding="40"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <StackLayout Spacing="10">
             <Label FontAttributes="Bold"
                    Text="Family house number" />
             <Label Text="{Binding Family.HouseNo}" />
@@ -17,6 +17,22 @@
                    Text="Family parent name" />
             <Label Text="{Binding Family.ParentName}" />
         </StackLayout>
+        <Label Text="---------------------------------" />
+        <CollectionView ItemsSource="{Binding Childs}">
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontSize="Title"
+                           Text="Child Name" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:ChildModel">
+                    <StackLayout Padding="0,2,0,0">
+                        <Label Text="{Binding FullName}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 
 </ContentPage>

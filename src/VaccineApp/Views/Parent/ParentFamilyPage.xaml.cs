@@ -4,10 +4,18 @@ namespace VaccineApp.Views.Parent;
 
 public partial class ParentFamilyPage : ContentPage
 {
-	public ParentFamilyPage(ParentFamilyViewModel viewModel)
+    private readonly ParentFamilyViewModel _viewModel;
+
+    public ParentFamilyPage(ParentFamilyViewModel viewModel)
 	{
 		InitializeComponent();
 
+        _viewModel = viewModel;
 		this.BindingContext = viewModel;
-	}
+    }
+
+    protected override void OnAppearing()
+    {
+        _viewModel.GetFamily();
+    }
 }
