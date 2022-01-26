@@ -4,7 +4,11 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Family.FamilyDetailsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
              x:DataType="ViewModel:FamilyDetailsViewModel"
+             Shell.TabBarIsVisible="False"
              Title="FamilyDetailsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Child" Command="{Binding AddChildCommand}"/>
+    </ContentPage.ToolbarItems>
     <StackLayout Padding="40">
         <StackLayout Spacing="10">
             <Label FontSize="Title"

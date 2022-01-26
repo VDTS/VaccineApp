@@ -10,6 +10,7 @@ public class AddChildViewModel : ViewModelBase
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
     private ChildModel _child;
+    private string _familyId;
     ChildValidator _childValidator { get; set; }
 
 
@@ -23,6 +24,11 @@ public class AddChildViewModel : ViewModelBase
         PostCommand = new Command(Post);
     }
 
+    internal void GetQueryProperty(string familyId)
+    {
+        _familyId = familyId;
+    }
+
     public ICommand PostCommand { private set; get; }
 
     private async void Post()
@@ -30,7 +36,7 @@ public class AddChildViewModel : ViewModelBase
         var validationResult = _childValidator.Validate(Child);
         if (validationResult.IsValid)
         {
-            var result = await _unitOfWork.AddChild(_child, "FamilyId");
+            var result = await _unitOfWork.AddChild(_child, _familyId);
             _toast.MakeToast($"{result.FullName} has been added");
         }
         else

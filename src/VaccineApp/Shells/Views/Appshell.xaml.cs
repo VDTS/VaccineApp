@@ -9,6 +9,7 @@ using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
 using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
 using VaccineApp.Views.Mobilizer.Home.Area.School;
 using VaccineApp.Views.Mobilizer.Home.Family;
+using VaccineApp.Views.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Parent;
 
 namespace VaccineApp.Shells.Views;
@@ -108,6 +109,7 @@ public partial class Appshell : Shell
         Routing.RegisterRoute(nameof(AddMasjeedPage), typeof(AddMasjeedPage));
         Routing.RegisterRoute(nameof(AddSchoolPage), typeof(AddSchoolPage));
         Routing.RegisterRoute(nameof(FamilyDetailsPage), typeof(FamilyDetailsPage));
+        Routing.RegisterRoute(nameof(AddChildPage), typeof(AddChildPage));
 
         FlyoutItem home = new()
         {
