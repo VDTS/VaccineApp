@@ -17,6 +17,10 @@
     <MenuItem Text="Help and Support"
               IconImageSource="helpandsupport.png"
               Command="{Binding HelpSupportCommand}"/>
+
+    <MenuItem Text="Settings"
+              IconImageSource="settings.png"
+              Command="{Binding SettingsCommand}"/>
     <MenuItem Text="Logout"
               IconImageSource="logout.png"
               Command="{Binding LogoutCommand}"/>
