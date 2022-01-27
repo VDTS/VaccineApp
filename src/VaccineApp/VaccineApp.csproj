@@ -67,6 +67,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Auth\Auth.csproj" />
 		<ProjectReference Include="..\Core\Core.csproj" />
 		<ProjectReference Include="..\DAL\DAL.csproj" />
@@ -105,6 +109,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\App\Profile\EditProfilePage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -158,6 +165,7 @@
 		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.2-mauipre.1.22054.8" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

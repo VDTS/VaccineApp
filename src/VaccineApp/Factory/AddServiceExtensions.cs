@@ -5,6 +5,7 @@ using VaccineApp.ViewModels.Admin.Home.User;
 using VaccineApp.ViewModels.App.AboutUs;
 using VaccineApp.ViewModels.App.Feedback;
 using VaccineApp.ViewModels.App.Profile;
+using VaccineApp.ViewModels.App.Settings;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Doctor;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Influencer;
@@ -47,6 +48,7 @@ public static class AddServiceExtensions
         Services.AddTransient<FamilyDetailsViewModel>();
         Services.AddTransient<UsersListViewModel>();
         Services.AddTransient<AboutUsViewModel>();
+        Services.AddTransient<SettingsViewModel>();
 
         return Services;
     }

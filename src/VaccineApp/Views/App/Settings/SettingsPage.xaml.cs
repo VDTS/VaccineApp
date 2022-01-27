@@ -1,10 +1,14 @@
+using VaccineApp.ViewModels.App.Settings;
+
 namespace VaccineApp.Views.App.Settings;
 
 public partial class SettingsPage : ContentPage
 {
-    public SettingsPage()
+    public SettingsPage(SettingsViewModel viewModel)
     {
         InitializeComponent();
+
+        this.BindingContext = viewModel;
     }
 
     protected override void OnAppearing()

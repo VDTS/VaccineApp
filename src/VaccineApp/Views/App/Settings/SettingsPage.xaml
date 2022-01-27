@@ -5,6 +5,11 @@
              Shell.TabBarIsVisible="False"
              Title="SettingsPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Reset to factory defaults"
+                     Command="{Binding ResetAppSettignsDefaultCommand}" />
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="40"
                  WidthRequest="{OnPlatform UWP='1000', Default='300'}">
         <StackLayout>
