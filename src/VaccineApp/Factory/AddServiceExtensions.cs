@@ -2,6 +2,7 @@
 using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
 using VaccineApp.ViewModels.Admin.Home.User;
+using VaccineApp.ViewModels.App.AboutUs;
 using VaccineApp.ViewModels.App.Feedback;
 using VaccineApp.ViewModels.App.Profile;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
@@ -45,6 +46,7 @@ public static class AddServiceExtensions
         Services.AddTransient<EditProfileViewModel>();
         Services.AddTransient<FamilyDetailsViewModel>();
         Services.AddTransient<UsersListViewModel>();
+        Services.AddTransient<AboutUsViewModel>();
 
         return Services;
     }

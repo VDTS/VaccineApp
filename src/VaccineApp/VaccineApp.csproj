@@ -51,12 +51,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Images\abdulbasir.jpg" />
+		<None Remove="Resources\Images\aboutus.svg" />
 		<None Remove="Resources\Images\appicon.svg" />
 		<None Remove="Resources\Images\feedback.svg" />
 		<None Remove="Resources\Images\helpandsupport.svg" />
 		<None Remove="Resources\Images\home.svg" />
+		<None Remove="Resources\Images\linkedin.svg" />
 		<None Remove="Resources\Images\logout.svg" />
+		<None Remove="Resources\Images\mohammadyasin.jpg" />
+		<None Remove="Resources\Images\naveedahmad.jpg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
+		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />
 	</ItemGroup>
 
@@ -86,6 +92,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Admin\Home\User\UsersListPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\AboutUs\AboutUsPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">

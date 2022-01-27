@@ -26,6 +26,24 @@
                     </Grid>
                 </ViewCell>
             </TableSection>
+            <TableSection Title="About us">
+                <ViewCell Tapped="AboutUs">
+                    <Grid ColumnDefinitions="Auto, Auto"
+                          ColumnSpacing="5">
+                        <Image GridLayout.Column="0"
+                               Source="aboutus.png"
+                               WidthRequest="40"
+                               HeightRequest="40" />
+                        <Label Text="App devs"
+                               FontAttributes="Bold"
+                               GridLayout.Column="2" />
+                        <Label Text="Connect with us"
+                               GridLayout.Column="2"
+                               Padding="0, 18, 0, 0"
+                               HorizontalOptions="End" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
         </TableRoot>
     </TableView>
 </ContentPage>
