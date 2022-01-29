@@ -1,6 +1,5 @@
 ﻿using Core.Features;
 using Core.Models;
-using Core.Services;
 
 namespace Core.Factory;
 public static class CoreConfigurationExtension
@@ -10,7 +9,6 @@ public static class CoreConfigurationExtension
     {
         //Add Services
         service.AddAutoMapper(typeof(IAssemblyApi));
-        service.AddSingleton<GitHubIssueSubmitService>();
 
         // Device Features
         service.AddSingleton<IToast, Toaster>();

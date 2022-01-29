@@ -6,13 +6,102 @@
              Shell.TabBarIsVisible="False"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Feedback"
              x:DataType="ViewModel:FeedbackViewModel">
-    <StackLayout WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <Entry Text="{Binding Feedback.Title}"
-               Placeholder="Enter issue title"></Entry>
-        <Entry Text="{Binding Feedback.Body}"
-               Placeholder="Enter issue body"></Entry>
 
-        <Button Text="Submit"
-                Command="{Binding SubmitIssueOnGithubCommand}"></Button>
-    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Submit issue"
+                     Command="{Binding SubmitIssueOnGithubCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Padding="40"
+                     Spacing="20"
+                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
+            <StackLayout RadioButtonGroup.GroupName="Type">
+                <Label Text="Type of the feedback" />
+                <RadioButton Value="Idea"
+                             IsChecked="{Binding IsIdeaChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="idea.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="New Idea" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="Enhancement"
+                             IsChecked="{Binding IsEnhancementChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="enhancement.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Enhancement" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="Bug" IsChecked="{Binding IsBugChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="bug.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="A bug or error" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+            </StackLayout>
+            <StackLayout RadioButtonGroup.GroupName="OperatingSystems">
+                <Label Text="Operating system" />
+                <RadioButton Value="Windows"
+                             IsChecked="{Binding IsWindowsChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="windows.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Windows" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="Android"
+                             IsChecked="{Binding IsAndroidChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="android.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Android" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="All platforms"
+                             IsChecked="{Binding IsAllChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="multipledevices.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="All platforms" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+            </StackLayout>
+            <StackLayout Spacing="10">
+                <Entry Text="{Binding Feedback.Title}"
+                       Placeholder="Enter issue title"
+                       ClearButtonVisibility="WhileEditing" />
+                <Editor Text="{Binding Feedback.Body}"
+                        Placeholder="Enter issue body"
+                        HeightRequest="300"
+                        AutoSize="TextChanges"
+                        IsSpellCheckEnabled="True" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

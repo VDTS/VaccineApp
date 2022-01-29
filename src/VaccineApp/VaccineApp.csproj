@@ -53,21 +53,31 @@
 	<ItemGroup>
 		<None Remove="Resources\Images\abdulbasir.jpg" />
 		<None Remove="Resources\Images\aboutus.svg" />
+		<None Remove="Resources\Images\android.svg" />
 		<None Remove="Resources\Images\appicon.svg" />
+		<None Remove="Resources\Images\bug.svg" />
+		<None Remove="Resources\Images\enhancement.svg" />
 		<None Remove="Resources\Images\feedback.svg" />
 		<None Remove="Resources\Images\helpandsupport.svg" />
 		<None Remove="Resources\Images\home.svg" />
+		<None Remove="Resources\Images\idea.svg" />
 		<None Remove="Resources\Images\linkedin.svg" />
 		<None Remove="Resources\Images\logout.svg" />
 		<None Remove="Resources\Images\mohammadyasin.jpg" />
+		<None Remove="Resources\Images\multipledevices.svg" />
 		<None Remove="Resources\Images\naveedahmad.jpg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
 		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />
+		<None Remove="Resources\Images\windows.svg" />
+		<None Remove="vdtsapp.2022-01-27.private-key.pem" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
+		<EmbeddedResource Include="SecretFiles\vdtsapp.2022-01-27.private-key.pem">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -163,6 +173,7 @@
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.0" />
 		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+		<PackageReference Include="GitHubJwt" Version="0.0.5" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.2-mauipre.1.22054.8" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
