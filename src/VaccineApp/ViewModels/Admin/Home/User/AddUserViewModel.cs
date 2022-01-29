@@ -1,15 +1,10 @@
 ﻿using Core.Features;
 using Core.Models;
 using DAL.Persistence;
-using FirebaseAdmin;
 using FirebaseAdmin.Auth;
-using Google.Apis.Auth.OAuth2;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Utility.Generators;
-using VaccineApp.Factory;
 using VaccineApp.ViewModels.Base;
 
 namespace VaccineApp.ViewModels.Admin.Home.User;
@@ -17,7 +12,6 @@ public class AddUserViewModel : ViewModelBase
 {
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
-    private readonly IOptionsSnapshot<FirebasePrivateKey> _firebasePrivateKey;
     private string _email;
     private string _fullName;
     private string _phoneNumber;
@@ -30,7 +24,7 @@ public class AddUserViewModel : ViewModelBase
     private TeamModel _selectedTeam;
     private FamilyModel _selectedFamily;
 
-    public AddUserViewModel(UnitOfWork unitOfWork, IToast toast, IOptionsSnapshot<FirebasePrivateKey> firebasePrivateKey)
+    public AddUserViewModel(UnitOfWork unitOfWork, IToast toast)
     {
         RolesList = new List<string>()
         {
@@ -42,7 +36,6 @@ public class AddUserViewModel : ViewModelBase
         FamiliesList = new ObservableCollection<FamilyModel>();
         _unitOfWork = unitOfWork;
         _toast = toast;
-        _firebasePrivateKey = firebasePrivateKey;
         PostCommand = new Command(Post);
     }
     public ICommand PostCommand { private set; get; }
@@ -149,18 +142,8 @@ public class AddUserViewModel : ViewModelBase
     }
     private async void Post()
     {
-        var googleSecret = JsonConvert.SerializeObject(_firebasePrivateKey.Value);
-
         try
         {
-            if (FirebaseApp.DefaultInstance == null)
-            {
-                FirebaseApp.Create(new AppOptions()
-                {
-                    Credential = GoogleCredential.FromJson(googleSecret)
-                });
-            }
-
             UserRecordArgs args = new UserRecordArgs()
             {
                 Email = Email,

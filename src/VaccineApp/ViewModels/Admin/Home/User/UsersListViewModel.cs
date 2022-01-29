@@ -14,29 +14,16 @@ namespace VaccineApp.ViewModels.Admin.Home.User;
 
 public class UsersListViewModel : ViewModelBase
 {
-    private readonly IOptionsSnapshot<FirebasePrivateKey> _firebasePrivateKey;
     private ObservableCollection<UsersModel> _users;
 
-    public UsersListViewModel(IOptionsSnapshot<FirebasePrivateKey> firebasePrivateKey)
+    public UsersListViewModel()
     {
         AddUserCommand = new Command(AddUser);
-        
-        _firebasePrivateKey = firebasePrivateKey;
     }
 
     public async void Get()
     {
         Users = new();
-
-        var googleSecret = JsonConvert.SerializeObject(_firebasePrivateKey.Value);
-
-        if (FirebaseApp.DefaultInstance == null)
-        {
-            FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.FromJson(googleSecret)
-            });
-        }
 
         var pagedEnumerable = FirebaseAuth.DefaultInstance.ListUsersAsync(null);
         var responses = pagedEnumerable.AsRawResponses().GetAsyncEnumerator();

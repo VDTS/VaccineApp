@@ -70,11 +70,13 @@
 		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />
 		<None Remove="Resources\Images\windows.svg" />
+		<None Remove="SecretFiles\vaccineapp-2022-privatekey.json" />
 		<None Remove="vdtsapp.2022-01-27.private-key.pem" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
+	  <EmbeddedResource Include="SecretFiles\vaccineapp-2022-privatekey.json" />
 		<EmbeddedResource Include="SecretFiles\vdtsapp.2022-01-27.private-key.pem">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</EmbeddedResource>

@@ -18,7 +18,6 @@ public class EditProfileViewModel : ViewModelBase
     private ProfileModel _profile;
     private EditProfileModel _editProfile;
     private readonly IMapper _mapper;
-    private readonly IOptionsSnapshot<FirebasePrivateKey> _firebasePrivateKey;
     private readonly IToast _toast;
     private AccountService _accountService;
     private EditProfileModelValidator _validationRules;
@@ -26,13 +25,11 @@ public class EditProfileViewModel : ViewModelBase
         EditProfileModel editProfile,
         ProfileModel profile,
         IMapper mapper,
-        IOptionsSnapshot<FirebasePrivateKey> firebasePrivateKey,
         IToast toast,
         AccountService accountService)
     {
         _editProfile = editProfile;
         _mapper = mapper;
-        _firebasePrivateKey = firebasePrivateKey;
         _toast = toast;
         _accountService = accountService;
         _profile = profile;
@@ -67,15 +64,6 @@ public class EditProfileViewModel : ViewModelBase
 
     private async void ChangeProfile(object obj)
     {
-        var googleSecret = JsonConvert.SerializeObject(_firebasePrivateKey.Value);
-        if (FirebaseApp.DefaultInstance == null)
-        {
-            FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.FromJson(googleSecret)
-            });
-        }
-
         UserRecordArgs args = new UserRecordArgs()
         {
             Email = EditProfile.Email,

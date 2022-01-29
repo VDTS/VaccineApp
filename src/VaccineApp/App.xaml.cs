@@ -1,4 +1,7 @@
-﻿using VaccineApp.Shells.Views;
+﻿using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using System.Reflection;
+using VaccineApp.Shells.Views;
 
 namespace VaccineApp;
 
@@ -8,10 +11,30 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
+		InitFirebaseApp();
 		SelectShell();
     }
 
-	private async void SelectShell()
+    private void InitFirebaseApp()
+    {
+        // This code copies Embededd file to Cache.
+        var cacheFile = Path.Combine(FileSystem.CacheDirectory, "vaccineapp-2022-privatekey.json");
+        if (File.Exists(cacheFile))
+            File.Delete(cacheFile);
+        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.SecretFiles.vaccineapp-2022-privatekey.json"))
+        using (var file = new FileStream(cacheFile, FileMode.Create, FileAccess.Write))
+        {
+            resource.CopyTo(file);
+        }
+
+        // This code creates FirebaseApp
+        FirebaseApp.Create(new AppOptions()
+        {
+            Credential = GoogleCredential.FromFile(cacheFile)
+        });
+    }
+
+    private async void SelectShell()
     {
 		var idToken = await SecureStorage.GetAsync("IdToken");
 		var role = Preferences.Get("Role", "AnonymousRole");
