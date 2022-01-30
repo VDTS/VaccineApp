@@ -75,6 +75,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="AppConfigs\AppSettings.json" />
 	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
 	  <EmbeddedResource Include="SecretFiles\vaccineapp-2022-privatekey.json" />
 		<EmbeddedResource Include="SecretFiles\vdtsapp.2022-01-27.private-key.pem">

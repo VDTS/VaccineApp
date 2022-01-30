@@ -11,43 +11,53 @@ namespace VaccineApp;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-			})
-			.Host.
-			ConfigureAppConfiguration((app, config) =>
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
             {
-				var assembly = typeof(App).GetTypeInfo().Assembly;
-				config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.SettingsDefaultsValues.json", optional: false, false);
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            })
+            .Host.
+            ConfigureAppConfiguration((app, config) =>
+            {
+                var assembly = typeof(App).GetTypeInfo().Assembly;
+                config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.SettingsDefaultsValues.json", optional: false, false);
+                config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.AppSettings.json", optional: false, true);
             });
 
-		builder.Configuration.AddUserSecrets<AppSecrets>();
-		builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
-		builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
-		builder.Services.AddViewModels();
+        builder.Configuration.AddUserSecrets<AppSecrets>();
+        builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
+        builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
+        builder.Services.AddViewModels();
 
-		builder.Services.AddDAL(
-			options => {
-				options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
-				options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSecrets:FirebaseBaseAddress").Value;
-			}
-		);
-
-		builder.Services.AddCoreServices();
-
-		builder.Services.AddAuth(
-			options =>
+        builder.Services.AddDAL(
+            options =>
             {
-				options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
-			}
-		);
+                if (builder.Configuration.GetSection("AppSettings:Env").Value == "online")
+                {
+                    options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                    options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSecrets:FirebaseBaseAddress").Value;
+                }
+                else if (builder.Configuration.GetSection("AppSettings:Env").Value == "offline")
+                {
+                    options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                    options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSecrets:FirebaseBaseAddress_Offline").Value;
+                }
+            }
+        );
 
-		return builder.Build();
-	}
+        builder.Services.AddCoreServices();
+
+        builder.Services.AddAuth(
+            options =>
+            {
+                options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+            }
+        );
+
+        return builder.Build();
+    }
 }
