@@ -27,15 +27,15 @@ public static class MauiProgram
 				config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.SettingsDefaultsValues.json", optional: false, false);
             });
 
-		builder.Configuration.AddUserSecrets<AppSettings>();
-		builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+		builder.Configuration.AddUserSecrets<AppSecrets>();
+		builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
 		builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
 		builder.Services.AddViewModels();
 
 		builder.Services.AddDAL(
 			options => {
-				options.FirebaseApiKey = builder.Configuration.GetSection("AppSettings:FirebaseApiKey").Value;
-				options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSettings:FirebaseBaseAddress").Value;
+				options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+				options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSecrets:FirebaseBaseAddress").Value;
 			}
 		);
 
@@ -44,7 +44,7 @@ public static class MauiProgram
 		builder.Services.AddAuth(
 			options =>
             {
-				options.FirebaseApiKey = builder.Configuration.GetSection("AppSettings:FirebaseApiKey").Value;
+				options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
 			}
 		);
 

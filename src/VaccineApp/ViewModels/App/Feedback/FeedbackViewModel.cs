@@ -12,14 +12,14 @@ public class FeedbackViewModel : ViewModelBase
 {
     private FeedbackModel _feedback;
     private readonly IToast _toast;
-    private readonly IOptions<AppSettings> _options;
+    private readonly IOptions<AppSecrets> _options;
     private bool _isBugChecked;
     private bool _isIdeaChecked;
     private bool _isWindowsChecked;
     private bool _isAndroidChecked;
     private bool _isAllChecked;
     private bool _isEnhancementChecked;
-    public FeedbackViewModel(IToast toast, IOptions<AppSettings> options)
+    public FeedbackViewModel(IToast toast, IOptions<AppSecrets> options)
     {
         Feedback = new();
         SubmitIssueOnGithubCommand = new Command(SubmitIssue);
