@@ -27,7 +27,6 @@
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
-		<UserSecretsId>4e8f9b20-90e8-4492-974b-232a7cbc12b9</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -70,6 +69,7 @@
 		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />
 		<None Remove="Resources\Images\windows.svg" />
+		<None Remove="SecretFiles\AppSecrets.json" />
 		<None Remove="SecretFiles\vaccineapp-2022-privatekey.json" />
 		<None Remove="vdtsapp.2022-01-27.private-key.pem" />
 	</ItemGroup>
@@ -77,6 +77,7 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="AppConfigs\AppSettings.json" />
 	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
+	  <EmbeddedResource Include="SecretFiles\AppSecrets.json" />
 	  <EmbeddedResource Include="SecretFiles\vaccineapp-2022-privatekey.json" />
 		<EmbeddedResource Include="SecretFiles\vdtsapp.2022-01-27.private-key.pem">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -181,7 +182,6 @@
 		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
 		<PackageReference Include="GitHubJwt" Version="0.0.5" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.2-mauipre.1.22054.8" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
 	</ItemGroup>
 

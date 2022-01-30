@@ -26,9 +26,9 @@ public static class MauiProgram
                 var assembly = typeof(App).GetTypeInfo().Assembly;
                 config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.SettingsDefaultsValues.json", optional: false, false);
                 config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.AppSettings.json", optional: false, true);
+                config.AddJsonFile(new EmbeddedFileProvider(assembly), "SecretFiles.AppSecrets.json", optional: false, true);
             });
 
-        builder.Configuration.AddUserSecrets<AppSecrets>();
         builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
         builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
         builder.Services.AddViewModels();
