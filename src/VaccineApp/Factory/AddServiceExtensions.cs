@@ -14,6 +14,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Area.School;
 using VaccineApp.ViewModels.Mobilizer.Home.Family;
 using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
 using VaccineApp.ViewModels.Parent;
+using VaccineApp.ViewModels.Supervisor;
 
 namespace VaccineApp.Factory;
 
@@ -49,6 +50,7 @@ public static class AddServiceExtensions
         Services.AddTransient<UsersListViewModel>();
         Services.AddTransient<AboutUsViewModel>();
         Services.AddTransient<SettingsViewModel>();
+        Services.AddTransient<StatsViewModel>();
 
         return Services;
     }

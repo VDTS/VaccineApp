@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Supervisor.StatsPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor"
+             x:DataType="ViewModel:StatsViewModel"
+             Title="StatsPage">
+    <StackLayout Padding="40"
+                 Spacing="10">
+        <Label FontAttributes="Bold"
+               Text="ClusterName" />
+        <Label Text="{Binding Cluster.ClusterName}" />
+        <Label FontAttributes="Bold"
+               Text="Child Counts" />
+        <Label Text="{Binding Childs }" />
+        <Label Text="__________________"/>
+        <Label Text="Households per team"/>
+        <CollectionView ItemsSource="{Binding Families}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="ViewModel:FamiliesCountGroupByTeams">
+                    <StackLayout Padding="0,2,0,0">
+                        <Label Text="{Binding TeamNo}" />
+                        <Label Text="{Binding FamiliesCount}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

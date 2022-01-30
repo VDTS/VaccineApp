@@ -15,6 +15,7 @@ using VaccineApp.Views.Mobilizer.Home.Area.School;
 using VaccineApp.Views.Mobilizer.Home.Family;
 using VaccineApp.Views.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Parent;
+using VaccineApp.Views.Supervisor;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -116,7 +117,29 @@ public partial class Appshell : Shell
     }
     public FlyoutItem SupervisorShellStructure()
     {
-        return new FlyoutItem();
+        FlyoutItem home = new()
+        {
+            Title = "Home",
+            Icon = "home.png"
+        };
+
+        Tab stats = new()
+        {
+            Title = "Stats"
+        };
+
+        ShellContent statsPage = new()
+        {
+            Title = "Stats",
+            Route = nameof(StatsPage),
+            ContentTemplate = new DataTemplate(typeof(StatsPage))
+        };
+
+        stats.Items.Add(statsPage);
+
+        home.Items.Add(stats);
+
+        return home;
     }
     public FlyoutItem MobilizerShellStructure()
     {
