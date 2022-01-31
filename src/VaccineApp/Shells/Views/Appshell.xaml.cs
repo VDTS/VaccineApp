@@ -17,6 +17,7 @@ using VaccineApp.Views.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Parent;
 using VaccineApp.Views.Supervisor;
 using VaccineApp.Views.Supervisor.Announcements;
+using VaccineApp.Views.Mobilizer.Announcements;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -25,10 +26,13 @@ public partial class Appshell : Shell
     {
         InitializeComponent();
 
-        this.Items.Add(CurrentFlyout(role));
+        foreach (var item in CurrentFlyout(role))
+        {
+            this.Items.Add(item);
+        }
     }
 
-    public FlyoutItem CurrentFlyout(string role)
+    public IEnumerable<FlyoutItem> CurrentFlyout(string role)
     {
         // Register routes for App pages
         Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
@@ -57,11 +61,11 @@ public partial class Appshell : Shell
         }
         else
         {
-            return new FlyoutItem();
+            return new List<FlyoutItem>();
         }
     }
 
-    public FlyoutItem AdminShellStructure()
+    public IEnumerable<FlyoutItem> AdminShellStructure()
     {
         // Register routes for App pages
         Routing.RegisterRoute(nameof(AddUserPage), typeof(AddUserPage));
@@ -114,9 +118,12 @@ public partial class Appshell : Shell
         home.Items.Add(team);
         home.Items.Add(user);
 
-        return home;
+        var list = new List<FlyoutItem>();
+        list.Add(home);
+
+        return list;
     }
-    public FlyoutItem SupervisorShellStructure()
+    public IEnumerable<FlyoutItem> SupervisorShellStructure()
     {
         // Registering nested pages
         Routing.RegisterRoute(nameof(AddAnnouncementPage), typeof(AddAnnouncementPage));
@@ -159,9 +166,12 @@ public partial class Appshell : Shell
         home.Items.Add(stats);
         home.Items.Add(announcement);
 
-        return home;
+        var list = new List<FlyoutItem>();
+        list.Add(home);
+
+        return list;
     }
-    public FlyoutItem MobilizerShellStructure()
+    public IEnumerable<FlyoutItem> MobilizerShellStructure()
     {
         // Register those pages on the RouteFactory which are not added to the shell flyout
         Routing.RegisterRoute(nameof(AddFamilyPage), typeof(AddFamilyPage));
@@ -178,6 +188,13 @@ public partial class Appshell : Shell
             Title = "Home",
             Icon = "home.png"
         };
+
+        FlyoutItem announcementFlyout = new()
+        {
+            Title = "Announcements",
+            Icon = "announcement.png"
+        };
+
         Tab status = new()
         {
             Title = "Status"
@@ -193,6 +210,11 @@ public partial class Appshell : Shell
         Tab area = new()
         {
             Title = "Area"
+        };
+
+        Tab announcement = new()
+        {
+            Title = "Announcements"
         };
 
         ShellContent familyPage = new()
@@ -234,20 +256,33 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(SchoolsListPage))
         };
 
+        ShellContent announcementPage = new()
+        {
+            Title = "Announcements",
+            Route = nameof(AnnouncementListPage),
+            ContentTemplate = new DataTemplate(typeof(AnnouncementListPage))
+        };
+
         area.Items.Add(clinic);
         area.Items.Add(doctor);
         area.Items.Add(influencer);
         area.Items.Add(masjeed);
         area.Items.Add(school);
+        announcement.Items.Add(announcementPage);
 
         home.Items.Add(status);
         home.Items.Add(insights);
         home.Items.Add(family);
         home.Items.Add(area);
+        announcementFlyout.Items.Add(announcement);
 
-        return home;
+        var list = new List<FlyoutItem>();
+        list.Add(home);
+        list.Add(announcementFlyout);
+
+        return list;
     }
-    public FlyoutItem ParentShellStructure()
+    public IEnumerable<FlyoutItem> ParentShellStructure()
     {
         FlyoutItem home = new()
         {
@@ -270,6 +305,9 @@ public partial class Appshell : Shell
         family.Items.Add(familyPage);
         home.Items.Add(family);
 
-        return home;
+        var list = new List<FlyoutItem>();
+        list.Add(home);
+
+        return list;
     }
 }

@@ -53,6 +53,7 @@
 		<None Remove="Resources\Images\abdulbasir.jpg" />
 		<None Remove="Resources\Images\aboutus.svg" />
 		<None Remove="Resources\Images\android.svg" />
+		<None Remove="Resources\Images\announcement.svg" />
 		<None Remove="Resources\Images\appicon.svg" />
 		<None Remove="Resources\Images\bug.svg" />
 		<None Remove="Resources\Images\enhancement.svg" />
@@ -126,6 +127,10 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\App\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Announcements\AnnouncementListPage.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
