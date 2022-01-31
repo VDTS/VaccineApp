@@ -17,6 +17,7 @@ public class UnitOfWork
     private readonly InfluencerRepository _influencerRepository;
     private readonly SchoolRepository _schoolRepository;
     private readonly AnnouncementRepository _announcementRepository;
+    private readonly PeriodRepository _periodRepository;
     private string _clusterId;
     private string _teamId;
     private string _familyId;
@@ -31,7 +32,8 @@ public class UnitOfWork
         DoctorRepository doctorRepository,
         InfluencerRepository influencerRepository,
         SchoolRepository schoolRepository,
-        AnnouncementRepository announcementRepository)
+        AnnouncementRepository announcementRepository,
+        PeriodRepository periodRepository)
     {
         _masjeedRepository = masjeedRepository;
         _childRepository = childRepository;
@@ -43,6 +45,7 @@ public class UnitOfWork
         _influencerRepository = influencerRepository;
         _schoolRepository = schoolRepository;
         _announcementRepository = announcementRepository;
+        _periodRepository = periodRepository;
         GetClaims();
     }
 
@@ -199,5 +202,15 @@ public class UnitOfWork
     public async Task<IEnumerable<AnnouncementModel>> GetAnnouncements()
     {
         return await _announcementRepository.GetAnnouncements();
+    }
+
+    public async Task<PeriodModel> AddPeriod(PeriodModel period)
+    {
+        return await _periodRepository.AddPeriod(period);
+    }
+
+    public async Task<IEnumerable<PeriodModel>> GetPeriods()
+    {
+        return await _periodRepository.GetPeriods();
     }
 }

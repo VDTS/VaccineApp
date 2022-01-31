@@ -183,6 +183,12 @@
 		<MauiXaml Update="Views\Supervisor\Announcements\AnnouncementsListPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Supervisor\Periods\AddPeriodPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Supervisor\Periods\PeriodsListPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\StatsPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>

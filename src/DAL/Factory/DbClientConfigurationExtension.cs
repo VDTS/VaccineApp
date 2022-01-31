@@ -28,6 +28,7 @@ public static class DbClientConfigurationExtension
         service.AddSingleton<InfluencerRepository>();
         service.AddSingleton<SchoolRepository>();
         service.AddSingleton<AnnouncementRepository>();
+        service.AddSingleton<PeriodRepository>();
 
         service.AddHttpClient();
         service.AddHttpClient("meta", c =>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Supervisor.Periods.AddPeriodPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Periods"
+             x:DataType="ViewModel:AddPeriodViewModel"
+             Title="AddPeriodPage">
+    <StackLayout Padding="40"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <Label Text="Start Date" />
+        <DatePicker Date="{Binding Period.StartDate}" />
+        <Label Text="End Date" />
+        <DatePicker Date="{Binding Period.EndDate}" />
+
+        <Entry Placeholder="Period Name"
+               Text="{Binding Period.PeriodName}" />
+
+        <Button Text="Save"
+                Command="{Binding PostCommand}" />
+    </StackLayout>
+</ContentPage>

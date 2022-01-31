@@ -18,6 +18,7 @@ using VaccineApp.Views.Parent;
 using VaccineApp.Views.Supervisor;
 using VaccineApp.Views.Supervisor.Announcements;
 using VaccineApp.Views.Mobilizer.Announcements;
+using VaccineApp.Views.Supervisor.Periods;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -127,6 +128,7 @@ public partial class Appshell : Shell
     {
         // Registering nested pages
         Routing.RegisterRoute(nameof(AddAnnouncementPage), typeof(AddAnnouncementPage));
+        Routing.RegisterRoute(nameof(AddPeriodPage), typeof(AddPeriodPage));
 
 
         FlyoutItem home = new()
@@ -138,6 +140,11 @@ public partial class Appshell : Shell
         Tab stats = new()
         {
             Title = "Stats"
+        };
+
+        Tab period = new()
+        {
+            Title = "Periods"
         };
 
         Tab announcement = new()
@@ -159,11 +166,19 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(AnnouncementsListPage))
         };
 
+        ShellContent periodPage = new()
+        {
+            Title = "Period Page",
+            Route = nameof(PeriodsListPage),
+            ContentTemplate = new DataTemplate(typeof(PeriodsListPage))
+        };
 
         stats.Items.Add(statsPage);
+        period.Items.Add(periodPage);
         announcement.Items.Add(announcementPage);
 
         home.Items.Add(stats);
+        home.Items.Add(period);
         home.Items.Add(announcement);
 
         var list = new List<FlyoutItem>();

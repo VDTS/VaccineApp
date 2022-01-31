@@ -17,6 +17,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
 using VaccineApp.ViewModels.Parent;
 using VaccineApp.ViewModels.Supervisor;
 using VaccineApp.ViewModels.Supervisor.Announcements;
+using VaccineApp.ViewModels.Supervisor.Periods;
 
 namespace VaccineApp.Factory;
 
@@ -56,6 +57,8 @@ public static class AddServiceExtensions
         Services.AddTransient<AnnouncementsListViewModel>();
         Services.AddTransient<AddAnnouncementViewModel>();
         Services.AddTransient<AnnouncementListViewModel>();
+        Services.AddTransient<PeriodsListViewModel>();
+        Services.AddTransient<AddPeriodViewModel>();
 
         return Services;
     }
