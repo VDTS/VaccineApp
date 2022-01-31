@@ -19,6 +19,7 @@ using VaccineApp.Views.Supervisor;
 using VaccineApp.Views.Supervisor.Announcements;
 using VaccineApp.Views.Mobilizer.Announcements;
 using VaccineApp.Views.Supervisor.Periods;
+using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -197,6 +198,7 @@ public partial class Appshell : Shell
         Routing.RegisterRoute(nameof(AddSchoolPage), typeof(AddSchoolPage));
         Routing.RegisterRoute(nameof(FamilyDetailsPage), typeof(FamilyDetailsPage));
         Routing.RegisterRoute(nameof(AddChildPage), typeof(AddChildPage));
+        Routing.RegisterRoute(nameof(AddAnonymousChildPage), typeof(AddAnonymousChildPage));
 
         FlyoutItem home = new()
         {
@@ -214,14 +216,17 @@ public partial class Appshell : Shell
         {
             Title = "Status"
         };
+
         Tab insights = new()
         {
             Title = "Insights"
         };
+
         Tab family = new()
         {
             Title = "Family"
         };
+
         Tab area = new()
         {
             Title = "Area"
@@ -278,12 +283,21 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(AnnouncementListPage))
         };
 
+        ShellContent anonymousPage = new()
+        {
+            Title = "Anonymous Child",
+            Route = nameof(AnonymousChildrenListPage),
+            ContentTemplate = new DataTemplate(typeof(AnonymousChildrenListPage))
+        };
+
         area.Items.Add(clinic);
         area.Items.Add(doctor);
         area.Items.Add(influencer);
         area.Items.Add(masjeed);
         area.Items.Add(school);
         announcement.Items.Add(announcementPage);
+
+        status.Items.Add(anonymousPage);
 
         home.Items.Add(status);
         home.Items.Add(insights);

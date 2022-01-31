@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild.AddAnonymousChildPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild"
+             x:DataType="ViewModel:AddAnonymousChildViewModel"
+             Title="AddAnonymousChildPage">
+
+    <StackLayout Padding="40"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Entry Text="{Binding AnonymousChild.FullName, Mode=TwoWay}"
+               Placeholder="Child Name" />
+        <Picker Title="Gender"
+                SelectedItem="{Binding AnonymousChild.Gender, Mode=OneWayToSource}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Male</x:String>
+                    <x:String>Female</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Label Text="Date of Birth" />
+        <DatePicker Date="{Binding AnonymousChild.DOB, Mode=OneWayToSource}" />
+        <Picker Title="Type"
+                SelectedItem="{Binding AnonymousChild.ChildType , Mode=OneWayToSource}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Guest</x:String>
+                    <x:String>IDP</x:String>
+                    <x:String>Refugee</x:String>
+                    <x:String>Return</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding AnonymousChild.IsVaccined, Mode=TwoWay}"
+                      IsEnabled="False" />
+            <Label Text="Is Vaccined?" />
+        </StackLayout>
+        <Button Text="Save"
+                TranslationY="50"
+                WidthRequest="130"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Command="{Binding PostCommand}"
+                Margin="20" />
+    </StackLayout>
+</ContentPage>

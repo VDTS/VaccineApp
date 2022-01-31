@@ -18,6 +18,7 @@ public class UnitOfWork
     private readonly SchoolRepository _schoolRepository;
     private readonly AnnouncementRepository _announcementRepository;
     private readonly PeriodRepository _periodRepository;
+    private readonly AnonymousChildRepository _anonymousChildRepository;
     private string _clusterId;
     private string _teamId;
     private string _familyId;
@@ -33,7 +34,8 @@ public class UnitOfWork
         InfluencerRepository influencerRepository,
         SchoolRepository schoolRepository,
         AnnouncementRepository announcementRepository,
-        PeriodRepository periodRepository)
+        PeriodRepository periodRepository,
+        AnonymousChildRepository anonymousChildRepository)
     {
         _masjeedRepository = masjeedRepository;
         _childRepository = childRepository;
@@ -46,6 +48,7 @@ public class UnitOfWork
         _schoolRepository = schoolRepository;
         _announcementRepository = announcementRepository;
         _periodRepository = periodRepository;
+        _anonymousChildRepository = anonymousChildRepository;
         GetClaims();
     }
 
@@ -55,7 +58,7 @@ public class UnitOfWork
         _teamId = Preferences.Get("TeamId", "AnonymousTeam");
         _familyId = Preferences.Get("FamilyId", "AnonymousFamily");
     }
-    
+
     public async Task<IEnumerable<MasjeedModel>> GetMasjeeds()
     {
         return await _masjeedRepository.GetMasjeeds(_teamId);
@@ -212,5 +215,15 @@ public class UnitOfWork
     public async Task<IEnumerable<PeriodModel>> GetPeriods()
     {
         return await _periodRepository.GetPeriods();
+    }
+
+    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild)
+    {
+        return await _anonymousChildRepository.AddAnonymousChild(anonymousChild);
+    }
+
+    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren()
+    {
+        return await _anonymousChildRepository.GetAnonymousChildren();
     }
 }
