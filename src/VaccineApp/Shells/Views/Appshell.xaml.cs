@@ -16,6 +16,7 @@ using VaccineApp.Views.Mobilizer.Home.Family;
 using VaccineApp.Views.Mobilizer.Home.Family.Child;
 using VaccineApp.Views.Parent;
 using VaccineApp.Views.Supervisor;
+using VaccineApp.Views.Supervisor.Announcements;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -117,6 +118,10 @@ public partial class Appshell : Shell
     }
     public FlyoutItem SupervisorShellStructure()
     {
+        // Registering nested pages
+        Routing.RegisterRoute(nameof(AddAnnouncementPage), typeof(AddAnnouncementPage));
+
+
         FlyoutItem home = new()
         {
             Title = "Home",
@@ -128,6 +133,11 @@ public partial class Appshell : Shell
             Title = "Stats"
         };
 
+        Tab announcement = new()
+        {
+            Title = "Announcements"
+        };
+
         ShellContent statsPage = new()
         {
             Title = "Stats",
@@ -135,9 +145,19 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(StatsPage))
         };
 
+        ShellContent announcementPage = new()
+        {
+            Title = "Announcement",
+            Route = nameof(AnnouncementsListPage),
+            ContentTemplate = new DataTemplate(typeof(AnnouncementsListPage))
+        };
+
+
         stats.Items.Add(statsPage);
+        announcement.Items.Add(announcementPage);
 
         home.Items.Add(stats);
+        home.Items.Add(announcement);
 
         return home;
     }

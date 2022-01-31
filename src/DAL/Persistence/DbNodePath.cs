@@ -47,4 +47,6 @@ public static class DbNodePath
     {
         return $"School/{teamId}.json";
     }
+
+    public static string Announcement() => $"Announcement.json";
 }
