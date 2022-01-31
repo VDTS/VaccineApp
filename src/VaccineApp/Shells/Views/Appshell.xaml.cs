@@ -20,6 +20,7 @@ using VaccineApp.Views.Supervisor.Announcements;
 using VaccineApp.Views.Mobilizer.Announcements;
 using VaccineApp.Views.Supervisor.Periods;
 using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
+using VaccineApp.Views.Mobilizer.Home.Status;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -283,6 +284,13 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(AnnouncementListPage))
         };
 
+        ShellContent statusPage = new()
+        {
+            Title = "Status",
+            Route = nameof(StatusPage),
+            ContentTemplate = new DataTemplate(typeof(StatusPage))
+        };
+
         ShellContent anonymousPage = new()
         {
             Title = "Anonymous Child",
@@ -297,6 +305,7 @@ public partial class Appshell : Shell
         area.Items.Add(school);
         announcement.Items.Add(announcementPage);
 
+        status.Items.Add(statusPage);
         status.Items.Add(anonymousPage);
 
         home.Items.Add(status);

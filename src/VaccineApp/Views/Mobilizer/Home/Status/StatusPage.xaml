@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Status.StatusPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status"
+             x:DataType="ViewModel:StatusViewModel"
+             xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
+             Title="StatusPage">
+
+    <CollectionView IsGrouped="True"
+                    ItemsSource="{Binding ChildrenGroupByFamily}">
+
+        <CollectionView.Header>
+            <StackLayout VerticalOptions="Center">
+                <Label FontSize="Title"
+                       Text="Childs" />
+            </StackLayout>
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:ChildModel">
+                <StackLayout Padding="0,2,0,0">
+                    <Label Text="{Binding FullName }" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.GroupHeaderTemplate>
+            <DataTemplate x:DataType="GroupByModel:ChildrenGroupByHouseNoModel">
+                <StackLayout Padding="0,2,0,0">
+                    <Label Text="{Binding HouseNo}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.GroupHeaderTemplate>
+
+    </CollectionView>
+</ContentPage>

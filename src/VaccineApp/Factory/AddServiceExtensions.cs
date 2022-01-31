@@ -14,6 +14,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
 using VaccineApp.ViewModels.Mobilizer.Home.Area.School;
 using VaccineApp.ViewModels.Mobilizer.Home.Family;
 using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
+using VaccineApp.ViewModels.Mobilizer.Home.Status;
 using VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild;
 using VaccineApp.ViewModels.Parent;
 using VaccineApp.ViewModels.Supervisor;
@@ -62,6 +63,7 @@ public static class AddServiceExtensions
         Services.AddTransient<AddPeriodViewModel>();
         Services.AddTransient<AnonymousChildrenListViewModel>();
         Services.AddTransient<AddAnonymousChildViewModel>();
+        Services.AddTransient<StatusViewModel>();
 
         return Services;
     }
