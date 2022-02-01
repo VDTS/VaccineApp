@@ -33,10 +33,12 @@ public class AddChildViewModel : ViewModelBase
 
     private async void Post()
     {
+        Child.DOB = DateTime.SpecifyKind(Child.DOB, DateTimeKind.Utc);
         var validationResult = _childValidator.Validate(Child);
         if (validationResult.IsValid)
         {
             var result = await _unitOfWork.AddChild(_child, _familyId);
+            await Shell.Current.GoToAsync("..");
             _toast.MakeToast($"{result.FullName} has been added");
         }
         else
