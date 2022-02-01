@@ -9,7 +9,10 @@
              Title="StatusPage">
 
     <CollectionView IsGrouped="True"
-                    ItemsSource="{Binding ChildrenGroupByFamily}">
+                    ItemsSource="{Binding ChildrenGroupByFamily}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedChild}"
+                    SelectionChangedCommand="{Binding ChildDetailsCommand}">
 
         <CollectionView.Header>
             <StackLayout VerticalOptions="Center">

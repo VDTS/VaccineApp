@@ -64,6 +64,7 @@ public static class AddServiceExtensions
         Services.AddTransient<AnonymousChildrenListViewModel>();
         Services.AddTransient<AddAnonymousChildViewModel>();
         Services.AddTransient<StatusViewModel>();
+        Services.AddTransient<ChildDetailsViewModel>();
 
         return Services;
     }

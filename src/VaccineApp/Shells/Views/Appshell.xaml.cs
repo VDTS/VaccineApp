@@ -200,6 +200,7 @@ public partial class Appshell : Shell
         Routing.RegisterRoute(nameof(FamilyDetailsPage), typeof(FamilyDetailsPage));
         Routing.RegisterRoute(nameof(AddChildPage), typeof(AddChildPage));
         Routing.RegisterRoute(nameof(AddAnonymousChildPage), typeof(AddAnonymousChildPage));
+        Routing.RegisterRoute(nameof(ChildDetailsPage), typeof(ChildDetailsPage));
 
         FlyoutItem home = new()
         {

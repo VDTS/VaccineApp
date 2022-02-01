@@ -180,6 +180,9 @@
 		<MauiXaml Update="Views\Mobilizer\Home\Status\AnonymousChild\AnonymousChildrenListPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Status\ChildDetailsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\StatusPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
