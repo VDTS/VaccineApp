@@ -4,28 +4,41 @@
              x:Class="VaccineApp.Views.Admin.Home.Team.TeamsListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.Team"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
+             xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
              x:DataType="ViewModel:TeamsListViewModel"
              Title="TeamsListPage">
-    
-    <StackLayout Padding="40"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Teams}">
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontSize="Title"
-                           Text="Team CHW Name" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Team"
+                     Command="{Binding AddTeamCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <CollectionView IsGrouped="True"
+                    ItemsSource="{Binding TeamsGroupByCluster}">
+
+        <CollectionView.Header>
+            <StackLayout VerticalOptions="Center">
+                <Label FontSize="Title"
+                       Text="Teams" />
+            </StackLayout>
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:TeamModel">
+                <StackLayout Padding="0,2,0,0">
+                    <Label Text="{Binding TeamNo }" />
                 </StackLayout>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:TeamModel">
-                    <StackLayout Padding="0,2,0,0">
-                        <Label Text="{Binding CHWName}"></Label>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
-    
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.GroupHeaderTemplate>
+            <DataTemplate x:DataType="GroupByModel:TeamsGroupByClusterModel">
+                <StackLayout Padding="0,2,0,0">
+                    <Label Text="{Binding ClusterName}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.GroupHeaderTemplate>
+
+    </CollectionView>
+
 </ContentPage>

@@ -1,7 +1,9 @@
 ﻿using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Admin.Home.Cluster;
 
 namespace VaccineApp.ViewModels.Admin.Home.Cluster;
 public class ClustersListViewModel : ViewModelBase
@@ -13,6 +15,13 @@ public class ClustersListViewModel : ViewModelBase
     {
         _unitOfwork = unitOfwork;
         Clusters = new ObservableCollection<ClusterModel>();
+        AddClusterCommand = new Command(AddCluster);
+    }
+
+    private async void AddCluster(object obj)
+    {
+        var route = $"{nameof(AddClusterPage)}";
+        await Shell.Current.GoToAsync(route);
     }
 
     public async void Get()
@@ -43,4 +52,5 @@ public class ClustersListViewModel : ViewModelBase
         set { _selectedCluster = value; OnPropertyChanged(); }
     }
 
+    public ICommand AddClusterCommand { private set; get; }
 }

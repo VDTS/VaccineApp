@@ -72,6 +72,8 @@ public partial class Appshell : Shell
     {
         // Register routes for App pages
         Routing.RegisterRoute(nameof(AddUserPage), typeof(AddUserPage));
+        Routing.RegisterRoute(nameof(AddClusterPage), typeof(AddClusterPage));
+        Routing.RegisterRoute(nameof(AddTeamPage), typeof(AddTeamPage));
 
 
         FlyoutItem home = new()

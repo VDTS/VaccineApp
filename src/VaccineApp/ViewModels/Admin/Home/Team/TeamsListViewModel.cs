@@ -1,25 +1,41 @@
-﻿using Core.Models;
+﻿using Core.GroupByModels;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Admin.Home.Team;
 
 namespace VaccineApp.ViewModels.Admin.Home.Team;
 public class TeamsListViewModel : ViewModelBase
 {
     private readonly UnitOfWork _unitOfwork;
-    private IEnumerable<TeamModel> _teams;
+    private ObservableCollection<TeamsGroupByClusterModel> _teamsGroupByCluster;
 
     public TeamsListViewModel(UnitOfWork unitOfwork)
     {
         _unitOfwork = unitOfwork;
-        Teams = new ObservableCollection<TeamModel>();
+        TeamsGroupByCluster = new ObservableCollection<TeamsGroupByClusterModel>();
+        AddTeamCommand = new Command(AddTeam);
+    }
+
+    private async void AddTeam(object obj)
+    {
+        var route = $"{nameof(AddTeamPage)}";
+        await Shell.Current.GoToAsync(route);
     }
 
     public async void Get()
     {
         try
         {
-            Teams = await _unitOfwork.GetAllTeams();
+            var f = await _unitOfwork.GetClusters();
+
+            foreach (var item in f)
+            {
+                var c = await _unitOfwork.GetTeams(item.Id.ToString());
+
+                TeamsGroupByCluster.Add(new TeamsGroupByClusterModel(item.ClusterName, c.ToList()));
+            }
         }
         catch (Exception)
         {
@@ -29,11 +45,13 @@ public class TeamsListViewModel : ViewModelBase
 
     public void Clear()
     {
-        Teams = new ObservableCollection<TeamModel>();
+        TeamsGroupByCluster = new ObservableCollection<TeamsGroupByClusterModel>();
     }
-    public IEnumerable<TeamModel> Teams
+    public ObservableCollection<TeamsGroupByClusterModel> TeamsGroupByCluster
     {
-        get { return _teams; }
-        set { _teams = value; OnPropertyChanged(); }
+        get { return _teamsGroupByCluster; }
+        set { _teamsGroupByCluster = value; OnPropertyChanged(); }
     }
+
+    public ICommand AddTeamCommand { private set; get; }
 }

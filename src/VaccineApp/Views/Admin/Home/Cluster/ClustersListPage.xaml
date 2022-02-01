@@ -7,6 +7,11 @@
              x:DataType="ViewModel:ClustersListViewModel"
              Title="ClustersListPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Cluster"
+                     Command="{Binding AddClusterCommand}" />
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="40"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
