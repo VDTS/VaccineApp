@@ -4,10 +4,20 @@ namespace VaccineApp.Views.Mobilizer.Home.Area.School;
 
 public partial class SchoolsListPage : ContentPage
 {
-	public SchoolsListPage(SchoolsListViewModel viewModel)
+    private readonly SchoolsListViewModel _viewModel;
+
+    public SchoolsListPage(SchoolsListViewModel viewModel)
 	{
 		InitializeComponent();
 
-		this.BindingContext = viewModel;
-	}
+        _viewModel = viewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _viewModel.Clear();
+        _viewModel.Get();
+		this.BindingContext = _viewModel;
+    }
 }

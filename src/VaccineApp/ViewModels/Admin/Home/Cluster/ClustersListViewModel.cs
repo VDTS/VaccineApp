@@ -13,13 +13,23 @@ public class ClustersListViewModel : ViewModelBase
     {
         _unitOfwork = unitOfwork;
         Clusters = new ObservableCollection<ClusterModel>();
-
-        Get();
     }
 
-    private async void Get()
+    public async void Get()
     {
-        Clusters = await _unitOfwork.GetClusters();
+        try
+        {
+            Clusters = await _unitOfwork.GetClusters();
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+
+    public void Clear()
+    {
+        Clusters = new ObservableCollection<ClusterModel>();
     }
 
     public IEnumerable<ClusterModel> Clusters

@@ -16,7 +16,6 @@ public class SchoolsListViewModel : ViewModelBase
         _unitOfWork = unitOfWork;
         Schools = new ObservableCollection<SchoolModel>();
         AddSchoolCommand = new Command(AddSchool);
-        Get();
     }
     public ICommand AddSchoolCommand { private set; get; }
     public IEnumerable<SchoolModel> Schools
@@ -33,7 +32,7 @@ public class SchoolsListViewModel : ViewModelBase
         var route = $"{nameof(AddSchoolPage)}";
         await Shell.Current.GoToAsync(route);
     }
-    private async Task Get()
+    public async void Get()
     {
         try
         {
@@ -43,5 +42,10 @@ public class SchoolsListViewModel : ViewModelBase
         {
             return;
         }
+    }
+
+    public void Clear()
+    {
+        Schools = new ObservableCollection<SchoolModel>();
     }
 }

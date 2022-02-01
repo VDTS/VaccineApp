@@ -71,5 +71,6 @@ public class StatusViewModel : ViewModelBase
     public void Clear()
     {
         ChildrenGroupByFamily.Clear();
+        SelectedChild = null;
     }
 }

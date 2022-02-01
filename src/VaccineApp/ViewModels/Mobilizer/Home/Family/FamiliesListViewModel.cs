@@ -20,7 +20,6 @@ public class FamiliesListViewModel : ViewModelBase
 
         AddFamilyCommand = new Command(AddFamily);
         FamilyDetailsCommand = new Command(FamilyDetails);
-        Get();
     }
 
     private async void FamilyDetails()
@@ -41,9 +40,16 @@ public class FamiliesListViewModel : ViewModelBase
         await Shell.Current.GoToAsync(route);
     }
 
-    private async void Get()
+    public async void Get()
     {
-        Families = await _unitOfwork.GetFamilies();
+        try
+        {
+            Families = await _unitOfwork.GetFamilies();
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     public IEnumerable<FamilyModel> Families
@@ -59,4 +65,10 @@ public class FamiliesListViewModel : ViewModelBase
     }
     public ICommand AddFamilyCommand { private set; get; }
     public ICommand FamilyDetailsCommand { private set; get; }
+
+    public void Clear()
+    {
+        Families = new ObservableCollection<FamilyModel>();
+        SelectedFamily = null;
+    }
 }

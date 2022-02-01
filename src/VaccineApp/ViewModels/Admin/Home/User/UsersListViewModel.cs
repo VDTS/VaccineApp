@@ -1,12 +1,7 @@
 ﻿using Core.Models;
-using FirebaseAdmin;
 using FirebaseAdmin.Auth;
-using Google.Apis.Auth.OAuth2;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using VaccineApp.Factory;
 using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Admin.Home.User;
 
@@ -23,27 +18,38 @@ public class UsersListViewModel : ViewModelBase
 
     public async void Get()
     {
-        Users = new();
-
-        var pagedEnumerable = FirebaseAuth.DefaultInstance.ListUsersAsync(null);
-        var responses = pagedEnumerable.AsRawResponses().GetAsyncEnumerator();
-        while (await responses.MoveNextAsync())
+        try
         {
-            ExportedUserRecords response = responses.Current;
-            foreach (ExportedUserRecord user in response.Users)
+            var pagedEnumerable = FirebaseAuth.DefaultInstance.ListUsersAsync(null);
+            var responses = pagedEnumerable.AsRawResponses().GetAsyncEnumerator();
+            while (await responses.MoveNextAsync())
             {
-                Users.Add(
-                    new UsersModel
-                    {
-                        UId = user.Uid,
-                        DisplayName = user.DisplayName,
-                        Email = user.Email,
-                        Role = user.CustomClaims["Role"]?.ToString(),
-                        EmailVerified = user.EmailVerified
-                    }
-                    );
+                ExportedUserRecords response = responses.Current;
+                foreach (ExportedUserRecord user in response.Users)
+                {
+                    Users.Add(
+                        new UsersModel
+                        {
+                            UId = user.Uid,
+                            DisplayName = user.DisplayName,
+                            Email = user.Email,
+                            Role = user.CustomClaims["Role"]?.ToString(),
+                            EmailVerified = user.EmailVerified
+                        }
+                        );
+                }
             }
         }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    public void Clear()
+    {
+        Users = new();
     }
 
     private async void AddUser()

@@ -16,7 +16,6 @@ public class InfluencersListViewModel : ViewModelBase
         _unitOfWork = unitOfWork;
         Influencer = new ObservableCollection<InfluencerModel>();
         AddInfluencerCommand = new Command(AddInfluencer);
-        Get();
     }
     public ICommand AddInfluencerCommand { private set; get; }
     public IEnumerable<InfluencerModel> Influencer
@@ -34,7 +33,7 @@ public class InfluencersListViewModel : ViewModelBase
         var route = $"{nameof(AddInfluencerPage)}";
         await Shell.Current.GoToAsync(route);
     }
-    private async Task Get()
+    public async void Get()
     {
         try
         {
@@ -44,5 +43,10 @@ public class InfluencersListViewModel : ViewModelBase
         {
             return;
         }
+    }
+
+    public void Clear()
+    {
+        Influencer = new ObservableCollection<InfluencerModel>();
     }
 }

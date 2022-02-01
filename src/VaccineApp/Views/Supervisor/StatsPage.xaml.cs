@@ -4,10 +4,20 @@ namespace VaccineApp.Views.Supervisor;
 
 public partial class StatsPage : ContentPage
 {
-	public StatsPage(StatsViewModel viewModel)
+    private readonly StatsViewModel _viewModel;
+
+    public StatsPage(StatsViewModel viewModel)
 	{
 		InitializeComponent();
 
-		this.BindingContext = viewModel;
-	}
+        _viewModel = viewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _viewModel.Clear();
+        _viewModel.GetCluster();
+		this.BindingContext = _viewModel;
+    }
 }

@@ -20,8 +20,6 @@ public class MasjeedListViewModel : ViewModelBase
         Masjeeds = new ObservableCollection<MasjeedModel>();
         AddMasjeedCommand = new Command(AddMasjeed);
         SelectedMasjeed = new();
-
-        Get();
     }
     public ICommand PullRefreshCommand { private set; get; }
     public ICommand GoToDetailsPageCommand { private set; get; }
@@ -52,8 +50,20 @@ public class MasjeedListViewModel : ViewModelBase
         set { _isBusy = value; OnPropertyChanged(); }
     }
 
-    private async Task Get()
+    public async void Get()
     {
-        Masjeeds = await _unitOfwork.GetMasjeeds();
+        try
+        {
+            Masjeeds = await _unitOfwork.GetMasjeeds();
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+
+    public void Clear()
+    {
+        Masjeeds = new ObservableCollection<MasjeedModel>();
     }
 }

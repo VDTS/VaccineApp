@@ -52,4 +52,9 @@ public class AnonymousChildrenListViewModel : ViewModelBase
         get { return _anonymousChildren; }
         set { _anonymousChildren = value; OnPropertyChanged(); }
     }
+
+    public void Clear()
+    {
+        AnonymousChildren = new ObservableCollection<AnonymousChildrenGroupByChildType>();
+    }
 }

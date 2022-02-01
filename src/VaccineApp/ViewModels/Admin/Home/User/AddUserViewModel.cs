@@ -122,7 +122,14 @@ public class AddUserViewModel : ViewModelBase
             SelectedRole == "Mobilizer" ||
             SelectedRole == "Parent")
         {
-            ClustersList = await _unitOfWork.GetClusters();
+            try
+            {
+                ClustersList = await _unitOfWork.GetClusters();
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
     private async void GetTeamsData()
@@ -130,14 +137,28 @@ public class AddUserViewModel : ViewModelBase
         if (SelectedRole == "Mobilizer" ||
             SelectedRole == "Parent")
         {
-            TeamsList = await _unitOfWork.GetTeams(SelectedCluster.Id.ToString());
+            try
+            {
+                TeamsList = await _unitOfWork.GetTeams(SelectedCluster.Id.ToString());
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
     private async void GetFamiliesData()
     {
         if (SelectedRole == "Parent")
         {
-            FamiliesList = await _unitOfWork.GetFamilies(SelectedTeam.Id.ToString());
+            try
+            {
+                FamiliesList = await _unitOfWork.GetFamilies(SelectedTeam.Id.ToString());
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
     private async void Post()

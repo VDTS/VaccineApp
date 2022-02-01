@@ -29,7 +29,14 @@ public class AddTeamViewModel : ViewModelBase
 
     private async void GetClusters()
     {
-        ClustersList = await _unitOfWork.GetClusters();
+        try
+        {
+            ClustersList = await _unitOfWork.GetClusters();
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     private async void Post()
@@ -38,6 +45,7 @@ public class AddTeamViewModel : ViewModelBase
         if (validationResult.IsValid)
         {
             var result = await _unitOfWork.AddTeam(_team, SelectedCluster.Id.ToString());
+            await Shell.Current.GoToAsync("..");
             _toast.MakeToast($"{result.CHWName}'s team has been added");
         }
         else

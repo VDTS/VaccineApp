@@ -19,11 +19,14 @@ public class StatsViewModel : ViewModelBase
         Cluster = new();
         Teams = new ObservableCollection<TeamModel>();
         Families = new ObservableCollection<FamiliesCountGroupByTeams>();
-
-        GetCluster();
     }
-
-    private async void GetCluster()
+    public void Clear()
+    {
+        Cluster = new();
+        Teams = new ObservableCollection<TeamModel>();
+        Families = new ObservableCollection<FamiliesCountGroupByTeams>();
+    }
+    public async void GetCluster()
     {
         try
         {

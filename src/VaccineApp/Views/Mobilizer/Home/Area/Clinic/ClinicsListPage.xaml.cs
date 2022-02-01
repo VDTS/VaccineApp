@@ -4,10 +4,20 @@ namespace VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 
 public partial class ClinicsListPage : ContentPage
 {
-	public ClinicsListPage(ClinicsListViewModel viewModel)
+    private readonly ClinicsListViewModel _viewModel;
+
+    public ClinicsListPage(ClinicsListViewModel viewModel)
 	{
 		InitializeComponent();
+        _viewModel = viewModel;
+    }
 
-		this.BindingContext = viewModel;
-	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        _viewModel.Clear();
+        _viewModel.Get();
+		this.BindingContext = _viewModel;
+    }
 }

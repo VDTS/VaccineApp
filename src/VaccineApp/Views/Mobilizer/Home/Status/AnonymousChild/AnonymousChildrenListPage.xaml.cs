@@ -14,6 +14,7 @@ public partial class AnonymousChildrenListPage : ContentPage
 
     protected override void OnAppearing()
     {
+        _viewModel.Clear();
         _viewModel.Get();
         this.BindingContext = _viewModel;        
     }

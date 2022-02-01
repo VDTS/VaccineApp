@@ -16,7 +16,6 @@ public class ClinicsListViewModel : ViewModelBase
         _unitOfWork = unitOfWork;
         Clinics = new ObservableCollection<ClinicModel>();
         AddClinicCommand = new Command(AddClinic);
-        Get();
     }
 
     public IEnumerable<ClinicModel> Clinics
@@ -34,7 +33,7 @@ public class ClinicsListViewModel : ViewModelBase
         var route = $"{nameof(AddClinicPage)}";
         await Shell.Current.GoToAsync(route);
     }
-    private async Task Get()
+    public async void Get()
     {
         try
         {
@@ -44,5 +43,10 @@ public class ClinicsListViewModel : ViewModelBase
         {
             return;
         }
+    }
+
+    public void Clear()
+    {
+        Clinics = new ObservableCollection<ClinicModel>();
     }
 }

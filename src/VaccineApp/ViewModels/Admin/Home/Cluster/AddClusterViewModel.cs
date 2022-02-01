@@ -28,6 +28,7 @@ public class AddClusterViewModel : ViewModelBase
         if (validationResult.IsValid)
         {
             var result = await _unitOfWork.AddCluster(_cluster);
+            await Shell.Current.GoToAsync("..");
             _toast.MakeToast($"{result.ClusterName} has been added");
         }
         else

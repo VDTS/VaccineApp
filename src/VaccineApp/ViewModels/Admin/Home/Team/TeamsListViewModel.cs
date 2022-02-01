@@ -13,15 +13,24 @@ public class TeamsListViewModel : ViewModelBase
     {
         _unitOfwork = unitOfwork;
         Teams = new ObservableCollection<TeamModel>();
-
-        Get();
     }
 
-    private async void Get()
+    public async void Get()
     {
-        Teams = await _unitOfwork.GetAllTeams();
+        try
+        {
+            Teams = await _unitOfwork.GetAllTeams();
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
+    public void Clear()
+    {
+        Teams = new ObservableCollection<TeamModel>();
+    }
     public IEnumerable<TeamModel> Teams
     {
         get { return _teams; }

@@ -4,10 +4,20 @@ namespace VaccineApp.Views.Mobilizer.Home.Area.Influencer;
 
 public partial class InfluencersListPage : ContentPage
 {
-	public InfluencersListPage(InfluencersListViewModel viewModel)
+    private readonly InfluencersListViewModel _viewModel;
+
+    public InfluencersListPage(InfluencersListViewModel viewModel)
 	{
 		InitializeComponent();
 
-		this.BindingContext = viewModel;
-	}
+        _viewModel = viewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _viewModel.Clear();
+        _viewModel.Get();
+		this.BindingContext = _viewModel;
+    }
 }

@@ -11,10 +11,11 @@ public partial class UsersListPage : ContentPage
 		InitializeComponent();
 
         _viewModel = viewModel;
-		this.BindingContext = viewModel;
     }
     protected override void OnAppearing()
     {
+        _viewModel.Clear();
         _viewModel.Get();
+		this.BindingContext = _viewModel;
     }
 }

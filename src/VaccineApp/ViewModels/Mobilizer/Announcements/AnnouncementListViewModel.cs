@@ -31,6 +31,10 @@ public class AnnouncementListViewModel : ViewModelBase
         }
     }
 
+    public void Clear()
+    {
+        Announcements = new ObservableCollection<AnnouncementModel>();
+    }
     private async void AddAnnouncement()
     {
         var route = $"{nameof(AddAnnouncementPage)}";
