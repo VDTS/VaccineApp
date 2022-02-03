@@ -189,6 +189,9 @@
 		<MauiXaml Update="Views\Parent\ParentFamilyPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Parent\QR\QRGeneratedImagePage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Announcements\AddAnnouncementPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
@@ -212,6 +215,7 @@
 		<PackageReference Include="GitHubJwt" Version="0.0.5" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
+		<PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
 	</ItemGroup>
 
 	<ItemGroup>

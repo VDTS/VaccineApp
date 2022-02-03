@@ -21,6 +21,7 @@ using VaccineApp.Views.Mobilizer.Announcements;
 using VaccineApp.Views.Supervisor.Periods;
 using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
 using VaccineApp.Views.Mobilizer.Home.Status;
+using VaccineApp.Views.Parent.QR;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -325,6 +326,9 @@ public partial class Appshell : Shell
     }
     public IEnumerable<FlyoutItem> ParentShellStructure()
     {
+        // Register routes for App pages
+        Routing.RegisterRoute(nameof(QRGeneratedImagePage), typeof(QRGeneratedImagePage));
+
         FlyoutItem home = new()
         {
             Title = "Home",

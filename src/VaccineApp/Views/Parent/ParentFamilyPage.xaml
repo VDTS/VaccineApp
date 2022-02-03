@@ -7,6 +7,10 @@
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="ParentFamilyPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Share data with QR" Command="{Binding ShareDataWithQRCodeCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="40"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <StackLayout Spacing="10">
