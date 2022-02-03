@@ -2,15 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Supervisor.Periods.PeriodsListPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Periods"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
+             x:DataType="ViewModel:PeriodsListViewModel"
              Title="PeriodsListPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Start new Period" Command="{Binding AddPeriodCommand}"/>
     </ContentPage.ToolbarItems>
-    
-    <StackLayout>
-        <Label Text="Welcome to .NET MAUI!"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
-    </StackLayout>
+
+    <CollectionView ItemsSource="{Binding Periods}">
+        <CollectionView.Header>
+            <StackLayout VerticalOptions="Center">
+                <Label FontSize="Title"
+                       Text="Periods" />
+            </StackLayout>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:PeriodModel">
+                <StackLayout Padding="0,2,0,0">
+                    <Label Text="{Binding PeriodName}"></Label>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

@@ -13,6 +13,8 @@ public partial class PeriodsListPage : ContentPage
     }
     protected override void OnAppearing()
     {
+        _viewModel.Clear();
+        _viewModel.Get();
         this.BindingContext = _viewModel;
     }
 }
