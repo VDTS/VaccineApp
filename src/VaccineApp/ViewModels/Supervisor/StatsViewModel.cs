@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core.CountsPerParentModels;
+using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
 using VaccineApp.ViewModels.Base;
@@ -10,7 +11,7 @@ public class StatsViewModel : ViewModelBase
     private readonly UnitOfWork _unitOfWork;
     private ClusterModel _cluster;
     private IEnumerable<TeamModel> _teams;
-    private ObservableCollection<FamiliesCountGroupByTeams> _families;
+    private ObservableCollection<FamiliesCountPerTeamsModel> _families;
     private int _childs;
 
     public StatsViewModel(UnitOfWork unitOfWork)
@@ -18,13 +19,13 @@ public class StatsViewModel : ViewModelBase
         _unitOfWork = unitOfWork;
         Cluster = new();
         Teams = new ObservableCollection<TeamModel>();
-        Families = new ObservableCollection<FamiliesCountGroupByTeams>();
+        Families = new ObservableCollection<FamiliesCountPerTeamsModel>();
     }
     public void Clear()
     {
         Cluster = new();
         Teams = new ObservableCollection<TeamModel>();
-        Families = new ObservableCollection<FamiliesCountGroupByTeams>();
+        Families = new ObservableCollection<FamiliesCountPerTeamsModel>();
     }
     public async void GetCluster()
     {
@@ -65,7 +66,7 @@ public class StatsViewModel : ViewModelBase
                 var families = await _unitOfWork.GetFamilies(item.Id.ToString());
                 var s = families.ToList().Count;
 
-                Families.Add(new FamiliesCountGroupByTeams() { TeamNo = item.TeamNo.ToString(), FamiliesCount = s });
+                Families.Add(new FamiliesCountPerTeamsModel() { TeamNo = item.TeamNo.ToString(), FamiliesCount = s });
 
                 foreach (var child in families)
                 {
@@ -95,7 +96,7 @@ public class StatsViewModel : ViewModelBase
         get { return _teams; }
         set { _teams = value; OnPropertyChanged(); }
     }
-    public ObservableCollection<FamiliesCountGroupByTeams> Families
+    public ObservableCollection<FamiliesCountPerTeamsModel> Families
     {
         get { return _families; }
         set { _families = value; OnPropertyChanged(); }
@@ -105,10 +106,4 @@ public class StatsViewModel : ViewModelBase
         get { return _childs; }
         set { _childs = value; OnPropertyChanged(); }
     }
-}
-
-public class FamiliesCountGroupByTeams
-{
-    public string TeamNo { get; set; }
-    public int FamiliesCount { get; set; }
 }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Supervisor.StatsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor"
+             xmlns:CountsPerParentModels="clr-namespace:Core.CountsPerParentModels;assembly=Core"
              x:DataType="ViewModel:StatsViewModel"
              Title="StatsPage">
     <StackLayout Padding="40"
@@ -17,7 +18,7 @@
         <Label Text="Households per team"/>
         <CollectionView ItemsSource="{Binding Families}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="ViewModel:FamiliesCountGroupByTeams">
+                <DataTemplate x:DataType="CountsPerParentModels:FamiliesCountPerTeamsModel">
                     <StackLayout Padding="0,2,0,0">
                         <Label Text="{Binding TeamNo}" />
                         <Label Text="{Binding FamiliesCount}" />
