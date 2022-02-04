@@ -204,6 +204,9 @@
 		<MauiXaml Update="Views\Supervisor\Periods\PeriodsListPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Supervisor\Reports\ReportsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\StatsPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
@@ -216,6 +219,7 @@
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
 		<PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
+		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.4.0.48" />
 	</ItemGroup>
 
 	<ItemGroup>

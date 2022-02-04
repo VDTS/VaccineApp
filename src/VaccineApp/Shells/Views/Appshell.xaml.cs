@@ -22,6 +22,7 @@ using VaccineApp.Views.Supervisor.Periods;
 using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
 using VaccineApp.Views.Mobilizer.Home.Status;
 using VaccineApp.Views.Parent.QR;
+using VaccineApp.Views.Supervisor.Reports;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -147,6 +148,11 @@ public partial class Appshell : Shell
             Title = "Stats"
         };
 
+        Tab reports = new()
+        {
+            Title = "Reports"
+        };
+
         Tab period = new()
         {
             Title = "Periods"
@@ -164,6 +170,13 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(StatsPage))
         };
 
+        ShellContent reportsPage = new()
+        {
+            Title = "Reports",
+            Route = nameof(ReportsPage),
+            ContentTemplate = new DataTemplate(typeof(ReportsPage))
+        };
+
         ShellContent announcementPage = new()
         {
             Title = "Announcement",
@@ -179,10 +192,12 @@ public partial class Appshell : Shell
         };
 
         stats.Items.Add(statsPage);
+        reports.Items.Add(reportsPage);
         period.Items.Add(periodPage);
         announcement.Items.Add(announcementPage);
 
         home.Items.Add(stats);
+        home.Items.Add(reports);
         home.Items.Add(period);
         home.Items.Add(announcement);
 

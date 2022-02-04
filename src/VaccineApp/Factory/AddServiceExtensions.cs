@@ -20,6 +20,7 @@ using VaccineApp.ViewModels.Parent;
 using VaccineApp.ViewModels.Supervisor;
 using VaccineApp.ViewModels.Supervisor.Announcements;
 using VaccineApp.ViewModels.Supervisor.Periods;
+using VaccineApp.ViewModels.Supervisor.Reports;
 
 namespace VaccineApp.Factory;
 
@@ -65,6 +66,7 @@ public static class AddServiceExtensions
         Services.AddTransient<AddAnonymousChildViewModel>();
         Services.AddTransient<StatusViewModel>();
         Services.AddTransient<ChildDetailsViewModel>();
+        Services.AddTransient<ReportsViewModel>();
 
         return Services;
     }
