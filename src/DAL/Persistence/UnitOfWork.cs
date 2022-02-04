@@ -217,13 +217,27 @@ public class UnitOfWork
         return await _periodRepository.GetPeriods();
     }
 
-    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild)
+    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild, string teamId = null)
     {
-        return await _anonymousChildRepository.AddAnonymousChild(anonymousChild);
+        if(teamId == null)
+        {
+            return await _anonymousChildRepository.AddAnonymousChild(anonymousChild, _teamId);
+        }
+        else
+        {
+            return await _anonymousChildRepository.AddAnonymousChild(anonymousChild, teamId);
+        }
     }
 
-    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren()
+    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren(string teamId = null)
     {
-        return await _anonymousChildRepository.GetAnonymousChildren();
+        if(teamId == null)
+        {
+            return await _anonymousChildRepository.GetAnonymousChildren(_teamId);
+        }
+        else
+        {
+            return await _anonymousChildRepository.GetAnonymousChildren(teamId);
+        }
     }
 }

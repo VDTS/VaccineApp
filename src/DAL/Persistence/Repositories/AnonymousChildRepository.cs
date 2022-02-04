@@ -14,7 +14,7 @@ public class AnonymousChildRepository : IAnonymousChildRepository<AnonymousChild
         _clientFactory = clientFactory;
     }
 
-    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild)
+    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild, string teamId)
     {
         var client = _clientFactory.CreateClient("meta");
 
@@ -25,7 +25,7 @@ public class AnonymousChildRepository : IAnonymousChildRepository<AnonymousChild
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.AnonymousChild(), byteContent);
+            var s = await client.PostAsync(DbNodePath.AnonymousChild(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -42,13 +42,13 @@ public class AnonymousChildRepository : IAnonymousChildRepository<AnonymousChild
         }
     }
 
-    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren()
+    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren(string teamId)
     {
         var client = _clientFactory.CreateClient("meta");
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, AnonymousChildModel>>(DbNodePath.AnonymousChild());
+            var s = await client.GetFromJsonAsync<Dictionary<string, AnonymousChildModel>>(DbNodePath.AnonymousChild(teamId));
 
             return s.Values.ToList();
         }

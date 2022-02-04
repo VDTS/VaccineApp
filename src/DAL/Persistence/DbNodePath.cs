@@ -51,5 +51,5 @@ public static class DbNodePath
     public static string Announcement() => $"Announcement.json";
     public static string Periods() => $"Period.json";
     public static string CurrentConfig() => $"CurrentConfigs/CurrentPeriod.json";
-    public static string AnonymousChild() => $"AnonymousChild.json";
+    public static string AnonymousChild(string teamId) => $"AnonymousChild/{teamId}.json";
 }
