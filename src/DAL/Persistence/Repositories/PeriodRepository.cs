@@ -20,29 +20,19 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
         try
         {
             var content = JsonConvert.SerializeObject(period);
-            var contentId = JsonConvert.SerializeObject(period.Id);
 
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-
-            var bufferId = System.Text.Encoding.UTF8.GetBytes(contentId);
-            var byteContentId = new ByteArrayContent(bufferId);
+            // Fetch current active Period
+            var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{DbNodePath.ActivePeriods()}");
 
             var s = await client.PostAsync(DbNodePath.Periods(), byteContent);
 
-
             if (s.IsSuccessStatusCode)
             {
-                var p = await client.PutAsync(DbNodePath.CurrentConfig(), byteContentId);
-                if (p.IsSuccessStatusCode)
-                {
-                    return period;
-                }
-                else
-                {
-                    throw new Exception(s.ReasonPhrase);
-                }
+                await client.PutAsJsonAsync(DbNodePath.PeriodActiveField(activePeriod.First().Key), false);
+                return period;
             }
             else
             {

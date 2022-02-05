@@ -50,6 +50,10 @@ public static class DbNodePath
 
     public static string Announcement() => $"Announcement.json";
     public static string Periods() => $"Period.json";
-    public static string CurrentConfig() => $"CurrentConfigs/CurrentPeriod.json";
     public static string AnonymousChild(string teamId) => $"AnonymousChild/{teamId}.json";
+
+
+    public static string ActivePeriods() => $"{Periods()}?orderBy=\"IsActive\"&equalTo=true";
+    public static string PeriodActiveField(string periodFID) => $"Period/{periodFID}/IsActive.json";
+
 }
