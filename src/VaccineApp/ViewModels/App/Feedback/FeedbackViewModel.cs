@@ -19,6 +19,10 @@ public class FeedbackViewModel : ViewModelBase
     private bool _isAndroidChecked;
     private bool _isAllChecked;
     private bool _isEnhancementChecked;
+    private bool _isAdminChecked;
+    private bool _isSupervisorChecked;
+    private bool _isMobilizerChecked;
+    private bool _isParentChecked;
     public FeedbackViewModel(IToast toast, IOptions<AppSecrets> options)
     {
         Feedback = new();
@@ -31,6 +35,10 @@ public class FeedbackViewModel : ViewModelBase
         IsIdeaChecked = true;
         IsAllChecked = false;
         IsEnhancementChecked = false;
+        IsAdminChecked = true;
+        IsSupervisorChecked = false;
+        IsMobilizerChecked = false;
+        IsParentChecked = false;
     }
 
     public ICommand SubmitIssueOnGithubCommand { private set; get; }
@@ -77,6 +85,29 @@ public class FeedbackViewModel : ViewModelBase
         set { _isAllChecked = value; OnPropertyChanged(); }
     }
 
+    public bool IsAdminChecked
+    {
+        get { return _isAdminChecked; }
+        set { _isAdminChecked = value; OnPropertyChanged(); }
+    }
+
+    public bool IsSupervisorChecked
+    {
+        get { return _isSupervisorChecked; }
+        set { _isSupervisorChecked = value; OnPropertyChanged(); }
+    }
+
+    public bool IsMobilizerChecked
+    {
+        get { return _isMobilizerChecked; }
+        set { _isMobilizerChecked = value; OnPropertyChanged(); }
+    }
+
+    public bool IsParentChecked
+    {
+        get { return _isParentChecked; }
+        set { _isParentChecked = value; OnPropertyChanged(); }
+    }
     private async void SubmitIssue()
     {
         var jwtToken = GenerateToken();
@@ -123,6 +154,24 @@ public class FeedbackViewModel : ViewModelBase
         {
             newIssue.Labels.Add("t/enhancement ☀️");
         }
+
+        if (IsAdminChecked)
+        {
+            newIssue.Labels.Add("app/admin 👨‍");
+        }
+        else if (IsSupervisorChecked)
+        {
+            newIssue.Labels.Add("app/supervisor 👨");
+        }
+        else if (IsMobilizerChecked)
+        {
+            newIssue.Labels.Add("app/mobilizer 👨");
+        }
+        else if (IsParentChecked)
+        {
+            newIssue.Labels.Add("app/parent 👨");
+        }
+
         return newIssue;
     }
 

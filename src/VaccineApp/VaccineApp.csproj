@@ -52,6 +52,7 @@
 	<ItemGroup>
 		<None Remove="Resources\Images\abdulbasir.jpg" />
 		<None Remove="Resources\Images\aboutus.svg" />
+		<None Remove="Resources\Images\admin.svg" />
 		<None Remove="Resources\Images\android.svg" />
 		<None Remove="Resources\Images\announcement.svg" />
 		<None Remove="Resources\Images\appicon.svg" />
@@ -63,10 +64,13 @@
 		<None Remove="Resources\Images\idea.svg" />
 		<None Remove="Resources\Images\linkedin.svg" />
 		<None Remove="Resources\Images\logout.svg" />
+		<None Remove="Resources\Images\mobilizer.svg" />
 		<None Remove="Resources\Images\mohammadyasin.jpg" />
 		<None Remove="Resources\Images\multipledevices.svg" />
 		<None Remove="Resources\Images\naveedahmad.jpg" />
+		<None Remove="Resources\Images\parent.svg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
+		<None Remove="Resources\Images\supervisor.svg" />
 		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />
 		<None Remove="Resources\Images\windows.svg" />

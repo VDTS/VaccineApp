@@ -92,6 +92,57 @@
                     </RadioButton.Content>
                 </RadioButton>
             </StackLayout>
+            <StackLayout RadioButtonGroup.GroupName="Users">
+                <Label Text="Who you are?" />
+                <RadioButton Value="Admin"
+                             IsChecked="{Binding IsAdminChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="admin.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Admin" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="Supervisor"
+                             IsChecked="{Binding IsSupervisorChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="supervisor.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Supervisor" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="Mobilizer"
+                             IsChecked="{Binding IsMobilizerChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="mobilizer.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Mobilizer" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="Parent"
+                             IsChecked="{Binding IsParentChecked}">
+                    <RadioButton.Content>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+                            <Image Source="parent.png"
+                                   WidthRequest="25"
+                                   HeightRequest="25" />
+                            <Label Text="Parent" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+            </StackLayout>
             <StackLayout Spacing="10">
                 <Entry Text="{Binding Feedback.Title}"
                        Placeholder="Enter issue title"
