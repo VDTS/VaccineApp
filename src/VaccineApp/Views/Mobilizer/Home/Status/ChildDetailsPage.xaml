@@ -4,6 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Status.ChildDetailsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status"
              x:DataType="ViewModel:ChildDetailsViewModel"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Shell.TabBarIsVisible="False"
              Title="ChildDetailsPage">
 
@@ -31,5 +32,21 @@
                    Text="OPV0" />
             <Label Text="{Binding Child.OPV0 }" />
         </StackLayout>
+        <CollectionView SelectionMode="Single"
+                        ItemsSource="{Binding Vaccines}">
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontSize="Title"
+                           Text="Vaccines" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:VaccineModel">
+                    <StackLayout Padding="0,2,0,0">
+                        <Label Text="{Binding Status}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentPage>

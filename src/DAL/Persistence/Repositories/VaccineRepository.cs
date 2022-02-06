@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using DAL.Persistence.Core;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace DAL.Persistence.Repositories;
 
@@ -33,6 +34,22 @@ public class VaccineRepository : IVaccineRepository<VaccineModel>
             {
                 throw new Exception(s.ReasonPhrase);
             }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<VaccineModel>> GetVaccines(string childId)
+    {
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            var s = await client.GetFromJsonAsync<Dictionary<string, VaccineModel>>(DbNodePath.Vaccine(childId));
+
+            return s.Values.ToList();
         }
         catch (Exception)
         {

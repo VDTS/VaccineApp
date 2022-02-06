@@ -19,7 +19,7 @@ public partial class ChildDetailsPage : ContentPage
     {
         var child = JsonConvert.DeserializeObject<ChildModel>(Child);
         _viewModel.GetQueryProperty(child);
-        _viewModel.Get();
+        _viewModel.GetVaccines();
         this.BindingContext = _viewModel;
     }
 }

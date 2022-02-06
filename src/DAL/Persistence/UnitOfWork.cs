@@ -252,4 +252,9 @@ public class UnitOfWork
     {
         return await _periodRepository.GetActivePeriod();
     }
+
+    public async Task<IEnumerable<VaccineModel>> GetVaccines(string childId)
+    {
+        return await _vaccineRepository.GetVaccines(childId);
+    }
 }
