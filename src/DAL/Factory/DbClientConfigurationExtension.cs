@@ -30,6 +30,7 @@ public static class DbClientConfigurationExtension
         service.AddSingleton<AnnouncementRepository>();
         service.AddSingleton<PeriodRepository>();
         service.AddSingleton<AnonymousChildRepository>();
+        service.AddSingleton<VaccineRepository>();
 
         service.AddHttpClient();
         service.AddHttpClient("meta", c =>

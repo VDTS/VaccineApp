@@ -89,6 +89,7 @@
 		<ProjectReference Include="..\Auth\Auth.csproj" />
 		<ProjectReference Include="..\Core\Core.csproj" />
 		<ProjectReference Include="..\DAL\DAL.csproj" />
+		<ProjectReference Include="..\RealCache\RealCache.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -184,6 +185,9 @@
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\StatusPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Status\Vaccine\AddVaccinePage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\ParentFamilyPage.xaml">

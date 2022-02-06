@@ -19,6 +19,7 @@ public class UnitOfWork
     private readonly AnnouncementRepository _announcementRepository;
     private readonly PeriodRepository _periodRepository;
     private readonly AnonymousChildRepository _anonymousChildRepository;
+    private readonly VaccineRepository _vaccineRepository;
     private string _clusterId;
     private string _teamId;
     private string _familyId;
@@ -35,7 +36,8 @@ public class UnitOfWork
         SchoolRepository schoolRepository,
         AnnouncementRepository announcementRepository,
         PeriodRepository periodRepository,
-        AnonymousChildRepository anonymousChildRepository)
+        AnonymousChildRepository anonymousChildRepository,
+        VaccineRepository vaccineRepository)
     {
         _masjeedRepository = masjeedRepository;
         _childRepository = childRepository;
@@ -49,6 +51,7 @@ public class UnitOfWork
         _announcementRepository = announcementRepository;
         _periodRepository = periodRepository;
         _anonymousChildRepository = anonymousChildRepository;
+        _vaccineRepository = vaccineRepository;
         GetClaims();
     }
 
@@ -239,5 +242,14 @@ public class UnitOfWork
         {
             return await _anonymousChildRepository.GetAnonymousChildren(teamId);
         }
+    }
+    public async Task<VaccineModel> AddVaccine(VaccineModel vaccine, string childId)
+    {
+        return await _vaccineRepository.AddVaccine(vaccine, childId);
+    }
+
+    public async Task<PeriodModel> GetActivePeriod()
+    {
+        return await _periodRepository.GetActivePeriod();
     }
 }

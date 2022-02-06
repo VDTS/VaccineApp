@@ -2,6 +2,7 @@
 using Core.Models;
 using DAL.Persistence;
 using Newtonsoft.Json;
+using RealCache.Persistence.Migrations;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
@@ -12,15 +13,26 @@ namespace VaccineApp.ViewModels.Mobilizer.Home.Status;
 public class StatusViewModel : ViewModelBase
 {
     private readonly UnitOfWork _unitOfWork;
+    private readonly DbContext<PeriodModel> _dbContext;
     private ObservableCollection<ChildrenGroupByHouseNoModel> _childrenGroupByFamily;
     private ChildModel _selectedChild;
     
-    public StatusViewModel(UnitOfWork unitOfWork)
+    public StatusViewModel(UnitOfWork unitOfWork, DbContext<PeriodModel> dbContext)
     {
         _unitOfWork = unitOfWork;
+        _dbContext = dbContext;
         ChildrenGroupByFamily = new();
         SelectedChild = new();
+        GetPeriod();
         ChildDetailsCommand = new Command(ChildDetails);
+    }
+
+    private async void GetPeriod()
+    {
+        var s = await _unitOfWork.GetActivePeriod();
+        _dbContext.CreateDB("mobilizer", "user");
+        _dbContext.CreateTable();
+        _dbContext.Insert(s);
     }
 
     private async void ChildDetails()

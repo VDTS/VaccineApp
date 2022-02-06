@@ -6,6 +6,11 @@
              x:DataType="ViewModel:ChildDetailsViewModel"
              Shell.TabBarIsVisible="False"
              Title="ChildDetailsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Vaccine" Command="{Binding AddVaccineCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="40"
                  Spacing="10"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">

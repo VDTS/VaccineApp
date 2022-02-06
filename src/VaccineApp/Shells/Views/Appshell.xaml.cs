@@ -23,6 +23,7 @@ using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
 using VaccineApp.Views.Mobilizer.Home.Status;
 using VaccineApp.Views.Parent.QR;
 using VaccineApp.Views.Supervisor.Reports;
+using VaccineApp.Views.Mobilizer.Home.Status.Vaccine;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -219,6 +220,7 @@ public partial class Appshell : Shell
         Routing.RegisterRoute(nameof(AddChildPage), typeof(AddChildPage));
         Routing.RegisterRoute(nameof(AddAnonymousChildPage), typeof(AddAnonymousChildPage));
         Routing.RegisterRoute(nameof(ChildDetailsPage), typeof(ChildDetailsPage));
+        Routing.RegisterRoute(nameof(AddVaccinePage), typeof(AddVaccinePage));
 
         FlyoutItem home = new()
         {

@@ -51,6 +51,7 @@ public static class DbNodePath
     public static string Announcement() => $"Announcement.json";
     public static string Periods() => $"Period.json";
     public static string AnonymousChild(string teamId) => $"AnonymousChild/{teamId}.json";
+    public static string Vaccine(string childId) => $"Vaccine/{childId}.json";
 
 
     public static string ActivePeriods() => $"{Periods()}?orderBy=\"IsActive\"&equalTo=true";

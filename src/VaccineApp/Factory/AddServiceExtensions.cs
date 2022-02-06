@@ -16,6 +16,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Family;
 using VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
 using VaccineApp.ViewModels.Mobilizer.Home.Status;
 using VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild;
+using VaccineApp.ViewModels.Mobilizer.Home.Status.Vaccine;
 using VaccineApp.ViewModels.Parent;
 using VaccineApp.ViewModels.Supervisor;
 using VaccineApp.ViewModels.Supervisor.Announcements;
@@ -67,6 +68,7 @@ public static class AddServiceExtensions
         Services.AddTransient<StatusViewModel>();
         Services.AddTransient<ChildDetailsViewModel>();
         Services.AddTransient<ReportsViewModel>();
+        Services.AddTransient<AddVaccineViewModel>();
 
         return Services;
     }

@@ -45,6 +45,20 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
         }
     }
 
+    public async Task<PeriodModel> GetActivePeriod()
+    {
+        var client = _clientFactory.CreateClient("meta");
+        try
+        {
+            var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{DbNodePath.ActivePeriods()}");
+            return activePeriod.FirstOrDefault().Value;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
     public async Task<IEnumerable<PeriodModel>> GetPeriods()
     {
         var client = _clientFactory.CreateClient("meta");

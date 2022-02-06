@@ -3,6 +3,7 @@ using Core.Factory;
 using DAL.Factory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
+using RealCache.Factory;
 using System.Reflection;
 using VaccineApp.AppConfigs;
 using VaccineApp.Factory;
@@ -57,6 +58,8 @@ public static class MauiProgram
                 options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
             }
         );
+
+        builder.Services.AddRealCache();
 
         return builder.Build();
     }
