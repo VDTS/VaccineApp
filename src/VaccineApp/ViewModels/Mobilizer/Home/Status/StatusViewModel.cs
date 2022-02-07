@@ -16,7 +16,7 @@ public class StatusViewModel : ViewModelBase
     private readonly DbContext<PeriodModel> _dbContext;
     private ObservableCollection<ChildrenGroupByHouseNoModel> _childrenGroupByFamily;
     private ChildModel _selectedChild;
-    
+
     public StatusViewModel(UnitOfWork unitOfWork, DbContext<PeriodModel> dbContext)
     {
         _unitOfWork = unitOfWork;
@@ -29,10 +29,17 @@ public class StatusViewModel : ViewModelBase
 
     private async void GetPeriod()
     {
-        var s = await _unitOfWork.GetActivePeriod();
-        _dbContext.CreateDB("mobilizer", "user");
-        _dbContext.CreateTable();
-        _dbContext.Insert(s);
+        try
+        {
+            var s = await _unitOfWork.GetActivePeriod();
+            _dbContext.CreateDB("mobilizer", "user");
+            _dbContext.CreateTable();
+            _dbContext.Insert(s);
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     private async void ChildDetails()
