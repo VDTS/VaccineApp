@@ -1,0 +1,39 @@
+﻿@page "/"
+@inject IJSRuntime js
+@inject ChartsViewModel viewModel;
+
+<PageTitle>Charts</PageTitle>
+
+
+<div id="chart-container" style="height:400; width:400">
+    <canvas id="bar-chart"></canvas>
+</div>
+
+@code {
+
+    double[] households;
+    string[] team;
+
+    protected override async Task OnInitializedAsync()
+    {
+        viewModel.Clear();
+        await viewModel.GetCluster();
+        await viewModel.GetTeams();
+        await viewModel.GetFamilies();
+
+        var families = viewModel.Families;
+
+        int i = 0;
+        households = new double[families.Count];
+        team = new string[families.Count];
+        foreach (var item in families)
+        {
+            team[i] = item.TeamNo;
+            households[i] = item.FamiliesCount;
+            i++;
+        }
+
+        await Task.Run(async () => { await js.InvokeVoidAsync("GenerateChart", team, households); });
+    }
+
+}

@@ -1,6 +1,7 @@
 ﻿using Auth.Factory;
 using Core.Factory;
 using DAL.Factory;
+using Microsoft.AspNetCore.Components.WebView.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using RealCache.Factory;
@@ -16,6 +17,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
+            .RegisterBlazorMauiWebView()
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
@@ -29,6 +31,8 @@ public static class MauiProgram
                 config.AddJsonFile(new EmbeddedFileProvider(assembly), "AppConfigs.AppSettings.json", optional: false, true);
                 config.AddJsonFile(new EmbeddedFileProvider(assembly), "SecretFiles.AppSecrets.json", optional: false, true);
             });
+
+        builder.Services.AddBlazorWebView();
 
         builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
         builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));

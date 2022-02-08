@@ -20,6 +20,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Status.Vaccine;
 using VaccineApp.ViewModels.Parent;
 using VaccineApp.ViewModels.Supervisor;
 using VaccineApp.ViewModels.Supervisor.Announcements;
+using VaccineApp.ViewModels.Supervisor.Charts;
 using VaccineApp.ViewModels.Supervisor.Periods;
 using VaccineApp.ViewModels.Supervisor.Reports;
 
@@ -69,6 +70,7 @@ public static class AddServiceExtensions
         Services.AddTransient<ChildDetailsViewModel>();
         Services.AddTransient<ReportsViewModel>();
         Services.AddTransient<AddVaccineViewModel>();
+        Services.AddTransient<ChartsViewModel>();
 
         return Services;
     }

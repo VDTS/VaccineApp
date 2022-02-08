@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
@@ -9,6 +9,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+		<EnableDefaultCssItems>false</EnableDefaultCssItems>
 
 		<!-- Display name -->
 		<ApplicationTitle>VaccineApp</ApplicationTitle>
@@ -206,6 +207,9 @@
 		<MauiXaml Update="Views\Supervisor\Announcements\AnnouncementsListPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Supervisor\Charts\ChartsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Periods\AddPeriodPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
@@ -225,6 +229,7 @@
 		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
 		<PackageReference Include="GitHubJwt" Version="0.0.5" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="6.0.200-preview.12.2441" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
 		<PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
 		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.4.0.48" />
