@@ -14,10 +14,10 @@ public static class CoreConfigurationExtension
         service.AddSingleton<IToast, Toaster>();
 
         // Models
-        service.AddSingleton<ClusterModel>();
-        service.AddSingleton<TeamModel>();
+        service.AddTransient<ClusterModel>();
+        service.AddTransient<TeamModel>();
         service.AddTransient<FamilyModel>();
-        service.AddSingleton<ChildModel>();
+        service.AddTransient<ChildModel>();
         service.AddTransient<ClinicModel>();
         service.AddTransient<DoctorModel>();
         service.AddTransient<InfluencerModel>();
