@@ -29,3 +29,16 @@ public static class CoreConfigurationExtension
         return service;
     }
 }
+
+public class Toaster : IToast
+{
+    public void MakeToast(string message)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void MakeToast(string title, string message)
+    {
+        throw new NotImplementedException();
+    }
+}
