@@ -1,3 +1,4 @@
+using VaccineApp.Views.Access.ForgotPassword;
 using VaccineApp.Views.Access.SignIn;
 
 namespace VaccineApp.Shells.Views;
@@ -13,6 +14,10 @@ public partial class Accessshell : Shell
 
     public FlyoutItem AccessShell()
     {
+        // Register routes for App pages
+        Routing.RegisterRoute(nameof(ForgotPasswordPage), typeof(ForgotPasswordPage));
+
+
         FlyoutItem home = new();
         Tab signin = new();
         ShellContent signinPage = new()

@@ -104,6 +104,9 @@
 		<MauiXaml Update="Shells\Views\Appshell.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Access\ForgotPassword\ForgotPasswordPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Access\SignIn\SignInPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>

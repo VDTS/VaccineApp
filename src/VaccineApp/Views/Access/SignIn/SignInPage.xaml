@@ -37,11 +37,17 @@
         </StackLayout>
 
         <StackLayout Spacing="10"
-            GridLayout.Row="2"
-                     Orientation="Horizontal">
+                     GridLayout.Row="2"
+                     WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
             <!--<CheckBox IsChecked="True" />
-            <Label Text="Remember me" />
-            <Label Text="Forgot Password" />-->
+            <Label Text="Remember me" />-->
+            <Label Text="Forgot Password">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
 
         <StackLayout GridLayout.Row="3"
@@ -54,7 +60,7 @@
                     HeightRequest="50"
                     HorizontalOptions="Center" />
         </StackLayout>
-        
+
     </Grid>
 
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using VaccineApp.ViewModels.Access.SignIn;
+﻿using VaccineApp.ViewModels.Access.ForgotPassword;
+using VaccineApp.ViewModels.Access.SignIn;
 using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
 using VaccineApp.ViewModels.Admin.Home.User;
@@ -71,6 +72,7 @@ public static class AddServiceExtensions
         Services.AddTransient<ReportsViewModel>();
         Services.AddTransient<AddVaccineViewModel>();
         Services.AddTransient<ChartsViewModel>();
+        Services.AddTransient<ForgotPasswordViewModel>();
 
         return Services;
     }

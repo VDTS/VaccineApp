@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Windows.Input;
 using VaccineApp.Shells.Views;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Access.ForgotPassword;
 
 namespace VaccineApp.ViewModels.Access.SignIn;
 public class SignInViewModel : ViewModelBase
@@ -16,9 +17,17 @@ public class SignInViewModel : ViewModelBase
     {
         _signInService = signInService;
         SignInCommand = new Command(SignIn);
+        ForgotPasswordCommand = new Command(ForgotPassword);
+    }
+
+    private async void ForgotPassword()
+    {
+        var route = $"{nameof(ForgotPasswordPage)}";
+        await Shell.Current.GoToAsync(route);
     }
 
     public ICommand SignInCommand { private set; get; }
+    public ICommand ForgotPasswordCommand { private set; get; }
     public string UserEmailInput
     {
         get { return _userEmailInput; }

@@ -1,7 +1,9 @@
-﻿using Core.Features;
+﻿using Auth.Services;
+using Core.Features;
 using Core.Models;
 using DAL.Persistence;
 using FirebaseAdmin.Auth;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Utility.Generators;
@@ -12,6 +14,8 @@ public class AddUserViewModel : ViewModelBase
 {
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
+    private readonly AccountService _accountService;
+    private readonly SignInService _signInService;
     private string _email;
     private string _fullName;
     private string _phoneNumber;
@@ -24,7 +28,7 @@ public class AddUserViewModel : ViewModelBase
     private TeamModel _selectedTeam;
     private FamilyModel _selectedFamily;
 
-    public AddUserViewModel(UnitOfWork unitOfWork, IToast toast)
+    public AddUserViewModel(UnitOfWork unitOfWork, IToast toast, AccountService accountService, SignInService signInService)
     {
         RolesList = new List<string>()
         {
@@ -36,6 +40,8 @@ public class AddUserViewModel : ViewModelBase
         FamiliesList = new ObservableCollection<FamilyModel>();
         _unitOfWork = unitOfWork;
         _toast = toast;
+        _accountService = accountService;
+        _signInService = signInService;
         PostCommand = new Command(Post);
     }
     public ICommand PostCommand { private set; get; }
@@ -181,6 +187,11 @@ public class AddUserViewModel : ViewModelBase
             var claims = AddClaims();
 
             await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(userRecord.Uid, claims);
+
+            var s = await _signInService.SignIn(args.Email, args.Password);
+            var result = JsonConvert.DeserializeObject<SecureTokensModel>(s);
+            await _accountService.VerifyEmail(result.IdToken);
+
             _toast.MakeToast(userRecord.DisplayName, $"Password: {args.Password}");
 
             await Shell.Current.GoToAsync("..");
