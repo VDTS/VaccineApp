@@ -178,10 +178,10 @@ public class FeedbackViewModel : ViewModelBase
     private string GenerateToken()
     {
         // This code copies Embededd file to Cache.
-        var cacheFile = Path.Combine(FileSystem.CacheDirectory, "vdtsapp.2022-01-27.private-key.pem");
+        var cacheFile = Path.Combine(FileSystem.CacheDirectory, "github_app_private_key.pem");
         if (File.Exists(cacheFile))
             File.Delete(cacheFile);
-        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.SecretFiles.vdtsapp.2022-01-27.private-key.pem"))
+        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.SecretFiles.github_app_private_key.pem"))
         using (var file = new FileStream(cacheFile, System.IO.FileMode.Create, FileAccess.Write))
         {
             resource.CopyTo(file);

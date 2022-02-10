@@ -18,10 +18,10 @@ public partial class App : Application
     private void InitFirebaseApp()
     {
         // This code copies Embededd file to Cache.
-        var cacheFile = Path.Combine(FileSystem.CacheDirectory, "vaccineapp-2022-privatekey.json");
+        var cacheFile = Path.Combine(FileSystem.CacheDirectory, "firebase_private_key.json");
         if (File.Exists(cacheFile))
             File.Delete(cacheFile);
-        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.SecretFiles.vaccineapp-2022-privatekey.json"))
+        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.SecretFiles.firebase_private_key.json"))
         using (var file = new FileStream(cacheFile, FileMode.Create, FileAccess.Write))
         {
             resource.CopyTo(file);
