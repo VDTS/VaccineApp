@@ -455,3 +455,4 @@ $RECYCLE.BIN/
 
 # Custom ignores
 SecretFiles/
+/benchmarks/VaccineApp.Benchmarks/.vscode
