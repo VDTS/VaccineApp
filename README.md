@@ -24,8 +24,7 @@ Some services need secret keys for functioning:
 1. Github bot- You need to set Github private key in the app.
 2. Firebase Admin- You need to set firebase admin private in order to work with firebase admin.
 3. Firebase rest API- Set firebase project API key and base URL for working with firebase storage and firebase real time database
-
-<br />**Note:** put these files in a folder named [SecretFiles](https://github.com/NaveedAhmadHematmal/VaccineApp/tree/main/src/VaccineApp/SecretFiles) in VaccineApp project.
+<br /> **Note:** put these files in a folder named [SecretFiles](https://github.com/NaveedAhmadHematmal/VaccineApp/tree/main/src/VaccineApp/SecretFiles) in VaccineApp project.
 
 ### Application Development and production Environments
 There exist two options to work with firebase; online (for production, offline (for development). For switching between offline and online mode, change the value of [AppConfigs](https://github.com/NaveedAhmadHematmal/VaccineApp/blob/main/src/VaccineApp/AppConfigs/AppSettings.json) to online or offline.
