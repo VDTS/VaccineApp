@@ -456,3 +456,4 @@ $RECYCLE.BIN/
 # Custom ignores
 SecretFiles/
 /benchmarks/VaccineApp.Benchmarks/.vscode
+/src/Web/VaccineApp.BlazorPWA/VaccineApp.BlazorPWA/.vscode

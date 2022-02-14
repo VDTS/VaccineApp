@@ -1,0 +1,29 @@
+@page "/admin/clusters"
+@inject UnitOfWork unitOfWork;
+
+<PageTitle>ClustersList</PageTitle>
+
+<h3>Clusters</h3>
+<br/>
+
+@foreach (var item in Clusters)
+{
+    <p>@item.ClusterName</p>
+}
+
+@code
+{
+    public IEnumerable<ClusterModel> Clusters;
+    protected override async Task OnInitializedAsync()
+    {
+        Clusters = new List<ClusterModel>();
+        try
+        {
+            Clusters = await unitOfWork.GetClusters();
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    } 
+}
