@@ -1,5 +1,6 @@
 ﻿using Auth.Services;
 using Core.Models;
+using DAL.Persistence;
 using Newtonsoft.Json;
 using System.Windows.Input;
 using VaccineApp.Shells.Views;
@@ -10,12 +11,14 @@ namespace VaccineApp.ViewModels.Access.SignIn;
 public class SignInViewModel : ViewModelBase
 {
     private readonly SignInService _signInService;
+    private readonly UnitOfWork _unitOfWork;
     private string _userEmailInput;
     private string _userPasswordInput;
 
-    public SignInViewModel(SignInService signInService)
+    public SignInViewModel(SignInService signInService, UnitOfWork unitOfWork)
     {
         _signInService = signInService;
+        _unitOfWork = unitOfWork;
         SignInCommand = new Command(SignIn);
         ForgotPasswordCommand = new Command(ForgotPassword);
     }
@@ -83,21 +86,25 @@ public class SignInViewModel : ViewModelBase
         if (c.Role == "Admin")
         {
             // No claims to store for admin
+            _unitOfWork.AddClaims();
         }
         else if (c.Role == "Supervisor")
         {
             Preferences.Set(nameof(c.ClusterId), c.ClusterId);
+            _unitOfWork.AddClaims(c.ClusterId);
         }
         else if (c.Role == "Mobilizer")
         {
             Preferences.Set(nameof(c.ClusterId), c.ClusterId);
             Preferences.Set(nameof(c.TeamId), c.TeamId);
+            _unitOfWork.AddClaims(c.ClusterId, c.TeamId);
         }
         else if (c.Role == "Parent")
         {
             Preferences.Set(nameof(c.ClusterId), c.ClusterId);
             Preferences.Set(nameof(c.TeamId), c.TeamId);
             Preferences.Set(nameof(c.FamilyId), c.FamilyId);
+            _unitOfWork.AddClaims(c.ClusterId, c.TeamId, c.FamilyId);
         }
 
         return c.Role;

@@ -52,14 +52,13 @@ public class UnitOfWork
         _periodRepository = periodRepository;
         _anonymousChildRepository = anonymousChildRepository;
         _vaccineRepository = vaccineRepository;
-        GetClaims();
     }
 
-    private void GetClaims()
+    public void AddClaims(string clusterId = null, string teamId = null, string familyId = null)
     {
-        _clusterId = Preferences.Get("ClusterId", "AnonymousCluster");
-        _teamId = Preferences.Get("TeamId", "AnonymousTeam");
-        _familyId = Preferences.Get("FamilyId", "AnonymousFamily");
+        _clusterId = clusterId;
+        _teamId = teamId;
+        _familyId = familyId;
     }
 
     public async Task<IEnumerable<MasjeedModel>> GetMasjeeds()
