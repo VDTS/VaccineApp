@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Parent.Guides.VaccinesTimeTablePage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Parent.Guides"
+             x:DataType="ViewModel:VaccinesTimeTableViewModel"
+             Title="VaccinesTimeTablePage">
+
+    <CollectionView ItemsSource="{Binding Vaccines}">
+        <CollectionView.Header>
+            <Grid ColumnDefinitions="*, *"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="Start"
+                  RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Label FontAttributes="Bold"
+                       Grid.Column="0"
+                       Text="Age" />
+                <Label FontAttributes="Bold"
+                       Grid.Column="1"
+                       Text="Preferred Vaccines" />
+            </Grid>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid ColumnDefinitions="*, *"
+                      Margin="0"
+                      Padding="0"
+                      RowSpacing="0"
+                      x:DataType="ViewModel:VaccinesTimeTableModel">
+                    <Label Grid.Column="0"
+                           Margin="0"
+                           Text="{Binding Age}" />
+                    <Label Grid.Column="1"
+                           Margin="0"
+                           Text="{Binding PreferredVaccines}" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

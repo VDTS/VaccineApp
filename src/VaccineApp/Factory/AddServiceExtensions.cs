@@ -19,6 +19,7 @@ using VaccineApp.ViewModels.Mobilizer.Home.Status;
 using VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild;
 using VaccineApp.ViewModels.Mobilizer.Home.Status.Vaccine;
 using VaccineApp.ViewModels.Parent;
+using VaccineApp.ViewModels.Parent.Guides;
 using VaccineApp.ViewModels.Supervisor;
 using VaccineApp.ViewModels.Supervisor.Announcements;
 using VaccineApp.ViewModels.Supervisor.Charts;
@@ -73,6 +74,7 @@ public static class AddServiceExtensions
         Services.AddTransient<AddVaccineViewModel>();
         Services.AddTransient<ChartsViewModel>();
         Services.AddTransient<ForgotPasswordViewModel>();
+        Services.AddTransient<VaccinesTimeTableViewModel>();
 
         return Services;
     }

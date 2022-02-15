@@ -25,6 +25,7 @@ using VaccineApp.Views.Parent.QR;
 using VaccineApp.Views.Supervisor.Reports;
 using VaccineApp.Views.Mobilizer.Home.Status.Vaccine;
 using VaccineApp.Views.Supervisor.Charts;
+using VaccineApp.Views.Parent.Guides;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -372,6 +373,11 @@ public partial class Appshell : Shell
             Title = "Family"
         };
 
+        Tab guides = new()
+        {
+            Title = "Guides"
+        };
+
         ShellContent familyPage = new()
         {
             Title = "Family",
@@ -379,8 +385,18 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(ParentFamilyPage))
         };
 
+        ShellContent vaccinesTimeTablePage = new()
+        {
+            Title = "VaccinesTimeTable",
+            Route = nameof(VaccinesTimeTablePage),
+            ContentTemplate = new DataTemplate(typeof(VaccinesTimeTablePage))
+        };
+
         family.Items.Add(familyPage);
+        guides.Items.Add(vaccinesTimeTablePage);
+
         home.Items.Add(family);
+        home.Items.Add(guides);
 
         var list = new List<FlyoutItem>();
         list.Add(home);
