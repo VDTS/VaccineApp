@@ -1,0 +1,40 @@
+@page "/admin/teams"
+@inject UnitOfWork unitOfWork;
+
+<PageTitle>TeamsList</PageTitle>
+
+<h3>Teams</h3>
+<br/>
+
+@foreach (var item in TeamsGroupByCluster)
+{
+    <p><b>@item.ClusterName</b></p>
+    foreach (var team in item)
+    {
+        <p>@team.TeamNo</p>
+    }
+}
+
+@code
+{
+    public ObservableCollection<TeamsGroupByClusterModel> TeamsGroupByCluster;
+    protected override async Task OnInitializedAsync()
+    {
+        TeamsGroupByCluster = new();
+        try
+        {
+            var f = await unitOfWork.GetClusters();
+
+            foreach (var item in f)
+            {
+                var c = await unitOfWork.GetTeams(item.Id.ToString());
+
+                TeamsGroupByCluster.Add(new TeamsGroupByClusterModel(item.ClusterName, c.ToList()));
+            }
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    } 
+}
