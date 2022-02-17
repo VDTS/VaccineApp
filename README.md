@@ -1,12 +1,5 @@
 # VaccineApp
-**VaccineApp** is a digital immunization software that helps in distributing and tracking vaccinations with a **MobileApp** and **WebPortal**. It will help the field vaccinators to register children for tracking their vaccinations. The team offers **digital** solutions.
-
-## App General Info
-* Language: C# 10, Javascript, HTML, CSS, XAML
-* Framework:.NET 6
-* UI Framework: .NET MAUI
-* Database: Firebase rtdb
-* Authentication Provider: Firebase
+**VaccineApp** is a digital immunization software that helps in distributing and tracking vaccinations with a **MobileApp**, **Desktop** and **WebApp**. It will help the field vaccinators to register children for tracking their vaccinations. The team offers **digital** solutions.
 
 ## Features
 * Reliable child vaccination process.
@@ -30,3 +23,5 @@ Some services need secret keys for functioning:
 There exist two options to work with firebase; online (for production, offline (for development). For switching between offline and online mode, change the value of [AppConfigs](https://github.com/NaveedAhmadHematmal/VaccineApp/blob/main/src/VaccineApp/AppConfigs/AppSettings.json) to online or offline.
 <br /> **Note:** You need to download firebase emulator suite
 
+## Stats
+![Alt](https://repobeats.axiom.co/api/embed/401483c7d3e66e08967e37e81b4adff52c750f58.svg "Repobeats analytics image")
