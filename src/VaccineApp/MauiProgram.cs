@@ -1,6 +1,8 @@
 ﻿using Auth.Factory;
 using Core.Factory;
 using DAL.Factory;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Components.WebView.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
@@ -64,6 +66,13 @@ public static class MauiProgram
         );
 
         builder.Services.AddRealCache();
+
+        // Create FirebaseApp
+        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.SecretFiles.firebase_private_key.json"))
+            FirebaseApp.Create(new AppOptions()
+            {
+                Credential = GoogleCredential.FromStream(resource)
+            });
 
         return builder.Build();
     }
