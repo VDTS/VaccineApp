@@ -1,17 +1,16 @@
 # Documentation
-## Open Source Culture in our team
-- Our project is open source, every commit and new changes is discussed with broad open source communities from .NET, Firebase, C#, and more
-- We have discussed problems and have found best ways to solve it.
+## The Nature of Open Source in our Team Project
+- Our project is open source, every commit and changes are discussed with broad open source communities including: .NET, Firebase, C# etc.
+- The bugs were discussed and found effective solutions.
 
 ## Transparency
-- From designing to development and maintainance, every part of the system was transparent and public.
+- From designing to project development and maintainance, each part of the system is transparent and public.
 
 
 ## Accessibility
-- We have developed multiple themes to enable accessibility in our app
-- We have fontsizes in our app, that low-seeing people can use the app with ease by increasing the overall fontsizes in the app.
-- Our app is in three languages (Pashto, Dari, English)
-
+- developed multiple themes to enable accessibility in the App.
+- The Font size feature, helps increasing the overall font size of the app for those having vision problems.
+- The App supports three languages (English, Pashto, Dari).
 
 ## Apps
 - [Web](#Web)
@@ -19,7 +18,6 @@
 - [Desktop](#Desktop)
 
 ### Web
-
 #### Technologies
 - Languages: C# 10, Javascript, HTML, CSS
 - Framework: .NET Blazor, PWA
@@ -87,31 +85,31 @@ flowchart TD
    K --Feedbacks--> M[Adds to Project plan and make prioritize for next releases];
 ```
 
-#### Hints
+#### Important 
 - Research & Design
-> Before starting development, we researched on each topic, and we have compared different tools, libraries and frameworks for our solution. and then we document the research and the go to the next phase, Develop.  
-- Develop
-> developing in technologies
+> Before the starting of Development Phase, Literature review were done, comparing different tools, libraries and frameworks for the best Solution.    
+- Development phase
+> Developing the Technologies set for project.
 - Benchmarking
-> We see the performance of the codes and finding bottlenecks in our code. and sometimes we compares different libraries to improve/enhance the performance of our apps. 
-> Here we have an example of serialization libraries, we have used Newtonsoft.json but then we comapre it to find a better solution because we are using firebase a nosql database and we need serialization in almost every part of our app. So we have choose three libraries `Stacktrace.Text`, `Newtonsoft.json`, `System.Text` and we found these numbers so we choose to drop newtonsoft.json and replace it with System.Text. because it works best in our scenarios.
-> See the numbers we have got from Serializing an Object of 1000000 objects.  
+> Checking the performance of the code and finding bottlenecks, and comparing different libraries to improve/enhance the performance of the App. 
+> Serilization is needed almost in each part of the App. The Newtonsoft.json were used and than compared for better solution due to use of Firebase and NoSQL database. Three libraries were used including: `Stacktrace.Text`, `Newtonsoft.json`, and `System.Text`. The following numbers were found for adding and repacing Newtonsoft.json to System.Text.  
+> Check the numbers we got from Serializing an Object of 1000000 objects.  
 <img width="776" alt="FLSeYFNWQAUd2Ya" src="https://user-images.githubusercontent.com/38671143/154000583-25527097-f633-48ea-8721-64cb8a60d455.png">
   
 - Code refactoring
-> We have put Code refactoring in the center of our process, We refactors code if it doesn't meet our performance requirements, fails our unit tests, or looks messy.
-Not only we refactor code for the above issues sometimes we refactor it to
-1: Apply design patterns in our code
+> Code Refacoring is set in the center of the app processes. Code is refactored, if it doesn't meet the performance requirements, failed unit tests, or not suitable.
+Code is not only refactored for above issues sometimes we refactor it to:
+1: Apply design patterns in the code
 2: Design principles
 
 - Unit Testing
-> We want to make sure that our new feature is not breaking anything. So we test our code repeatedly after each push on Github and App Center
+> for checking that the new features added is not damaging anything in the program , Unit testing is done. The code is tested repeatedly after each push on Github and App Center
 
 - Deploying to QA team
-> QA team is the center of testing process. We wanna make sure the users recieve the new features without any problem or struggle. So our QA team manualy tests it. If there was a crash it automaticaly reports to App center. and if there is a feature to be added, something to be removed, or something need enhancements the QA team is responsible to feedback on that. They don't need to go out of the app, they can give feedback inside the app, Our github app bot is creating an issue for that feedback in github. In we schedule it to our next meeting. If the issue meets our rules so we start developing it.  
+> QA team is the center of testing process. making it sure that users recieve the new features without ecountering any problem.QA team manualy tests it. in case of crashes, it automaticaly report it to App center. if there is a feature to be added, something to be removed, or something need enhancements, the QA team is responsible for the feedback.  github app bot is creating an issue for the feedbacks in github. 
 
 - Feedback and Crash report
-> We have a central feedback and crash reports system to analysis and document new features, enhancements and bugs to resolve.
+> We have a central feedback and crash reports system for analysis and document new features, enhancements and bugs to resolve it.
 
 
 #### System Design
