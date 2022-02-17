@@ -195,7 +195,13 @@ public class FeedbackViewModel : ViewModelBase
                     ExpirationSeconds = 600
                 });
 
-        return generator.CreateEncodedJwtToken();
+        var jwtToken = generator.CreateEncodedJwtToken();
+
+        // Removes the Github Private key from Cache.
+        if (File.Exists(cacheFile))
+            File.Delete(cacheFile);
+
+        return jwtToken;
     }
 
     public async Task<string> CreateIssue(string jwt, NewIssue newIssue)
