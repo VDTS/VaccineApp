@@ -9,6 +9,8 @@
 * Feedback feature for improving the performance of the app
 * cross platform (support **Windows 11** and **Android**)
 
+## Documentation
+* Documentation is [Here](https://github.com/NaveedAhmadHematmal/VaccineApp/blob/main/docs/documentation.md)
 # Preparing Envirnoment and Running the project locally
 
 ## Configuring API keys before cloning the repository
