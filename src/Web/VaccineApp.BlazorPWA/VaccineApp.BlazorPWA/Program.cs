@@ -37,4 +37,7 @@ builder.Services.AddDAL(
             }
         );
 
+// Adding Core Library
+builder.Services.AddCoreServices();
+
 await builder.Build().RunAsync();
