@@ -103,7 +103,7 @@ Code is not only refactored for above issues sometimes we refactor it to:
 2: Design principles
 
 - Unit Testing
-> for checking that the new features added is not damaging anything in the program , Unit testing is done. The code is tested repeatedly after each push on Github and App Center
+> for checking that the new features added is not have breaking changes in the program , Unit testing is done. The code is tested repeatedly after each push on Github and App Center
 
 - Deploying to QA team
 > QA team is the center of testing process. making it sure that users recieve the new features without ecountering any problem.QA team manualy tests it. in case of crashes, it automaticaly report it to App center. if there is a feature to be added, something to be removed, or something need enhancements, the QA team is responsible for the feedback.  github app bot is creating an issue for the feedbacks in github. 
