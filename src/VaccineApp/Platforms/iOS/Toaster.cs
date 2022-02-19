@@ -1,6 +1,6 @@
-﻿using Core.Features;
+﻿using VaccineApp.Features;
 
-namespace Core;
+namespace VaccineApp;
 public class Toaster : IToast
 {
     public void MakeToast(string message)

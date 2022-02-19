@@ -1,4 +1,4 @@
-﻿namespace Core.Features;
+﻿namespace VaccineApp.Features;
 public interface IToast
 {
     void MakeToast(string message);

@@ -1,5 +1,5 @@
 ﻿using Auth.Services;
-using Core.Features;
+using VaccineApp.Features;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
 

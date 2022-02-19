@@ -1,4 +1,4 @@
-﻿using Core.Features;
+﻿using VaccineApp.Features;
 using Core.Models;
 using Microsoft.Extensions.Options;
 using Octokit;

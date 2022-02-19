@@ -1,9 +1,9 @@
-﻿using Core.Features;
+﻿using VaccineApp.Features;
 using System.Xml.Linq;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
-namespace Core;
+namespace VaccineApp;
 public class Toaster : IToast
 {
     public void MakeToast(string message)

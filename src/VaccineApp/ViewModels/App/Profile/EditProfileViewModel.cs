@@ -1,6 +1,6 @@
 ﻿using Auth.Services;
 using AutoMapper;
-using Core.Features;
+using VaccineApp.Features;
 using Core.Models;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;

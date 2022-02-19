@@ -1,5 +1,5 @@
 ﻿using Auth.Services;
-using Core.Features;
+using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
 using FirebaseAdmin.Auth;

@@ -39,6 +39,7 @@ public static class MauiProgram
         builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
         builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
         builder.Services.AddViewModels();
+        builder.Services.AddDeviceSpecificFeatures();
 
         builder.Services.AddDAL(
             options =>

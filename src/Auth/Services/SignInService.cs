@@ -18,35 +18,28 @@ public class SignInService
             "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
             AuthConfigs.FirebaseApiKey);
 
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        try
         {
-            throw new Exception("No internet connection");
+            var identityModel = new SignInModel() { Email = email, Password = password, ReturnSecureToken = true };
+            var content = JsonConvert.SerializeObject(identityModel);
+
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+
+            var s = await client.PostAsync(requestUri, byteContent);
+
+            if (s.IsSuccessStatusCode)
+            {
+                return await s.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Not authenticated");
+            }
         }
-        else
+        catch (Exception)
         {
-            try
-            {
-                var identityModel = new SignInModel() { Email = email, Password = password, ReturnSecureToken = true };
-                var content = JsonConvert.SerializeObject(identityModel);
-
-                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-                var byteContent = new ByteArrayContent(buffer);
-
-                var s = await client.PostAsync(requestUri, byteContent);
-
-                if (s.IsSuccessStatusCode)
-                {
-                    return await s.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    throw new Exception("Not authenticated");
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw;
         }
     }
 
@@ -58,36 +51,29 @@ public class SignInService
             "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=",
             AuthConfigs.FirebaseApiKey);
 
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        try
         {
-            throw new Exception("No internet connection");
+            IdTokenModel accessToken = new() { IdToken = idToken };
+            var content = JsonConvert.SerializeObject(accessToken);
+
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+
+            var s = await client.PostAsync(requestUri, byteContent);
+
+            if (s.IsSuccessStatusCode)
+            {
+                return await s.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Not authenticated");
+            }
         }
-        else
+        catch (Exception)
         {
-            try
-            {
-                IdTokenModel accessToken = new() { IdToken = idToken };
-                var content = JsonConvert.SerializeObject(accessToken);
 
-                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-                var byteContent = new ByteArrayContent(buffer);
-
-                var s = await client.PostAsync(requestUri, byteContent);
-
-                if (s.IsSuccessStatusCode)
-                {
-                    return await s.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    throw new Exception("Not authenticated");
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            throw;
         }
     }
 }

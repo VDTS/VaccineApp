@@ -1,4 +1,5 @@
 ﻿using Auth.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Auth.Factory;
 public static class AuthConfigurationExtensions

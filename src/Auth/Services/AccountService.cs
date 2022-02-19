@@ -20,35 +20,28 @@ public class AccountService
             "https://identitytoolkit.googleapis.com/v1/accounts:update?key=",
             AuthConfigs.FirebaseApiKey);
 
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        try
         {
-            throw new Exception("No internet connection");
+            var identityModel = new ChangeAccountPasswordModel() { IdToken = token, Password = password, ReturnSecureToken = true };
+            var content = JsonConvert.SerializeObject(identityModel);
+
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+
+            var s = await client.PostAsync(requestUri, byteContent);
+
+            if (s.IsSuccessStatusCode)
+            {
+                return await s.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Password not changed!");
+            }
         }
-        else
+        catch (Exception)
         {
-            try
-            {
-                var identityModel = new ChangeAccountPasswordModel() { IdToken = token, Password = password, ReturnSecureToken = true };
-                var content = JsonConvert.SerializeObject(identityModel);
-
-                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-                var byteContent = new ByteArrayContent(buffer);
-
-                var s = await client.PostAsync(requestUri, byteContent);
-
-                if (s.IsSuccessStatusCode)
-                {
-                    return await s.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    throw new Exception("Password not changed!");
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw;
         }
     }
 
@@ -60,34 +53,27 @@ public class AccountService
             "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=",
             AuthConfigs.FirebaseApiKey);
 
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        try
         {
-            throw new Exception("No internet connection");
+            var content = $"{{requestType: \"PASSWORD_RESET\", email: \"{email}\"}}";
+
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+
+            var s = await client.PostAsync(requestUri, byteContent);
+
+            if (s.IsSuccessStatusCode)
+            {
+                return await s.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Password reset email not sent");
+            }
         }
-        else
+        catch (Exception)
         {
-            try
-            {
-                var content = $"{{requestType: \"PASSWORD_RESET\", email: \"{email}\"}}";
-
-                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-                var byteContent = new ByteArrayContent(buffer);
-
-                var s = await client.PostAsync(requestUri, byteContent);
-
-                if (s.IsSuccessStatusCode)
-                {
-                    return await s.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    throw new Exception("Password reset email not sent");
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw;
         }
     }
 
@@ -99,34 +85,27 @@ public class AccountService
             "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=",
             AuthConfigs.FirebaseApiKey);
 
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        try
         {
-            throw new Exception("No internet connection");
+            var content = $"{{requestType: \"VERIFY_EMAIL\", idToken: \"{idToken}\"}}";
+
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+
+            var s = await client.PostAsync(requestUri, byteContent);
+
+            if (s.IsSuccessStatusCode)
+            {
+                return await s.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Verification code not sent");
+            }
         }
-        else
+        catch (Exception)
         {
-            try
-            {
-                var content = $"{{requestType: \"VERIFY_EMAIL\", idToken: \"{idToken}\"}}";
-
-                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-                var byteContent = new ByteArrayContent(buffer);
-
-                var s = await client.PostAsync(requestUri, byteContent);
-
-                if (s.IsSuccessStatusCode)
-                {
-                    return await s.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    throw new Exception("Verification code not sent");
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw;
         }
     }
 }

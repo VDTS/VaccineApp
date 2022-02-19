@@ -1,4 +1,5 @@
-﻿using VaccineApp.ViewModels.Access.ForgotPassword;
+﻿using VaccineApp.Features;
+using VaccineApp.ViewModels.Access.ForgotPassword;
 using VaccineApp.ViewModels.Access.SignIn;
 using VaccineApp.ViewModels.Admin.Home.Cluster;
 using VaccineApp.ViewModels.Admin.Home.Team;
@@ -32,7 +33,6 @@ public static class AddServiceExtensions
 {
     public static IServiceCollection AddViewModels(this IServiceCollection Services)
     {
-
         Services.AddTransient<MasjeedListViewModel>();
         Services.AddTransient<SignInViewModel>();
         Services.AddTransient<FeedbackViewModel>();
@@ -76,6 +76,14 @@ public static class AddServiceExtensions
         Services.AddTransient<ForgotPasswordViewModel>();
         Services.AddTransient<VaccinesTimeTableViewModel>();
         Services.AddTransient<VaccineGuidesViewModel>();
+
+        return Services;
+    }
+
+    public static IServiceCollection AddDeviceSpecificFeatures(this IServiceCollection Services)
+    {
+        Services.AddSingleton<IToast, Toaster>();
+
         return Services;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Core.Utility;
 using System.Globalization;
 
-namespace Core.Converters;
+namespace VaccineApp.Converters;
 public class DateToMessageTimeHint : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
