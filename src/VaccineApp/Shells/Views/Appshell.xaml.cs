@@ -361,7 +361,7 @@ public partial class Appshell : Shell
     {
         // Register routes for App pages
         Routing.RegisterRoute(nameof(QRGeneratedImagePage), typeof(QRGeneratedImagePage));
-
+      
         FlyoutItem home = new()
         {
             Title = "Home",
@@ -392,8 +392,16 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(VaccinesTimeTablePage))
         };
 
+        ShellContent vaccineGuidesPage = new()
+        {
+            Title = "Guides",
+            Route = nameof(VaccineGuidesPage),
+            ContentTemplate = new DataTemplate(typeof(VaccineGuidesPage))
+        };
+
         family.Items.Add(familyPage);
         guides.Items.Add(vaccinesTimeTablePage);
+        guides.Items.Add(vaccineGuidesPage);
 
         home.Items.Add(family);
         home.Items.Add(guides);

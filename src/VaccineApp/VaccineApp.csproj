@@ -51,6 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="RawText\VaccineGuides.txt" />
 		<None Remove="Resources\Images\abdulbasir.jpg" />
 		<None Remove="Resources\Images\aboutus.svg" />
 		<None Remove="Resources\Images\admin.svg" />
@@ -83,6 +84,7 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="AppConfigs\AppSettings.json" />
 	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
+	  <EmbeddedResource Include="RawText\VaccineGuides.txt" />
 	  <EmbeddedResource Include="SecretFiles\AppSecrets.json" />
 	  <EmbeddedResource Include="SecretFiles\firebase_private_key.json" />
 	  <EmbeddedResource Include="SecretFiles\github_app_private_key.pem" />
@@ -194,6 +196,9 @@
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\Vaccine\AddVaccinePage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Parent\Guides\VaccineGuidesPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\Guides\VaccinesTimeTablePage.xaml">
