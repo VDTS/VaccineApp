@@ -32,13 +32,13 @@ public static class CoreConfigurationExtension
 
 public class Toaster : IToast
 {
-    public void MakeToast(string message)
+    public async void MakeToast(string message)
     {
-        throw new NotImplementedException();
+        await Application.Current.MainPage.DisplayAlert("Error", message, "Ok");
     }
 
-    public void MakeToast(string title, string message)
+    public async void MakeToast(string title, string message)
     {
-        throw new NotImplementedException();
+        await Application.Current.MainPage.DisplayAlert(title, message, "Ok");
     }
 }
