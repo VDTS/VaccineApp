@@ -1,5 +1,6 @@
 ﻿using Core.Features;
 using Core.Models;
+using Core.Utility;
 using DAL.Persistence;
 using RealCache.Persistence.Migrations;
 using System.Windows.Input;
@@ -31,15 +32,25 @@ public class AddVaccineViewModel : ViewModelBase
 
         try
         {
+            DateTimeRange range = new(s.First().StartDate, s.First().EndDate);
             Vaccine.Date = DateTime.SpecifyKind(Vaccine.Date, DateTimeKind.Utc);
             Vaccine.Period = s.First().Id.ToString();
-            await _unitOfWork.AddVaccine(Vaccine, _childId);
-            await Shell.Current.GoToAsync("..");
-            _toast.MakeToast("Vaccine Added");
+            if (range.IsDateIncludedInRange(Vaccine.Date))
+            {
+                await _unitOfWork.AddVaccine(Vaccine, _childId);
+                await Shell.Current.GoToAsync("..");
+                _toast.MakeToast("Vaccine Added");
+            }
+            else
+            {
+                _toast.MakeToast("No current vaccine period.");
+                await Shell.Current.GoToAsync("..");
+            }
         }
         catch (Exception)
         {
-            return;
+            _toast.MakeToast("No current vaccine period.");
+            await Shell.Current.GoToAsync("..");
         }
     }
 
