@@ -1,4 +1,7 @@
-﻿namespace Core.Models;
+﻿using Core.Validators;
+using FluentValidation;
+
+namespace Core.Models;
 
 public class AnonymousChildModel
 {
@@ -12,5 +15,21 @@ public class AnonymousChildModel
     public AnonymousChildModel()
     {
         Id = Guid.NewGuid();
+    }
+}
+
+public class AnonymousChildModelValidator : AbstractValidator<AnonymousChildModel>
+{
+    public AnonymousChildModelValidator()
+    {
+        RuleFor(c => c.FullName)
+            .Cascade(CascadeMode.Stop)
+            .NotEmpty().WithMessage("{PropertyName} is Empty")
+            .Must(CommonPropertiesValidator.ValidFullName).WithMessage("{PropertyName} must be valid characters")
+            .Length(3, 50).WithMessage("Length of {PropertyName} should be between 3 - 50");
+        RuleFor(c => c.Gender).NotEmpty();
+        RuleFor(c => c.DOB)
+            .Must(DOBValidator.IsChildEligibleForVaccine)
+            .WithMessage("Child must be under 5");
     }
 }

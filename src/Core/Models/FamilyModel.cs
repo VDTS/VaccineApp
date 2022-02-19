@@ -21,15 +21,10 @@ public class FamilyValidator : AbstractValidator<FamilyModel>
         RuleFor(f => f.HouseNo).NotEmpty();
         RuleFor(f => f.ParentName).Cascade(CascadeMode.Stop)
             .NotEmpty().WithMessage("{PropertyName} is Empty")
-            .Must(BeAValidName).WithMessage("{PropertyName} must be valid characters")
+            .Must(CommonPropertiesValidator.ValidFullName).WithMessage("{PropertyName} must be valid characters")
             .Length(3, 50).WithMessage("Length of {PropertyName} should be between 3 - 50");
         RuleFor(f => f.PhoneNumber)
             .Must(PhoneNumberValidator.IsPhoneNumberValid)
             .WithMessage("Invalid phone number, must start with +93, 0093 or 0 and has 9 digits after it.");
-    }
-    protected bool BeAValidName(string name)
-    {
-        name = name.Replace(" ", "");
-        return name.All(Char.IsLetter);
     }
 }

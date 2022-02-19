@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Core.Validators;
+using FluentValidation;
 
 namespace Core.Models;
 public class ChildModel
@@ -23,31 +24,12 @@ public class ChildValidator : AbstractValidator<ChildModel>
         RuleFor(c => c.FullName)
             .Cascade(CascadeMode.Stop)
             .NotEmpty().WithMessage("{PropertyName} is Empty")
-            .Must(BeAValidName).WithMessage("{PropertyName} must be valid characters")
+            .Must(CommonPropertiesValidator.ValidFullName).WithMessage("{PropertyName} must be valid characters")
             .Length(3, 50).WithMessage("Length of {PropertyName} should be between 3 - 50");
         RuleFor(c => c.Gender).NotEmpty();
         RuleFor(c => c.RINo).NotEmpty();
         RuleFor(c => c.DOB)
-            .Must(BeAValidDateOfBorn)
+            .Must(DOBValidator.IsChildEligibleForVaccine)
             .WithMessage("Child must be under 5");
-    }
-
-    protected bool BeAValidName(string name)
-    {
-        name = name.Replace(" ", "");
-        return name.All(Char.IsLetter);
-    }
-
-    protected bool BeAValidDateOfBorn(DateTime DOB)
-    {
-        var ageInMonths = 12 * (DateTime.UtcNow.Year - DOB.Year) + DOB.Month;
-        if (ageInMonths <= 60)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }
