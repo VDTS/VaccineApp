@@ -1,0 +1,31 @@
+@page "/admin/clusters/add"
+@inject UnitOfWork unitOfWork;
+
+<PageTitle>Add Cluster</PageTitle>
+
+<h3>Add Cluster</h3>
+<br/>
+
+<input type="text" @bind-value=Cluster.ClusterName placeholder="Cluster Name">
+<input type="button" value="Post" @onclick="Post">
+
+@code
+{
+    public ClusterModel Cluster;
+    protected override async Task OnInitializedAsync()
+    {
+        Cluster = new();
+    } 
+
+    public async void Post()
+    {
+        try
+        {
+            await unitOfWork.AddCluster(Cluster);
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+}
