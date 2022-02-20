@@ -1,0 +1,45 @@
+@page "/admin/teams/add"
+@inject UnitOfWork unitOfWork;
+
+<PageTitle>Add Team</PageTitle>
+
+<h3>Add Team</h3>
+<br/>
+
+<select name = "dropdown" @bind=SelectedCluster>
+    @foreach (var item in Clusters)
+    {
+        <option value = "@item.Id">@item.ClusterName</option>
+    }
+</select>
+
+<input type="text" @bind-value=Team.TeamNo placeholder="Team No.">
+<input type="text" @bind-value=Team.CHWName placeholder="Team CHW Name">
+<input type="text" @bind-value=Team.SocialMobilizerId placeholder="Social Mobilizer Id">
+
+<input type="button" value="Post" @onclick="Post">
+
+@code
+{
+    public TeamModel Team;
+    public IEnumerable<ClusterModel> Clusters;
+    public string SelectedCluster;
+    protected override async Task OnInitializedAsync()
+    {
+        Team = new();
+        Clusters = new List<ClusterModel>();
+        Clusters = await unitOfWork.GetClusters();
+    } 
+
+    public async void Post()
+    {
+        try
+        {
+            await unitOfWork.AddTeam(Team, SelectedCluster);
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+}
