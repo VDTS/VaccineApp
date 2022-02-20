@@ -58,9 +58,13 @@
 		<None Remove="Resources\Images\android.svg" />
 		<None Remove="Resources\Images\announcement.svg" />
 		<None Remove="Resources\Images\appicon.svg" />
+		<None Remove="Resources\Images\area.svg" />
 		<None Remove="Resources\Images\bug.svg" />
+		<None Remove="Resources\Images\chart.svg" />
 		<None Remove="Resources\Images\enhancement.svg" />
+		<None Remove="Resources\Images\family.svg" />
 		<None Remove="Resources\Images\feedback.svg" />
+		<None Remove="Resources\Images\guides.svg" />
 		<None Remove="Resources\Images\helpandsupport.svg" />
 		<None Remove="Resources\Images\home.svg" />
 		<None Remove="Resources\Images\idea.svg" />
@@ -71,7 +75,11 @@
 		<None Remove="Resources\Images\multipledevices.svg" />
 		<None Remove="Resources\Images\naveedahmad.jpg" />
 		<None Remove="Resources\Images\parent.svg" />
+		<None Remove="Resources\Images\period.svg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
+		<None Remove="Resources\Images\report.svg" />
+		<None Remove="Resources\Images\stats.svg" />
+		<None Remove="Resources\Images\status.svg" />
 		<None Remove="Resources\Images\supervisor.svg" />
 		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />

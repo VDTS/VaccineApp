@@ -88,16 +88,19 @@ public partial class Appshell : Shell
         };
         Tab cluster = new()
         {
-            Title = "Cluster"
+            Title = "Cluster",
+            Icon = "cluster.png"
         };
         Tab team = new()
         {
-            Title = "Team"
+            Title = "Team",
+            Icon = "team.png"
         };
 
         Tab user = new()
         {
-            Title = "User"
+            Title = "User",
+            Icon = "users.png"
         };
 
         ShellContent clusterPage = new()
@@ -148,27 +151,32 @@ public partial class Appshell : Shell
 
         Tab stats = new()
         {
-            Title = "Stats"
+            Title = "Stats",
+            Icon = "stats.png"
         };
 
         Tab charts = new()
         {
-            Title = "Charts"
+            Title = "Charts",
+            Icon = "chart.png"
         };
 
         Tab reports = new()
         {
-            Title = "Reports"
+            Title = "Reports",
+            Icon = "report.png"
         };
 
         Tab period = new()
         {
-            Title = "Periods"
+            Title = "Periods",
+            Icon = "period.png"
         };
 
         Tab announcement = new()
         {
-            Title = "Announcements"
+            Title = "Announcements",
+            Icon = "announcement.png"
         };
 
         ShellContent statsPage = new()
@@ -252,22 +260,20 @@ public partial class Appshell : Shell
 
         Tab status = new()
         {
-            Title = "Status"
-        };
-
-        Tab insights = new()
-        {
-            Title = "Insights"
+            Title = "Status",
+            Icon = "status.png"
         };
 
         Tab family = new()
         {
-            Title = "Family"
+            Title = "Family",
+            Icon = "family.png"
         };
 
         Tab area = new()
         {
-            Title = "Area"
+            Title = "Area",
+            Icon = "area.png"
         };
 
         Tab announcement = new()
@@ -346,7 +352,6 @@ public partial class Appshell : Shell
         status.Items.Add(anonymousPage);
 
         home.Items.Add(status);
-        home.Items.Add(insights);
         home.Items.Add(family);
         home.Items.Add(area);
         announcementFlyout.Items.Add(announcement);
@@ -370,12 +375,14 @@ public partial class Appshell : Shell
 
         Tab family = new()
         {
-            Title = "Family"
+            Title = "Family",
+            Icon = "family.png"
         };
 
         Tab guides = new()
         {
-            Title = "Guides"
+            Title = "Guides",
+            Icon = "guides.png"
         };
 
         ShellContent familyPage = new()
