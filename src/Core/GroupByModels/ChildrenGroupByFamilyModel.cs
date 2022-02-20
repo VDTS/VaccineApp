@@ -1,11 +1,11 @@
-﻿using Core.Models;
+﻿using Core.HybridModels;
 
 namespace Core.GroupByModels;
 
-public class ChildrenGroupByHouseNoModel : List<ChildModel>
+public class ChildrenGroupByHouseNoModel : List<ChildWithVaccineStatusModel>
 {
     public int HouseNo { get; private set; }
-    public ChildrenGroupByHouseNoModel(int houseNo, List<ChildModel> childs) : base(childs)
+    public ChildrenGroupByHouseNoModel(int houseNo, List<ChildWithVaccineStatusModel> childs) : base(childs)
     {
         this.HouseNo = houseNo;
     }

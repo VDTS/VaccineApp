@@ -32,9 +32,9 @@ public class AddVaccineViewModel : ViewModelBase
 
         try
         {
-            DateTimeRange range = new(s.First().StartDate, s.First().EndDate);
+            DateTimeRange range = new(s.LastOrDefault().StartDate, s.LastOrDefault().EndDate);
             Vaccine.Date = DateTime.SpecifyKind(Vaccine.Date, DateTimeKind.Utc);
-            Vaccine.Period = s.First().Id.ToString();
+            Vaccine.Period = s.LastOrDefault().Id.ToString();
             if (range.IsDateIncludedInRange(Vaccine.Date))
             {
                 await _unitOfWork.AddVaccine(Vaccine, _childId);

@@ -5,7 +5,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status"
              x:DataType="ViewModel:StatusViewModel"
              xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
+             xmlns:HybridModel="clr-namespace:Core.HybridModels;assembly=Core"
              Title="StatusPage">
 
     <CollectionView IsGrouped="True"
@@ -15,24 +15,34 @@
                     SelectionChangedCommand="{Binding ChildDetailsCommand}">
 
         <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
-                       Text="Childs" />
-            </StackLayout>
+            <GridLayout Padding="10"
+                        ColumnDefinitions="200, 200">
+                <Label GridLayout.Column="0"
+                       FontAttributes="Bold"
+                       Text="Child Name" />
+                <Label GridLayout.Column="1"
+                       FontAttributes="Bold"
+                       Text="Vaccine" />
+            </GridLayout>
         </CollectionView.Header>
 
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:ChildModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding FullName }" />
-                </StackLayout>
+            <DataTemplate x:DataType="HybridModel:ChildWithVaccineStatusModel">
+                <GridLayout Padding="10"
+                            ColumnDefinitions="200, 200">
+                    <Label GridLayout.Column="0"
+                           Text="{Binding Child.FullName }" />
+                    <Label GridLayout.Column="1"
+                           Text="{Binding VaccineStatus}" />
+                </GridLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
 
         <CollectionView.GroupHeaderTemplate>
             <DataTemplate x:DataType="GroupByModel:ChildrenGroupByHouseNoModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding HouseNo}" />
+                <StackLayout Padding="10, 0, 0, 0">
+                    <Label FontAttributes="Bold"
+                           Text="{Binding HouseNo}" />
                 </StackLayout>
             </DataTemplate>
         </CollectionView.GroupHeaderTemplate>
