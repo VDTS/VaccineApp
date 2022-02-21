@@ -7,12 +7,12 @@
              Shell.TabBarIsVisible="False"
              Title="AddChildPage">
 
-    <StackLayout Padding="40"
-                 Spacing="10"
+    <StackLayout Padding="10"
+                 Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding Child.FullName, Mode=TwoWay}"
                Placeholder="Full Name" />
-        <Picker WidthRequest="{OnPlatform UWP='220', Default='220'}"
+        <Picker WidthRequest="{OnPlatform UWP='280', Default='280'}"
                 SelectedItem="{Binding Child.Gender, Mode=OneWayToSource}">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -24,7 +24,7 @@
         <Entry Text="{Binding Child.RINo, Mode=OneWayToSource}"
                Placeholder="RI No." />
         <DatePicker Date="{Binding Child.DOB, Mode=OneWayToSource}"
-                    WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+                    WidthRequest="{OnPlatform UWP='280', Default='280'}" />
 
         <StackLayout Orientation="Horizontal"
                      Spacing="10">

@@ -8,29 +8,32 @@
              Title="FamiliesListPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Family" Command="{Binding AddFamilyCommand}" />
+        <ToolbarItem Text="Add Family"
+                     Command="{Binding AddFamilyCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="40"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Families}"
                         SelectedItem="{Binding SelectedFamily}"
                         SelectionChangedCommand="{Binding FamilyDetailsCommand}">
+
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
-                    <Label FontSize="Title"
+                    <Label FontAttributes="Bold"
                            Text="Family's Parent" />
                 </StackLayout>
             </CollectionView.Header>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:FamilyModel">
-                    <StackLayout Padding="0,2,0,0">
-                        <Label Text="{Binding ParentName}"></Label>
+                    <StackLayout>
+                        <Label Text="{Binding ParentName}" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

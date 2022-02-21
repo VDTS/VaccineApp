@@ -7,8 +7,8 @@
              Shell.TabBarIsVisible="False"
              Title="AddFamilyPage">
 
-    <StackLayout Padding="40"
-                 Spacing="10"
+    <StackLayout Padding="10"
+                 Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding Family.ParentName, Mode=TwoWay}"
                Placeholder="Parent Name" />

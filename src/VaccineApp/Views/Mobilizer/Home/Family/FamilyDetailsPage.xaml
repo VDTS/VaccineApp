@@ -8,37 +8,57 @@
              Shell.TabBarIsVisible="False"
              Title="FamilyDetailsPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Child" Command="{Binding AddChildCommand}"/>
+        <ToolbarItem Text="Add Child"
+                     Command="{Binding AddChildCommand}" />
     </ContentPage.ToolbarItems>
-    <StackLayout Padding="40">
-        <StackLayout Spacing="10">
-            <Label FontSize="Title"
-                   Text="Family info" />
-            <Label FontAttributes="Bold"
-                   Text="House No." />
-            <Label Text="{Binding Family.HouseNo }" />
-            <Label FontAttributes="Bold"
-                   Text="Parent name" />
-            <Label Text="{Binding Family.ParentName }" />
-            <Label FontAttributes="Bold"
-                   Text="Phone number" />
-            <Label Text="{Binding Family.PhoneNumber }" />
-        </StackLayout>
-        <Label Text="---------------------------------" />
-        <CollectionView ItemsSource="{Binding Childs}">
+
+    <GridLayout RowDefinitions="Auto, Auto"
+                Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Frame GridLayout.Row="0"
+               HasShadow="True"
+               BackgroundColor="{DynamicResource PageCardColor}"
+               CornerRadius="5">
+            <StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="House No." />
+                    <Label Text="{Binding Family.HouseNo }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Parent name" />
+                    <Label Text="{Binding Family.ParentName }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Phone number" />
+                    <Label Text="{Binding Family.PhoneNumber }" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <CollectionView GridLayout.Row="1"
+                        ItemsSource="{Binding Childs}">
             <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontSize="Title"
+                <StackLayout Padding="10"
+                             VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
                            Text="Child Name" />
                 </StackLayout>
             </CollectionView.Header>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:ChildModel">
-                    <StackLayout Padding="0,2,0,0">
+                    <StackLayout Padding="10">
                         <Label Text="{Binding FullName}"></Label>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+
+    </GridLayout>
 </ContentPage>
