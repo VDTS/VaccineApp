@@ -48,11 +48,13 @@ public static class MauiProgram
                 {
                     options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
                     options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSecrets:FirebaseBaseAddress").Value;
+                    options.Env = builder.Configuration.GetSection("AppSettings:Env").Value;
                 }
                 else if (builder.Configuration.GetSection("AppSettings:Env").Value == "offline")
                 {
                     options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
                     options.FirebaseBaseAddress = builder.Configuration.GetSection("AppSecrets:FirebaseBaseAddress_Offline").Value;
+                    options.Env = builder.Configuration.GetSection("AppSettings:Env").Value;
                 }
             }
         );

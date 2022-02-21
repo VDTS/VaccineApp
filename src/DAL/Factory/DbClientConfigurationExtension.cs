@@ -17,6 +17,7 @@ public static class DbClientConfigurationExtension
 
         DALConfigs.FirebaseApiKey = appSettings.FirebaseApiKey;
         DALConfigs.FirebaseBaseAddress = appSettings.FirebaseBaseAddress;
+        DALConfigs.Env = appSettings.Env;
 
         service.AddSingleton<UnitOfWork>();
         service.AddSingleton<MasjeedRepository>();
