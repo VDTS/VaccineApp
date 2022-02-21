@@ -3,6 +3,7 @@ using Core.Models;
 using DAL.Persistence;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using Core.StaticData;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild;
 
@@ -12,8 +13,10 @@ public class AddAnonymousChildViewModel : ViewModelBase
     private readonly IToast _toast;
     private AnonymousChildModel _anonymousChild;
     private string _childType;
+    private List<string> _childTypes;
     public AddAnonymousChildViewModel(UnitOfWork unitOfWork, IToast toast)
     {
+        ChildTypes = AnonymousChildTypes.ChildTypes();
         _unitOfWork = unitOfWork;
         _toast = toast;
         AnonymousChild = new();
@@ -45,5 +48,10 @@ public class AddAnonymousChildViewModel : ViewModelBase
         set { _childType = value; OnPropertyChanged(); }
     }
 
+    public List<string> ChildTypes
+    {
+        get { return _childTypes; }
+        set { _childTypes = value; OnPropertyChanged(); }
+    }
     public ICommand PostCommand { private set; get; }
 }

@@ -17,15 +17,16 @@
                     ItemsSource="{Binding AnonymousChildren}">
 
         <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
+            <StackLayout Padding="10"
+                         VerticalOptions="Center">
+                <Label FontAttributes="Bold"
                        Text="Anonymous Childs" />
             </StackLayout>
         </CollectionView.Header>
 
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:AnonymousChildModel">
-                <StackLayout Padding="0,2,0,0">
+                <StackLayout Padding="10">
                     <Label Text="{Binding FullName}" />
                 </StackLayout>
             </DataTemplate>
@@ -33,8 +34,9 @@
 
         <CollectionView.GroupHeaderTemplate>
             <DataTemplate x:DataType="GroupByModel:AnonymousChildrenGroupByChildType">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding ChildType}" />
+                <StackLayout Padding="10, 0, 0, 0">
+                    <Label FontAttributes="Bold"
+                           Text="{Binding ChildType}" />
                 </StackLayout>
             </DataTemplate>
         </CollectionView.GroupHeaderTemplate>

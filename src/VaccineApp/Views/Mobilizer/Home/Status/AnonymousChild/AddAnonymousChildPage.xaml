@@ -4,14 +4,17 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild.AddAnonymousChildPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild"
              x:DataType="ViewModel:AddAnonymousChildViewModel"
+             Shell.TabBarIsVisible="False"
              Title="AddAnonymousChildPage">
 
-    <StackLayout Padding="40"
+    <StackLayout Padding="10"
+                 Spacing="10"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding AnonymousChild.FullName, Mode=TwoWay}"
                Placeholder="Child Name" />
         <Picker Title="Gender"
-                SelectedItem="{Binding AnonymousChild.Gender, Mode=OneWayToSource}">
+                SelectedItem="{Binding AnonymousChild.Gender, Mode=OneWayToSource}"
+                WidthRequest="{OnPlatform UWP='280', Default='280'}">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Male</x:String>
@@ -20,21 +23,15 @@
             </Picker.ItemsSource>
         </Picker>
         <Label Text="Date of Birth" />
-        <DatePicker Date="{Binding AnonymousChild.DOB, Mode=OneWayToSource}" />
-        <Picker Title="Type"
-                SelectedItem="{Binding AnonymousChild.ChildType , Mode=OneWayToSource}">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Guest</x:String>
-                    <x:String>IDP</x:String>
-                    <x:String>Refugee</x:String>
-                    <x:String>Return</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+        <DatePicker WidthRequest="{OnPlatform UWP='280', Default='280'}"
+                    Date="{Binding AnonymousChild.DOB, Mode=OneWayToSource}" />
+        <Picker ItemsSource="{Binding ChildTypes}"
+                Title="Type"
+                SelectedItem="{Binding AnonymousChild.ChildType , Mode=OneWayToSource}"
+                WidthRequest="{OnPlatform UWP='280', Default='280'}" />
+
         <StackLayout Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding AnonymousChild.IsVaccined, Mode=TwoWay}"
-                      IsEnabled="False" />
+            <CheckBox IsChecked="{Binding AnonymousChild.IsVaccined, Mode=TwoWay}" />
             <Label Text="Is Vaccined?" />
         </StackLayout>
         <Button Text="Save"

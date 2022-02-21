@@ -1,4 +1,5 @@
 ﻿using Core.GroupByModels;
+using Core.StaticData;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -17,10 +18,7 @@ public class AnonymousChildrenListViewModel : ViewModelBase
         _unitOfWork = unitOfWork;
         AddChildCommand = new Command(AddChild);
         AnonymousChildren = new ObservableCollection<AnonymousChildrenGroupByChildType>();
-        _childTypes = new List<string>()
-        {
-            "Guest", "IDP", "Refugee", "Return"
-        };
+        _childTypes = AnonymousChildTypes.ChildTypes();
     }
 
     public async void Get()
@@ -32,7 +30,10 @@ public class AnonymousChildrenListViewModel : ViewModelBase
             foreach (var item in _childTypes)
             {
                 var lp = s.Where(x => x.ChildType == item).ToList();
-                AnonymousChildren.Add(new AnonymousChildrenGroupByChildType(item, lp));
+                if (lp.Count >= 1)
+                {
+                    AnonymousChildren.Add(new AnonymousChildrenGroupByChildType(item, lp));
+                }
             }
         }
         catch (Exception)
