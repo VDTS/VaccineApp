@@ -114,7 +114,7 @@ public class FeedbackViewModel : ViewModelBase
         var newIssue = CreateNewIssue();
         var issueNumber = await CreateIssue(jwtToken, newIssue);
 
-        var issueUrl = @$"https://github.com/NaveedAhmadHematmal/VaccineApp/issues/{issueNumber}";
+        var issueUrl = @$"https://github.com/VDTS/VaccineApp/issues/{issueNumber}";
 
         await Shell.Current.GoToAsync("..");
 
@@ -223,7 +223,7 @@ public class FeedbackViewModel : ViewModelBase
             Credentials = new Credentials(response.Token)
         };
 
-        var IssueRes = await installationClient.Issue.Create("NaveedAhmadHematmal", "VaccineApp", newIssue);
+        var IssueRes = await installationClient.Issue.Create("VDTS", "VaccineApp", newIssue);
 
         return IssueRes.Number.ToString();
     }
