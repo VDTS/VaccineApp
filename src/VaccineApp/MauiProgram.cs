@@ -64,7 +64,16 @@ public static class MauiProgram
         builder.Services.AddAuth(
             options =>
             {
-                options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                if (builder.Configuration.GetSection("AppSettings:Env").Value == "online")
+                {
+                    options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                    options.FirebaseAuthAddress = builder.Configuration.GetSection("AppSecrets:FirebaseAuthAddress").Value;
+                }
+                else if (builder.Configuration.GetSection("AppSettings:Env").Value == "offline")
+                {
+                    options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                    options.FirebaseAuthAddress = builder.Configuration.GetSection("AppSecrets:FirebaseAuthAddress_Offline").Value;
+                }
             }
         );
 

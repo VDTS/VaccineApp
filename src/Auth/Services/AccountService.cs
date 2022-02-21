@@ -14,10 +14,10 @@ public class AccountService
     }
     public async Task<string> ChangeAccountPassword(string token, string password)
     {
-        var client = _clientFactory.CreateClient();
+        var client = _clientFactory.CreateClient("authConf");
 
         var requestUri = String.Concat(
-            "https://identitytoolkit.googleapis.com/v1/accounts:update?key=",
+            "v1/accounts:update?key=",
             AuthConfigs.FirebaseApiKey);
 
         try
@@ -47,10 +47,10 @@ public class AccountService
 
     public async Task<string> SendPasswordResetCode(string email)
     {
-        var client = _clientFactory.CreateClient();
+        var client = _clientFactory.CreateClient("authConf");
 
         var requestUri = String.Concat(
-            "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=",
+            "v1/accounts:sendOobCode?key=",
             AuthConfigs.FirebaseApiKey);
 
         try
@@ -79,10 +79,10 @@ public class AccountService
 
     public async Task<string> VerifyEmail(string idToken)
     {
-        var client = _clientFactory.CreateClient();
+        var client = _clientFactory.CreateClient("authConf");
 
         var requestUri = String.Concat(
-            "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=",
+            "v1/accounts:sendOobCode?key=",
             AuthConfigs.FirebaseApiKey);
 
         try

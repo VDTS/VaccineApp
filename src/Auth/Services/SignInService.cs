@@ -12,10 +12,10 @@ public class SignInService
     }
     public async Task<string> SignIn(string email, string password)
     {
-        var client = _clientFactory.CreateClient();
+        var client = _clientFactory.CreateClient("authConf");
 
         var requestUri = String.Concat(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
+            "v1/accounts:signInWithPassword?key=",
             AuthConfigs.FirebaseApiKey);
 
         try
@@ -45,10 +45,10 @@ public class SignInService
 
     public async Task<string> AccountInfoLookup(string idToken)
     {
-        var client = _clientFactory.CreateClient();
+        var client = _clientFactory.CreateClient("authConf");
 
         var requestUri = String.Concat(
-            "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=",
+            "v1/accounts:lookup?key=",
             AuthConfigs.FirebaseApiKey);
 
         try

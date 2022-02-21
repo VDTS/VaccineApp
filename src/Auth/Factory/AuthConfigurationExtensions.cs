@@ -13,10 +13,15 @@ public static class AuthConfigurationExtensions
         Configure(appSettings);
 
         AuthConfigs.FirebaseApiKey = appSettings.FirebaseApiKey;
+        AuthConfigs.FirebaseAuthAddress = appSettings.FirebaseAuthAddress;
 
-        service.AddHttpClient();
         service.AddScoped<SignInService>();
         service.AddScoped<AccountService>();
+
+        service.AddHttpClient("authConf", c =>
+        {
+            c.BaseAddress = new Uri(AuthConfigs.FirebaseAuthAddress);
+        });
 
         return service;
     }
