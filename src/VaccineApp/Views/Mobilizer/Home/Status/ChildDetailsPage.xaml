@@ -9,42 +9,72 @@
              Title="ChildDetailsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Vaccine" Command="{Binding AddVaccineCommand}"/>
+        <ToolbarItem Text="Add Vaccine"
+                     Command="{Binding AddVaccineCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="40"
+    <StackLayout Padding="10"
                  Spacing="10"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <StackLayout>
-            <Label FontAttributes="Bold"
-                   Text="Full Name" />
-            <Label Text="{Binding Child.FullName }" />
-            <Label FontAttributes="Bold"
-                   Text="Gender" />
-            <Label Text="{Binding Child.Gender }" />
-            <Label FontAttributes="Bold"
-                   Text="DOB" />
-            <Label Text="{Binding Child.DOB }" />
-            <Label FontAttributes="Bold"
-                   Text="RI No." />
-            <Label Text="{Binding Child.RINo }" />
-            <Label FontAttributes="Bold"
-                   Text="OPV0" />
-            <Label Text="{Binding Child.OPV0 }" />
-        </StackLayout>
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Vaccines}">
+        <Frame HasShadow="True"
+               BackgroundColor="{DynamicResource PageCardColor}"
+               CornerRadius="5">
+            <StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Full Name: " />
+                    <Label Text="{Binding Child.FullName }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Gender: " />
+                    <Label Text="{Binding Child.Gender }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="DOB" />
+                    <Label Text="{Binding Child.DOB }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="RI No." />
+                    <Label Text="{Binding Child.RINo }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="OPV0" />
+                    <Label Text="{Binding Child.OPV0 }" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        <CollectionView ItemsSource="{Binding Vaccines}">
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
-                    <Label FontSize="Title"
-                           Text="Vaccines" />
+                    <GridLayout Padding="10"
+                                ColumnDefinitions="200, 200">
+                        <Label GridLayout.Column="0"
+                               FontAttributes="Bold"
+                               Text="Vaccines" />
+                        <Label GridLayout.Column="1"
+                               FontAttributes="Bold"
+                               Text="Date" />
+                    </GridLayout>
                 </StackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:VaccineModel">
-                    <StackLayout Padding="0,2,0,0">
-                        <Label Text="{Binding Status}"></Label>
-                    </StackLayout>
+                    <GridLayout Padding="10"
+                                ColumnDefinitions="200, 200">
+                        <Label GridLayout.Column="0"
+                               Text="{Binding Status }" />
+                        <Label GridLayout.Column="1"
+                               Text="{Binding Date}" />
+                    </GridLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

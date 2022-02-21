@@ -5,6 +5,7 @@ using DAL.Persistence;
 using RealCache.Persistence.Migrations;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using Core.StaticData;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Status.Vaccine;
 
@@ -15,9 +16,10 @@ public class AddVaccineViewModel : ViewModelBase
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
     private readonly DbContext<PeriodModel> _dbContext;
-
+    private List<string> _statuses;
     public AddVaccineViewModel(UnitOfWork unitOfWork, IToast toast, DbContext<PeriodModel> dbContext)
     {
+        Statuses = VaccineStatus.ListStatuses();
         Vaccine = new();
         PostCommand = new Command(Post);
         _unitOfWork = unitOfWork;
@@ -65,5 +67,10 @@ public class AddVaccineViewModel : ViewModelBase
         set { _vaccine = value; OnPropertyChanged(); }
     }
 
+    public List<string> Statuses
+    {
+        get { return _statuses; }
+        set { _statuses = value; OnPropertyChanged(); }
+    }
     public ICommand PostCommand { private set; get; }
 }
