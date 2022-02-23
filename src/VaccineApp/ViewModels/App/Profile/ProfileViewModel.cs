@@ -21,6 +21,8 @@ public class ProfileViewModel : ViewModelBase
 
     private async void Edit()
     {
+        // The below line remove PhotoUrl because Route Query can't route urls
+        Profile.PhotoUrl = "profiledefaultimage.png";
         var result = JsonConvert.SerializeObject(Profile);
         var route = $"{nameof(EditProfilePage)}?Profile={result}";
         await Shell.Current.GoToAsync(route);
@@ -35,13 +37,13 @@ public class ProfileViewModel : ViewModelBase
 
         string profileImage;
 
-        if(s.users[0].providerUserInfo[0].photoUrl == null)
+        if(s.users[0].providerUserInfo[1].photoUrl == null)
         {
             profileImage = "profiledefaultimage.png";
         }
         else
         {
-            profileImage = s.users[0].providerUserInfo[0].photoUrl;
+            profileImage = s.users[0].providerUserInfo[1].photoUrl;
         }
 
         Profile = new()

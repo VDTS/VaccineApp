@@ -1,14 +1,12 @@
 ﻿using Auth.Services;
 using AutoMapper;
-using VaccineApp.Features;
 using Core.Models;
-using FirebaseAdmin;
+using Firebase.Storage;
 using FirebaseAdmin.Auth;
-using Google.Apis.Auth.OAuth2;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System.Windows.Input;
 using VaccineApp.Factory;
+using VaccineApp.Features;
 using VaccineApp.ViewModels.Base;
 
 namespace VaccineApp.ViewModels.App.Profile;
@@ -20,23 +18,90 @@ public class EditProfileViewModel : ViewModelBase
     private readonly IMapper _mapper;
     private readonly IToast _toast;
     private AccountService _accountService;
+    private readonly IOptionsSnapshot<AppSecrets> _options;
     private EditProfileModelValidator _validationRules;
     public EditProfileViewModel(
         EditProfileModel editProfile,
         ProfileModel profile,
         IMapper mapper,
         IToast toast,
-        AccountService accountService)
+        AccountService accountService,
+        IOptionsSnapshot<AppSecrets> options)
     {
         _editProfile = editProfile;
         _mapper = mapper;
         _toast = toast;
         _accountService = accountService;
+        _options = options;
         _profile = profile;
         _validationRules = new();
 
         ChangeProfileCommand = new Command(ChangeProfile);
         ChangePasswordCommand = new Command(ChangePassword);
+        ChangePhotoCommand = new Command(PhotoPickingMenu);
+    }
+
+    private async void PhotoPickingMenu()
+    {
+        var action = await Application.Current.MainPage.DisplayActionSheet("Open photo", "Cancel", null, "Gallery", "Camera");
+
+        if (action == "Gallery")
+        {
+            await PickPhoto();
+        }
+        else if (action == "Camera")
+        {
+            await CapturePhoto();
+        }
+    }
+
+    private async Task PickPhoto()
+    {
+        var photo = await MediaPicker.PickPhotoAsync();
+
+        if (photo != null)
+        {
+            await ChangePhoto(photo);
+        }
+    }
+
+    private async Task CapturePhoto()
+    {
+        var photo = await MediaPicker.CapturePhotoAsync();
+
+        if (photo != null)
+        {
+            await ChangePhoto(photo);
+        }
+    }
+
+    private async Task ChangePhoto(FileResult photo)
+    {
+        try
+        {
+            var task = new FirebaseStorage(_options.Value.FirebaseStorageAddress)
+                .Child("ProfilePhotos")
+                .Child(_editProfile.Email)
+                .Child(photo.FileName)
+                .PutAsync(await photo.OpenReadAsync());
+
+            var downloadLink = await task;
+
+            UserRecordArgs args = new UserRecordArgs()
+            {
+                PhotoUrl = downloadLink,
+                Uid = EditProfile.LocalId
+            };
+
+            UserRecord userRecord = await FirebaseAuth.DefaultInstance.UpdateUserAsync(args);
+
+            _toast.MakeToast(userRecord.DisplayName, "Profile photo updated");
+        }
+        catch (Exception ex)
+        {
+            _toast.MakeToast(ex.Message);
+        }
+
     }
 
     private async void ChangePassword()
@@ -95,4 +160,5 @@ public class EditProfileViewModel : ViewModelBase
 
     public ICommand ChangeProfileCommand { private set; get; }
     public ICommand ChangePasswordCommand { private set; get; }
+    public ICommand ChangePhotoCommand { private set; get; }
 }
