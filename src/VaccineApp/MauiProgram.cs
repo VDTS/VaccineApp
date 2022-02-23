@@ -40,6 +40,7 @@ public static class MauiProgram
         builder.Services.AddBlazorWebView();
         builder.Services.AddViewModels();
         builder.Services.AddDeviceSpecificFeatures();
+        builder.Services.AddFeatures();
 
         builder.Services.AddDAL(
             options =>

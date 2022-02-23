@@ -1,4 +1,5 @@
 ﻿using VaccineApp.Features;
+using VaccineApp.PDFGenerator;
 using VaccineApp.ViewModels.Access.ForgotPassword;
 using VaccineApp.ViewModels.Access.SignIn;
 using VaccineApp.ViewModels.Admin.Home.Cluster;
@@ -31,6 +32,13 @@ namespace VaccineApp.Factory;
 
 public static class AddServiceExtensions
 {
+    public static IServiceCollection AddFeatures(this IServiceCollection services)
+    {
+        services.AddSingleton<ReportsGenerator>();
+
+        return services;
+    }
+
     public static IServiceCollection AddViewModels(this IServiceCollection Services)
     {
         Services.AddTransient<MasjeedListViewModel>();

@@ -1,11 +1,10 @@
 ﻿using Core.CountsPerParentModels;
-using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Graphics;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using VaccineApp.Features;
+using VaccineApp.PDFGenerator;
 using VaccineApp.ViewModels.Base;
 
 namespace VaccineApp.ViewModels.Supervisor.Reports;
@@ -14,73 +13,26 @@ public class ReportsViewModel : ViewModelBase
 {
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
+    private readonly ReportsGenerator _reportsGenerator;
     private ClusterModel _cluster;
     private IEnumerable<TeamModel> _teams;
     private ObservableCollection<AnonymousChildrenCountPerTeamModel> _anonymouChildrenCountGroupByTeam;
-    public ReportsViewModel(UnitOfWork unitOfWork, IToast toast)
+    public ReportsViewModel(UnitOfWork unitOfWork, IToast toast, ReportsGenerator reportsGenerator)
     {
-        NonResedentialChildrenReportCommand = new Command(NonResedentialChildrenReport);
+        NonResedentialChildrenReportCommand = new Command(GenerateNonResedentialChildrenReport);
         Cluster = new ClusterModel();
         Teams = new ObservableCollection<TeamModel>();
         AnonymouChildrenCountGroupByTeam = new ObservableCollection<AnonymousChildrenCountPerTeamModel>();
         _unitOfWork = unitOfWork;
         _toast = toast;
+        _reportsGenerator = reportsGenerator;
     }
 
-    private async void NonResedentialChildrenReport()
+    private async void GenerateNonResedentialChildrenReport()
     {
         await GetAnonymousChildren();
-        PdfDocument document = new();
-        PdfPage page = document.Pages.Add();
-
-        PdfFont firstHeaderFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 16);
-        PdfFont secondHeaderFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
-        PdfFont bodyFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 11);
-
-        int x = 0;
-        int y = 0;
-
-        string headerString = $"Non Resedential Children Vaccine Report - {DateTime.Now}";
-        page.Graphics.DrawString(headerString, firstHeaderFont, PdfBrushes.DarkBlue, new Syncfusion.Drawing.PointF(x, y));
-        y += 20;
-
-        string clusterString = $"{Cluster.ClusterName} Cluster";
-        page.Graphics.DrawString(clusterString, firstHeaderFont, PdfBrushes.DarkBlue, new Syncfusion.Drawing.PointF(x, y));
-        y += 30;
-
-        PdfPen pen = new(PdfBrushes.Black);
-        page.Graphics.DrawLine(pen, new Syncfusion.Drawing.PointF(x, y), new Syncfusion.Drawing.PointF(x + 400, y));
-        y += 30;
-
-        foreach (var item in AnonymouChildrenCountGroupByTeam)
-        {
-            string teamName = $"{item.TeamNo} Team";
-            page.Graphics.DrawString(teamName, secondHeaderFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
-            y += 30;
-
-            foreach (var value in item.ChildrenByType)
-            {
-                x += 15;
-                string str = $"{value.ChildType} : {value.Count}";
-
-                page.Graphics.DrawString(str, bodyFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
-
-                x -= 15;
-                y += 15;
-            }
-            y += 30;
-        }
-
-        MemoryStream stream = new();
-        document.Save(stream);
-
-        document.Close(true);
-
-        stream.Position = 0;
-
-        SavePDF($"{nameof(NonResedentialChildrenReport)}.pdf", stream);
+        _reportsGenerator.NonResedentialChildrenReport(Cluster.ClusterName, AnonymouChildrenCountGroupByTeam);
     }
-
     public ICommand NonResedentialChildrenReportCommand { private set; get; }
 
     public ClusterModel Cluster
@@ -144,20 +96,5 @@ public class ReportsViewModel : ViewModelBase
         {
             return;
         }
-    }
-    private void SavePDF(string fileName, Stream data)
-    {
-        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        string filePath = Path.Combine(documentsPath, fileName);
-
-        if (File.Exists(filePath))
-        {
-            File.Delete(filePath);
-        }
-
-        using Stream outStream = File.OpenWrite(filePath);
-        data.CopyTo(outStream);
-
-        _toast.MakeToast("PDF report downloaded", filePath);
     }
 }
