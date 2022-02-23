@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackLayout VerticalOptions="Center"
-                     GridLayout.Row="0"
+                     Grid.Row="0"
                      Orientation="Vertical"
                      Spacing="20">
             <Label Text="About VDTs"
@@ -24,7 +24,7 @@
             <Label Text="VDTS team has experties in healthcare, public health, immunization, communications and digital technology." />
         </StackLayout>
         <CollectionView ItemsSource="{Binding Persons}"
-                        GridLayout.Row="1">
+                        Grid.Row="1">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>

@@ -55,26 +55,26 @@
         <CollectionView ItemsSource="{Binding Vaccines}">
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
-                    <GridLayout Padding="10"
+                    <Grid Padding="10"
                                 ColumnDefinitions="200, 200">
-                        <Label GridLayout.Column="0"
+                        <Label Grid.Column="0"
                                FontAttributes="Bold"
                                Text="Vaccines" />
-                        <Label GridLayout.Column="1"
+                        <Label Grid.Column="1"
                                FontAttributes="Bold"
                                Text="Date" />
-                    </GridLayout>
+                    </Grid>
                 </StackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:VaccineModel">
-                    <GridLayout Padding="10"
+                    <Grid Padding="10"
                                 ColumnDefinitions="200, 200">
-                        <Label GridLayout.Column="0"
+                        <Label Grid.Column="0"
                                Text="{Binding Status }" />
-                        <Label GridLayout.Column="1"
+                        <Label Grid.Column="1"
                                Text="{Binding Date}" />
-                    </GridLayout>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

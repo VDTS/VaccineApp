@@ -12,7 +12,7 @@
           Padding="{OnPlatform UWP='30', Android='20', Default='30'}"
           RowDefinitions="Auto, Auto, Auto, Auto">
 
-        <StackLayout GridLayout.Row="0"
+        <StackLayout Grid.Row="0"
                      WidthRequest="{OnPlatform UWP='300', Default='300'}"
                      HeightRequest="150"
                      HorizontalOptions="Center"
@@ -24,7 +24,7 @@
                    VerticalOptions="Center" />
         </StackLayout>
 
-        <StackLayout GridLayout.Row="1"
+        <StackLayout Grid.Row="1"
                      Spacing="10"
                      WidthRequest="{OnPlatform UWP='300', Default='300'}"
                      HorizontalOptions="Center"
@@ -37,7 +37,7 @@
         </StackLayout>
 
         <StackLayout Spacing="10"
-                     GridLayout.Row="2"
+                     Grid.Row="2"
                      WidthRequest="{OnPlatform UWP='300', Default='300'}"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
@@ -50,7 +50,7 @@
             </Label>
         </StackLayout>
 
-        <StackLayout GridLayout.Row="3"
+        <StackLayout Grid.Row="3"
                      HorizontalOptions="Center"
                      VerticalOptions="Center"
                      WidthRequest="{OnPlatform UWP='300', Default='300'}">

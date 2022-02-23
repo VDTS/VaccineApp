@@ -52,6 +52,7 @@
 
 	<ItemGroup>
 		<None Remove="RawText\VaccineGuides.txt" />
+		<None Remove="Resources\Fonts\OpenSans-Regular.ttf" />
 		<None Remove="Resources\Images\abdulbasir.jpg" />
 		<None Remove="Resources\Images\aboutus.svg" />
 		<None Remove="Resources\Images\admin.svg" />
@@ -90,19 +91,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="AppConfigs\AppSettings.json" />
-	  <EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
-	  <EmbeddedResource Include="RawText\VaccineGuides.txt" />
-	  <EmbeddedResource Include="SecretFiles\AppSecrets.json" />
-	  <EmbeddedResource Include="SecretFiles\firebase_private_key.json" />
-	  <EmbeddedResource Include="SecretFiles\github_app_private_key.pem" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Auth\Auth.csproj" />
-		<ProjectReference Include="..\Core\Core.csproj" />
-		<ProjectReference Include="..\DAL\DAL.csproj" />
-		<ProjectReference Include="..\RealCache\RealCache.csproj" />
+		<EmbeddedResource Include="AppConfigs\AppSettings.json" />
+		<EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
+		<EmbeddedResource Include="RawText\VaccineGuides.txt" />
+		<EmbeddedResource Include="SecretFiles\AppSecrets.json" />
+		<EmbeddedResource Include="SecretFiles\firebase_private_key.json" />
+		<EmbeddedResource Include="SecretFiles\github_app_private_key.pem" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -113,7 +107,7 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Access\ForgotPassword\ForgotPasswordPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Access\SignIn\SignInPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -128,26 +122,26 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Admin\Home\User\UsersListPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\AboutUs\AboutUsPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\Feedback\FeedbackPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\HelpSupport\HelpSupportPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\Profile\EditProfilePage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Announcements\AnnouncementListPage.xaml">
-		  <SubType>Designer</SubType>
-		  <Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -189,73 +183,83 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Family\FamilyDetailsPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\AnonymousChild\AddAnonymousChildPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\AnonymousChild\AnonymousChildrenListPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\ChildDetailsPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\StatusPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\Vaccine\AddVaccinePage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\Guides\VaccineGuidesPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\Guides\VaccinesTimeTablePage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\ParentFamilyPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\QR\QRGeneratedImagePage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Announcements\AddAnnouncementPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Announcements\AnnouncementsListPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Charts\ChartsPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Periods\AddPeriodPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Periods\PeriodsListPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Reports\ReportsPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\StatsPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="11.0.0" />
-		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
-		<PackageReference Include="GitHubJwt" Version="0.0.5" />
-		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="6.0.200-preview.12.2441" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
-		<PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
-		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.4.0.48" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<MauiImage Update="Resources\Images\appicon.svg">
 			<Color>#FFFFFF</Color>
 		</MauiImage>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Platforms\iOS\Resources\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+		<PackageReference Include="GitHubJwt" Version="0.0.5" />
+		<PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
+		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.4.0.53" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Auth\Auth.csproj" />
+		<ProjectReference Include="..\Core\Core.csproj" />
+		<ProjectReference Include="..\DAL\DAL.csproj" />
+		<ProjectReference Include="..\RealCache\RealCache.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">

@@ -15,26 +15,26 @@
                     SelectionChangedCommand="{Binding ChildDetailsCommand}">
 
         <CollectionView.Header>
-            <GridLayout Padding="10"
+            <Grid Padding="10"
                         ColumnDefinitions="200, 200">
-                <Label GridLayout.Column="0"
+                <Label Grid.Column="0"
                        FontAttributes="Bold"
                        Text="Child Name" />
-                <Label GridLayout.Column="1"
+                <Label Grid.Column="1"
                        FontAttributes="Bold"
                        Text="Vaccine" />
-            </GridLayout>
+            </Grid>
         </CollectionView.Header>
 
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="HybridModel:ChildWithVaccineStatusModel">
-                <GridLayout Padding="10"
+                <Grid Padding="10"
                             ColumnDefinitions="200, 200">
-                    <Label GridLayout.Column="0"
+                    <Label Grid.Column="0"
                            Text="{Binding Child.FullName }" />
-                    <Label GridLayout.Column="1"
+                    <Label Grid.Column="1"
                            Text="{Binding VaccineStatus}" />
-                </GridLayout>
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
 

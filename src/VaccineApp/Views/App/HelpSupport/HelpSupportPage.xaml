@@ -12,15 +12,15 @@
                 <ViewCell Tapped="Feedback">
                     <Grid ColumnDefinitions="Auto, Auto"
                           ColumnSpacing="5">
-                        <Image GridLayout.Column="0"
+                        <Image Grid.Column="0"
                                Source="feedback.png"
                                WidthRequest="40"
                                HeightRequest="40" />
                         <Label Text="Feedback"
                                FontAttributes="Bold"
-                               GridLayout.Column="2" />
+                               Grid.Column="2" />
                         <Label Text="Share issues and ideas"
-                               GridLayout.Column="2"
+                               Grid.Column="2"
                                Padding="0, 18, 0, 0"
                                HorizontalOptions="End" />
                     </Grid>
@@ -30,15 +30,15 @@
                 <ViewCell Tapped="AboutUs">
                     <Grid ColumnDefinitions="Auto, Auto"
                           ColumnSpacing="5">
-                        <Image GridLayout.Column="0"
+                        <Image Grid.Column="0"
                                Source="aboutus.png"
                                WidthRequest="40"
                                HeightRequest="40" />
                         <Label Text="App devs"
                                FontAttributes="Bold"
-                               GridLayout.Column="2" />
+                               Grid.Column="2" />
                         <Label Text="Connect with us"
-                               GridLayout.Column="2"
+                               Grid.Column="2"
                                Padding="0, 18, 0, 0"
                                HorizontalOptions="End" />
                     </Grid>
