@@ -4,8 +4,9 @@
              x:Class="VaccineApp.Shells.Views.Appshell"
              xmlns:ViewModel="clr-namespace:VaccineApp.Shells.ViewModels"
              x:DataType="ViewModel:AppShellViewModel"
+             FlyoutBackground="{DynamicResource PageCardColor}"
              Title="Appshell">
-    
+
     <Shell.BindingContext>
         <ViewModel:AppShellViewModel/>
     </Shell.BindingContext>
