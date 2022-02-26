@@ -10,21 +10,26 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Influencer" Command="{Binding AddInfluencerCommand}" />
     </ContentPage.ToolbarItems>
-    
-    <CollectionView SelectionMode="Single"
+
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        
+        <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Influencer}">
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
                            Text="Influencer" />
-            </StackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:InfluencerModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding Name}"></Label>
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:InfluencerModel">
+                    <StackLayout>
+                        <Label Text="{Binding Name}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ScrollView>
 </ContentPage>

@@ -6,15 +6,20 @@
              x:DataType="ViewModel:AddDoctorViewModel"
              Shell.TabBarIsVisible="False"
              Title="AddDoctorPage">
-    
-    <StackLayout Padding="40"
-                 Spacing="10"
+
+    <StackLayout Padding="10"
+                 Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding Doctor.Name, Mode=TwoWay}"
                Placeholder="Doctor Name" />
         <StackLayout Orientation="Horizontal">
             <CheckBox IsChecked="{Binding Doctor.IsHeProvindingSupportForSIAAndVaccination, Mode=TwoWay}" />
-            <Label Text="Is he provinding support for SIA and vaccination"/>
+            <Label>
+                <Label.Text>
+                    Is he provinding support
+                    for SIA and vaccination
+                </Label.Text>
+            </Label>
         </StackLayout>
 
         <Button Text="Save"
@@ -23,7 +28,7 @@
                 HeightRequest="50"
                 HorizontalOptions="Center"
                 Command="{Binding PostCommand}"
-                Margin="20"/>
+                Margin="20" />
     </StackLayout>
-    
+
 </ContentPage>

@@ -8,43 +8,32 @@
              Title="MasjeedsListPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Masjeed" Command="{Binding AddMasjeedCommand}" />
+        <ToolbarItem Text="Add Masjeed"
+                     Command="{Binding AddMasjeedCommand}" />
     </ContentPage.ToolbarItems>
-    
-    <CollectionView SelectionMode="Single"
-                    ItemsSource="{Binding Masjeeds}"
-                    SelectionChangedCommand="{Binding GoToDetailsPageCommand}"
-                    SelectedItem="{Binding SelectedMasjeed}">
-        <CollectionView.Header>
-            <Frame Padding="15,15,15,15"
-                   HeightRequest="40"
-                   BackgroundColor="{DynamicResource PageHeaderCardColor}"
-                   HasShadow="True">
-                <Frame.Content>
-                    <StackLayout VerticalOptions="Center">
-                        <Label FontSize="20"
-                               TextColor="White"
-                               Text="Masjeed Name"></Label>
-                    </StackLayout>
-                </Frame.Content>
-            </Frame>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:MasjeedModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Frame Padding="15,0,15,0"
-                           HeightRequest="30"
-                           BackgroundColor="{DynamicResource PageCardColor}"
-                           HasShadow="True"
-                           CornerRadius="0">
-                        <Frame.Content>
-                            <StackLayout VerticalOptions="Center">
-                                <Label Text="{Binding MasjeedName}"></Label>
-                            </StackLayout>
-                        </Frame.Content>
-                    </Frame>
+
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <CollectionView SelectionMode="Single"
+                        ItemsSource="{Binding Masjeeds}"
+                        SelectionChangedCommand="{Binding GoToDetailsPageCommand}"
+                        SelectedItem="{Binding SelectedMasjeed}">
+
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
+                           Text="Masjeed Name" />
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:MasjeedModel">
+                    <StackLayout>
+                        <Label Text="{Binding MasjeedName}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ScrollView>
 </ContentPage>

@@ -8,23 +8,29 @@
              Title="SchoolsListPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add School" Command="{Binding AddSchoolCommand}" />
+        <ToolbarItem Text="Add School"
+                     Command="{Binding AddSchoolCommand}" />
     </ContentPage.ToolbarItems>
-    
-    <CollectionView SelectionMode="Single"
+
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Schools}">
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
                            Text="Schools" />
-            </StackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:SchoolModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding SchoolName}"></Label>
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:SchoolModel">
+                    <StackLayout>
+                        <Label Text="{Binding SchoolName}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ScrollView>
 </ContentPage>

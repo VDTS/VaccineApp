@@ -14,11 +14,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Padding="40">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
         <CollectionView ItemsSource="{Binding Announcements}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:AnnouncementModel">
-
                     <StackLayout Padding="0,5,0,0">
                         <Frame Padding="15"
                                BackgroundColor="{DynamicResource PageCardColor}"
@@ -31,7 +32,7 @@
                                     <Label Text="{Binding Content}" />
                                     <Label Text="{Binding MessageDateTime, Converter={StaticResource DateToMessageTimeHint}}"
                                            TextColor="DarkBlue"
-                                           Margin="200,0,0,0" />
+                                           Margin="150,0,0,0" />
                                 </StackLayout>
                             </Frame.Content>
                         </Frame>
@@ -40,5 +41,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

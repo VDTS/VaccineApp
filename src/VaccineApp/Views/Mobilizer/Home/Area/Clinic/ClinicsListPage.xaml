@@ -8,23 +8,29 @@
              Title="ClinicsListPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Clinic" Command="{Binding AddClinicCommand}" />
+        <ToolbarItem Text="Add Clinic"
+                     Command="{Binding AddClinicCommand}" />
     </ContentPage.ToolbarItems>
-    
-    <CollectionView SelectionMode="Single"
+
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Clinics}">
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
                            Text="Clinics" />
-            </StackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:ClinicModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding ClinicName}"></Label>
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:ClinicModel">
+                    <StackLayout>
+                        <Label Text="{Binding ClinicName}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ScrollView>
 </ContentPage>
