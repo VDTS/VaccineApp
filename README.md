@@ -26,5 +26,9 @@ Some services need secret keys for functioning:
 ### Application Development and production Environments
 There exist two options to work with firebase; online (for production), offline (for development). For switching between offline and online mode, change the value of [AppConfigs](https://github.com/NaveedAhmadHematmal/VaccineApp/blob/main/src/VaccineApp/AppConfigs/AppSettings.json) to online or offline for __Desktop__ and for __Web__ go to this [Link](https://github.com/NaveedAhmadHematmal/VaccineApp/blob/main/src/Web/VaccineApp.BlazorPWA/VaccineApp.BlazorPWA/wwwroot/AppConfigs/AppSettings.json).  
 
+## LOC
+
+[Click here](https://api.codetabs.com/v1/loc/?github=VDTS/VaccineApp) to see counts of __Lines of Codes__
+
 ## Stats
 ![Alt](https://repobeats.axiom.co/api/embed/401483c7d3e66e08967e37e81b4adff52c750f58.svg "Repobeats analytics image")
