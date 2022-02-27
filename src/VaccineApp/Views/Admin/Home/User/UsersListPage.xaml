@@ -11,19 +11,24 @@
         <ToolbarItem Text="Add User" Command="{Binding AddUserCommand}" />
     </ContentPage.ToolbarItems>
 
-    <CollectionView ItemsSource="{Binding Users}">
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
-                       Text="User name" />
-            </StackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:UsersModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding DisplayName}"></Label>
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <CollectionView ItemsSource="{Binding Users}">
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
+                           Text="User name" />
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:UsersModel">
+                    <StackLayout>
+                        <Label Text="{Binding DisplayName}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ScrollView>
 </ContentPage>

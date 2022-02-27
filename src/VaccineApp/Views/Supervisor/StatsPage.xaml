@@ -6,25 +6,54 @@
              xmlns:CountsPerParentModels="clr-namespace:Core.CountsPerParentModels;assembly=Core"
              x:DataType="ViewModel:StatsViewModel"
              Title="StatsPage">
-    <StackLayout Padding="40"
-                 Spacing="10">
-        <Label FontAttributes="Bold"
-               Text="ClusterName" />
-        <Label Text="{Binding Cluster.ClusterName}" />
-        <Label FontAttributes="Bold"
-               Text="Child Counts" />
-        <Label Text="{Binding Childs }" />
-        <Label Text="__________________"/>
-        <Label Text="Households per team"/>
-        <CollectionView ItemsSource="{Binding Families}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="CountsPerParentModels:FamiliesCountPerTeamsModel">
-                    <StackLayout Padding="0,2,0,0">
-                        <Label Text="{Binding TeamNo}" />
-                        <Label Text="{Binding FamiliesCount}" />
+
+    <Grid RowDefinitions="Auto, Auto"
+          Padding="10"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Frame Grid.Row="0"
+               HasShadow="True"
+               BackgroundColor="{DynamicResource PageCardColor}"
+               CornerRadius="5">
+
+            <StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="ClusterName" />
+                    <Label Text="{Binding Cluster.ClusterName}" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Cluster Total Child Counts" />
+                    <Label Text="{Binding Childs }" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <ScrollView Grid.Row="1"
+                    Padding="10"
+                    WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+            <CollectionView ItemsSource="{Binding Families}">
+                <CollectionView.Header>
+                    <StackLayout Padding="10"
+                                 VerticalOptions="Center">
+                        <Label FontAttributes="Bold"
+                               Text="Households per team" />
                     </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="CountsPerParentModels:FamiliesCountPerTeamsModel">
+                        <StackLayout Spacing="10"
+                                     Orientation="Horizontal">
+                            <Label FontAttributes="Bold"
+                                   Text="{Binding TeamNo}" />
+                            <Label Text="{Binding FamiliesCount}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

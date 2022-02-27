@@ -5,13 +5,17 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Periods"
              x:DataType="ViewModel:AddPeriodViewModel"
              Title="AddPeriodPage">
-    <StackLayout Padding="40"
+    
+    <StackLayout Padding="10"
+                 Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <Label Text="Start Date" />
-        <DatePicker Date="{Binding Period.StartDate}" />
+        <DatePicker Date="{Binding Period.StartDate}"
+                    WidthRequest="{OnPlatform UWP='280', Default='280'}" />
         <Label Text="End Date" />
-        <DatePicker Date="{Binding Period.EndDate}" />
+        <DatePicker Date="{Binding Period.EndDate}"
+                    WidthRequest="{OnPlatform UWP='280', Default='280'}" />
 
         <Entry Placeholder="Period Name"
                Text="{Binding Period.PeriodName}" />

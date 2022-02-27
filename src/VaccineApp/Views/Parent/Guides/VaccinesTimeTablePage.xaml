@@ -6,39 +6,41 @@
              x:DataType="ViewModel:VaccinesTimeTableViewModel"
              Title="VaccinesTimeTablePage">
 
-    <CollectionView ItemsSource="{Binding Vaccines}">
-        <CollectionView.Header>
-            <Grid ColumnDefinitions="*, *"
-                  HorizontalOptions="FillAndExpand"
-                  VerticalOptions="Start"
-                  RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20" />
-                </Grid.RowDefinitions>
-                <Label FontAttributes="Bold"
-                       Grid.Column="0"
-                       Text="Age" />
-                <Label FontAttributes="Bold"
-                       Grid.Column="1"
-                       Text="Preferred Vaccines" />
-            </Grid>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <CollectionView ItemsSource="{Binding Vaccines}">
+            <CollectionView.Header>
                 <Grid ColumnDefinitions="*, *"
-                      Margin="0"
-                      Padding="0"
-                      RowSpacing="0"
-                      x:DataType="ViewModel:VaccinesTimeTableModel">
-                    <Label Grid.Column="0"
-                           Margin="0"
-                           Text="{Binding Age}" />
-                    <Label Grid.Column="1"
-                           Margin="0"
-                           Text="{Binding PreferredVaccines}" />
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Start"
+                      RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label FontAttributes="Bold"
+                           Grid.Column="0"
+                           Text="Age" />
+                    <Label FontAttributes="Bold"
+                           Grid.Column="1"
+                           Text="Preferred Vaccines" />
                 </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*, *"
+                          Margin="0"
+                          Padding="0"
+                          RowSpacing="0"
+                          x:DataType="ViewModel:VaccinesTimeTableModel">
+                        <Label Grid.Column="0"
+                               Margin="0"
+                               Text="{Binding Age}" />
+                        <Label Grid.Column="1"
+                               Margin="0"
+                               Text="{Binding PreferredVaccines}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
 </ContentPage>

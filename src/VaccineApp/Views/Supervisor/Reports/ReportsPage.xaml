@@ -5,8 +5,9 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Reports"
              x:DataType="ViewModel:ReportsViewModel"
              Title="ReportsPage">
-    <StackLayout Padding="40"
-                 Spacing="20">
+    
+    <StackLayout Padding="10"
+                 Spacing="5">
         
         <Label FontAttributes="Bold"
                FontSize="Title"

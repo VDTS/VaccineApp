@@ -13,32 +13,35 @@
                      Command="{Binding AddTeamCommand}" />
     </ContentPage.ToolbarItems>
 
-    <CollectionView IsGrouped="True"
-                    ItemsSource="{Binding TeamsGroupByCluster}">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
-                       Text="Teams" />
-            </StackLayout>
-        </CollectionView.Header>
+        <CollectionView IsGrouped="True"
+                        ItemsSource="{Binding TeamsGroupByCluster}">
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:TeamModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding TeamNo }" />
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
+                           Text="Teams" />
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+            </CollectionView.Header>
 
-        <CollectionView.GroupHeaderTemplate>
-            <DataTemplate x:DataType="GroupByModel:TeamsGroupByClusterModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding ClusterName}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:TeamModel">
+                    <StackLayout>
+                        <Label Text="{Binding TeamNo }" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-    </CollectionView>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="GroupByModel:TeamsGroupByClusterModel">
+                    <StackLayout>
+                        <Label Text="{Binding ClusterName}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
 
+        </CollectionView>
+    </ScrollView>
 </ContentPage>

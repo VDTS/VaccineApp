@@ -6,15 +6,19 @@
              x:DataType="ViewModel:VaccineGuidesViewModel"
              Title="VaccineGuidesPage">
 
-    <CollectionView ItemSizingStrategy="MeasureAllItems"
-                    ItemsSource="{Binding Strings}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Label FlowDirection="RightToLeft"
-                       Padding="50"
-                       Text="{Binding .}" />
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
+        <CollectionView ItemSizingStrategy="MeasureAllItems"
+                        ItemsSource="{Binding Strings}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label FlowDirection="RightToLeft"
+                           Padding="50"
+                           Text="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </ScrollView>
 </ContentPage>

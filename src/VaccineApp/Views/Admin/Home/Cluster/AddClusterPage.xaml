@@ -6,8 +6,9 @@
              x:DataType="ViewModel:AddClusterViewModel"
              Shell.TabBarIsVisible="False"
              Title="AddClusterPage">
-    
-    <StackLayout Padding="40"
+
+    <StackLayout Padding="10"
+                 Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Placeholder="Cluster Name"
                Text="{Binding Cluster.ClusterName}"></Entry>

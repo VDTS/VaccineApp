@@ -11,19 +11,24 @@
         <ToolbarItem Text="Start new Period" Command="{Binding AddPeriodCommand}"/>
     </ContentPage.ToolbarItems>
 
-    <CollectionView ItemsSource="{Binding Periods}">
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontSize="Title"
-                       Text="Periods" />
-            </StackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:PeriodModel">
-                <StackLayout Padding="0,2,0,0">
-                    <Label Text="{Binding PeriodName}"></Label>
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <CollectionView ItemsSource="{Binding Periods}">
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Label FontAttributes="Bold"
+                           Text="Periods" />
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:PeriodModel">
+                    <StackLayout>
+                        <Label Text="{Binding PeriodName}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ScrollView>
 </ContentPage>

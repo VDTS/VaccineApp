@@ -12,26 +12,26 @@
                      Command="{Binding AddClusterCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="40"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Clusters}"
                         SelectedItem="{Binding SelectedCluster}">
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
-                    <Label FontSize="Title"
+                    <Label FontAttributes="Bold"
                            Text="Cluster Name" />
                 </StackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:ClusterModel">
-                    <StackLayout Padding="0,2,0,0">
+                    <StackLayout>
                         <Label Text="{Binding ClusterName}"></Label>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
 
+    </ScrollView>
 </ContentPage>

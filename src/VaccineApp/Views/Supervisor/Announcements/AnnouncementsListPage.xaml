@@ -19,7 +19,9 @@
                      Command="{Binding AddAnnouncementCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="40">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        
         <CollectionView ItemsSource="{Binding Announcements}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:AnnouncementModel">
@@ -36,7 +38,7 @@
                                     <Label Text="{Binding Content}" />
                                     <Label Text="{Binding MessageDateTime, Converter={StaticResource DateToMessageTimeHint}}"
                                            TextColor="DarkBlue"
-                                           Margin="200,0,0,0" />
+                                           Margin="150,0,0,0" />
                                 </StackLayout>
                             </Frame.Content>
                         </Frame>
@@ -45,5 +47,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+        
+    </ScrollView>
 </ContentPage>
