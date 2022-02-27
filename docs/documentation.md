@@ -16,6 +16,7 @@
 - [Web](#Web)
 - [Android](#Android)
 - [Desktop](#Desktop)
+- [VaccineDocs](#VaccineDocs)
 
 ### Web
 #### Technologies
@@ -167,4 +168,19 @@ flowchart LR
    A -- Storage --> E[Firebase storage];
    A -- Feedbacks --> F[Github Issues];
 
+```
+
+### VaccineDocs
+
+#### Technologies
+
+- Languages: Markdown, CSS, HTML, Javascript
+- Framework: DocFx
+
+#### DevOps
+
+```mermaid
+flowchart TD
+   A[Write docs] ----> B[Generate website];
+   B ----> C[Deploy to Github Page];
 ```
