@@ -19,5 +19,11 @@
             </Label.GestureRecognizers>
         </Label>
 
+        <Label Text="Vaccine Period Report (PDF)">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding VaccinePeriodReportCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+        
     </StackLayout>
 </ContentPage>

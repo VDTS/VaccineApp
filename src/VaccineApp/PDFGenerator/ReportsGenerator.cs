@@ -1,4 +1,5 @@
 ﻿using Core.CountsPerParentModels;
+using Core.HybridModels;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using System.Collections.ObjectModel;
@@ -69,6 +70,52 @@ public class ReportsGenerator
         SavePDF($"{nameof(NonResedentialChildrenReport)}.pdf", stream);
     }
 
+    public void VaccinePeriodReport(
+        string clusterName,
+        List<ChildrenCountPerVaccineStatusPerTeam> childrenCountPerVaccineStatus)
+    {
+        PdfDocument document = new();
+        PdfPage page = document.Pages.Add();
+
+        PdfFont firstHeaderFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 16);
+        PdfFont secondHeaderFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
+        PdfFont bodyFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 11);
+
+        int x = 0;
+        int y = 0;
+
+        string headerString = $"Vaccine Period Report Report - {DateTime.Now}";
+        page.Graphics.DrawString(headerString, firstHeaderFont, PdfBrushes.DarkBlue, new Syncfusion.Drawing.PointF(x, y));
+        y += 20;
+
+        string clusterString = $"{clusterName} Cluster";
+        page.Graphics.DrawString(clusterString, firstHeaderFont, PdfBrushes.DarkBlue, new Syncfusion.Drawing.PointF(x, y));
+        y += 30;
+
+        foreach (var item in childrenCountPerVaccineStatus)
+        {
+            string childPerVaccineStatusPerTeam = $"{item.TeamNo}";
+            page.Graphics.DrawString(childPerVaccineStatusPerTeam, secondHeaderFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
+            y += 30;
+            x += 30;
+
+            foreach (var item2 in item)
+            {
+                string childPerVaccineStatus = $"{item2.VaccineStatus}: {item2.ChildrenCount}";
+                page.Graphics.DrawString(childPerVaccineStatus, secondHeaderFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
+                y += 30;
+            }
+        }
+
+        MemoryStream stream = new();
+        document.Save(stream);
+
+        document.Close(true);
+
+        stream.Position = 0;
+
+        SavePDF($"{nameof(VaccinePeriodReport)}.pdf", stream);
+    }
     private void SavePDF(string fileName, Stream data)
     {
         var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
