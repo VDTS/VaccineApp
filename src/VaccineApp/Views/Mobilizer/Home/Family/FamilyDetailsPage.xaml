@@ -5,7 +5,8 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              x:DataType="ViewModel:FamilyDetailsViewModel"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             Title="Family Details">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="add.png"
                      Order="Secondary"

@@ -4,7 +4,8 @@
              x:Class="VaccineApp.Views.App.FeedbackPage"
              Shell.TabBarIsVisible="False"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Feedback"
-             x:DataType="ViewModel:FeedbackViewModel">
+             x:DataType="ViewModel:FeedbackViewModel"
+             Title="Feedback">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="save.png"

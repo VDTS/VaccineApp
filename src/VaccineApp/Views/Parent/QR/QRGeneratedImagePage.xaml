@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VaccineApp.Views.Parent.QR.QRGeneratedImagePage">
+             x:Class="VaccineApp.Views.Parent.QR.QRGeneratedImagePage"
+             Title="QR Code">
     <StackLayout Padding="40">
         <Image x:Name="QRImage" WidthRequest="256" HeightRequest="256"/>
         <Label Text="The QR includes sensitive data; &#10;Your family and Children info." />

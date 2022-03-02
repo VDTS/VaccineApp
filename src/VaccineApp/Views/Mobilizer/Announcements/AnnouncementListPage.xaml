@@ -5,7 +5,8 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Announcements"
              x:DataType="ViewModel:AnnouncementListViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             xmlns:converters="clr-namespace:VaccineApp.Converters">
+             xmlns:converters="clr-namespace:VaccineApp.Converters"
+             Title="Add Announcement">
 
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -4,7 +4,8 @@
              x:Class="VaccineApp.Views.App.AboutUs.AboutUsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.AboutUs"
              x:DataType="ViewModel:AboutUsViewModel"
-             x:Name="AboutUs">
+             x:Name="AboutUs"
+             Title="About us">
 
     <ScrollView Padding="10"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">

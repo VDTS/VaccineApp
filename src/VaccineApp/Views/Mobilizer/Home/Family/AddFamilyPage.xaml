@@ -4,7 +4,8 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Family.AddFamilyPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
              x:DataType="ViewModel:AddFamilyViewModel"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             Title="Add Family">
 
     <StackLayout Padding="10"
                  Spacing="5"

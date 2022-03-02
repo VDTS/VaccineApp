@@ -4,7 +4,8 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Influencer.AddInfluencerPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Influencer"
              x:DataType="ViewModel:AddInfluencerViewModel"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             Title="Add Influencer">
 
     <StackLayout Padding="10"
                  Spacing="5"

@@ -4,7 +4,8 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Status.Vaccine.AddVaccinePage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status.Vaccine"
              x:DataType="ViewModel:AddVaccineViewModel"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             Title="Add Vaccine">
     <StackLayout Padding="10"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <DatePicker Date="{Binding Vaccine.Date, Mode=OneWayToSource}"

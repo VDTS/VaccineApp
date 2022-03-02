@@ -4,7 +4,8 @@
              x:Class="VaccineApp.Views.Admin.Home.Cluster.AddClusterPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.Cluster"
              x:DataType="ViewModel:AddClusterViewModel"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             Title="Add Cluster">
 
     <StackLayout Padding="10"
                  Spacing="5"

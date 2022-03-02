@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Supervisor.Announcements.AddAnnouncementPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Announcements"
-             x:DataType="ViewModel:AddAnnouncementViewModel">
+             x:DataType="ViewModel:AddAnnouncementViewModel"
+             Title="Add Announcements">
 
     <StackLayout Padding="10"
                  Spacing="5"
