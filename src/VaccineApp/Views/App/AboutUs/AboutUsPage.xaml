@@ -5,82 +5,86 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.AboutUs"
              x:DataType="ViewModel:AboutUsViewModel"
              x:Name="AboutUs">
-    <Grid Padding="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackLayout VerticalOptions="Center"
-                     Grid.Row="0"
-                     Orientation="Vertical"
-                     Spacing="20">
-            <Label Text="About VDTs"
-                   FontSize="Large" />
-            <Label FontSize="Default"
-                   Text="VDTS is a digital immunization software that helps in distributing and tracking vaccinations with a mobile app and web portal. It will help the field vaccinators to register children for tracking their vaccinations. The team offers digital solutions." />
-            <Label Text="our team"
-                   FontSize="Large" />
-            <Label Text="VDTS team has experties in healthcare, public health, immunization, communications and digital technology." />
-        </StackLayout>
-        <CollectionView ItemsSource="{Binding Persons}"
-                        Grid.Row="1">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10"
-                          x:DataType="ViewModel:Person">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackLayout Grid.Row="1"
-                                     HorizontalOptions="Center"
-                                     VerticalOptions="Center"
-                                     Orientation="Vertical"
-                                     Spacing="10">
-                            <Frame CornerRadius="100"
-                                   HeightRequest="180"
-                                   WidthRequest="180"
-                                   HorizontalOptions="Center"
-                                   Padding="0"
-                                   IsClippedToBounds="True">
-                                <Image Source="{Binding PhotoURL}"
-                                       HorizontalOptions="Center"
-                                       HeightRequest="180"
-                                       WidthRequest="180"
-                                       VerticalOptions="Center" />
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Grid RowDefinitions="Auto, Auto">
 
-                            </Frame>
-                            <Label FontSize="20"
-                                   HorizontalOptions="Center"
-                                   Text="{Binding FullName}" />
-                            <Label Text="{Binding Role}"
-                                   HorizontalOptions="Center" />
+            <StackLayout VerticalOptions="Center"
+                         Grid.Row="0"
+                         Orientation="Vertical"
+                         Spacing="20">
+                <StackLayout>
+                    <Label Text="About VDTS"
+                           FontAttributes="Bold" />
+                    <Label FontSize="Default"
+                           Text="VDTS is a digital immunization software that helps in distributing and tracking vaccinations with a mobile app and web portal. It will help the field vaccinators to register children for tracking their vaccinations. The team offers digital solutions." />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Our team"
+                           FontAttributes="Bold" />
+                    <Label Text="VDTS team has experties in healthcare, public health, immunization, communications and digital technology." />
+                </StackLayout>
+            </StackLayout>
 
-                            <StackLayout Orientation="Horizontal"
+            <CollectionView ItemsSource="{Binding Persons}"
+                            Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10"
+                              RowDefinitions="Auto, Auto"
+                              x:DataType="ViewModel:Person">
+
+                            <StackLayout Grid.Row="1"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Orientation="Vertical"
                                          Spacing="10">
-                                
-                                <Image Source="linkedin.png"
-                                       WidthRequest="25">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToLinkedInCommand, Source={x:Reference AboutUs}}"
-                                                              CommandParameter="{Binding LinkedInURL}" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                                <Image Source="twitter.png"
-                                       WidthRequest="25">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToTwitterCommand, Source={x:Reference AboutUs}}"
-                                                              CommandParameter="{Binding TwitterURL}" />
-                                    </Image.GestureRecognizers>
-                                </Image>
+                                <Frame CornerRadius="100"
+                                       HeightRequest="100"
+                                       WidthRequest="100"
+                                       HorizontalOptions="Center"
+                                       Padding="0"
+                                       IsClippedToBounds="True">
+                                    <Image Source="{Binding PhotoURL}"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="100"
+                                           WidthRequest="100"
+                                           VerticalOptions="Center" />
 
+                                </Frame>
+                                <StackLayout>
+                                    <Label HorizontalOptions="Center"
+                                           Text="{Binding FullName}" />
+                                    <Label Text="{Binding Role}"
+                                           HorizontalOptions="Center" />
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="10">
+
+                                        <Image Source="linkedin.png"
+                                               WidthRequest="25">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.GoToLinkedInCommand, Source={x:Reference AboutUs}}"
+                                                                      CommandParameter="{Binding LinkedInURL}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Image Source="twitter.png"
+                                               WidthRequest="25">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.GoToTwitterCommand, Source={x:Reference AboutUs}}"
+                                                                      CommandParameter="{Binding TwitterURL}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </StackLayout>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-        </CollectionView>
-    </Grid>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
 </ContentPage>
