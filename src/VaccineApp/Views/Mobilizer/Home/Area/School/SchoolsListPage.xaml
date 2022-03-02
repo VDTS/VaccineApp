@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.School.SchoolsListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.School"
              x:DataType="ViewModel:SchoolsListViewModel"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="SchoolsListPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add School"

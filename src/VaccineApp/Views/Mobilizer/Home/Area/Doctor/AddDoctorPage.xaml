@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Doctor.AddDoctorPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Doctor"
              x:DataType="ViewModel:AddDoctorViewModel"
-             Shell.TabBarIsVisible="False"
-             Title="AddDoctorPage">
+             Shell.TabBarIsVisible="False">
 
     <StackLayout Padding="10"
                  Spacing="5"

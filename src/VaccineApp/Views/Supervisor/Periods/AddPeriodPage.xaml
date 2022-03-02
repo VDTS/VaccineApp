@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Supervisor.Periods.AddPeriodPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Periods"
-             x:DataType="ViewModel:AddPeriodViewModel"
-             Title="AddPeriodPage">
+             x:DataType="ViewModel:AddPeriodViewModel">
     
     <StackLayout Padding="10"
                  Spacing="5"

@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.App.Profile.EditProfilePage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Profile"
              x:DataType="ViewModel:EditProfileViewModel"
-             Shell.TabBarIsVisible="False"
-             Title="EditProfilePage">
+             Shell.TabBarIsVisible="False">
     <ScrollView>
         <StackLayout Padding="40"
                      WidthRequest="{OnPlatform UWP='300', Default='300'}">

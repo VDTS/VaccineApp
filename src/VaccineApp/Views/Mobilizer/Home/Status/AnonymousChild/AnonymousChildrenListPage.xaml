@@ -5,8 +5,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild"
              x:DataType="ViewModel:AnonymousChildrenListViewModel"
              xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="AnonymousChildrenListPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Child"

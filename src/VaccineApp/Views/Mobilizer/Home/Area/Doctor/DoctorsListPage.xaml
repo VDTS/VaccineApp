@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Doctor.DoctorsListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Doctor"
              x:DataType="ViewModel:DoctorsListViewModel"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="DoctorsListPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Doctor" Command="{Binding AddDoctorCommand}" />

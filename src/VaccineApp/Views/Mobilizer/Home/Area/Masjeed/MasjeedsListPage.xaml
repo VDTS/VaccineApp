@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Masjeed.MasjeedsListPage"
              xmlns:model="clr-namespace:Core.Models;assembly=Core"
              xmlns:viewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed"
-             x:DataType="viewModel:MasjeedListViewModel"
-             Title="MasjeedsListPage">
+             x:DataType="viewModel:MasjeedListViewModel">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Masjeed"

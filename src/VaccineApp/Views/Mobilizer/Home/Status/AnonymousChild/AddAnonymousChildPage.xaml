@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild.AddAnonymousChildPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild"
              x:DataType="ViewModel:AddAnonymousChildViewModel"
-             Shell.TabBarIsVisible="False"
-             Title="AddAnonymousChildPage">
+             Shell.TabBarIsVisible="False">
 
     <StackLayout Padding="10"
                  Spacing="10"

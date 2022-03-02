@@ -5,8 +5,7 @@
              x:DataType="ViewModel:SignInViewModel"
              x:Class="VaccineApp.Views.Access.SignIn.SignInPage"
              Shell.FlyoutBehavior="Disabled"
-             Shell.NavBarIsVisible="False"
-             Title="Signin">
+             Shell.NavBarIsVisible="False">
 
     <Grid RowSpacing="25"
           Padding="{OnPlatform UWP='30', Android='20', Default='30'}"

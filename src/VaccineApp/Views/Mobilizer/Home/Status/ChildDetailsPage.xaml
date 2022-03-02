@@ -5,8 +5,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status"
              x:DataType="ViewModel:ChildDetailsViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Shell.TabBarIsVisible="False"
-             Title="ChildDetailsPage">
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Vaccine"

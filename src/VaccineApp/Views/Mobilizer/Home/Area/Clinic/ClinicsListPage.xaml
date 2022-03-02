@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Clinic.ClinicsListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic"
              x:DataType="ViewModel:ClinicsListViewModel"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="ClinicsListPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Clinic"

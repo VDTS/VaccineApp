@@ -209,7 +209,7 @@ public partial class Appshell : Shell
 
         ShellContent periodPage = new()
         {
-            Title = "Period Page",
+            Title = "Period",
             Route = nameof(PeriodsListPage),
             ContentTemplate = new DataTemplate(typeof(PeriodsListPage))
         };
@@ -394,7 +394,7 @@ public partial class Appshell : Shell
 
         ShellContent vaccinesTimeTablePage = new()
         {
-            Title = "VaccinesTimeTable",
+            Title = "Vaccines TimeTable",
             Route = nameof(VaccinesTimeTablePage),
             ContentTemplate = new DataTemplate(typeof(VaccinesTimeTablePage))
         };

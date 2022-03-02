@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Supervisor.Periods.PeriodsListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Periods"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             x:DataType="ViewModel:PeriodsListViewModel"
-             Title="PeriodsListPage">
+             x:DataType="ViewModel:PeriodsListViewModel">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Start new Period" Command="{Binding AddPeriodCommand}"/>

@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.Influencer.InfluencersListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Influencer"
              x:DataType="ViewModel:InfluencersListViewModel"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="InfluencersListPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Influencer" Command="{Binding AddInfluencerCommand}" />

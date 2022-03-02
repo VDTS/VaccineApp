@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Admin.User.UsersListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.User"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             x:DataType="ViewModel:UsersListViewModel"
-             Title="UsersListPage">
+             x:DataType="ViewModel:UsersListViewModel">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add User" Command="{Binding AddUserCommand}" />

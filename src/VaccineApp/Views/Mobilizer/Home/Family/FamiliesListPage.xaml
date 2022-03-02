@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Family.FamiliesListPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Family"
              x:DataType="ViewModel:FamiliesListViewModel"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="FamiliesListPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Family"

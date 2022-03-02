@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.App.Settings.SettingsPage"
-             Shell.TabBarIsVisible="False"
-             Title="SettingsPage">
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Reset to factory defaults"

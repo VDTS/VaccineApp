@@ -5,8 +5,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.Team"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
-             x:DataType="ViewModel:TeamsListViewModel"
-             Title="TeamsListPage">
+             x:DataType="ViewModel:TeamsListViewModel">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Team"

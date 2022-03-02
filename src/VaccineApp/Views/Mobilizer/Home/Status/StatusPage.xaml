@@ -5,8 +5,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status"
              x:DataType="ViewModel:StatusViewModel"
              xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
-             xmlns:HybridModel="clr-namespace:Core.HybridModels;assembly=Core"
-             Title="StatusPage">
+             xmlns:HybridModel="clr-namespace:Core.HybridModels;assembly=Core">
 
     <CollectionView IsGrouped="True"
                     ItemsSource="{Binding ChildrenGroupByFamily}"

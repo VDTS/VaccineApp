@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Supervisor.StatsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor"
              xmlns:CountsPerParentModels="clr-namespace:Core.CountsPerParentModels;assembly=Core"
-             x:DataType="ViewModel:StatsViewModel"
-             Title="StatsPage">
+             x:DataType="ViewModel:StatsViewModel">
 
     <Grid RowDefinitions="Auto, Auto"
           Padding="10"

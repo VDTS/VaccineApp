@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.App.Profile.ProfilePage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Profile"
              x:DataType="ViewModel:ProfileViewModel"
-             Shell.TabBarIsVisible="False"
-             Title="ProfilePage">
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit" Command="{Binding EditCommand}" />

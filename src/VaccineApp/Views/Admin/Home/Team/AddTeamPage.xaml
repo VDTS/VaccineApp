@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Admin.Home.Team.AddTeamPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.Team"
              x:DataType="ViewModel:AddTeamViewModel"
-             Shell.TabBarIsVisible="False"
-             Title="AddTeamPage">
+             Shell.TabBarIsVisible="False">
     <StackLayout Padding="10"
                  Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">

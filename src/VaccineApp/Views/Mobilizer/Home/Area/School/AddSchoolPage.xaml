@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Mobilizer.Home.Area.School.AddSchoolPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.School"
              x:DataType="ViewModel:AddSchoolViewModel"
-             Shell.TabBarIsVisible="False"
-             Title="AddSchoolPage">
+             Shell.TabBarIsVisible="False">
 
     <StackLayout Padding="10"
                  Spacing="5"

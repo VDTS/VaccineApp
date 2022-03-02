@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Views.Supervisor.Reports.ReportsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Reports"
-             x:DataType="ViewModel:ReportsViewModel"
-             Title="ReportsPage">
+             x:DataType="ViewModel:ReportsViewModel">
     
     <StackLayout Padding="10"
                  Spacing="5">

@@ -4,8 +4,7 @@
              x:Class="VaccineApp.Views.Parent.ParentFamilyPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Parent"
              x:DataType="ViewModel:ParentFamilyViewModel"
-             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
-             Title="ParentFamilyPage">
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Share data with QR"
