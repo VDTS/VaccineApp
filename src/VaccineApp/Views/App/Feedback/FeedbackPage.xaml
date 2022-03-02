@@ -12,12 +12,13 @@
                      Text="Submit issue"
                      Command="{Binding SubmitIssueOnGithubCommand}" />
     </ContentPage.ToolbarItems>
-    <ScrollView>
-        <StackLayout Padding="40"
-                     Spacing="20"
-                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <StackLayout Spacing="20">
             <StackLayout RadioButtonGroup.GroupName="Type">
-                <Label Text="Type of the feedback" />
+                <Label FontAttributes="Bold"
+                       Text="Type of the feedback" />
                 <RadioButton Value="Idea"
                              IsChecked="{Binding IsIdeaChecked}">
                     <RadioButton.Content>
@@ -56,7 +57,7 @@
                 </RadioButton>
             </StackLayout>
             <StackLayout RadioButtonGroup.GroupName="OperatingSystems">
-                <Label Text="Operating system" />
+                <Label FontAttributes="Bold" Text="Operating system" />
                 <RadioButton Value="Windows"
                              IsChecked="{Binding IsWindowsChecked}">
                     <RadioButton.Content>
@@ -95,7 +96,7 @@
                 </RadioButton>
             </StackLayout>
             <StackLayout RadioButtonGroup.GroupName="Users">
-                <Label Text="Who you are?" />
+                <Label FontAttributes="Bold" Text="Who you are?" />
                 <RadioButton Value="Admin"
                              IsChecked="{Binding IsAdminChecked}">
                     <RadioButton.Content>

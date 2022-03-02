@@ -4,45 +4,48 @@
              x:Class="VaccineApp.Views.App.HelpSupport.HelpSupportPage"
              Shell.TabBarIsVisible="False">
 
-    <TableView Intent="Menu"
-               WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <TableRoot>
-            <TableSection Title="Help and Support">
-                <ViewCell Tapped="Feedback">
-                    <Grid ColumnDefinitions="Auto, Auto"
-                          ColumnSpacing="5">
-                        <Image Grid.Column="0"
-                               Source="feedback.png"
-                               WidthRequest="40"
-                               HeightRequest="40" />
-                        <Label Text="Feedback"
-                               FontAttributes="Bold"
-                               Grid.Column="2" />
-                        <Label Text="Share issues and ideas"
-                               Grid.Column="2"
-                               Padding="0, 18, 0, 0"
-                               HorizontalOptions="End" />
-                    </Grid>
-                </ViewCell>
-            </TableSection>
-            <TableSection Title="About us">
-                <ViewCell Tapped="AboutUs">
-                    <Grid ColumnDefinitions="Auto, Auto"
-                          ColumnSpacing="5">
-                        <Image Grid.Column="0"
-                               Source="aboutus.png"
-                               WidthRequest="40"
-                               HeightRequest="40" />
-                        <Label Text="App devs"
-                               FontAttributes="Bold"
-                               Grid.Column="2" />
-                        <Label Text="Connect with us"
-                               Grid.Column="2"
-                               Padding="0, 18, 0, 0"
-                               HorizontalOptions="End" />
-                    </Grid>
-                </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <TableView Intent="Menu">
+            <TableRoot>
+                <TableSection Title="Help and Support">
+                    <ViewCell Tapped="Feedback">
+                        <Grid ColumnDefinitions="Auto, Auto"
+                              ColumnSpacing="5">
+                            <Image Grid.Column="0"
+                                   Source="feedback.png"
+                                   WidthRequest="40"
+                                   HeightRequest="40" />
+                            <Label Text="Feedback"
+                                   FontAttributes="Bold"
+                                   Grid.Column="2" />
+                            <Label Text="Share issues and ideas"
+                                   Grid.Column="2"
+                                   Padding="0, 18, 0, 0"
+                                   HorizontalOptions="End" />
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="About us">
+                    <ViewCell Tapped="AboutUs">
+                        <Grid ColumnDefinitions="Auto, Auto"
+                              ColumnSpacing="5">
+                            <Image Grid.Column="0"
+                                   Source="aboutus.png"
+                                   WidthRequest="40"
+                                   HeightRequest="40" />
+                            <Label Text="App devs"
+                                   FontAttributes="Bold"
+                                   Grid.Column="2" />
+                            <Label Text="Connect with us"
+                                   Grid.Column="2"
+                                   Padding="0, 18, 0, 0"
+                                   HorizontalOptions="End" />
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ScrollView>
 </ContentPage>

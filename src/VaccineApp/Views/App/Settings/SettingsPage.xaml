@@ -9,23 +9,25 @@
                      Command="{Binding ResetAppSettignsDefaultCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="40"
-                 WidthRequest="{OnPlatform UWP='1000', Default='300'}">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
         <StackLayout>
-            <Label Text="Accessibility"
-                   FontAttributes="Bold" />
             <StackLayout>
-                <Label Text="Font size" />
+                <Label Text="Accessibility"
+                       FontAttributes="Bold" />
                 <StackLayout>
-                    <Label Text="{Binding Path=Value}"
-                           BindingContext="{x:Reference Name=FontSizeSlider}" />
-                    <Slider Maximum="360"
-                            x:Name="FontSizeSlider"
-                            ValueChanged="Slider_ValueChanged"
-                            Value="14" />
+                    <Label Text="Font size" />
+                    <StackLayout>
+                        <Label Text="{Binding Path=Value}"
+                               BindingContext="{x:Reference Name=FontSizeSlider}" />
+                        <Slider Maximum="360"
+                                x:Name="FontSizeSlider"
+                                ValueChanged="Slider_ValueChanged"
+                                Value="14" />
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
-    </StackLayout>
-
+    </ScrollView>
 </ContentPage>
