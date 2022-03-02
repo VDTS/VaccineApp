@@ -14,13 +14,15 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Announcement"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Announcement"
                      Command="{Binding AddAnnouncementCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        
+
         <CollectionView ItemsSource="{Binding Announcements}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:AnnouncementModel">
@@ -46,6 +48,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
+
     </ScrollView>
 </ContentPage>

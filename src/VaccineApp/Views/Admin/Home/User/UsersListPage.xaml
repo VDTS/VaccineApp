@@ -7,7 +7,10 @@
              x:DataType="ViewModel:UsersListViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add User" Command="{Binding AddUserCommand}" />
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add User"
+                     Command="{Binding AddUserCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"

@@ -7,7 +7,9 @@
              x:DataType="ViewModel:FeedbackViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Submit issue"
+        <ToolbarItem IconImageSource="save.png"
+                     Order="Secondary"
+                     Text="Submit issue"
                      Command="{Binding SubmitIssueOnGithubCommand}" />
     </ContentPage.ToolbarItems>
     <ScrollView>
@@ -40,7 +42,8 @@
                         </StackLayout>
                     </RadioButton.Content>
                 </RadioButton>
-                <RadioButton Value="Bug" IsChecked="{Binding IsBugChecked}">
+                <RadioButton Value="Bug"
+                             IsChecked="{Binding IsBugChecked}">
                     <RadioButton.Content>
                         <StackLayout Orientation="Horizontal"
                                      Spacing="20">

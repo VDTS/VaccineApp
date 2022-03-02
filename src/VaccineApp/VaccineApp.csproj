@@ -55,6 +55,7 @@
 		<None Remove="Resources\Fonts\OpenSans-Regular.ttf" />
 		<None Remove="Resources\Images\abdulbasir.jpg" />
 		<None Remove="Resources\Images\aboutus.svg" />
+		<None Remove="Resources\Images\add.svg" />
 		<None Remove="Resources\Images\admin.svg" />
 		<None Remove="Resources\Images\android.svg" />
 		<None Remove="Resources\Images\announcement.svg" />
@@ -62,6 +63,7 @@
 		<None Remove="Resources\Images\area.svg" />
 		<None Remove="Resources\Images\bug.svg" />
 		<None Remove="Resources\Images\chart.svg" />
+		<None Remove="Resources\Images\edit.svg" />
 		<None Remove="Resources\Images\enhancement.svg" />
 		<None Remove="Resources\Images\family.svg" />
 		<None Remove="Resources\Images\feedback.svg" />
@@ -78,7 +80,9 @@
 		<None Remove="Resources\Images\parent.svg" />
 		<None Remove="Resources\Images\period.svg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
+		<None Remove="Resources\Images\qrcode.svg" />
 		<None Remove="Resources\Images\report.svg" />
+		<None Remove="Resources\Images\save.svg" />
 		<None Remove="Resources\Images\stats.svg" />
 		<None Remove="Resources\Images\status.svg" />
 		<None Remove="Resources\Images\supervisor.svg" />

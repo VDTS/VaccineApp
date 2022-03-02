@@ -8,7 +8,9 @@
              x:DataType="ViewModel:TeamsListViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Team"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Team"
                      Command="{Binding AddTeamCommand}" />
     </ContentPage.ToolbarItems>
 

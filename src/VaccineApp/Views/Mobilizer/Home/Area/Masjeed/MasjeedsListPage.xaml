@@ -7,7 +7,9 @@
              x:DataType="viewModel:MasjeedListViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Masjeed"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Masjeed"
                      Command="{Binding AddMasjeedCommand}" />
     </ContentPage.ToolbarItems>
 

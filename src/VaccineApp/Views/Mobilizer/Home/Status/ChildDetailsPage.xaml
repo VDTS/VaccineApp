@@ -8,7 +8,9 @@
              Shell.TabBarIsVisible="False">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Vaccine"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Vaccine"
                      Command="{Binding AddVaccineCommand}" />
     </ContentPage.ToolbarItems>
 
@@ -55,7 +57,7 @@
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
                     <Grid Padding="10"
-                                ColumnDefinitions="200, 200">
+                          ColumnDefinitions="200, 200">
                         <Label Grid.Column="0"
                                FontAttributes="Bold"
                                Text="Vaccines" />
@@ -68,7 +70,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:VaccineModel">
                     <Grid Padding="10"
-                                ColumnDefinitions="200, 200">
+                          ColumnDefinitions="200, 200">
                         <Label Grid.Column="0"
                                Text="{Binding Status }" />
                         <Label Grid.Column="1"

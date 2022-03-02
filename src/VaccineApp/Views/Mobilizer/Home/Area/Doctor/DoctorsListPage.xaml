@@ -7,7 +7,10 @@
              xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Doctor" Command="{Binding AddDoctorCommand}" />
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Doctor"
+                     Command="{Binding AddDoctorCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"

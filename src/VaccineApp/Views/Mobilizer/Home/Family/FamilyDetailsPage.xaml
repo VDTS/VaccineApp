@@ -7,13 +7,15 @@
              x:DataType="ViewModel:FamilyDetailsViewModel"
              Shell.TabBarIsVisible="False">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Child"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Child"
                      Command="{Binding AddChildCommand}" />
     </ContentPage.ToolbarItems>
 
     <Grid RowDefinitions="Auto, Auto"
-                Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+          Padding="10"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Frame Grid.Row="0"
                HasShadow="True"
                BackgroundColor="{DynamicResource PageCardColor}"

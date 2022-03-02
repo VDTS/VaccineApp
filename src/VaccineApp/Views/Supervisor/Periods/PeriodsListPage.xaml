@@ -7,7 +7,10 @@
              x:DataType="ViewModel:PeriodsListViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Start new Period" Command="{Binding AddPeriodCommand}"/>
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Start new Period"
+                     Command="{Binding AddPeriodCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"

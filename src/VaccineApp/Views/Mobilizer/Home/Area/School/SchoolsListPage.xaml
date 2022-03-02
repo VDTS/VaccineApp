@@ -7,7 +7,9 @@
              xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add School"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add School"
                      Command="{Binding AddSchoolCommand}" />
     </ContentPage.ToolbarItems>
 

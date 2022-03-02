@@ -7,7 +7,9 @@
              x:DataType="ViewModel:ClustersListViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Cluster"
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Cluster"
                      Command="{Binding AddClusterCommand}" />
     </ContentPage.ToolbarItems>
 

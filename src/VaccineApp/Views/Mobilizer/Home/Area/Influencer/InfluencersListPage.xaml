@@ -7,12 +7,15 @@
              xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Influencer" Command="{Binding AddInfluencerCommand}" />
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Secondary"
+                     Text="Add Influencer"
+                     Command="{Binding AddInfluencerCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        
+
         <CollectionView SelectionMode="Single"
                         ItemsSource="{Binding Influencer}">
             <CollectionView.Header>

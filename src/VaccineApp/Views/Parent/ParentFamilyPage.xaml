@@ -7,7 +7,9 @@
              xmlns:Model="clr-namespace:Core.Models;assembly=Core">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Share data with QR"
+        <ToolbarItem IconImageSource="qrcode.png"
+                     Order="Secondary"
+                     Text="Share data with QR"
                      Command="{Binding ShareDataWithQRCodeCommand}" />
     </ContentPage.ToolbarItems>
 
