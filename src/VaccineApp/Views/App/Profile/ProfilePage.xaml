@@ -13,36 +13,59 @@
                      Command="{Binding EditCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView>
-        <StackLayout Padding="40">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <StackLayout Spacing="10">
             <StackLayout>
-                <Image WidthRequest="100"
+                <Frame CornerRadius="100"
                        HeightRequest="100"
-                       Source="{Binding Profile.PhotoUrl}" />
+                       WidthRequest="100"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       IsClippedToBounds="True">
+                    <Image WidthRequest="100"
+                           HeightRequest="100"
+                           Source="{Binding Profile.PhotoUrl}" />
+                </Frame>
             </StackLayout>
 
             <StackLayout Spacing="10">
-                <Label FontSize="Subtitle"
-                       Text="Full Name" />
-                <Label Text="{Binding Profile.DisplayName }" />
-                <Label FontSize="Subtitle"
-                       Text="Role" />
-                <Label Text="{Binding Profile.Role }" />
-                <Label FontSize="Subtitle"
-                       Text="Contact" />
-                <Label Text="{Binding Profile.PhoneNumber }" />
-                <Label FontSize="Subtitle"
-                       Text="Email" />
-                <Label Text="{Binding Profile.Email }" />
-                <Label FontSize="Subtitle"
-                       Text="Cluster" />
-                <Label Text="{Binding Profile.ClusterId }" />
-                <Label FontSize="Subtitle"
-                       Text="Team" />
-                <Label Text="{Binding Profile.TeamId }" />
-                <Label FontSize="Subtitle"
-                       Text="Family" />
-                <Label Text="{Binding Profile.FamilyId }" />
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Full Name" />
+                    <Label Text="{Binding Profile.DisplayName }" />
+                </StackLayout>
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Role" />
+                    <Label Text="{Binding Profile.Role }" />
+                </StackLayout>
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Contact" />
+                    <Label Text="{Binding Profile.PhoneNumber }" />
+                </StackLayout>
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Email" />
+                    <Label Text="{Binding Profile.Email }" />
+                </StackLayout>
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Cluster" />
+                    <Label Text="{Binding Profile.ClusterId }" />
+                </StackLayout>
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Team" />
+                    <Label Text="{Binding Profile.TeamId }" />
+                </StackLayout>
+                <StackLayout>
+                    <Label FontAttributes="Bold"
+                           Text="Family" />
+                    <Label Text="{Binding Profile.FamilyId }" />
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ScrollView>

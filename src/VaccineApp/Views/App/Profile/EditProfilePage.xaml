@@ -5,48 +5,58 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.App.Profile"
              x:DataType="ViewModel:EditProfileViewModel"
              Shell.TabBarIsVisible="False">
-    <ScrollView>
-        <StackLayout Padding="40"
-                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <ScrollView Padding="10"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <StackLayout Padding="10"
+                     Spacing="20">
             <StackLayout>
-                <Image WidthRequest="100"
+                <Frame CornerRadius="100"
                        HeightRequest="100"
-                       Source="{Binding EditProfile.PhotoUrl}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" />
-                    </Image.GestureRecognizers>
-                </Image>
+                       WidthRequest="100"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       IsClippedToBounds="True">
+                    <Image WidthRequest="100"
+                           HeightRequest="100"
+                           Source="{Binding EditProfile.PhotoUrl}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
             </StackLayout>
 
             <StackLayout Spacing="10">
-                
-                <StackLayout>
-                    <Label FontSize="Subtitle"
-                           Text="Full Name" />
+
+                <StackLayout Spacing="10">
                     <Entry Text="{Binding EditProfile.DisplayName }" />
-                    <Label FontSize="Subtitle"
-                           Text="Contact" />
                     <Entry Text="{Binding EditProfile.PhoneNumber }" />
-                    <Label FontSize="Subtitle"
-                           Text="Email" />
                     <Entry Text="{Binding EditProfile.Email }" />
-                    <Button Text="Change Profile" Command="{Binding ChangeProfileCommand}"/>
+                    <Button WidthRequest="130"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            Text="Change Profile"
+                            Margin="20"
+                            Command="{Binding ChangeProfileCommand}" />
                 </StackLayout>
-                
-                <StackLayout>
-                    <Label FontSize="Subtitle"
-                           Text="Password" />
+
+                <StackLayout Spacing="10">
                     <Entry IsPassword="True"
+                           Placeholder="Password"
                            Text="{Binding EditProfile.Password }" />
-                    <Label  FontSize="Subtitle"
-                            Text="Confirm Password" />
                     <Entry IsPassword="True"
+                           Placeholder="Password"
                            Text="{Binding EditProfile.ConfirmPassword }" />
 
-                    <Button Text="Change Password"
+                    <Button WidthRequest="150"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            Margin="20"
+                            Text="Change Password"
                             Command="{Binding ChangePasswordCommand}" />
                 </StackLayout>
-                
+
             </StackLayout>
         </StackLayout>
     </ScrollView>
