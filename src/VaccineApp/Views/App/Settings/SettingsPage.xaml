@@ -5,7 +5,9 @@
              Shell.TabBarIsVisible="False">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Reset to factory defaults"
+        <ToolbarItem IconImageSource="resetsettings.png"
+                     Order="Secondary"
+                     Text="Reset to factory defaults"
                      Command="{Binding ResetAppSettignsDefaultCommand}" />
     </ContentPage.ToolbarItems>
 

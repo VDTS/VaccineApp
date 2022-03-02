@@ -82,6 +82,7 @@
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
 		<None Remove="Resources\Images\qrcode.svg" />
 		<None Remove="Resources\Images\report.svg" />
+		<None Remove="Resources\Images\resetsettings.svg" />
 		<None Remove="Resources\Images\save.svg" />
 		<None Remove="Resources\Images\stats.svg" />
 		<None Remove="Resources\Images\status.svg" />
