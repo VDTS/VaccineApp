@@ -17,6 +17,8 @@ public class AddVaccineViewModel : ViewModelBase
     private readonly IToast _toast;
     private readonly DbContext<PeriodModel> _dbContext;
     private List<string> _statuses;
+    private bool _isLocationAvailable;
+
     public AddVaccineViewModel(UnitOfWork unitOfWork, IToast toast, DbContext<PeriodModel> dbContext)
     {
         Statuses = VaccineStatus.ListStatuses();
@@ -39,6 +41,24 @@ public class AddVaccineViewModel : ViewModelBase
             Vaccine.Period = s.LastOrDefault().Id.ToString();
             if (range.IsDateIncludedInRange(Vaccine.Date))
             {
+                if (IsLocationAvailable)
+                {
+                    try
+                    {
+                        var location = await Geolocation.GetLastKnownLocationAsync();
+
+                        if (location != null)
+                        {
+                            Vaccine.Latitude = location.Latitude.ToString();
+                            Vaccine.Longitude = location.Longitude.ToString();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+                }
+
                 await _unitOfWork.AddVaccine(Vaccine, _childId);
                 await Shell.Current.GoToAsync("..");
                 _toast.MakeToast("Vaccine Added");
@@ -66,7 +86,11 @@ public class AddVaccineViewModel : ViewModelBase
         get { return _vaccine; }
         set { _vaccine = value; OnPropertyChanged(); }
     }
-
+    public bool IsLocationAvailable
+    {
+        get { return _isLocationAvailable; }
+        set { _isLocationAvailable = value; OnPropertyChanged(); }
+    }
     public List<string> Statuses
     {
         get { return _statuses; }

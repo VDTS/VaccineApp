@@ -11,6 +11,8 @@ public class AddClinicViewModel : ViewModelBase
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
     private ClinicModel _clinic;
+    private bool _isLocationAvailable;
+
     ClinicValidator _clinicValidator { get; set; }
 
 
@@ -31,6 +33,23 @@ public class AddClinicViewModel : ViewModelBase
         var validationResult = _clinicValidator.Validate(Clinic);
         if (validationResult.IsValid)
         {
+            if (IsLocationAvailable)
+            {
+                try
+                {
+                    var location = await Geolocation.GetLastKnownLocationAsync();
+
+                    if (location != null)
+                    {
+                        Clinic.Latitude = location.Latitude.ToString();
+                        Clinic.Longitude = location.Longitude.ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
             var result = await _unitOfWork.AddClinic(Clinic);
             await Shell.Current.GoToAsync("../");
             _toast.MakeToast($"{result.ClinicName} has been added");
@@ -41,6 +60,11 @@ public class AddClinicViewModel : ViewModelBase
         }
     }
 
+    public bool IsLocationAvailable
+    {
+        get { return _isLocationAvailable; }
+        set { _isLocationAvailable = value; OnPropertyChanged(); }
+    }
     public ClinicModel Clinic
     {
         get

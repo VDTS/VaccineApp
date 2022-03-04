@@ -16,13 +16,17 @@
                Placeholder="Fixed Clinic" />
         <Entry Text="{Binding Clinic.Outreach, Mode=OneWayToSource}"
                Placeholder="Outreach Clinic" />
-
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsLocationAvailable}" />
+            <Label Text="Add Location" />
+        </StackLayout>
+        
         <Button Text="Save"
                 TranslationY="50"
                 WidthRequest="130"
                 HeightRequest="50"
                 HorizontalOptions="Center"
                 Command="{Binding PostCommand}"
-                Margin="20"/>
+                Margin="20" />
     </StackLayout>
 </ContentPage>

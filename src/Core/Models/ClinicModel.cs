@@ -9,6 +9,8 @@ public class ClinicModel
     public string ClinicName { get; set; }
     public string Fixed { get; set; }
     public string Outreach { get; set; }
+    public string Longitude { get; set; }
+    public string Latitude { get; set; }
     public ClinicModel()
     {
         Id = Guid.NewGuid();

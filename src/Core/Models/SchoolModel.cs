@@ -8,6 +8,8 @@ public class SchoolModel
     public Guid Id { get; set; }
     public string SchoolName { get; set; }
     public string KeyInfluencer { get; set; }
+    public string Latitude { get; set; }
+    public string Longitude { get; set; }
     public SchoolModel()
     {
         Id = Guid.NewGuid();

@@ -15,6 +15,11 @@
                 SelectedItem="{Binding Vaccine.Status, Mode=TwoWay}"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}" />
 
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsLocationAvailable}" />
+            <Label Text="Add Location" />
+        </StackLayout>
+        
         <Button Text="Save"
                 TranslationY="50"
                 WidthRequest="130"

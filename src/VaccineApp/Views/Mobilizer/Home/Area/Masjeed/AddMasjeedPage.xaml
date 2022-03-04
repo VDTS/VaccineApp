@@ -27,7 +27,10 @@
                 </Label.Text>
             </Label>
         </StackLayout>
-
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsLocationAvailable}"/>
+            <Label Text="Add Location"/>
+        </StackLayout>
         <Button Text="Save"
                 TranslationY="50"
                 WidthRequest="130"

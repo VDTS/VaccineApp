@@ -9,6 +9,8 @@ public class MasjeedModel
     public string KeyInfluencer { get; set; }
     public bool DoesImamSupportsVaccine { get; set; }
     public bool DoYouHavePermissionForAdsInMasjeed { get; set; }
+    public string Latitude { get; set; }
+    public string Longitude { get; set; }
 
     public MasjeedModel()
     {

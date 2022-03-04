@@ -11,6 +11,8 @@ public class AddSchoolViewModel : ViewModelBase
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
     private SchoolModel _school;
+    private bool _isLocationAvailable;
+
     SchoolValidator _schoolValidator { get; set; }
 
 
@@ -31,6 +33,23 @@ public class AddSchoolViewModel : ViewModelBase
         var validationResult = _schoolValidator.Validate(School);
         if (validationResult.IsValid)
         {
+            if (IsLocationAvailable)
+            {
+                try
+                {
+                    var location = await Geolocation.GetLastKnownLocationAsync();
+
+                    if (location != null)
+                    {
+                        School.Latitude = location.Latitude.ToString();
+                        School.Longitude = location.Longitude.ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
             var result = await _unitOfWork.AddSchool(School);
             await Shell.Current.GoToAsync("../");
             _toast.MakeToast($"{result.SchoolName} has been added");
@@ -41,6 +60,11 @@ public class AddSchoolViewModel : ViewModelBase
         }
     }
 
+    public bool IsLocationAvailable
+    {
+        get { return _isLocationAvailable; }
+        set { _isLocationAvailable = value; OnPropertyChanged(); }
+    }
     public SchoolModel School
     {
         get

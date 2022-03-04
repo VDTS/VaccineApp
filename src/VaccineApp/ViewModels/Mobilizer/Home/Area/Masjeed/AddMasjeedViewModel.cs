@@ -11,6 +11,7 @@ public class AddMasjeedViewModel : ViewModelBase
     private readonly UnitOfWork _unitOfWork;
     private readonly IToast _toast;
     private MasjeedModel _masjeed;
+    private bool _isLocationAvailable;
     MasjeedValidator _clinicValidator { get; set; }
 
 
@@ -31,6 +32,24 @@ public class AddMasjeedViewModel : ViewModelBase
         var validationResult = _clinicValidator.Validate(Masjeed);
         if (validationResult.IsValid)
         {
+            if (IsLocationAvailable)
+            {
+                try
+                {
+                    var location = await Geolocation.GetLastKnownLocationAsync();
+
+                    if (location != null)
+                    {
+                        Masjeed.Latitude = location.Latitude.ToString();
+                        Masjeed.Longitude = location.Longitude.ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+
             var result = await _unitOfWork.AddMasjeed(Masjeed);
             await Shell.Current.GoToAsync("../");
             _toast.MakeToast($"{result.MasjeedName} has been added");
@@ -41,6 +60,11 @@ public class AddMasjeedViewModel : ViewModelBase
         }
     }
 
+    public bool IsLocationAvailable
+    {
+        get { return _isLocationAvailable; }
+        set { _isLocationAvailable = value; OnPropertyChanged(); }
+    }
     public MasjeedModel Masjeed
     {
         get
