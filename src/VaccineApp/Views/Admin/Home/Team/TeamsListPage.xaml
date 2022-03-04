@@ -14,35 +14,55 @@
                      Command="{Binding AddTeamCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView IsGrouped="True"
-                        ItemsSource="{Binding TeamsGroupByCluster}">
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Team Name" />
+        </StackLayout>
 
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Teams" />
-                </StackLayout>
-            </CollectionView.Header>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:TeamModel">
-                    <StackLayout>
-                        <Label Text="{Binding TeamNo }" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+            <CollectionView IsGrouped="True"
+                            ItemsSource="{Binding TeamsGroupByCluster}">
 
-            <CollectionView.GroupHeaderTemplate>
-                <DataTemplate x:DataType="GroupByModel:TeamsGroupByClusterModel">
-                    <StackLayout>
-                        <Label Text="{Binding ClusterName}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:TeamModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding TeamNo}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-        </CollectionView>
-    </ScrollView>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate x:DataType="GroupByModel:TeamsGroupByClusterModel">
+                        <Frame WidthRequest="255"
+                               HeightRequest="30"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource GroupHeaderTextColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding ClusterName}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>
