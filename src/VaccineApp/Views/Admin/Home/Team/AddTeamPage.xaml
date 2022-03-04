@@ -16,7 +16,7 @@
         <Picker ItemsSource="{Binding ClustersList}"
                 ItemDisplayBinding="{Binding ClusterName }"
                 SelectedItem="{Binding SelectedCluster }"
-                WidthRequest="{OnPlatform UWP='220', Default='220'}" />
+                WidthRequest="{OnPlatform UWP='280', Default='280'}" />
         <Button Text="Post"
                 TranslationY="50"
                 WidthRequest="130"
