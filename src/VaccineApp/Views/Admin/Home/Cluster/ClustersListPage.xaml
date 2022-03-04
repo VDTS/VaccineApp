@@ -12,27 +12,41 @@
                      Text="Add Cluster"
                      Command="{Binding AddClusterCommand}" />
     </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-    <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Cluster Name" />
+        </StackLayout>
 
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Clusters}"
-                        SelectedItem="{Binding SelectedCluster}">
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Cluster Name" />
-                </StackLayout>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:ClusterModel">
-                    <StackLayout>
-                        <Label Text="{Binding ClusterName}"></Label>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
 
-    </ScrollView>
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Clusters}"
+                            SelectedItem="{Binding SelectedCluster}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:ClusterModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding ClusterName}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </ScrollView>
+    </Grid>
 </ContentPage>

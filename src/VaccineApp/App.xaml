@@ -11,6 +11,9 @@
             <Color x:Key="PageHeaderCardColor">#6CC6F8</Color>
             <Color x:Key="PageCardColor">#E8F5FD</Color>
             <Color x:Key="RefreshIconColor">#2196f3</Color>
+            <Color x:Key="ListItemBackgroundColor">#6FCCFF</Color>
+            <Color x:Key="ListItemTextColor">White</Color>
+            <Color x:Key="HeaderLabelTextColor">#0067C0</Color>
 
             <Color x:Key="PrimaryColorDark">#4CC2FF</Color>
             <Color x:Key="SecondaryColorDark">#252731</Color>
