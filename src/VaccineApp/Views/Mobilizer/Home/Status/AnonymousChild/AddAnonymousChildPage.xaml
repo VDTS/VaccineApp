@@ -8,6 +8,7 @@
 
     <StackLayout Padding="10"
                  Spacing="10"
+                 HorizontalOptions="Center"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding AnonymousChild.FullName, Mode=TwoWay}"
                Placeholder="Child Name" />

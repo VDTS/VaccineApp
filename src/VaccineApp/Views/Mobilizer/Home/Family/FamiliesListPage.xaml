@@ -13,28 +13,48 @@
                      Command="{Binding AddFamilyCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Families}"
-                        SelectedItem="{Binding SelectedFamily}"
-                        SelectionChangedCommand="{Binding FamilyDetailsCommand}">
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Cluster Name" />
+        </StackLayout>
 
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Family's Parent" />
-                </StackLayout>
-            </CollectionView.Header>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Families}"
+                            SelectedItem="{Binding SelectedFamily}"
+                            SelectionChangedCommand="{Binding FamilyDetailsCommand}">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:FamilyModel">
-                    <StackLayout>
-                        <Label Text="{Binding ParentName}" />
+                <CollectionView.Header>
+                    <StackLayout VerticalOptions="Center">
+                        <Label FontAttributes="Bold"
+                               Text="Family's Parent" />
                     </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </ScrollView>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:FamilyModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding ParentName}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

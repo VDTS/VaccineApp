@@ -5,7 +5,7 @@
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Status.Vaccine"
              x:DataType="ViewModel:VaccineDetailsViewModel"
              Title="Vaccine Details">
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="location.png"
                      Text="Go to"
@@ -13,9 +13,18 @@
                      Order="Secondary" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="10">
-        <Label Text="{Binding Vaccine.Status }" />
-        <Label Text="{Binding Vaccine.Date }" />
+    <StackLayout Padding="4"
+                 HorizontalOptions="Center">
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Vaccine Status" />
+            <Label Text=" : " />
+            <Label Text="{Binding Vaccine.Status }" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Vaccine Date" />
+            <Label Text=" : " />
+            <Label Text="{Binding Vaccine.Date }" />
+        </StackLayout>
     </StackLayout>
-    
+
 </ContentPage>

@@ -7,44 +7,48 @@
              xmlns:GroupByModel="clr-namespace:Core.GroupByModels;assembly=Core"
              xmlns:HybridModel="clr-namespace:Core.HybridModels;assembly=Core">
 
-    <CollectionView IsGrouped="True"
-                    ItemsSource="{Binding ChildrenGroupByFamily}"
-                    SelectionMode="Single"
-                    SelectedItem="{Binding SelectedChild}"
-                    SelectionChangedCommand="{Binding ChildDetailsCommand}">
+    <ScrollView HorizontalOptions="Center"
+                WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView.Header>
-            <Grid Padding="10"
-                        ColumnDefinitions="200, 200">
-                <Label Grid.Column="0"
-                       FontAttributes="Bold"
-                       Text="Child Name" />
-                <Label Grid.Column="1"
-                       FontAttributes="Bold"
-                       Text="Vaccine" />
-            </Grid>
-        </CollectionView.Header>
+        <CollectionView IsGrouped="True"
+                        ItemsSource="{Binding ChildrenGroupByFamily}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedChild}"
+                        SelectionChangedCommand="{Binding ChildDetailsCommand}">
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="HybridModel:ChildWithVaccineStatusModel">
-                <Grid Padding="10"
-                            ColumnDefinitions="200, 200">
-                    <Label Grid.Column="0"
-                           Text="{Binding Child.FullName }" />
-                    <Label Grid.Column="1"
-                           Text="{Binding VaccineStatus}" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="HybridModel:ChildWithVaccineStatusModel">
+                    <Frame WidthRequest="280"
+                           HeightRequest="45"
+                           CornerRadius="4"
+                           BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                        <StackLayout Padding="5" VerticalOptions="Center">
+                            <Label HorizontalOptions="Start"
+                                   TextColor="{DynamicResource ListItemTextColor}"
+                                   Text="{Binding Child.FullName }" />
+                            <Label HorizontalOptions="End"
+                                   TextColor="{DynamicResource ListItemTextColor}"
+                                   Text="{Binding VaccineStatus}" />
+                        </StackLayout>
+                    </Frame>
 
-        <CollectionView.GroupHeaderTemplate>
-            <DataTemplate x:DataType="GroupByModel:ChildrenGroupByHouseNoModel">
-                <StackLayout Padding="10, 0, 0, 0">
-                    <Label FontAttributes="Bold"
-                           Text="{Binding HouseNo}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.GroupHeaderTemplate>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-    </CollectionView>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="GroupByModel:ChildrenGroupByHouseNoModel">
+                    <Frame WidthRequest="255"
+                           HeightRequest="30"
+                           CornerRadius="4">
+                        <StackLayout Padding="5"
+                                     BackgroundColor="{DynamicResource GroupHeaderTextColor}">
+                            <Label FontAttributes="Bold"
+                                   Text="{Binding HouseNo}" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+        </CollectionView>
+    </ScrollView>
 </ContentPage>

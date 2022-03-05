@@ -14,33 +14,54 @@
                      Command="{Binding AddChildCommand}" />
     </ContentPage.ToolbarItems>
 
-    <CollectionView IsGrouped="True"
-                    ItemsSource="{Binding AnonymousChildren}">
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView.Header>
-            <StackLayout Padding="10"
-                         VerticalOptions="Center">
-                <Label FontAttributes="Bold"
-                       Text="Anonymous Childs" />
-            </StackLayout>
-        </CollectionView.Header>
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Child Name" />
+        </StackLayout>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:AnonymousChildModel">
-                <StackLayout Padding="10">
-                    <Label Text="{Binding FullName}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
+            <CollectionView IsGrouped="True"
+                            ItemsSource="{Binding AnonymousChildren}">
 
-        <CollectionView.GroupHeaderTemplate>
-            <DataTemplate x:DataType="GroupByModel:AnonymousChildrenGroupByChildType">
-                <StackLayout Padding="10, 0, 0, 0">
-                    <Label FontAttributes="Bold"
-                           Text="{Binding ChildType}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:AnonymousChildModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding FullName}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-    </CollectionView>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate x:DataType="GroupByModel:AnonymousChildrenGroupByChildType">
+                        <Frame WidthRequest="255"
+                               HeightRequest="30"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource GroupHeaderTextColor}">
+                                <Label FontAttributes="Bold"
+                                       Text="{Binding ChildType}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

@@ -14,53 +14,54 @@
                      Command="{Binding AddChildCommand}" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto, Auto"
-          Padding="10"
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          Padding="4"
+          HorizontalOptions="Center"
           WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <Frame Grid.Row="0"
-               HasShadow="True"
-               BackgroundColor="{DynamicResource PageCardColor}"
-               CornerRadius="5">
-            <StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="House No." />
-                    <Label Text="{Binding Family.HouseNo }" />
-                </StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="Parent name" />
-                    <Label Text="{Binding Family.ParentName }" />
-                </StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="Phone number" />
-                    <Label Text="{Binding Family.PhoneNumber }" />
-                </StackLayout>
+
+        <StackLayout>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="House No." />
+                <Label Text="{Binding Family.HouseNo }" />
             </StackLayout>
-        </Frame>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="Parent name" />
+                <Label Text="{Binding Family.ParentName }" />
+            </StackLayout>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="Phone number" />
+                <Label Text="{Binding Family.PhoneNumber }" />
+            </StackLayout>
+        </StackLayout>
 
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Childs}">
-            <CollectionView.Header>
-                <StackLayout Padding="10"
-                             VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Child Name" />
-                </StackLayout>
-            </CollectionView.Header>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:ChildModel">
-                    <StackLayout Padding="10">
-                        <Label Text="{Binding FullName}"></Label>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding Childs}">
 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:ChildModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding FullName}"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
     </Grid>
 </ContentPage>

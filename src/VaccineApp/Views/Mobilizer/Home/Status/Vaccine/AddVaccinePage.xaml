@@ -7,7 +7,8 @@
              Shell.TabBarIsVisible="False"
              Title="Add Vaccine">
     <StackLayout Padding="10"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                 HorizontalOptions="Center">
         <DatePicker Date="{Binding Vaccine.Date, Mode=OneWayToSource}"
                     WidthRequest="{OnPlatform UWP='300', Default='300'}" />
         <Picker ItemsSource="{Binding Statuses}"
