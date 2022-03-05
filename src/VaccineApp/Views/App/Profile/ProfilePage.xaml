@@ -56,17 +56,17 @@
                 <StackLayout>
                     <Label FontAttributes="Bold"
                            Text="Cluster" />
-                    <Label Text="{Binding Profile.ClusterId }" />
+                    <Label Text="{Binding ClusterName }" />
                 </StackLayout>
                 <StackLayout>
                     <Label FontAttributes="Bold"
                            Text="Team" />
-                    <Label Text="{Binding Profile.TeamId }" />
+                    <Label Text="{Binding TeamName }" />
                 </StackLayout>
                 <StackLayout>
                     <Label FontAttributes="Bold"
                            Text="Family" />
-                    <Label Text="{Binding Profile.FamilyId }" />
+                    <Label Text="{Binding FamilyName }" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>
