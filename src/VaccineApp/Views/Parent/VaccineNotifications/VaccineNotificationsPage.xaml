@@ -6,25 +6,42 @@
              x:DataType="ViewModel:VaccinesNotificationsViewModel"
              xmlns:Model="clr-namespace:Core.HybridModels;assembly=Core"
              Title="Vaccine Notifications">
-    
 
-    <CollectionView SelectionMode="Single"
-                    ItemsSource="{Binding ChildWithNextVaccine}">
-        <CollectionView.Header>
-            <StackLayout VerticalOptions="Center">
-                <Label FontAttributes="Bold"
-                       Text="Doctors" />
-            </StackLayout>
-        </CollectionView.Header>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:ChildWithNextVaccineModel">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Child.FullName}"></Label>
-                    <Label Text=" : "/>
-                    <Label Text="{Binding NextVaccine}"></Label>
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-    
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Next Vaccines" />
+        </StackLayout>
+
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
+
+            <CollectionView ItemsSource="{Binding ChildWithNextVaccine}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:ChildWithNextVaccineModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5" Orientation="Horizontal" BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label Text="{Binding Child.FullName}"
+                                       TextColor="{DynamicResource ListItemTextColor}" />
+                                <Label Text=" : "
+                                       TextColor="{DynamicResource ListItemTextColor}" />
+                                <Label Text="{Binding NextVaccine}"
+                                       TextColor="{DynamicResource ListItemTextColor}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

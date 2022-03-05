@@ -8,7 +8,8 @@
              Title="Add Team">
     <StackLayout Padding="10"
                  Spacing="5"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                 HorizontalOptions="Center">
         <Entry Placeholder="Team No."
                Text="{Binding Team.TeamNo}"></Entry>
         <Entry Placeholder="CHW Name"

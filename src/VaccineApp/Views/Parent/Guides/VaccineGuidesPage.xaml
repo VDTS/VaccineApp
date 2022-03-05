@@ -6,14 +6,15 @@
              x:DataType="ViewModel:VaccineGuidesViewModel">
 
     <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+                WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                HorizontalOptions="Center">
 
         <CollectionView ItemSizingStrategy="MeasureAllItems"
                         ItemsSource="{Binding Strings}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Label FlowDirection="RightToLeft"
-                           Padding="50"
+                           Padding="4"
                            Text="{Binding .}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>

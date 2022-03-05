@@ -6,7 +6,8 @@
              x:DataType="ViewModel:VaccinesTimeTableViewModel">
 
     <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+                WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                HorizontalOptions="Center">
         <CollectionView ItemsSource="{Binding Vaccines}">
             <CollectionView.Header>
                 <Grid ColumnDefinitions="*, *"

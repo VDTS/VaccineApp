@@ -6,72 +6,69 @@
              x:DataType="ViewModel:ParentChildDetailsViewModel"
              xmlns:Model="clr-namespace:Core.Models;assembly=Core"
              Title="Child Details">
-    <StackLayout Padding="10"
-                 Spacing="10"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <Frame HasShadow="True"
-               BackgroundColor="{DynamicResource PageCardColor}"
-               CornerRadius="5">
-            <StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="Full Name: " />
-                    <Label Text="{Binding Child.FullName }" />
-                </StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="Gender: " />
-                    <Label Text="{Binding Child.Gender }" />
-                </StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="DOB" />
-                    <Label Text="{Binding Child.DOB }" />
-                </StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="RI No." />
-                    <Label Text="{Binding Child.RINo }" />
-                </StackLayout>
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="OPV0" />
-                    <Label Text="{Binding Child.OPV0 }" />
-                </StackLayout>
-            </StackLayout>
-        </Frame>
-        <CollectionView ItemsSource="{Binding Vaccines}">
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Grid Padding="10"
-                          ColumnDefinitions="200, 200">
-                        <Label Grid.Column="0"
-                               FontAttributes="Bold"
-                               Text="Vaccines" />
-                        <Label Grid.Column="1"
-                               FontAttributes="Bold"
-                               Text="Date" />
-                    </Grid>
-                </StackLayout>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:VaccineModel">
-                    <Grid Padding="10"
-                          ColumnDefinitions="200, 200">
-                        <Label Grid.Column="0"
-                               Text="{Binding Status }" />
-                        <Label Grid.Column="1"
-                               Text="{Binding Date}" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
 
-    
+    <Grid RowDefinitions="0.2*, 0.8*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="Full Name: " />
+                <Label Text="{Binding Child.FullName }" />
+            </StackLayout>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="Gender: " />
+                <Label Text="{Binding Child.Gender }" />
+            </StackLayout>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="DOB" />
+                <Label Text="{Binding Child.DOB }" />
+            </StackLayout>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="RI No." />
+                <Label Text="{Binding Child.RINo }" />
+            </StackLayout>
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="OPV0" />
+                <Label Text="{Binding Child.OPV0 }" />
+            </StackLayout>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
+            <CollectionView ItemsSource="{Binding Vaccines}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:VaccineModel">
+                        <Frame WidthRequest="270"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Grid ColumnDefinitions="120, 120">
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Status }" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Date}" />
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

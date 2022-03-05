@@ -9,7 +9,8 @@
 
     <StackLayout Padding="10"
                  Spacing="5"
-                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}"
+                 HorizontalOptions="Center">
         <Entry Placeholder="Full Name"
                Text="{Binding FullName}" />
         <Entry Placeholder="Email"

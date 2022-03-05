@@ -13,50 +13,49 @@
                      Command="{Binding ShareDataWithQRCodeCommand}" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto, Auto"
-          Padding="10"
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
           WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <Frame Grid.Row="0"
-               HasShadow="True"
-               BackgroundColor="{DynamicResource PageCardColor}"
-               CornerRadius="5">
-            <StackLayout Padding="10">
 
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="House number" />
-                    <Label Text="{Binding Family.HouseNo}" />
-                </StackLayout>
-
-                <StackLayout Spacing="10"
-                             Orientation="Horizontal">
-                    <Label FontAttributes="Bold"
-                           Text="Parent name" />
-                    <Label Text="{Binding Family.ParentName}" />
-                </StackLayout>
-
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="House number" />
+                <Label Text="{Binding Family.HouseNo}" />
             </StackLayout>
-        </Frame>
+
+            <StackLayout Spacing="10"
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       Text="Parent name" />
+                <Label Text="{Binding Family.ParentName}" />
+            </StackLayout>
+
+        </StackLayout>
 
         <ScrollView Grid.Row="1"
-                    Padding="10"
-                    WidthRequest="{OnPlatform UWP='300', Default='300'}">
+                    IsClippedToBounds="True"
+                    Padding="4">
+
             <CollectionView ItemsSource="{Binding Childs}"
                             SelectionMode="Single"
                             SelectedItem="{Binding SelectedChild}"
                             SelectionChangedCommand="{Binding ChildDetailsCommand}">
-                <CollectionView.Header>
-                    <StackLayout VerticalOptions="Center">
-                        <Label FontAttributes="Bold"
-                               Text="Child Name" />
-                    </StackLayout>
-                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Model:ChildModel">
-                        <StackLayout>
-                            <Label Text="{Binding FullName}"></Label>
-                        </StackLayout>
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding FullName}" />
+                            </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
