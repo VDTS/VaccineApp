@@ -26,6 +26,7 @@ using VaccineApp.Views.Supervisor.Reports;
 using VaccineApp.Views.Mobilizer.Home.Status.Vaccine;
 using VaccineApp.Views.Supervisor.Charts;
 using VaccineApp.Views.Parent.Guides;
+using VaccineApp.Views.Parent.VaccineNotifications;
 
 namespace VaccineApp.Shells.Views;
 public partial class Appshell : Shell
@@ -390,6 +391,12 @@ public partial class Appshell : Shell
             Icon = "guides.png"
         };
 
+        Tab notifications = new()
+        {
+            Title = "Vaccine Notifications",
+            Icon = "notification.png"
+        };
+
         ShellContent familyPage = new()
         {
             Title = "Family",
@@ -411,12 +418,21 @@ public partial class Appshell : Shell
             ContentTemplate = new DataTemplate(typeof(VaccineGuidesPage))
         };
 
+        ShellContent vaccinesNotificationsPage = new()
+        {
+            Title = "Vaccines Notification",
+            Route = nameof(VaccineNotificationsPage),
+            ContentTemplate = new DataTemplate(typeof(VaccineNotificationsPage))
+        };
+
         family.Items.Add(familyPage);
         guides.Items.Add(vaccinesTimeTablePage);
         guides.Items.Add(vaccineGuidesPage);
+        notifications.Items.Add(vaccinesNotificationsPage);
 
         home.Items.Add(family);
         home.Items.Add(guides);
+        home.Items.Add(notifications);
 
         var list = new List<FlyoutItem>();
         list.Add(home);

@@ -78,6 +78,7 @@
 		<None Remove="Resources\Images\mohammadyasin.jpg" />
 		<None Remove="Resources\Images\multipledevices.svg" />
 		<None Remove="Resources\Images\naveedahmad.jpg" />
+		<None Remove="Resources\Images\notification.svg" />
 		<None Remove="Resources\Images\parent.svg" />
 		<None Remove="Resources\Images\period.svg" />
 		<None Remove="Resources\Images\ProfileDefaultImage.svg" />
@@ -232,6 +233,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\QR\QRGeneratedImagePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Parent\VaccineNotifications\VaccineNotificationsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Supervisor\Announcements\AddAnnouncementPage.xaml">
 			<Generator>MSBuild:Compile</Generator>

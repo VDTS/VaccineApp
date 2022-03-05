@@ -55,4 +55,20 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
             throw;
         }
     }
+
+    public async Task<FamilyModel> GetParentFamily(string teamId, string familyId)
+    {
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
+
+            return s.Values.Where(x => x.Id.ToString() == familyId).FirstOrDefault();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
 }

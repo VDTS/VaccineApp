@@ -256,4 +256,9 @@ public class UnitOfWork
     {
         return await _vaccineRepository.GetVaccines(childId);
     }
+
+    public async Task<FamilyModel> GetParentFamily()
+    {
+        return await _familyRepository.GetParentFamily(_teamId, _familyId);
+    }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Parent.VaccineNotifications.VaccineNotificationsPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Parent.VaccineNotifications"
+             x:DataType="ViewModel:VaccinesNotificationsViewModel"
+             xmlns:Model="clr-namespace:Core.HybridModels;assembly=Core"
+             Title="Vaccine Notifications">
+    
+
+    <CollectionView SelectionMode="Single"
+                    ItemsSource="{Binding ChildWithNextVaccine}">
+        <CollectionView.Header>
+            <StackLayout VerticalOptions="Center">
+                <Label FontAttributes="Bold"
+                       Text="Doctors" />
+            </StackLayout>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:ChildWithNextVaccineModel">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Child.FullName}"></Label>
+                    <Label Text=" : "/>
+                    <Label Text="{Binding NextVaccine}"></Label>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+</ContentPage>
