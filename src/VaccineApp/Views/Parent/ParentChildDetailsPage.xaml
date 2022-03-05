@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Parent.ParentChildDetailsPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Parent"
+             x:DataType="ViewModel:ParentChildDetailsViewModel"
+             xmlns:Model="clr-namespace:Core.Models;assembly=Core"
+             Title="Child Details">
+    <StackLayout Padding="10"
+                 Spacing="10"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+        <Frame HasShadow="True"
+               BackgroundColor="{DynamicResource PageCardColor}"
+               CornerRadius="5">
+            <StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Full Name: " />
+                    <Label Text="{Binding Child.FullName }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="Gender: " />
+                    <Label Text="{Binding Child.Gender }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="DOB" />
+                    <Label Text="{Binding Child.DOB }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="RI No." />
+                    <Label Text="{Binding Child.RINo }" />
+                </StackLayout>
+                <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           Text="OPV0" />
+                    <Label Text="{Binding Child.OPV0 }" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        <CollectionView ItemsSource="{Binding Vaccines}">
+            <CollectionView.Header>
+                <StackLayout VerticalOptions="Center">
+                    <Grid Padding="10"
+                          ColumnDefinitions="200, 200">
+                        <Label Grid.Column="0"
+                               FontAttributes="Bold"
+                               Text="Vaccines" />
+                        <Label Grid.Column="1"
+                               FontAttributes="Bold"
+                               Text="Date" />
+                    </Grid>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:VaccineModel">
+                    <Grid Padding="10"
+                          ColumnDefinitions="200, 200">
+                        <Label Grid.Column="0"
+                               Text="{Binding Status }" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Date}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+    
+</ContentPage>

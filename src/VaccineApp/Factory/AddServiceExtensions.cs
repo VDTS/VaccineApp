@@ -88,6 +88,7 @@ public static class AddServiceExtensions
         Services.AddTransient<ClinicDetailsViewModel>();
         Services.AddTransient<MasjeedDetailsViewModel>();
         Services.AddTransient<VaccineDetailsViewModel>();
+        Services.AddTransient<ParentChildDetailsViewModel>();
 
         return Services;
     }

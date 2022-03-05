@@ -370,6 +370,7 @@ public partial class Appshell : Shell
     {
         // Register routes for App pages
         Routing.RegisterRoute(nameof(QRGeneratedImagePage), typeof(QRGeneratedImagePage));
+        Routing.RegisterRoute(nameof(ParentChildDetailsPage), typeof(ParentChildDetailsPage));
       
         FlyoutItem home = new()
         {

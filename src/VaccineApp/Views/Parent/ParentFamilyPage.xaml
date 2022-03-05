@@ -42,7 +42,10 @@
         <ScrollView Grid.Row="1"
                     Padding="10"
                     WidthRequest="{OnPlatform UWP='300', Default='300'}">
-            <CollectionView ItemsSource="{Binding Childs}">
+            <CollectionView ItemsSource="{Binding Childs}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedChild}"
+                            SelectionChangedCommand="{Binding ChildDetailsCommand}">
                 <CollectionView.Header>
                     <StackLayout VerticalOptions="Center">
                         <Label FontAttributes="Bold"

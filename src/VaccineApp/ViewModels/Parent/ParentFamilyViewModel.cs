@@ -7,6 +7,7 @@ using SkiaSharp.QrCode;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
+using VaccineApp.Views.Parent;
 using VaccineApp.Views.Parent.QR;
 
 namespace VaccineApp.ViewModels.Parent;
@@ -17,6 +18,7 @@ public class ParentFamilyViewModel : ViewModelBase
     private FamilyModel _family;
     private Guid _familyId;
     private IEnumerable<ChildModel> _childs;
+    private ChildModel _selectedChild;
 
     public ParentFamilyViewModel(UnitOfWork unitOfwork, FamilyModel family)
     {
@@ -24,6 +26,7 @@ public class ParentFamilyViewModel : ViewModelBase
         _family = family;
         _familyId = Guid.Parse(Preferences.Get("FamilyId", "AnonymousFamilyId"));
         ShareDataWithQRCodeCommand = new Command(GenerateandGotoThatePage);
+        ChildDetailsCommand = new Command(ChildDetails);
     }
 
     private async void GenerateandGotoThatePage()
@@ -70,6 +73,11 @@ public class ParentFamilyViewModel : ViewModelBase
         set { _family = value; OnPropertyChanged(); }
     }
 
+    public ChildModel SelectedChild
+    {
+        get { return _selectedChild; }
+        set { _selectedChild = value; OnPropertyChanged(); }
+    }
     public IEnumerable<ChildModel> Childs
     {
         get { return _childs; }
@@ -103,5 +111,21 @@ public class ParentFamilyViewModel : ViewModelBase
             return;
         }
     }
+
+    private async void ChildDetails()
+    {
+        if (SelectedChild == null)
+        {
+            return;
+        }
+        else
+        {
+            var SelectedItemJson = JsonConvert.SerializeObject(SelectedChild);
+            var route = $"{nameof(ParentChildDetailsPage)}?Child={SelectedItemJson}";
+            await Shell.Current.GoToAsync(route);
+            SelectedChild = null;
+        }
+    }
     public ICommand ShareDataWithQRCodeCommand { private set; get; }
+    public ICommand ChildDetailsCommand { private set; get; }
 }

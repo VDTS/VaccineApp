@@ -224,6 +224,9 @@
 		<MauiXaml Update="Views\Parent\Guides\VaccinesTimeTablePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Parent\ParentChildDetailsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Parent\ParentFamilyPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
