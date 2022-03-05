@@ -4,25 +4,28 @@
              x:Class="VaccineApp.Views.Supervisor.Reports.ReportsPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Supervisor.Reports"
              x:DataType="ViewModel:ReportsViewModel">
-    
+
     <StackLayout Padding="10"
-                 Spacing="5">
-        
+                 Spacing="10"
+                 HorizontalOptions="Center"
+                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
+
         <Label FontAttributes="Bold"
                FontSize="Title"
                Text="Download PDF reports" />
         
-        <Label Text="Non-resedential Children by Teams Report (PDF)">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding NonResedentialChildrenReportCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
+        <StackLayout Spacing="20">
+            <Label Text="Non-resedential Children Report (PDF)">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NonResedentialChildrenReportCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-        <Label Text="Vaccine Period Report (PDF)">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding VaccinePeriodReportCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
-        
+            <Label Text="Vaccine Period Report (PDF)">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding VaccinePeriodReportCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

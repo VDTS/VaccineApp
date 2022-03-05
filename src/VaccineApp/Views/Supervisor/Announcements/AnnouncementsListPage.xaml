@@ -20,7 +20,8 @@
                      Command="{Binding AddAnnouncementCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView Padding="10"
+    <ScrollView Padding="4"
+                HorizontalOptions="Center"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <CollectionView ItemsSource="{Binding Announcements}">
