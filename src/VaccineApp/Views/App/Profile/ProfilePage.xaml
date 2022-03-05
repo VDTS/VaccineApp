@@ -15,6 +15,7 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"
+                HorizontalOptions="Center"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <StackLayout Spacing="10">

@@ -7,6 +7,7 @@
              Shell.TabBarIsVisible="False"
              Title="Edit Profile">
     <ScrollView Padding="10"
+                HorizontalOptions="Center"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <StackLayout Padding="10"

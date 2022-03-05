@@ -6,6 +6,7 @@
              Title="Help and Support">
 
     <ScrollView Padding="10"
+                HorizontalOptions="Center"
                 WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
         <TableView Intent="Menu">
