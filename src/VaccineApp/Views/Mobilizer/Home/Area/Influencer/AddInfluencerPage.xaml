@@ -8,6 +8,7 @@
              Title="Add Influencer">
 
     <StackLayout Padding="10"
+                 HorizontalOptions="Center"
                  Spacing="5"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding Influencer.Name, Mode=TwoWay}"

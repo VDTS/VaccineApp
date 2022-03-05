@@ -9,6 +9,7 @@
 
     <StackLayout Padding="10"
                  Spacing="5"
+                 HorizontalOptions="Center"
                  WidthRequest="{OnPlatform UWP='300', Default='300'}">
         <Entry Text="{Binding Doctor.Name, Mode=TwoWay}"
                Placeholder="Doctor Name" />

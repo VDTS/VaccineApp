@@ -13,28 +13,43 @@
                      Command="{Binding AddMasjeedCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Masjeeds}"
-                        SelectionChangedCommand="{Binding MasjeedDetailsCommand}"
-                        SelectedItem="{Binding SelectedMasjeed}">
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Masjeed Name" />
-                </StackLayout>
-            </CollectionView.Header>
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Masjeed Name" />
+        </StackLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:MasjeedModel">
-                    <StackLayout>
-                        <Label Text="{Binding MasjeedName}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
 
-    </ScrollView>
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Masjeeds}"
+                            SelectionChangedCommand="{Binding MasjeedDetailsCommand}"
+                            SelectedItem="{Binding SelectedMasjeed}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MasjeedModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding MasjeedName}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </ScrollView>
+    </Grid>
 </ContentPage>

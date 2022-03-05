@@ -13,25 +13,40 @@
                      Command="{Binding AddDoctorCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Doctors}">
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Doctors" />
-                </StackLayout>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:DoctorModel">
-                    <StackLayout>
-                        <Label Text="{Binding Name}"></Label>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Cluster Name" />
+        </StackLayout>
 
-    </ScrollView>
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
+
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Doctors}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:DoctorModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding Name}"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </ScrollView>
+    </Grid>
 </ContentPage>

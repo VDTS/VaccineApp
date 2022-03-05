@@ -13,27 +13,48 @@
                      Command="{Binding AddSchoolCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView Padding="10"
-                WidthRequest="{OnPlatform UWP='300', Default='300'}">
+    <Grid RowDefinitions="0.15*, 0.85*"
+          RowSpacing="0"
+          HorizontalOptions="Center"
+          WidthRequest="{OnPlatform UWP='300', Default='300'}">
 
-        <CollectionView SelectionMode="Single"
-                        ItemsSource="{Binding Schools}"
-                        SelectedItem="{Binding SelectedSchool}"
-                        SelectionChangedCommand="{Binding SchoolDetailsCommand}">
-            <CollectionView.Header>
-                <StackLayout VerticalOptions="Center">
-                    <Label FontAttributes="Bold"
-                           Text="Schools" />
-                </StackLayout>
-            </CollectionView.Header>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:SchoolModel">
-                    <StackLayout>
-                        <Label Text="{Binding SchoolName}"></Label>
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label FontSize="25"
+                   TextColor="{DynamicResource HeaderLabelTextColor}"
+                   Text="Cluster Name" />
+        </StackLayout>
+
+        <ScrollView Grid.Row="1"
+                    IsClippedToBounds="True"
+                    Padding="4">
+
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Schools}"
+                            SelectedItem="{Binding SelectedSchool}"
+                            SelectionChangedCommand="{Binding SchoolDetailsCommand}">
+                <CollectionView.Header>
+                    <StackLayout VerticalOptions="Center">
+                        <Label FontAttributes="Bold"
+                               Text="Schools" />
                     </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:SchoolModel">
+                        <Frame WidthRequest="280"
+                               HeightRequest="36"
+                               CornerRadius="4">
+                            <StackLayout Padding="5"
+                                         BackgroundColor="{DynamicResource ListItemBackgroundColor}">
+                                <Label TextColor="{DynamicResource ListItemTextColor}"
+                                       Text="{Binding SchoolName}"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-    </ScrollView>
+        </ScrollView>
+    </Grid>
 </ContentPage>
