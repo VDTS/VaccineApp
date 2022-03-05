@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaccineApp.Views.Mobilizer.Home.Area.Clinic.ClinicDetailsPage"
+             xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic"
+             x:DataType="ViewModel:ClinicDetailsViewModel"
+             Title="Clinic Details">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="location.png"
+                     Text="Go to"
+                     Command="{Binding GoToMapCommand}"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Padding="10">
+        <Label Text="{Binding Clinic.ClinicName }" />
+        <Label Text="{Binding Clinic.Outreach }" />
+        <Label Text="{Binding Clinic.Fixed }" />
+    </StackLayout>
+</ContentPage>

@@ -245,6 +245,10 @@ public partial class Appshell : Shell
         Routing.RegisterRoute(nameof(AddAnonymousChildPage), typeof(AddAnonymousChildPage));
         Routing.RegisterRoute(nameof(ChildDetailsPage), typeof(ChildDetailsPage));
         Routing.RegisterRoute(nameof(AddVaccinePage), typeof(AddVaccinePage));
+        Routing.RegisterRoute(nameof(MasjeedDetailsPage), typeof(MasjeedDetailsPage));
+        Routing.RegisterRoute(nameof(SchoolDetailsPage), typeof(SchoolDetailsPage));
+        Routing.RegisterRoute(nameof(ClinicDetailsPage), typeof(ClinicDetailsPage));
+        Routing.RegisterRoute(nameof(VaccineDetailsPage), typeof(VaccineDetailsPage));
 
         FlyoutItem home = new()
         {

@@ -72,6 +72,7 @@
 		<None Remove="Resources\Images\home.svg" />
 		<None Remove="Resources\Images\idea.svg" />
 		<None Remove="Resources\Images\linkedin.svg" />
+		<None Remove="Resources\Images\location.svg" />
 		<None Remove="Resources\Images\logout.svg" />
 		<None Remove="Resources\Images\mobilizer.svg" />
 		<None Remove="Resources\Images\mohammadyasin.jpg" />
@@ -151,6 +152,9 @@
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\AddClinicPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\ClinicDetailsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Clinic\ClinicsListPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
@@ -169,11 +173,17 @@
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\AddMasjeedPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\MasjeedDetailsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\Masjeed\MasjeedsListPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\School\AddSchoolPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Area\School\SchoolDetailsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Area\School\SchoolsListPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -204,6 +214,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\Mobilizer\Home\Status\Vaccine\AddVaccinePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Mobilizer\Home\Status\Vaccine\VaccineDetailsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Parent\Guides\VaccineGuidesPage.xaml">
 			<Generator>MSBuild:Compile</Generator>

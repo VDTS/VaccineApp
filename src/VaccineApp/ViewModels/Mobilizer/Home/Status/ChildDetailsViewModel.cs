@@ -1,5 +1,8 @@
 ﻿using Core.Models;
 using DAL.Persistence;
+
+using Newtonsoft.Json;
+
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using VaccineApp.ViewModels.Base;
@@ -12,6 +15,7 @@ public class ChildDetailsViewModel : ViewModelBase
     private ChildModel _child;
     private readonly UnitOfWork _unitOfWork;
     private IEnumerable<VaccineModel> _vaccines;
+    private VaccineModel _selectedVaccine;
 
     public ChildDetailsViewModel(UnitOfWork unitOfWork)
     {
@@ -22,12 +26,28 @@ public class ChildDetailsViewModel : ViewModelBase
     {
         Child = child;
         AddVaccineCommand = new Command(AddVaccine);
+        VaccineDetailsCommand = new Command(VaccineDetails);
     }
 
     private async void AddVaccine()
     {
         var route = $"{nameof(AddVaccinePage)}?ChildId={Child.Id.ToString()}";
         await Shell.Current.GoToAsync(route);
+    }
+
+    private async void VaccineDetails()
+    {
+        if (SelectedVaccine == null)
+        {
+            return;
+        }
+        else
+        {
+            var SelectedItemJson = JsonConvert.SerializeObject(SelectedVaccine);
+            var route = $"{nameof(VaccineDetailsPage)}?Vaccine={SelectedItemJson}";
+            await Shell.Current.GoToAsync(route);
+            SelectedVaccine = null;
+        }
     }
 
     public async void GetVaccines()
@@ -41,6 +61,12 @@ public class ChildDetailsViewModel : ViewModelBase
             return;
         }
     }
+
+    public VaccineModel SelectedVaccine
+    {
+        get { return _selectedVaccine; }
+        set { _selectedVaccine = value; OnPropertyChanged(); }
+    }
     public ChildModel Child
     {
         get { return _child; }
@@ -53,4 +79,5 @@ public class ChildDetailsViewModel : ViewModelBase
     }
 
     public ICommand AddVaccineCommand { private set; get; }
+    public ICommand VaccineDetailsCommand { private set; get; }
 }

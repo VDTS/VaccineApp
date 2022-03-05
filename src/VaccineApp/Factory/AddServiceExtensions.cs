@@ -84,6 +84,10 @@ public static class AddServiceExtensions
         Services.AddTransient<ForgotPasswordViewModel>();
         Services.AddTransient<VaccinesTimeTableViewModel>();
         Services.AddTransient<VaccineGuidesViewModel>();
+        Services.AddTransient<SchoolDetailsViewModel>();
+        Services.AddTransient<ClinicDetailsViewModel>();
+        Services.AddTransient<MasjeedDetailsViewModel>();
+        Services.AddTransient<VaccineDetailsViewModel>();
 
         return Services;
     }

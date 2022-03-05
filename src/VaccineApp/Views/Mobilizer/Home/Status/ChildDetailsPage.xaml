@@ -54,7 +54,10 @@
                 </StackLayout>
             </StackLayout>
         </Frame>
-        <CollectionView ItemsSource="{Binding Vaccines}">
+        <CollectionView ItemsSource="{Binding Vaccines}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedVaccine}"
+                        SelectionChangedCommand="{Binding VaccineDetailsCommand}">
             <CollectionView.Header>
                 <StackLayout VerticalOptions="Center">
                     <Grid Padding="10"
