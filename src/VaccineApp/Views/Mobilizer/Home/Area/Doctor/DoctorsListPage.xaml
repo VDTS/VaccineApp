@@ -23,7 +23,7 @@
                      HorizontalOptions="CenterAndExpand">
             <Label FontSize="25"
                    TextColor="{DynamicResource HeaderLabelTextColor}"
-                   Text="Cluster Name" />
+                   Text="Doctor Name" />
         </StackLayout>
 
         <ScrollView Grid.Row="1"

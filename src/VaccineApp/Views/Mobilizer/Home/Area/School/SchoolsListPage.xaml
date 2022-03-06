@@ -23,7 +23,7 @@
                      HorizontalOptions="CenterAndExpand">
             <Label FontSize="25"
                    TextColor="{DynamicResource HeaderLabelTextColor}"
-                   Text="Cluster Name" />
+                   Text="School Name" />
         </StackLayout>
 
         <ScrollView Grid.Row="1"
@@ -34,12 +34,6 @@
                             ItemsSource="{Binding Schools}"
                             SelectedItem="{Binding SelectedSchool}"
                             SelectionChangedCommand="{Binding SchoolDetailsCommand}">
-                <CollectionView.Header>
-                    <StackLayout VerticalOptions="Center">
-                        <Label FontAttributes="Bold"
-                               Text="Schools" />
-                    </StackLayout>
-                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Model:SchoolModel">
                         <Frame WidthRequest="280"
