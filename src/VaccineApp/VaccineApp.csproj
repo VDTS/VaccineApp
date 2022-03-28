@@ -272,11 +272,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
-		<PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+		<PackageReference Include="FirebaseAdmin" Version="2.3.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="GitHubJwt" Version="0.0.5" />
 		<PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
-		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.4.0.53" />
+		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.4.0.56" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 	</ItemGroup>
 

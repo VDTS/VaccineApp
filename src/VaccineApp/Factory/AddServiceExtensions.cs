@@ -28,6 +28,37 @@ using VaccineApp.ViewModels.Supervisor.Announcements;
 using VaccineApp.ViewModels.Supervisor.Charts;
 using VaccineApp.ViewModels.Supervisor.Periods;
 using VaccineApp.ViewModels.Supervisor.Reports;
+using VaccineApp.Views.Access.ForgotPassword;
+using VaccineApp.Views.Access.SignIn;
+using VaccineApp.Views.Admin.Home.Cluster;
+using VaccineApp.Views.Admin.Home.Team;
+using VaccineApp.Views.Admin.Home.User;
+using VaccineApp.Views.Admin.User;
+using VaccineApp.Views.App;
+using VaccineApp.Views.App.AboutUs;
+using VaccineApp.Views.App.HelpSupport;
+using VaccineApp.Views.App.Profile;
+using VaccineApp.Views.App.Settings;
+using VaccineApp.Views.Mobilizer.Announcements;
+using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
+using VaccineApp.Views.Mobilizer.Home.Area.Doctor;
+using VaccineApp.Views.Mobilizer.Home.Area.Influencer;
+using VaccineApp.Views.Mobilizer.Home.Area.Masjeed;
+using VaccineApp.Views.Mobilizer.Home.Area.School;
+using VaccineApp.Views.Mobilizer.Home.Family;
+using VaccineApp.Views.Mobilizer.Home.Family.Child;
+using VaccineApp.Views.Mobilizer.Home.Status;
+using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
+using VaccineApp.Views.Mobilizer.Home.Status.Vaccine;
+using VaccineApp.Views.Parent;
+using VaccineApp.Views.Parent.Guides;
+using VaccineApp.Views.Parent.QR;
+using VaccineApp.Views.Parent.VaccineNotifications;
+using VaccineApp.Views.Supervisor;
+using VaccineApp.Views.Supervisor.Announcements;
+using VaccineApp.Views.Supervisor.Charts;
+using VaccineApp.Views.Supervisor.Periods;
+using VaccineApp.Views.Supervisor.Reports;
 
 namespace VaccineApp.Factory;
 
@@ -93,6 +124,72 @@ public static class AddServiceExtensions
         Services.AddTransient<VaccinesNotificationsViewModel>();
 
         return Services;
+    }
+
+    public static IServiceCollection AddPages(this IServiceCollection services)
+    {
+        // AccessShell Pages
+        services.AddSingleton<ForgotPasswordPage>();
+        services.AddSingleton<SignInPage>();
+
+        // Admin Pages
+        services.AddSingleton<AddClusterPage>();
+        services.AddSingleton<ClustersListPage>();
+        services.AddSingleton<AddTeamPage>();
+        services.AddSingleton<TeamsListPage>();
+        services.AddSingleton<AddUserPage>();
+        services.AddSingleton<UsersListPage>();
+
+        // App Pages
+        services.AddSingleton<AboutUsPage>();
+        services.AddSingleton<FeedbackPage>();
+        services.AddSingleton<HelpSupportPage>();
+        services.AddSingleton<EditProfilePage>();
+        services.AddSingleton<ProfilePage>();
+        services.AddSingleton<SettingsPage>();
+
+        // Mobilizer Pages
+        services.AddSingleton<AnnouncementListPage>();
+        services.AddSingleton<AddClinicPage>();
+        services.AddSingleton<ClinicDetailsPage>();
+        services.AddSingleton<ClinicsListPage>();
+        services.AddSingleton<AddDoctorPage>();
+        services.AddSingleton<DoctorsListPage>();
+        services.AddSingleton<AddInfluencerPage>();
+        services.AddSingleton<InfluencersListPage>();
+        services.AddSingleton<AddMasjeedPage>();
+        services.AddSingleton<MasjeedsListPage>();
+        services.AddSingleton<AddSchoolPage>();
+        services.AddSingleton<SchoolsListPage>();
+        services.AddSingleton<AddChildPage>();
+        services.AddSingleton<AddFamilyPage>();
+        services.AddSingleton<FamiliesListPage>();
+        services.AddSingleton<FamilyDetailsPage>();
+        services.AddSingleton<AddAnonymousChildPage>();
+        services.AddSingleton<AnonymousChildrenListPage>();
+        services.AddSingleton<AddVaccinePage>();
+        services.AddSingleton<VaccineDetailsPage>();
+        services.AddSingleton<ChildDetailsPage>();
+        services.AddSingleton<StatusPage>();
+
+        // Parent Pages
+        services.AddSingleton<VaccineGuidesPage>();
+        services.AddSingleton<VaccinesTimeTablePage>();
+        services.AddSingleton<QRGeneratedImagePage>();
+        services.AddSingleton<VaccineNotificationsPage>();
+        services.AddSingleton<ParentChildDetailsPage>();
+        services.AddSingleton<ParentFamilyPage>();
+
+        // Supervisor Pages
+        services.AddSingleton<AddAnnouncementPage>();
+        services.AddSingleton<AnnouncementsListPage>();
+        services.AddSingleton<ChartsPage>();
+        services.AddSingleton<AddPeriodPage>();
+        services.AddSingleton<PeriodsListPage>();
+        services.AddSingleton<ReportsPage>();
+        services.AddSingleton<StatsPage>();
+
+        return services;
     }
 
     public static IServiceCollection AddDeviceSpecificFeatures(this IServiceCollection Services)
