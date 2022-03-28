@@ -1,9 +1,9 @@
-﻿using Core.Models;
-using FirebaseAdmin.Auth;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Core.Models;
+using FirebaseAdmin.Auth;
 using VaccineApp.ViewModels.Base;
-using VaccineApp.Views.Admin.Home.User;
+using VaccineApp.Views.Admin.User;
 
 namespace VaccineApp.ViewModels.Admin.Home.User;
 

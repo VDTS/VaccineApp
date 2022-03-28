@@ -1,6 +1,6 @@
 using VaccineApp.ViewModels.Admin.Home.User;
 
-namespace VaccineApp.Views.Admin.Home.User;
+namespace VaccineApp.Views.Admin.User;
 public partial class AddUserPage : ContentPage
 {
     public AddUserPage(AddUserViewModel viewModel)

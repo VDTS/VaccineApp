@@ -32,7 +32,6 @@ using VaccineApp.Views.Access.ForgotPassword;
 using VaccineApp.Views.Access.SignIn;
 using VaccineApp.Views.Admin.Home.Cluster;
 using VaccineApp.Views.Admin.Home.Team;
-using VaccineApp.Views.Admin.Home.User;
 using VaccineApp.Views.Admin.User;
 using VaccineApp.Views.App;
 using VaccineApp.Views.App.AboutUs;

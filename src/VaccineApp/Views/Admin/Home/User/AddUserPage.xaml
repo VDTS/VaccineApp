@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VaccineApp.Views.Admin.Home.User.AddUserPage"
+             x:Class="VaccineApp.Views.Admin.User.AddUserPage"
              xmlns:ViewModel="clr-namespace:VaccineApp.ViewModels.Admin.Home.User"
              x:DataType="ViewModel:AddUserViewModel"
              Shell.TabBarIsVisible="False"
