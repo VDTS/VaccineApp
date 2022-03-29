@@ -1,25 +1,27 @@
 ﻿using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using VaccineApp.Views.Supervisor.Periods;
 
 namespace VaccineApp.ViewModels.Supervisor.Periods;
 
-public class PeriodsListViewModel : ViewModelBase
+public partial class PeriodsListViewModel : ObservableObject
 {
-    private IEnumerable<PeriodModel> _periods;
-    private readonly UnitOfWork _unitOfWork;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    IEnumerable<PeriodModel> _periods;
 
     public PeriodsListViewModel(UnitOfWork unitOfWork)
     {
-        AddPeriodCommand = new Command(AddPeriod);
         Periods = new ObservableCollection<PeriodModel>();
         _unitOfWork = unitOfWork;
     }
 
-    private async void AddPeriod(object obj)
+    [ICommand]
+    async void AddPeriod(object obj)
     {
         var route = $"{nameof(AddPeriodPage)}";
         await Shell.Current.GoToAsync(route);
@@ -39,10 +41,4 @@ public class PeriodsListViewModel : ViewModelBase
             return;
         }
     }
-    public IEnumerable<PeriodModel> Periods
-    {
-        get { return _periods; }
-        set { _periods = value; OnPropertyChanged(); }
-    }
-    public ICommand AddPeriodCommand { private set; get; }
 }

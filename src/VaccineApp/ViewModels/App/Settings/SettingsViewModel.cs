@@ -1,31 +1,30 @@
-﻿using Microsoft.Extensions.Options;
-using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Options;
 using VaccineApp.AppConfigs;
 
 namespace VaccineApp.ViewModels.App.Settings;
 
-public class SettingsViewModel
+public partial class SettingsViewModel : ObservableObject
 {
-    private readonly IOptions<SettingsDefaultsValues> _defaultSettings;
+    readonly IOptions<SettingsDefaultsValues> _defaultSettings;
 
     public SettingsViewModel(IOptions<SettingsDefaultsValues> defaultSettings)
     {
-        ResetAppSettignsDefaultCommand = new Command(ResetAppSettignsDefault);
         _defaultSettings = defaultSettings;
     }
 
-    private void ResetAppSettignsDefault(object obj)
+    [ICommand]
+    void ResetAppSettignsDefault(object obj)
     {
 
         ResetFontSize();
 
     }
 
-    private void ResetFontSize()
+    void ResetFontSize()
     {
         Preferences.Set("FontSize", Convert.ToInt32(_defaultSettings.Value.FontSize));
         Application.Current.Resources["defaultFontSize"] = Convert.ToInt32(Preferences.Get("FontSize", 14));
     }
-
-    public ICommand ResetAppSettignsDefaultCommand { private set; get; }
 }

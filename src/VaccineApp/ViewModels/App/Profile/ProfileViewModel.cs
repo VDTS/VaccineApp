@@ -1,35 +1,38 @@
 ﻿using Auth.Services;
-
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Core.Models;
-
 using DAL.Persistence;
-
 using Newtonsoft.Json;
-
-using System.Windows.Input;
-
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.App.Profile;
 
 namespace VaccineApp.ViewModels.App.Profile;
-public class ProfileViewModel : ViewModelBase
+public partial class ProfileViewModel : ObservableObject
 {
-    private ProfileModel _profile;
-    private readonly SignInService _signInService;
-    private readonly UnitOfWork _unitOfWork;
-    private string _clusterName;
-    private string _teamName;
-    private string _familyName;
+    readonly SignInService _signInService;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    ProfileModel _profile;
+
+    [ObservableProperty]
+    string _clusterName;
+
+    [ObservableProperty]
+    string _teamName;
+
+    [ObservableProperty]
+    string _familyName;
 
     public ProfileViewModel(ProfileModel profile, SignInService signInService, UnitOfWork unitOfWork)
     {
         _profile = profile;
         _signInService = signInService;
         _unitOfWork = unitOfWork;
-        EditCommand = new Command(Edit);
         Get();
     }
 
+    [ICommand]
     private async void Edit()
     {
         // The below line remove PhotoUrl because Route Query can't route urls
@@ -130,26 +133,4 @@ public class ProfileViewModel : ViewModelBase
         }
     }
 
-    public ProfileModel Profile
-    {
-        get { return _profile; }
-        set { _profile = value; OnPropertyChanged(); }
-    }
-
-    public string ClusterName
-    {
-        get { return _clusterName; }
-        set { _clusterName = value; OnPropertyChanged(); }
-    }
-    public string TeamName
-    {
-        get { return _teamName; }
-        set { _teamName = value; OnPropertyChanged(); }
-    }
-    public string FamilyName
-    {
-        get { return _familyName; }
-        set { _familyName = value; OnPropertyChanged(); }
-    }
-    public ICommand EditCommand { private set; get; }
 }

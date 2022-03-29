@@ -1,24 +1,27 @@
-﻿using Core.GroupByModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+using Core.GroupByModels;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Admin.Home.Team;
 
 namespace VaccineApp.ViewModels.Admin.Home.Team;
-public class TeamsListViewModel : ViewModelBase
+public partial class TeamsListViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfwork;
-    private ObservableCollection<TeamsGroupByClusterModel> _teamsGroupByCluster;
+    readonly UnitOfWork _unitOfwork;
+
+    [ObservableProperty]
+    ObservableCollection<TeamsGroupByClusterModel> _teamsGroupByCluster;
 
     public TeamsListViewModel(UnitOfWork unitOfwork)
     {
         _unitOfwork = unitOfwork;
         TeamsGroupByCluster = new ObservableCollection<TeamsGroupByClusterModel>();
-        AddTeamCommand = new Command(AddTeam);
     }
 
-    private async void AddTeam(object obj)
+    [ICommand]
+    async void AddTeam(object obj)
     {
         var route = $"{nameof(AddTeamPage)}";
         await Shell.Current.GoToAsync(route);
@@ -47,11 +50,4 @@ public class TeamsListViewModel : ViewModelBase
     {
         TeamsGroupByCluster = new ObservableCollection<TeamsGroupByClusterModel>();
     }
-    public ObservableCollection<TeamsGroupByClusterModel> TeamsGroupByCluster
-    {
-        get { return _teamsGroupByCluster; }
-        set { _teamsGroupByCluster = value; OnPropertyChanged(); }
-    }
-
-    public ICommand AddTeamCommand { private set; get; }
 }

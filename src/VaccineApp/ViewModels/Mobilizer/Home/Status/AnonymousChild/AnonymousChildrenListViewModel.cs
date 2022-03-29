@@ -1,22 +1,25 @@
-﻿using Core.GroupByModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Core.GroupByModels;
 using Core.StaticData;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Mobilizer.Home.Status.AnonymousChild;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Status.AnonymousChild;
 
-public class AnonymousChildrenListViewModel : ViewModelBase
+public partial class AnonymousChildrenListViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private IEnumerable<string> _childTypes;
-    private ObservableCollection<AnonymousChildrenGroupByChildType> _anonymousChildren;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    IEnumerable<string> _childTypes;
+
+    [ObservableProperty]
+    ObservableCollection<AnonymousChildrenGroupByChildType> _anonymousChildren;
     public AnonymousChildrenListViewModel(UnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        AddChildCommand = new Command(AddChild);
         AnonymousChildren = new ObservableCollection<AnonymousChildrenGroupByChildType>();
         _childTypes = AnonymousChildTypes.ChildTypes();
     }
@@ -41,17 +44,12 @@ public class AnonymousChildrenListViewModel : ViewModelBase
             return;
         }
     }
-    private async void AddChild(object obj)
+
+    [ICommand]
+    async void AddChild(object obj)
     {
         var route = $"{nameof(AddAnonymousChildPage)}";
         await Shell.Current.GoToAsync(route);
-    }
-
-    public ICommand AddChildCommand { private set; get; }
-    public ObservableCollection<AnonymousChildrenGroupByChildType> AnonymousChildren
-    {
-        get { return _anonymousChildren; }
-        set { _anonymousChildren = value; OnPropertyChanged(); }
     }
 
     public void Clear()

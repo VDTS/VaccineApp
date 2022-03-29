@@ -272,6 +272,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview2" />
 		<PackageReference Include="FirebaseAdmin" Version="2.3.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="GitHubJwt" Version="0.0.5" />

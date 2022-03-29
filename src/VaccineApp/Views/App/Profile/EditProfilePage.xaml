@@ -23,7 +23,7 @@
                            HeightRequest="100"
                            Source="{Binding EditProfile.PhotoUrl}">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" />
+                            <TapGestureRecognizer Command="{Binding PhotoPickingMenuCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
                 </Frame>

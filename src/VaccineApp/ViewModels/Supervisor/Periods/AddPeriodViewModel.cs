@@ -1,25 +1,28 @@
 ﻿using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Supervisor.Periods;
 
-public class AddPeriodViewModel : ViewModelBase
+public partial class AddPeriodViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private readonly IToast _toast;
-    private PeriodModel _period;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
+
+    [ObservableProperty]
+    PeriodModel _period;
+
     public AddPeriodViewModel(UnitOfWork unitOfWork, IToast toast)
     {
         _unitOfWork = unitOfWork;
         _toast = toast;
         Period = new();
-        PostCommand = new Command(Post);
     }
 
-    private async void Post(object obj)
+    [ICommand]
+    async void Post(object obj)
     {
         try
         {
@@ -33,11 +36,4 @@ public class AddPeriodViewModel : ViewModelBase
         }
     }
 
-    public PeriodModel Period
-    {
-        get { return _period; }
-        set { _period = value; OnPropertyChanged(); }
-    }
-
-    public ICommand PostCommand { private set; get; }
 }

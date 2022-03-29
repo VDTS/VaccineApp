@@ -1,25 +1,32 @@
 ﻿using Auth.Services;
 using AutoMapper;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Core.Models;
 using Firebase.Storage;
 using FirebaseAdmin.Auth;
 using Microsoft.Extensions.Options;
-using System.Windows.Input;
 using VaccineApp.Factory;
 using VaccineApp.Features;
-using VaccineApp.ViewModels.Base;
 
 namespace VaccineApp.ViewModels.App.Profile;
 
-public class EditProfileViewModel : ViewModelBase
+public partial class EditProfileViewModel : ObservableObject
 {
-    private ProfileModel _profile;
-    private EditProfileModel _editProfile;
-    private readonly IMapper _mapper;
-    private readonly IToast _toast;
-    private AccountService _accountService;
-    private readonly IOptionsSnapshot<AppSecrets> _options;
-    private EditProfileModelValidator _validationRules;
+    readonly IOptionsSnapshot<AppSecrets> _options;
+    readonly IMapper _mapper;
+    readonly IToast _toast;
+
+    [ObservableProperty]
+    ProfileModel _profile;
+
+    [ObservableProperty]
+    EditProfileModel _editProfile;
+
+    [ObservableProperty]
+    AccountService _accountService;
+
+    EditProfileModelValidator _validationRules;
     public EditProfileViewModel(
         EditProfileModel editProfile,
         ProfileModel profile,
@@ -35,27 +42,9 @@ public class EditProfileViewModel : ViewModelBase
         _options = options;
         _profile = profile;
         _validationRules = new();
-
-        ChangeProfileCommand = new Command(ChangeProfile);
-        ChangePasswordCommand = new Command(ChangePassword);
-        ChangePhotoCommand = new Command(PhotoPickingMenu);
     }
 
-    private async void PhotoPickingMenu()
-    {
-        var action = await Application.Current.MainPage.DisplayActionSheet("Open photo", "Cancel", null, "Gallery", "Camera");
-
-        if (action == "Gallery")
-        {
-            await PickPhoto();
-        }
-        else if (action == "Camera")
-        {
-            await CapturePhoto();
-        }
-    }
-
-    private async Task PickPhoto()
+    async Task PickPhoto()
     {
         var photo = await MediaPicker.PickPhotoAsync();
 
@@ -65,7 +54,7 @@ public class EditProfileViewModel : ViewModelBase
         }
     }
 
-    private async Task CapturePhoto()
+    async Task CapturePhoto()
     {
         var photo = await MediaPicker.CapturePhotoAsync();
 
@@ -75,7 +64,7 @@ public class EditProfileViewModel : ViewModelBase
         }
     }
 
-    private async Task ChangePhoto(FileResult photo)
+    async Task ChangePhoto(FileResult photo)
     {
         try
         {
@@ -104,7 +93,23 @@ public class EditProfileViewModel : ViewModelBase
 
     }
 
-    private async void ChangePassword()
+    [ICommand]
+    async void PhotoPickingMenu()
+    {
+        var action = await Application.Current.MainPage.DisplayActionSheet("Open photo", "Cancel", null, "Gallery", "Camera");
+
+        if (action == "Gallery")
+        {
+            await PickPhoto();
+        }
+        else if (action == "Camera")
+        {
+            await CapturePhoto();
+        }
+    }
+
+    [ICommand]
+    async void ChangePassword()
     {
         var validationResult = _validationRules.Validate(EditProfile);
 
@@ -127,7 +132,8 @@ public class EditProfileViewModel : ViewModelBase
         }
     }
 
-    private async void ChangeProfile(object obj)
+    [ICommand]
+    async void ChangeProfile(object obj)
     {
         UserRecordArgs args = new UserRecordArgs()
         {
@@ -146,19 +152,4 @@ public class EditProfileViewModel : ViewModelBase
     {
         EditProfile = _mapper.Map<EditProfileModel>(profile);
     }
-
-    public EditProfileModel EditProfile
-    {
-        get { return _editProfile; }
-        set { _editProfile = value; OnPropertyChanged(); }
-    }
-    public ProfileModel Profile
-    {
-        get { return _profile; }
-        set { _profile = value; OnPropertyChanged(); }
-    }
-
-    public ICommand ChangeProfileCommand { private set; get; }
-    public ICommand ChangePasswordCommand { private set; get; }
-    public ICommand ChangePhotoCommand { private set; get; }
 }

@@ -2,18 +2,24 @@
 using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Admin.Home.Team;
-public class AddTeamViewModel : ViewModelBase
+public partial class AddTeamViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private TeamModel _team;
-    private readonly IToast _toast;
-    private TeamValidator _teamValidator;
-    private IEnumerable<ClusterModel> _clustersList;
-    private ClusterModel _selectedCluster;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
+    TeamValidator _teamValidator;
+
+    [ObservableProperty]
+    TeamModel _team;
+
+    [ObservableProperty]
+    IEnumerable<ClusterModel> _clustersList;
+
+    [ObservableProperty]
+    ClusterModel _selectedCluster;
 
     public AddTeamViewModel(UnitOfWork unitOfWork, TeamModel team, IToast toast)
     {
@@ -24,10 +30,9 @@ public class AddTeamViewModel : ViewModelBase
         ClustersList = new ObservableCollection<ClusterModel>();
         _teamValidator = new();
         GetClusters();
-        PostCommand = new Command(Post);
     }
 
-    private async void GetClusters()
+    async void GetClusters()
     {
         try
         {
@@ -39,7 +44,8 @@ public class AddTeamViewModel : ViewModelBase
         }
     }
 
-    private async void Post()
+    [ICommand]
+    async void Post()
     {
         var validationResult = _teamValidator.Validate(_team);
         if (validationResult.IsValid)
@@ -52,23 +58,5 @@ public class AddTeamViewModel : ViewModelBase
         {
             _toast.MakeToast(validationResult.Errors[0].PropertyName, validationResult.Errors[0].ErrorMessage);
         }
-    }
-
-    public ICommand PostCommand { private set; get; }
-
-    public TeamModel Team
-    {
-        get { return _team; }
-        set { _team = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<ClusterModel> ClustersList
-    {
-        get { return _clustersList; }
-        set { _clustersList = value; OnPropertyChanged(); }
-    }
-    public ClusterModel SelectedCluster
-    {
-        get { return _selectedCluster; }
-        set { _selectedCluster = value; OnPropertyChanged(); }
     }
 }

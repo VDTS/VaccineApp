@@ -10,7 +10,7 @@
         <ToolbarItem IconImageSource="qrcode.png"
                      Order="Secondary"
                      Text="Share data with QR"
-                     Command="{Binding ShareDataWithQRCodeCommand}" />
+                     Command="{Binding GenerateandGotoThatePageCommand}" />
     </ContentPage.ToolbarItems>
 
     <Grid RowDefinitions="0.15*, 0.85*"

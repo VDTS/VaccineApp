@@ -1,32 +1,22 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using Core.Models;
 
-using VaccineApp.ViewModels.Base;
-
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
 
-public class ClinicDetailsViewModel : ViewModelBase
+public partial class ClinicDetailsViewModel : ObservableObject
 {
-    private ClinicModel _clinic;
-    public ClinicDetailsViewModel()
-    {
-        GoToMapCommand = new Command(GoToMap);
-    }
+    [ObservableProperty]
+    ClinicModel _clinic;
 
-    public ICommand GoToMapCommand { private set; get; }
     public void GetQueryProperty(ClinicModel clinic)
     {
         _clinic = clinic;
     }
 
-    public ClinicModel Clinic
-    {
-        get { return _clinic; }
-        set { _clinic = value; OnPropertyChanged(); }
-    }
-
-    public async void GoToMap()
+    [ICommand]
+    async void GoToMap()
     {
         if (Clinic.Latitude != null && Clinic.Longitude != null)
         {

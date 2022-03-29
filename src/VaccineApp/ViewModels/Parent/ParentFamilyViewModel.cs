@@ -5,38 +5,45 @@ using Newtonsoft.Json;
 using SkiaSharp;
 using SkiaSharp.QrCode;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using VaccineApp.Views.Parent;
 using VaccineApp.Views.Parent.QR;
 
 namespace VaccineApp.ViewModels.Parent;
 
-public class ParentFamilyViewModel : ViewModelBase
+public partial class ParentFamilyViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfwork;
-    private FamilyModel _family;
-    private Guid _familyId;
-    private IEnumerable<ChildModel> _childs;
-    private ChildModel _selectedChild;
+    readonly UnitOfWork _unitOfwork;
+
+    [ObservableProperty]
+    FamilyModel _family;
+
+    [ObservableProperty]
+    Guid _familyId;
+
+    [ObservableProperty]
+    IEnumerable<ChildModel> _childs;
+
+    [ObservableProperty]
+    ChildModel _selectedChild;
 
     public ParentFamilyViewModel(UnitOfWork unitOfwork, FamilyModel family)
     {
         _unitOfwork = unitOfwork;
         _family = family;
         _familyId = Guid.Parse(Preferences.Get("FamilyId", "AnonymousFamilyId"));
-        ShareDataWithQRCodeCommand = new Command(GenerateandGotoThatePage);
-        ChildDetailsCommand = new Command(ChildDetails);
     }
 
-    private async void GenerateandGotoThatePage()
+    [ICommand]
+    async void GenerateandGotoThatePage()
     {
         await ShareDataWithQRCode();
 
         await Shell.Current.GoToAsync(nameof(QRGeneratedImagePage));
     }
 
-    private async Task ShareDataWithQRCode()
+    async Task ShareDataWithQRCode()
     {
         FamilyWithChildrenModel familyWithChildrenModel = new();
         familyWithChildrenModel.Family = Family;
@@ -67,23 +74,6 @@ public class ParentFamilyViewModel : ViewModelBase
         data.SaveTo(stream);
     }
 
-    public FamilyModel Family
-    {
-        get { return _family; }
-        set { _family = value; OnPropertyChanged(); }
-    }
-
-    public ChildModel SelectedChild
-    {
-        get { return _selectedChild; }
-        set { _selectedChild = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<ChildModel> Childs
-    {
-        get { return _childs; }
-        set { _childs = value; OnPropertyChanged(); }
-    }
-
     public async void GetFamily()
     {
         try
@@ -112,6 +102,7 @@ public class ParentFamilyViewModel : ViewModelBase
         }
     }
 
+    [ICommand]
     private async void ChildDetails()
     {
         if (SelectedChild == null)
@@ -126,6 +117,4 @@ public class ParentFamilyViewModel : ViewModelBase
             SelectedChild = null;
         }
     }
-    public ICommand ShareDataWithQRCodeCommand { private set; get; }
-    public ICommand ChildDetailsCommand { private set; get; }
 }

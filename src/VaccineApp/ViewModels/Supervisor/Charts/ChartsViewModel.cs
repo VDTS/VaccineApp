@@ -1,4 +1,4 @@
-﻿using VaccineApp.ViewModels.Base;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Core.CountsPerParentModels;
 using Core.Models;
 using DAL.Persistence;
@@ -6,13 +6,21 @@ using System.Collections.ObjectModel;
 
 namespace VaccineApp.ViewModels.Supervisor.Charts;
 
-public class ChartsViewModel : ViewModelBase
+public partial class ChartsViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private ClusterModel _cluster;
-    private IEnumerable<TeamModel> _teams;
-    private ObservableCollection<FamiliesCountPerTeamsModel> _families;
-    private int _childs;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    ClusterModel _cluster;
+
+    [ObservableProperty]
+    IEnumerable<TeamModel> _teams;
+
+    [ObservableProperty]
+    ObservableCollection<FamiliesCountPerTeamsModel> _families;
+
+    [ObservableProperty]
+    int _childs;
 
     public ChartsViewModel(UnitOfWork unitOfWork)
     {
@@ -76,30 +84,10 @@ public class ChartsViewModel : ViewModelBase
         }
     }
 
-    private async Task<int> GetChilds(string id)
+    async Task<int> GetChilds(string id)
     {
         var s = await _unitOfWork.GetChilds(id);
         return s.ToList().Count;
     }
 
-    public ClusterModel Cluster
-    {
-        get { return _cluster; }
-        set { _cluster = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<TeamModel> Teams
-    {
-        get { return _teams; }
-        set { _teams = value; OnPropertyChanged(); }
-    }
-    public ObservableCollection<FamiliesCountPerTeamsModel> Families
-    {
-        get { return _families; }
-        set { _families = value; OnPropertyChanged(); }
-    }
-    public int Childs
-    {
-        get { return _childs; }
-        set { _childs = value; OnPropertyChanged(); }
-    }
 }

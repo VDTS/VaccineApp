@@ -1,19 +1,20 @@
 ﻿using System.Collections.ObjectModel;
-
 using Core.HybridModels;
 using Core.Utility;
-
 using DAL.Persistence;
-
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace VaccineApp.ViewModels.Parent.VaccineNotifications;
 
-public class VaccinesNotificationsViewModel : ViewModelBase
+public partial class VaccinesNotificationsViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private string _familyId;
-    private ObservableCollection<ChildWithNextVaccineModel> _childWithNextVaccine;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    string _familyId;
+
+    [ObservableProperty]
+    ObservableCollection<ChildWithNextVaccineModel> _childWithNextVaccine;
 
     public VaccinesNotificationsViewModel(UnitOfWork unitOfWork)
     {
@@ -57,11 +58,5 @@ public class VaccinesNotificationsViewModel : ViewModelBase
             return;
         }
         
-    }
-
-    public ObservableCollection<ChildWithNextVaccineModel> ChildWithNextVaccine
-    {
-        get { return _childWithNextVaccine; }
-        set { _childWithNextVaccine = value; OnPropertyChanged(); }
     }
 }

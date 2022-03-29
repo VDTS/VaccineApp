@@ -5,26 +5,31 @@ using Core.StaticData;
 using DAL.Persistence;
 using RealCache.Persistence.Migrations;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using VaccineApp.Features;
 using VaccineApp.PDFGenerator;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Supervisor.Reports;
 
-public class ReportsViewModel : ViewModelBase
+public partial class ReportsViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private readonly IToast _toast;
-    private readonly ReportsGenerator _reportsGenerator;
-    private readonly DbContext<PeriodModel> _dbContext;
-    private ClusterModel _cluster;
-    private IEnumerable<TeamModel> _teams;
-    private ObservableCollection<AnonymousChildrenCountPerTeamModel> _anonymouChildrenCountGroupByTeam;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
+    readonly ReportsGenerator _reportsGenerator;
+    readonly DbContext<PeriodModel> _dbContext;
+
+    [ObservableProperty]
+    ClusterModel _cluster;
+
+    [ObservableProperty]
+    IEnumerable<TeamModel> _teams;
+
+    [ObservableProperty]
+    ObservableCollection<AnonymousChildrenCountPerTeamModel> _anonymouChildrenCountGroupByTeam;
+    
     public ReportsViewModel(UnitOfWork unitOfWork, IToast toast, ReportsGenerator reportsGenerator, DbContext<PeriodModel> dbContext)
     {
-        NonResedentialChildrenReportCommand = new Command(GenerateNonResedentialChildrenReport);
-        VaccinePeriodReportCommand = new Command(GenerateVaccinePeriodReport);
         Cluster = new ClusterModel();
         Teams = new ObservableCollection<TeamModel>();
         AnonymouChildrenCountGroupByTeam = new ObservableCollection<AnonymousChildrenCountPerTeamModel>();
@@ -34,14 +39,17 @@ public class ReportsViewModel : ViewModelBase
         _dbContext = dbContext;
     }
 
-    private async void GenerateVaccinePeriodReport()
+    [ICommand]
+    async void GenerateVaccinePeriodReport()
     {
         await GetChildrenCountPerVaccineStatusPerTeam();
         _reportsGenerator.VaccinePeriodReport(Cluster.ClusterName, childrenCountPerVaccineStatusPerTeam);
     }
 
-    private List<ChildrenCountPerVaccineStatusPerTeam> childrenCountPerVaccineStatusPerTeam;
-    private async Task GetChildrenCountPerVaccineStatusPerTeam()
+    List<ChildrenCountPerVaccineStatusPerTeam> childrenCountPerVaccineStatusPerTeam;
+
+   
+    async Task GetChildrenCountPerVaccineStatusPerTeam()
     {
         _dbContext.CreateDB("mobilizer", "user");
         var s = _dbContext.Get();
@@ -115,26 +123,13 @@ public class ReportsViewModel : ViewModelBase
         }
     }
 
-    private async void GenerateNonResedentialChildrenReport()
+    [ICommand]
+    async void GenerateNonResedentialChildrenReport()
     {
         await GetAnonymousChildren();
         _reportsGenerator.NonResedentialChildrenReport(Cluster.ClusterName, AnonymouChildrenCountGroupByTeam);
     }
-    public ICommand NonResedentialChildrenReportCommand { private set; get; }
-    public ICommand VaccinePeriodReportCommand { private set; get; }
-
-    public ClusterModel Cluster
-    {
-        get { return _cluster; }
-        set { _cluster = value; OnPropertyChanged(); }
-    }
-    public ObservableCollection<AnonymousChildrenCountPerTeamModel> AnonymouChildrenCountGroupByTeam
-    {
-        get { return _anonymouChildrenCountGroupByTeam; }
-        set { _anonymouChildrenCountGroupByTeam = value; OnPropertyChanged(); }
-    }
-
-    private async Task GetAnonymousChildren()
+    async Task GetAnonymousChildren()
     {
         try
         {
@@ -155,12 +150,6 @@ public class ReportsViewModel : ViewModelBase
             return;
         }
     }
-    public IEnumerable<TeamModel> Teams
-    {
-        get { return _teams; }
-        set { _teams = value; OnPropertyChanged(); }
-    }
-
     public async Task GetClusters()
     {
         try
@@ -173,7 +162,6 @@ public class ReportsViewModel : ViewModelBase
             return;
         }
     }
-
     public async Task GetTeams()
     {
         try

@@ -1,26 +1,28 @@
 ﻿using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Supervisor.Announcements;
 
-public class AddAnnouncementViewModel : ViewModelBase
+public partial class AddAnnouncementViewModel : ObservableObject
 {
-    private AnnouncementModel _announcement;
-    private readonly UnitOfWork _unitOfWork;
-    private readonly IToast _toast;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
+
+    [ObservableProperty]
+    AnnouncementModel _announcement;
 
     public AddAnnouncementViewModel(UnitOfWork unitOfWork, IToast toast)
     {
         Announcement = new();
-        PostCommand = new Command(Post);
         _unitOfWork = unitOfWork;
         _toast = toast;
     }
 
-    private async void Post(object obj)
+    [ICommand]
+    async void Post(object obj)
     {
         try
         {
@@ -34,11 +36,4 @@ public class AddAnnouncementViewModel : ViewModelBase
         }
     }
 
-    public AnnouncementModel Announcement
-    {
-        get { return _announcement; }
-        set { _announcement = value; OnPropertyChanged(); }
-    }
-
-    public ICommand PostCommand { private set; get; }
 }

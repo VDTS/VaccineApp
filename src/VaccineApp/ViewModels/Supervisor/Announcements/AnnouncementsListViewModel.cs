@@ -1,22 +1,23 @@
 ﻿using Core.Models;
 using DAL.Persistence;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using VaccineApp.Views.Supervisor.Announcements;
 
 namespace VaccineApp.ViewModels.Supervisor.Announcements;
 
-public class AnnouncementsListViewModel : ViewModelBase
+public partial class AnnouncementsListViewModel : ObservableObject
 {
-    private IEnumerable<AnnouncementModel> _announcements;
-    private readonly UnitOfWork _unitOfWork;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    IEnumerable<AnnouncementModel> _announcements;
 
     public AnnouncementsListViewModel(UnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         Announcements = new ObservableCollection<AnnouncementModel>();
-        AddAnnouncementCommand = new Command(AddAnnouncement);
     }
 
     public async void Get()
@@ -36,17 +37,11 @@ public class AnnouncementsListViewModel : ViewModelBase
         Announcements = new ObservableCollection<AnnouncementModel>();
     }
 
+    [ICommand]
     private async void AddAnnouncement()
     {
         var route = $"{nameof(AddAnnouncementPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    public ICommand AddAnnouncementCommand { private set; get; }
-
-    public IEnumerable<AnnouncementModel> Announcements
-    {
-        get { return _announcements; }
-        set { _announcements = value; OnPropertyChanged(); }
-    }
 }

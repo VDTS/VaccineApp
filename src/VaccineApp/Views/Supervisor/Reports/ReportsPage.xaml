@@ -17,13 +17,13 @@
         <StackLayout Spacing="20">
             <Label Text="Non-resedential Children Report (PDF)">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NonResedentialChildrenReportCommand}" />
+                    <TapGestureRecognizer Command="{Binding GenerateNonResedentialChildrenReportCommand}" />
                 </Label.GestureRecognizers>
             </Label>
 
             <Label Text="Vaccine Period Report (PDF)">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding VaccinePeriodReportCommand}" />
+                    <TapGestureRecognizer Command="{Binding GenerateVaccinePeriodReportCommand}" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>

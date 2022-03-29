@@ -1,18 +1,22 @@
 ﻿using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Family.Child;
-public class AddChildViewModel : ViewModelBase
+public partial class AddChildViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private readonly IToast _toast;
-    private ChildModel _child;
-    private string _familyId;
-    ChildValidator _childValidator { get; set; }
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
 
+    [ObservableProperty]
+    ChildModel _child;
+
+    [ObservableProperty]
+    string _familyId;
+
+    ChildValidator _childValidator { get; set; }
 
     public AddChildViewModel(UnitOfWork unitOfWork, ChildModel child, IToast toast)
     {
@@ -20,8 +24,6 @@ public class AddChildViewModel : ViewModelBase
         _toast = toast;
         _child = child;
         _childValidator = new();
-
-        PostCommand = new Command(Post);
     }
 
     internal void GetQueryProperty(string familyId)
@@ -29,9 +31,8 @@ public class AddChildViewModel : ViewModelBase
         _familyId = familyId;
     }
 
-    public ICommand PostCommand { private set; get; }
-
-    private async void Post()
+    [ICommand]
+    async void Post()
     {
         Child.DOB = DateTime.SpecifyKind(Child.DOB, DateTimeKind.Utc);
         var validationResult = _childValidator.Validate(Child);
@@ -44,19 +45,6 @@ public class AddChildViewModel : ViewModelBase
         else
         {
             _toast.MakeToast(validationResult.Errors[0].PropertyName, validationResult.Errors[0].ErrorMessage);
-        }
-    }
-
-    public ChildModel Child
-    {
-        get
-        {
-            return _child;
-        }
-        set
-        {
-            _child = value;
-            OnPropertyChanged();
         }
     }
 }

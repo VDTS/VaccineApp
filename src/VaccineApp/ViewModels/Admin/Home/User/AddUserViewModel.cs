@@ -5,28 +5,50 @@ using DAL.Persistence;
 using FirebaseAdmin.Auth;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Utility.Generators;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Admin.Home.User;
-public class AddUserViewModel : ViewModelBase
+public partial class AddUserViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private readonly IToast _toast;
-    private readonly AccountService _accountService;
-    private readonly SignInService _signInService;
-    private string _email;
-    private string _fullName;
-    private string _phoneNumber;
-    private IList<string> _rolesList;
-    private IEnumerable<ClusterModel> _clustersList;
-    private IEnumerable<TeamModel> _teamsList;
-    private IEnumerable<FamilyModel> _familiesList;
-    private string _selectedRole;
-    private ClusterModel _selectedCluster;
-    private TeamModel _selectedTeam;
-    private FamilyModel _selectedFamily;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
+    readonly AccountService _accountService;
+    readonly SignInService _signInService;
+
+    [ObservableProperty]
+    string _email;
+
+    [ObservableProperty]
+    string _fullName;
+
+    [ObservableProperty]
+    string _phoneNumber;
+
+    [ObservableProperty]
+    IList<string> _rolesList;
+
+    [ObservableProperty]
+    IEnumerable<ClusterModel> _clustersList;
+
+    [ObservableProperty]
+    IEnumerable<TeamModel> _teamsList;
+
+    [ObservableProperty]
+    IEnumerable<FamilyModel> _familiesList;
+
+    [ObservableProperty]
+    string _selectedRole;
+
+    [ObservableProperty]
+    ClusterModel _selectedCluster;
+
+    [ObservableProperty]
+    TeamModel _selectedTeam;
+
+    [ObservableProperty]
+    FamilyModel _selectedFamily;
 
     public AddUserViewModel(UnitOfWork unitOfWork, IToast toast, AccountService accountService, SignInService signInService)
     {
@@ -42,87 +64,9 @@ public class AddUserViewModel : ViewModelBase
         _toast = toast;
         _accountService = accountService;
         _signInService = signInService;
-        PostCommand = new Command(Post);
-    }
-    public ICommand PostCommand { private set; get; }
-    public string Email
-    {
-        get
-        {
-            return _email;
-        }
-        set
-        {
-            _email = value;
-            OnPropertyChanged();
-        }
-    }
-    public string FullName
-    {
-        get
-        {
-            return _fullName;
-        }
-        set
-        {
-            _fullName = value;
-            OnPropertyChanged();
-        }
-    }
-    public string PhoneNumber
-    {
-        get
-        {
-            return _phoneNumber;
-        }
-        set
-        {
-            _phoneNumber = value;
-            OnPropertyChanged();
-        }
-    }
-    public IList<string> RolesList
-    {
-        get { return _rolesList; }
-        set { _rolesList = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<ClusterModel> ClustersList
-    {
-        get { return _clustersList; }
-        set { _clustersList = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<TeamModel> TeamsList
-    {
-        get { return _teamsList; }
-        set { _teamsList = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<FamilyModel> FamiliesList
-    {
-        get { return _familiesList; }
-        set { _familiesList = value; OnPropertyChanged(); }
-    }
-    public string SelectedRole
-    {
-        get { return _selectedRole; }
-        set { _selectedRole = value; OnPropertyChanged(); GetClustersData(); }
-    }
-    public ClusterModel SelectedCluster
-    {
-        get { return _selectedCluster; }
-        set { _selectedCluster = value; OnPropertyChanged(); GetTeamsData(); }
-    }
-    public TeamModel SelectedTeam
-    {
-        get { return _selectedTeam; }
-        set { _selectedTeam = value; OnPropertyChanged(); GetFamiliesData(); }
-    }
-    public FamilyModel SelectedFamily
-    {
-        get { return _selectedFamily; }
-        set { _selectedFamily = value; OnPropertyChanged(); }
     }
 
-    private async void GetClustersData()
+    async void GetClustersData()
     {
         if (SelectedRole == "Supervisor" ||
             SelectedRole == "Mobilizer" ||
@@ -138,7 +82,7 @@ public class AddUserViewModel : ViewModelBase
             }
         }
     }
-    private async void GetTeamsData()
+    async void GetTeamsData()
     {
         if (SelectedRole == "Mobilizer" ||
             SelectedRole == "Parent")
@@ -153,7 +97,7 @@ public class AddUserViewModel : ViewModelBase
             }
         }
     }
-    private async void GetFamiliesData()
+    async void GetFamiliesData()
     {
         if (SelectedRole == "Parent")
         {
@@ -167,7 +111,9 @@ public class AddUserViewModel : ViewModelBase
             }
         }
     }
-    private async void Post()
+
+    [ICommand]
+    async void Post()
     {
         try
         {
@@ -202,7 +148,7 @@ public class AddUserViewModel : ViewModelBase
         }
     }
 
-    private Dictionary<string, object> AddClaims()
+    Dictionary<string, object> AddClaims()
     {
         Dictionary<string, object> claims = new();
         if (SelectedRole == "Admin")

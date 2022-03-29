@@ -5,19 +5,25 @@ using DAL.Persistence;
 using Newtonsoft.Json;
 using RealCache.Persistence.Migrations;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Mobilizer.Home.Status;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Status;
 
-public class StatusViewModel : ViewModelBase
+public partial class StatusViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private readonly DbContext<PeriodModel> _dbContext;
-    private ObservableCollection<ChildrenGroupByHouseNoModel> _childrenGroupByFamily;
-    private ChildWithVaccineStatusModel _selectedChild;
-    private string _periodId;
+    readonly UnitOfWork _unitOfWork;
+    readonly DbContext<PeriodModel> _dbContext;
+
+    [ObservableProperty]
+    ObservableCollection<ChildrenGroupByHouseNoModel> _childrenGroupByFamily;
+
+    [ObservableProperty]
+    ChildWithVaccineStatusModel _selectedChild;
+
+    [ObservableProperty]
+    string _periodId;
     public StatusViewModel(UnitOfWork unitOfWork, DbContext<PeriodModel> dbContext)
     {
         _unitOfWork = unitOfWork;
@@ -25,10 +31,9 @@ public class StatusViewModel : ViewModelBase
         ChildrenGroupByFamily = new();
         SelectedChild = new();
         GetPeriod();
-        ChildDetailsCommand = new Command(ChildDetails);
     }
 
-    private async void GetPeriod()
+    async void GetPeriod()
     {
         try
         {
@@ -44,7 +49,8 @@ public class StatusViewModel : ViewModelBase
         }
     }
 
-    private async void ChildDetails()
+    [ICommand]
+    async void ChildDetails()
     {
         if (SelectedChild == null)
         {
@@ -104,17 +110,6 @@ public class StatusViewModel : ViewModelBase
         }
     }
 
-    public ChildWithVaccineStatusModel SelectedChild
-    {
-        get { return _selectedChild; }
-        set { _selectedChild = value; OnPropertyChanged(); }
-    }
-    public ObservableCollection<ChildrenGroupByHouseNoModel> ChildrenGroupByFamily
-    {
-        get { return _childrenGroupByFamily; }
-        set { _childrenGroupByFamily = value; OnPropertyChanged(); }
-    }
-    public ICommand ChildDetailsCommand { private set; get; }
     public void Clear()
     {
         ChildrenGroupByFamily.Clear();

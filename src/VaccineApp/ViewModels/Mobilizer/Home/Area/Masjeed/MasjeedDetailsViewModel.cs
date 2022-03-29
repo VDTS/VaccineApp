@@ -1,33 +1,23 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using Core.Models;
 
-using VaccineApp.ViewModels.Base;
-
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Masjeed;
 
-public class MasjeedDetailsViewModel : ViewModelBase
+public partial class MasjeedDetailsViewModel : ObservableObject
 {
-    public MasjeedModel _masjeed { get; set; }
-    public MasjeedDetailsViewModel()
-    {
-        GoToMapCommand = new Command(GoToMap);
-    }
-
-    public ICommand GoToMapCommand { private set; get; }
+    [ObservableProperty]
+    MasjeedModel _masjeed;
 
     public void GetQueryProperty(MasjeedModel masjeed)
     {
         _masjeed = masjeed;
     }
 
-    public MasjeedModel Masjeed
-    {
-        get { return _masjeed; }
-        set { _masjeed = value; OnPropertyChanged(); }
-    }
 
-    public async void GoToMap()
+    [ICommand]
+    async void GoToMap()
     {
         if (Masjeed.Latitude != null && Masjeed.Longitude != null)
         {

@@ -1,14 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Text;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace VaccineApp.ViewModels.Parent.Guides;
 
-public class VaccineGuidesViewModel : ViewModelBase
+public partial class VaccineGuidesViewModel : ObservableObject
 {
     public string Text;
-    private ObservableCollection<FormattedString> _strings;
+
+    [ObservableProperty]
+    ObservableCollection<FormattedString> _strings;
 
     public async Task Get()
     {
@@ -44,11 +46,5 @@ public class VaccineGuidesViewModel : ViewModelBase
         {
             Strings = new ObservableCollection<FormattedString>(list);
         });
-    }
-
-    public ObservableCollection<FormattedString> Strings
-    {
-        get { return _strings; }
-        set { _strings = value; OnPropertyChanged(); }
     }
 }

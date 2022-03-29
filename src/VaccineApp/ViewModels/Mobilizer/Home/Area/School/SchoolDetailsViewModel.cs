@@ -1,32 +1,21 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using Core.Models;
 
-using VaccineApp.ViewModels.Base;
-
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.School;
 
-public class SchoolDetailsViewModel : ViewModelBase
+public partial class SchoolDetailsViewModel : ObservableObject
 {
-    public SchoolModel _school { get; set; }
-    public SchoolDetailsViewModel()
-    {
+    [ObservableProperty]
+    SchoolModel _school;
 
-    }
-
-    public SchoolModel School
-    {
-        get { return _school; }
-        set { _school = value; OnPropertyChanged(); }
-    }
     public void GetQueryProperty(SchoolModel school)
     {
         _school = school;
-        GoToMapCommand = new Command(GoToMap);
     }
 
-    public ICommand GoToMapCommand { private set; get; }
-
+    [ICommand]
     public async void GoToMap()
     {
         if (School.Latitude != null && School.Longitude != null)

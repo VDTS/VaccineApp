@@ -1,52 +1,41 @@
-﻿using Core.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+using Core.Models;
 using DAL.Persistence;
 
 using Newtonsoft.Json;
 
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Mobilizer.Home.Area.School;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.School;
 
-public class SchoolsListViewModel : ViewModelBase
+public partial class SchoolsListViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private IEnumerable<SchoolModel> _schools;
-    private SchoolModel _selectedSchool;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    IEnumerable<SchoolModel> _schools;
+
+    [ObservableProperty]
+    SchoolModel _selectedSchool;
 
     public SchoolsListViewModel(UnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         Schools = new ObservableCollection<SchoolModel>();
-        AddSchoolCommand = new Command(AddSchool);
-        SchoolDetailsCommand = new Command(SchoolDetails);
     }
-    public ICommand AddSchoolCommand { private set; get; }
-    public ICommand SchoolDetailsCommand { private set; get; }
 
-    public SchoolModel SelectedSchool
-    {
-        get { return _selectedSchool; }
-        set { _selectedSchool = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<SchoolModel> Schools
-    {
-        get { return _schools; }
-        set
-        {
-            _schools = value;
-            OnPropertyChanged();
-        }
-    }
-    private async void AddSchool(object obj)
+    [ICommand]
+    async void AddSchool(object obj)
     {
         var route = $"{nameof(AddSchoolPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    private async void SchoolDetails()
+    [ICommand]
+    async void SchoolDetails()
     {
         if (SelectedSchool == null)
         {

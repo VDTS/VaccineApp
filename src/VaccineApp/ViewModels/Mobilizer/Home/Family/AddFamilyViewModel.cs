@@ -1,16 +1,18 @@
 ﻿using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Family;
-public class AddFamilyViewModel : ViewModelBase
+public partial class AddFamilyViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private FamilyModel _family;
-    private readonly IToast _toast;
-    private FamilyValidator _familyValidator;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
+    FamilyValidator _familyValidator;
+
+    [ObservableProperty]
+    FamilyModel _family;
 
     public AddFamilyViewModel(UnitOfWork unitOfWork, FamilyModel family, IToast toast)
     {
@@ -18,13 +20,10 @@ public class AddFamilyViewModel : ViewModelBase
         _family = family;
         _toast = toast;
         _familyValidator = new();
-
-        PostCommand = new Command(Post);
     }
 
-    public ICommand PostCommand { private set; get; }
-
-    private async void Post()
+    [ICommand]
+    async void Post()
     {
         var validationResult = _familyValidator.Validate(Family);
         if (validationResult.IsValid)
@@ -39,11 +38,4 @@ public class AddFamilyViewModel : ViewModelBase
             _toast.MakeToast(validationResult.Errors[0].PropertyName, validationResult.Errors[0].ErrorMessage);
         }
     }
-
-    public FamilyModel Family
-    {
-        get { return _family; }
-        set { _family = value; OnPropertyChanged(); }
-    }
-
 }

@@ -1,53 +1,38 @@
 ﻿using Auth.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Core.Models;
 using DAL.Persistence;
 using Newtonsoft.Json;
-using System.Windows.Input;
 using VaccineApp.Shells.Views;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Access.ForgotPassword;
 
 namespace VaccineApp.ViewModels.Access.SignIn;
-public class SignInViewModel : ViewModelBase
+public partial class SignInViewModel : ObservableObject
 {
-    private readonly SignInService _signInService;
-    private readonly UnitOfWork _unitOfWork;
-    private string _userEmailInput;
-    private string _userPasswordInput;
+    readonly SignInService _signInService;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    string _userEmailInput;
+
+    [ObservableProperty]
+    string _userPasswordInput;
 
     public SignInViewModel(SignInService signInService, UnitOfWork unitOfWork)
     {
         _signInService = signInService;
         _unitOfWork = unitOfWork;
-        SignInCommand = new Command(SignIn);
-        ForgotPasswordCommand = new Command(ForgotPassword);
     }
 
+    [ICommand]
     private async void ForgotPassword()
     {
         var route = $"{nameof(ForgotPasswordPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    public ICommand SignInCommand { private set; get; }
-    public ICommand ForgotPasswordCommand { private set; get; }
-    public string UserEmailInput
-    {
-        get { return _userEmailInput; }
-        set
-        {
-            _userEmailInput = value;
-            OnPropertyChanged();
-        }
-    }
-    public string UserPasswordInput {
-        get { return _userPasswordInput; }
-        set
-        {
-            _userPasswordInput = value;
-            OnPropertyChanged();
-        }
-    }
+    [ICommand]
     private async void SignIn()
     {
         try
@@ -67,6 +52,7 @@ public class SignInViewModel : ViewModelBase
             await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
         }
     }
+
     private string StoreTokens(string json)
     {
         var s = JsonConvert.DeserializeObject<SecureTokensModel>(json);

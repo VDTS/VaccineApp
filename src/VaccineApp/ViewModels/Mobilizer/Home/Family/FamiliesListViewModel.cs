@@ -1,28 +1,31 @@
-﻿using Core.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Core.Models;
 using DAL.Persistence;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Mobilizer.Home.Family;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Family;
-public class FamiliesListViewModel : ViewModelBase
+public partial class FamiliesListViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfwork;
-    private FamilyModel _selectedFamily;
-    private IEnumerable<FamilyModel> _families;
+    readonly UnitOfWork _unitOfwork;
+
+    [ObservableProperty]
+    FamilyModel _selectedFamily;
+
+    [ObservableProperty]
+    IEnumerable<FamilyModel> _families;
+
     public FamiliesListViewModel(UnitOfWork unitOfwork)
     {
         SelectedFamily = new();
         _unitOfwork = unitOfwork;
         Families = new ObservableCollection<FamilyModel>();
-
-        AddFamilyCommand = new Command(AddFamily);
-        FamilyDetailsCommand = new Command(FamilyDetails);
     }
 
-    private async void FamilyDetails()
+    [ICommand]
+    async void FamilyDetails()
     {
         if (SelectedFamily != null)
         {
@@ -34,7 +37,8 @@ public class FamiliesListViewModel : ViewModelBase
         }
     }
 
-    private async void AddFamily(object obj)
+    [ICommand]
+    async void AddFamily(object obj)
     {
         var route = $"{nameof(AddFamilyPage)}";
         await Shell.Current.GoToAsync(route);
@@ -51,20 +55,6 @@ public class FamiliesListViewModel : ViewModelBase
             return;
         }
     }
-
-    public IEnumerable<FamilyModel> Families
-    {
-        get { return _families; }
-        set { _families = value; OnPropertyChanged(); }
-    }
-
-    public FamilyModel SelectedFamily
-    {
-        get { return _selectedFamily; }
-        set { _selectedFamily = value; OnPropertyChanged(); }
-    }
-    public ICommand AddFamilyCommand { private set; get; }
-    public ICommand FamilyDetailsCommand { private set; get; }
 
     public void Clear()
     {

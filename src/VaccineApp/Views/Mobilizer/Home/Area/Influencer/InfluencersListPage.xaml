@@ -30,7 +30,7 @@
                     IsClippedToBounds="True"
                     Padding="4">
             <CollectionView SelectionMode="Single"
-                            ItemsSource="{Binding Influencer}">
+                            ItemsSource="{Binding Influencers}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Model:InfluencerModel">
                         <Frame WidthRequest="280"

@@ -1,18 +1,19 @@
 ﻿using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Doctor;
 
-public class AddDoctorViewModel : ViewModelBase
+public partial class AddDoctorViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private readonly IToast _toast;
-    private DoctorModel _doctor;
+    readonly UnitOfWork _unitOfWork;
+    readonly IToast _toast;
     DoctorValidator _doctorValidator { get; set; }
 
+    [ObservableProperty]
+    DoctorModel _doctor;
 
     public AddDoctorViewModel(UnitOfWork unitOfWork, DoctorModel doctor, IToast toast)
     {
@@ -20,13 +21,10 @@ public class AddDoctorViewModel : ViewModelBase
         _toast = toast;
         _doctor = doctor;
         _doctorValidator = new();
-
-        PostCommand = new Command(Post);
     }
 
-    public ICommand PostCommand { private set; get; }
-
-    private async void Post()
+    [ICommand]
+    async void Post()
     {
         var validationResult = _doctorValidator.Validate(Doctor);
         if (validationResult.IsValid)
@@ -38,19 +36,6 @@ public class AddDoctorViewModel : ViewModelBase
         else
         {
             _toast.MakeToast(validationResult.Errors[0].PropertyName, validationResult.Errors[0].ErrorMessage);
-        }
-    }
-
-    public DoctorModel Doctor
-    {
-        get
-        {
-            return _doctor;
-        }
-        set
-        {
-            _doctor = value;
-            OnPropertyChanged();
         }
     }
 }

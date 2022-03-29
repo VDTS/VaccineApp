@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace VaccineApp.ViewModels.Parent.Guides;
 
-public class VaccinesTimeTableViewModel : ViewModelBase
+public partial class VaccinesTimeTableViewModel : ObservableObject
 {
-    private ObservableCollection<VaccinesTimeTableModel> _vaccines;
+    [ObservableProperty]
+    ObservableCollection<VaccinesTimeTableModel> _vaccines;
+
     public VaccinesTimeTableViewModel()
     {
         Vaccines = new ObservableCollection<VaccinesTimeTableModel>();
@@ -13,11 +15,6 @@ public class VaccinesTimeTableViewModel : ViewModelBase
         Get();
     }
 
-    public ObservableCollection<VaccinesTimeTableModel> Vaccines
-    {
-        get { return _vaccines; }
-        set { _vaccines = value; OnPropertyChanged(); }
-    }
 
     private void Get()
     {

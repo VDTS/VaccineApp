@@ -3,30 +3,53 @@ using Core.Models;
 using Microsoft.Extensions.Options;
 using Octokit;
 using System.Reflection;
-using System.Windows.Input;
 using VaccineApp.Factory;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.App.Feedback;
-public class FeedbackViewModel : ViewModelBase
+public partial class FeedbackViewModel : ObservableObject
 {
-    private FeedbackModel _feedback;
-    private readonly IToast _toast;
-    private readonly IOptions<AppSecrets> _options;
-    private bool _isBugChecked;
-    private bool _isIdeaChecked;
-    private bool _isWindowsChecked;
-    private bool _isAndroidChecked;
-    private bool _isAllChecked;
-    private bool _isEnhancementChecked;
-    private bool _isAdminChecked;
-    private bool _isSupervisorChecked;
-    private bool _isMobilizerChecked;
-    private bool _isParentChecked;
+
+    readonly IOptions<AppSecrets> _options;
+    readonly IToast _toast;
+
+    [ObservableProperty]
+    FeedbackModel _feedback;
+
+    [ObservableProperty]
+    bool _isBugChecked;
+
+    [ObservableProperty]
+    bool _isIdeaChecked;
+
+    [ObservableProperty]
+    bool _isWindowsChecked;
+
+    [ObservableProperty]
+    bool _isAndroidChecked;
+
+    [ObservableProperty]
+    bool _isAllChecked;
+
+    [ObservableProperty]
+    bool _isEnhancementChecked;
+
+    [ObservableProperty]
+    bool _isAdminChecked;
+
+    [ObservableProperty]
+    bool _isSupervisorChecked;
+
+    [ObservableProperty]
+    bool _isMobilizerChecked;
+
+    [ObservableProperty]
+    bool _isParentChecked;
+
     public FeedbackViewModel(IToast toast, IOptions<AppSecrets> options)
     {
         Feedback = new();
-        SubmitIssueOnGithubCommand = new Command(SubmitIssue);
         _toast = toast;
         _options = options;
         IsWindowsChecked = true;
@@ -41,74 +64,8 @@ public class FeedbackViewModel : ViewModelBase
         IsParentChecked = false;
     }
 
-    public ICommand SubmitIssueOnGithubCommand { private set; get; }
-    public FeedbackModel Feedback
-    {
-        get
-        {
-            return _feedback;
-        }
-        set
-        {
-            _feedback = value;
-            OnPropertyChanged();
-        }
-    }
-    public bool IsWindowsChecked
-    {
-        get { return _isWindowsChecked; }
-        set { _isWindowsChecked = value; OnPropertyChanged(); }
-    }
-    public bool IsAndroidChecked
-    {
-        get { return _isAndroidChecked; }
-        set { _isAndroidChecked = value; OnPropertyChanged(); }
-    }
-    public bool IsBugChecked
-    {
-        get { return _isBugChecked; }
-        set { _isBugChecked = value; OnPropertyChanged(); }
-    }
-    public bool IsIdeaChecked
-    {
-        get { return _isIdeaChecked; }
-        set { _isIdeaChecked = value; OnPropertyChanged(); }
-    }
-    public bool IsEnhancementChecked
-    {
-        get { return _isEnhancementChecked; }
-        set { _isEnhancementChecked = value; OnPropertyChanged(); }
-    }
-    public bool IsAllChecked
-    {
-        get { return _isAllChecked; }
-        set { _isAllChecked = value; OnPropertyChanged(); }
-    }
-
-    public bool IsAdminChecked
-    {
-        get { return _isAdminChecked; }
-        set { _isAdminChecked = value; OnPropertyChanged(); }
-    }
-
-    public bool IsSupervisorChecked
-    {
-        get { return _isSupervisorChecked; }
-        set { _isSupervisorChecked = value; OnPropertyChanged(); }
-    }
-
-    public bool IsMobilizerChecked
-    {
-        get { return _isMobilizerChecked; }
-        set { _isMobilizerChecked = value; OnPropertyChanged(); }
-    }
-
-    public bool IsParentChecked
-    {
-        get { return _isParentChecked; }
-        set { _isParentChecked = value; OnPropertyChanged(); }
-    }
-    private async void SubmitIssue()
+    [ICommand]
+    async void SubmitIssue()
     {
         var jwtToken = GenerateToken();
         var newIssue = CreateNewIssue();
@@ -121,7 +78,7 @@ public class FeedbackViewModel : ViewModelBase
         _toast.MakeToast($"submitted issue url: {issueUrl}");
     }
 
-    private NewIssue CreateNewIssue()
+    NewIssue CreateNewIssue()
     {
         NewIssue newIssue = new NewIssue(Feedback.Title)
         {
@@ -175,7 +132,7 @@ public class FeedbackViewModel : ViewModelBase
         return newIssue;
     }
 
-    private string GenerateToken()
+    string GenerateToken()
     {
         // This code copies Embededd file to Cache.
         var cacheFile = Path.Combine(FileSystem.CacheDirectory, "github_app_private_key.pem");

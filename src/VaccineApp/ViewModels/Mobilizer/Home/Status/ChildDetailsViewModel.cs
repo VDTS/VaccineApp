@@ -1,21 +1,26 @@
-﻿using Core.Models;
+﻿using System.Collections.ObjectModel;
+using Core.Models;
 using DAL.Persistence;
-
 using Newtonsoft.Json;
-
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Mobilizer.Home.Status.Vaccine;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Status;
 
-public class ChildDetailsViewModel : ViewModelBase
+public partial class ChildDetailsViewModel : ObservableObject
 {
-    private ChildModel _child;
-    private readonly UnitOfWork _unitOfWork;
-    private IEnumerable<VaccineModel> _vaccines;
-    private VaccineModel _selectedVaccine;
+
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    ChildModel _child;
+
+    [ObservableProperty]
+    IEnumerable<VaccineModel> _vaccines;
+
+    [ObservableProperty]
+    VaccineModel _selectedVaccine;
 
     public ChildDetailsViewModel(UnitOfWork unitOfWork)
     {
@@ -25,17 +30,17 @@ public class ChildDetailsViewModel : ViewModelBase
     public void GetQueryProperty(ChildModel child)
     {
         Child = child;
-        AddVaccineCommand = new Command(AddVaccine);
-        VaccineDetailsCommand = new Command(VaccineDetails);
     }
 
-    private async void AddVaccine()
+    [ICommand]
+    async void AddVaccine()
     {
         var route = $"{nameof(AddVaccinePage)}?ChildId={Child.Id.ToString()}";
         await Shell.Current.GoToAsync(route);
     }
 
-    private async void VaccineDetails()
+    [ICommand]
+    async void VaccineDetails()
     {
         if (SelectedVaccine == null)
         {
@@ -61,23 +66,4 @@ public class ChildDetailsViewModel : ViewModelBase
             return;
         }
     }
-
-    public VaccineModel SelectedVaccine
-    {
-        get { return _selectedVaccine; }
-        set { _selectedVaccine = value; OnPropertyChanged(); }
-    }
-    public ChildModel Child
-    {
-        get { return _child; }
-        set { _child = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<VaccineModel> Vaccines
-    {
-        get { return _vaccines; }
-        set { _vaccines = value; OnPropertyChanged(); }
-    }
-
-    public ICommand AddVaccineCommand { private set; get; }
-    public ICommand VaccineDetailsCommand { private set; get; }
 }

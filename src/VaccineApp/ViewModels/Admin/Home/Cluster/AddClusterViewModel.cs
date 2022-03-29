@@ -1,16 +1,18 @@
 ﻿using VaccineApp.Features;
 using Core.Models;
 using DAL.Persistence;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace VaccineApp.ViewModels.Admin.Home.Cluster;
-public class AddClusterViewModel : ViewModelBase
+public partial class AddClusterViewModel : ObservableObject
 {
     private readonly UnitOfWork _unitOfWork;
-    private ClusterModel _cluster;
     private readonly IToast _toast;
     private ClusterValidator _clusterValidator;
+
+    [ObservableProperty]
+    ClusterModel _cluster;
 
     public AddClusterViewModel(UnitOfWork unitOfWork, ClusterModel cluster, IToast toast)
     {
@@ -18,10 +20,9 @@ public class AddClusterViewModel : ViewModelBase
         _cluster = cluster;
         _toast = toast;
         _clusterValidator = new();
-
-        PostCommand = new Command(Post);
     }
 
+    [ICommand]
     private async void Post(object obj)
     {
         var validationResult = _clusterValidator.Validate(_cluster);
@@ -35,13 +36,5 @@ public class AddClusterViewModel : ViewModelBase
         {
             _toast.MakeToast(validationResult.Errors[0].PropertyName, validationResult.Errors[0].ErrorMessage);
         }
-    }
-
-    public ICommand PostCommand { private set; get; }
-
-    public ClusterModel Cluster
-    {
-        get { return _cluster; }
-        set { _cluster = value; OnPropertyChanged(); }
     }
 }

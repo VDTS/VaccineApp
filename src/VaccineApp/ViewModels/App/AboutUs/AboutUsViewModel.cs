@@ -1,29 +1,19 @@
-﻿using System.Windows.Input;
+﻿namespace VaccineApp.ViewModels.App.AboutUs;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
-namespace VaccineApp.ViewModels.App.AboutUs;
-
-public class AboutUsViewModel
+public partial class AboutUsViewModel : ObservableObject
 {
-    private List<Person> _persons;
+
+    [ObservableProperty]
+    List<Person> _persons;
+
     public AboutUsViewModel()
     {
-        GoToLinkedInCommand = new Command<string>(GoToLinkedIn);
-        GoToTwitterCommand = new Command<string>(GoToTwitter);
-
         Get();
     }
 
-    public ICommand GoToLinkedInCommand { private set; get; }
-    public ICommand GoToTwitterCommand { private set; get; }
-
-
-    public List<Person> Persons
-    {
-        get { return _persons; }
-        set { _persons = value; }
-    }
-
-    private void Get()
+    void Get()
     {
         Persons = new List<Person>()
         {
@@ -61,12 +51,14 @@ public class AboutUsViewModel
         };
     }
 
+    [ICommand]
     private async void GoToTwitter(string url)
     {
         Uri uri = new Uri(url);
         await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
     }
 
+    [ICommand]
     private async void GoToLinkedIn(string url)
     {
         Uri uri = new Uri(url);

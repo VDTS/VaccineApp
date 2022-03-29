@@ -11,7 +11,7 @@
         <ToolbarItem IconImageSource="save.png"
                      Order="Secondary"
                      Text="Submit issue"
-                     Command="{Binding SubmitIssueOnGithubCommand}" />
+                     Command="{Binding SubmitIssueCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10"

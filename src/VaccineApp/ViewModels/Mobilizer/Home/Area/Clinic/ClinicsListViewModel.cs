@@ -1,51 +1,37 @@
-﻿using Core.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Core.Models;
 using DAL.Persistence;
-
 using Newtonsoft.Json;
-
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using VaccineApp.ViewModels.Base;
 using VaccineApp.Views.Mobilizer.Home.Area.Clinic;
 
 namespace VaccineApp.ViewModels.Mobilizer.Home.Area.Clinic;
 
-public class ClinicsListViewModel : ViewModelBase
+public partial class ClinicsListViewModel : ObservableObject
 {
-    private readonly UnitOfWork _unitOfWork;
-    private IEnumerable<ClinicModel> _clinics;
-    private ClinicModel _selectedClinic;
+    readonly UnitOfWork _unitOfWork;
+
+    [ObservableProperty]
+    IEnumerable<ClinicModel> _clinics;
+
+    [ObservableProperty]
+    ClinicModel _selectedClinic;
     public ClinicsListViewModel(UnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         Clinics = new ObservableCollection<ClinicModel>();
-        AddClinicCommand = new Command(AddClinic);
-        ClinicDetailsCommand = new Command(ClinicDetails);
     }
 
-    public ClinicModel SelectedClinic
-    {
-        get { return _selectedClinic; }
-        set { _selectedClinic = value; OnPropertyChanged(); }
-    }
-    public IEnumerable<ClinicModel> Clinics
-    {
-        get { return _clinics; }
-        set
-        {
-            _clinics = value;
-            OnPropertyChanged();
-        }
-    }
-    public ICommand AddClinicCommand { private set; get; }
-    public ICommand ClinicDetailsCommand { private set; get; }
-    private async void AddClinic(object obj)
+    [ICommand]
+    async void AddClinic(object obj)
     {
         var route = $"{nameof(AddClinicPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    private async void ClinicDetails()
+    [ICommand]
+    async void ClinicDetails()
     {
         if (SelectedClinic == null)
         {
