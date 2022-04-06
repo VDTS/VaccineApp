@@ -18,10 +18,11 @@ public static class AuthConfigurationExtensions
         service.AddScoped<SignInService>();
         service.AddScoped<AccountService>();
 
-        service.AddHttpClient("authConf", c =>
-        {
-            c.BaseAddress = new Uri(AuthConfigs.FirebaseAuthAddress);
-        });
+        if(AuthConfigs.FirebaseAuthAddress != null)
+            service.AddHttpClient("authConf", c =>
+            {
+                c.BaseAddress = new Uri(AuthConfigs.FirebaseAuthAddress);
+            });
 
         return service;
     }

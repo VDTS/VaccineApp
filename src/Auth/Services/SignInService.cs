@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace Auth.Services;
 public class SignInService
 {
-    private IHttpClientFactory _clientFactory;
+    readonly IHttpClientFactory _clientFactory;
     public SignInService(IHttpClientFactory clientFactory)
     {
         _clientFactory = clientFactory;
