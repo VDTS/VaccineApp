@@ -5,9 +5,9 @@ namespace Core.Models;
 public class SignInModel
 {
     [JsonProperty("email")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
     [JsonProperty("password")]
-    public string Password { get; set; }
+    public string? Password { get; set; }
     [JsonProperty("returnSecureToken")]
     public bool ReturnSecureToken { get; set; }
 }

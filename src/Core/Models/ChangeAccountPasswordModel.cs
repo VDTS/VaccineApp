@@ -6,9 +6,9 @@ namespace Core.Models;
 public class ChangeAccountPasswordModel
 {
     [JsonProperty("idToken")]
-    public string IdToken { get; set; }
+    public string? IdToken { get; set; }
     [JsonProperty("password")]
-    public string Password { get; set; }
+    public string? Password { get; set; }
     [JsonProperty("returnSecureToken")]
     public bool ReturnSecureToken { get; set; }
 }

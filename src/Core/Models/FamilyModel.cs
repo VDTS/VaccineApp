@@ -4,11 +4,11 @@ using FluentValidation;
 namespace Core.Models;
 public class FamilyModel
 {
-    public string FId { get; set; }
+    public string? FId { get; set; }
     public Guid Id { get; set; }
     public int HouseNo { get; set; }
-    public string ParentName { get; set; }
-    public string PhoneNumber { get; set; }
+    public string? ParentName { get; set; }
+    public string? PhoneNumber { get; set; }
     public FamilyModel()
     {
         Id = Guid.NewGuid();

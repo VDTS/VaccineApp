@@ -3,9 +3,9 @@
 namespace Core.Models;
 public class ClusterModel
 {
-    public string FId { get; set; }
+    public string? FId { get; set; }
     public Guid Id { get; set; }
-    public string ClusterName { get; set; }
+    public string? ClusterName { get; set; }
     public ClusterModel()
     {
         Id = Guid.NewGuid();

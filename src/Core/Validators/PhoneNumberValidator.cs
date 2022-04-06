@@ -3,7 +3,7 @@
 namespace Core.Validators;
 public class PhoneNumberValidator
 {
-    public static bool IsPhoneNumberValid(string phoneNumber)
+    public static bool IsPhoneNumberValid(string? phoneNumber)
     {
         if (!string.IsNullOrEmpty(phoneNumber))
         {
@@ -11,18 +11,7 @@ public class PhoneNumberValidator
 
             bool isPhoneNumber = Regex.IsMatch(phoneNumber, phoneNumberPattern);
 
-            if (isPhoneNumber)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (string.IsNullOrEmpty(phoneNumber))
-        {
-            return true;
+            return isPhoneNumber;
         }
         else
         {

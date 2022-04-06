@@ -36,7 +36,6 @@ public static class DateTimeExtensions
                 dateTime.Month == nowTime.Month &&
                 dateTime.Day != nowTime.Day)
         {
-            var a = (Months)0;
             return string.Concat((Months)(dateTime.Month - 1), " ", dateTime.Day);
         }
         else

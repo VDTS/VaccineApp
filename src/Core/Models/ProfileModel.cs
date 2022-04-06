@@ -1,17 +1,19 @@
-﻿using FluentValidation;
+﻿using Core.Validators;
+
+using FluentValidation;
 
 namespace Core.Models;
 public class ProfileModel
 {
-    public string LocalId { get; set; }
-    public string DisplayName { get; set; }
-    public string Role { get; set; }
-    public string PhoneNumber { get; set; }
-    public string Email { get; set; }
-    public string PhotoUrl { get; set; }
-    public string ClusterId { get; set; }
-    public string TeamId { get; set; }
-    public string FamilyId { get; set; }
+    public string? LocalId { get; set; }
+    public string? DisplayName { get; set; }
+    public string? Role { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string? Email { get; set; }
+    public string? PhotoUrl { get; set; }
+    public string? ClusterId { get; set; }
+    public string? TeamId { get; set; }
+    public string? FamilyId { get; set; }
 
 }
 public class ProfileValidator : AbstractValidator<ProfileModel>
@@ -21,13 +23,8 @@ public class ProfileValidator : AbstractValidator<ProfileModel>
         RuleFor(p => p.DisplayName)
             .Cascade(CascadeMode.Stop)
             .NotEmpty().WithMessage("{PropertyName} is Empty")
-            .Must(BeAValidName).WithMessage("{PropertyName} must be valid characters")
+            .Must(CommonPropertiesValidator.ValidFullName).WithMessage("{PropertyName} must be valid characters")
             .Length(3, 50).WithMessage("Length of {PropertyName} should be between 3 - 50");
-    }
-    protected bool BeAValidName(string name)
-    {
-        name = name.Replace(" ", "");
-        return name.All(Char.IsLetter);
     }
 }
 

@@ -4,11 +4,11 @@ using FluentValidation;
 namespace Core.Models;
 public class ChildModel
 {
-    public string FId { get; set; }
+    public string? FId { get; set; }
     public Guid Id { get; set; }
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
     public DateTime DOB { get; set; }
-    public string Gender { get; set; }
+    public string? Gender { get; set; }
     public bool OPV0 { get; set; }
     public int RINo { get; set; }
     public ChildModel()

@@ -5,5 +5,5 @@ namespace Core.Models;
 public class IdTokenModel
 {
     [JsonProperty("idToken")]
-    public string IdToken { get; set; }
+    public string? IdToken { get; set; }
 }

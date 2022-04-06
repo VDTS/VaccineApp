@@ -1,16 +1,18 @@
-﻿using FluentValidation;
+﻿using Core.Validators;
+
+using FluentValidation;
 
 namespace Core.Models;
 public class MasjeedModel
 {
-    public string FId { get; set; }
+    public string? FId { get; set; }
     public Guid Id { get; set; }
-    public string MasjeedName { get; set; }
-    public string KeyInfluencer { get; set; }
+    public string? MasjeedName { get; set; }
+    public string? KeyInfluencer { get; set; }
     public bool DoesImamSupportsVaccine { get; set; }
     public bool DoYouHavePermissionForAdsInMasjeed { get; set; }
-    public string Latitude { get; set; }
-    public string Longitude { get; set; }
+    public string? Latitude { get; set; }
+    public string? Longitude { get; set; }
 
     public MasjeedModel()
     {
@@ -31,14 +33,8 @@ public class MasjeedValidator : AbstractValidator<MasjeedModel>
     {
         RuleFor(m => m.MasjeedName)
             .NotEmpty().WithMessage("{PropertyName} is Empty")
-            .Must(BeAValidName).WithMessage("{PropertyName} must be valid characters")
+            .Must(CommonPropertiesValidator.ValidFullName).WithMessage("{PropertyName} must be valid characters")
             .Length(3, 50).WithMessage("Length of {PropertyName} should be between 3 - 50");
 
-    }
-    protected bool BeAValidName(string name)
-    {
-        name = name.Replace(" ", "");
-        name = name.Replace("-", "");
-        return name.All(Char.IsLetter);
     }
 }

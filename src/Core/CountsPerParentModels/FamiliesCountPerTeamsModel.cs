@@ -2,6 +2,6 @@
 
 public class FamiliesCountPerTeamsModel
 {
-    public string TeamNo { get; set; }
+    public string? TeamNo { get; set; }
     public int FamiliesCount { get; set; }
 }

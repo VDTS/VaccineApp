@@ -13,12 +13,12 @@ public class ChildrenCountPerVaccineStatusPerTeam : List<ChildrenCountPerVaccine
 
 public class ChildrenCountPerVaccineStatus
 {
-    public string VaccineStatus { get; set; }
+    public string? VaccineStatus { get; set; }
     public int ChildrenCount { get; set; }
 }
 
 public class ChildrenWithVaccineStatus
 {
-    public string VaccineStatus { get; set; }
-    public ChildModel Children { get; set; }
+    public string? VaccineStatus { get; set; }
+    public ChildModel? Children { get; set; }
 }
