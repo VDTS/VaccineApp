@@ -49,7 +49,7 @@ public class InfluencerRepository : IInfluencerRepository<InfluencerModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, InfluencerModel>>(DbNodePath.Influencer(teamId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<InfluencerModel>();
         }
         catch (Exception)
         {

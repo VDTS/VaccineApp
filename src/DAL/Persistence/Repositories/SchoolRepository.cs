@@ -49,7 +49,7 @@ public class SchoolRepository : ISchoolRepository<SchoolModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, SchoolModel>>(DbNodePath.School(teamId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<SchoolModel>();
         }
         catch (Exception)
         {

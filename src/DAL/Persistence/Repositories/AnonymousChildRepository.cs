@@ -50,7 +50,7 @@ public class AnonymousChildRepository : IAnonymousChildRepository<AnonymousChild
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, AnonymousChildModel>>(DbNodePath.AnonymousChild(teamId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<AnonymousChildModel>();
         }
         catch (Exception)
         {

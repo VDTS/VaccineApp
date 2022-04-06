@@ -50,7 +50,7 @@ public class AnnouncementRepository : IAnnouncementRepository<AnnouncementModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, AnnouncementModel>>(DbNodePath.Announcement());
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<AnnouncementModel>();
         }
         catch (Exception)
         {

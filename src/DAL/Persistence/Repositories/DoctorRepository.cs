@@ -49,7 +49,7 @@ public class DoctorRepository : IDoctorRepository<DoctorModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, DoctorModel>>(DbNodePath.Doctor(teamId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<DoctorModel>();
         }
         catch (Exception)
         {

@@ -12,7 +12,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
     {
         _clientFactory = clientFactory;
     }
-    public async Task<FamilyModel> AddFamily(FamilyModel family, string teamId = null)
+    public async Task<FamilyModel> AddFamily(FamilyModel family, string teamId)
     {
         var client = _clientFactory.CreateClient("meta");
 
@@ -48,7 +48,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<FamilyModel>();
         }
         catch (Exception)
         {
@@ -64,7 +64,8 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
 
-            return s.Values.Where(x => x.Id.ToString() == familyId).FirstOrDefault();
+#nullable disable
+            return s.Values.FirstOrDefault(x => x.Id.ToString() == familyId);
         }
         catch (Exception)
         {

@@ -41,7 +41,7 @@ public class TeamRepository : ITeamRepository<TeamModel>
         }
     }
 
-    public async Task<IEnumerable<TeamModel>> GetTeams(string clusterId = null)
+    public async Task<IEnumerable<TeamModel>> GetTeams(string clusterId)
     {
         var client = _clientFactory.CreateClient("meta");
 
@@ -49,7 +49,7 @@ public class TeamRepository : ITeamRepository<TeamModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, TeamModel>>(DbNodePath.Team(clusterId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<TeamModel>();
         }
         catch (Exception)
         {

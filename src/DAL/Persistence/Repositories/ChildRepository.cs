@@ -48,7 +48,7 @@ public class ChildRepository : IChildRepository<ChildModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, ChildModel>>(DbNodePath.Child(familyId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<ChildModel>();
         }
         catch (Exception)
         {

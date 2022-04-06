@@ -4,7 +4,7 @@ using DAL.Persistence.Repositories;
 using DAL.Repositories;
 
 namespace DAL.Persistence;
-
+#nullable disable
 public class UnitOfWork
 {
     private readonly IMasjeedRepository<MasjeedModel> _masjeedRepository;

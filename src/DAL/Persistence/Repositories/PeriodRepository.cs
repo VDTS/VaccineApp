@@ -31,7 +31,9 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
 
             if (s.IsSuccessStatusCode)
             {
+#nullable disable
                 await client.PutAsJsonAsync(DbNodePath.PeriodActiveField(activePeriod.First().Key), false);
+#nullable enable
                 return period;
             }
             else
@@ -51,7 +53,9 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
         try
         {
             var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{DbNodePath.ActivePeriods()}");
+#nullable disable
             return activePeriod.FirstOrDefault().Value;
+#nullable enable
         }
         catch (Exception)
         {
@@ -67,7 +71,7 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>(DbNodePath.Periods());
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<PeriodModel>();
         }
         catch (Exception)
         {

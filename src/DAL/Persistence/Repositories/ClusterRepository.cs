@@ -49,7 +49,7 @@ public class ClusterRepository : IClusterRepository<ClusterModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, ClusterModel>>(DbNodePath.Cluster());
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<ClusterModel>();
         }
         catch (Exception)
         {

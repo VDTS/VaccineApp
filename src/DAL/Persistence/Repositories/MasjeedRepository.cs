@@ -50,7 +50,7 @@ public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>(DbNodePath.Masjeed(teamId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<MasjeedModel>();
         }
         catch (Exception)
         {

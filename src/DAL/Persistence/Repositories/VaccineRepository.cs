@@ -26,14 +26,7 @@ public class VaccineRepository : IVaccineRepository<VaccineModel>
 
             var s = await client.PostAsync(DbNodePath.Vaccine(childId), byteContent);
 
-            if (s.IsSuccessStatusCode)
-            {
-                return vaccine;
-            }
-            else
-            {
-                throw new Exception(s.ReasonPhrase);
-            }
+            return s.IsSuccessStatusCode ? vaccine : throw new Exception(s.ReasonPhrase);
         }
         catch (Exception)
         {
@@ -49,7 +42,7 @@ public class VaccineRepository : IVaccineRepository<VaccineModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, VaccineModel>>(DbNodePath.Vaccine(childId));
 
-            return s.Values.ToList();
+            return s != null ? s.Values.ToList() : Enumerable.Empty<VaccineModel>();
         }
         catch (Exception)
         {

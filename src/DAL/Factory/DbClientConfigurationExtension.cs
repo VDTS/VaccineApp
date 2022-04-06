@@ -35,10 +35,13 @@ public static class DbClientConfigurationExtension
         service.AddSingleton<VaccineRepository>();
 
         service.AddHttpClient();
-        service.AddHttpClient("meta", c =>
-        {
-            c.BaseAddress = new Uri(DALConfigs.FirebaseBaseAddress);
-        });
+
+        if(DALConfigs.FirebaseBaseAddress != null)
+            service.AddHttpClient("meta", c =>
+            {
+                c.BaseAddress = new Uri(DALConfigs.FirebaseBaseAddress);
+            });
+
         return service;
     }
 }
