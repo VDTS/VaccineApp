@@ -47,17 +47,18 @@ public class ReportsGenerator
             page.Graphics.DrawString(teamName, secondHeaderFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
             y += 30;
 
-            foreach (var value in item.ChildrenByType)
-            {
-                x += 15;
-                string str = $"{value.ChildType} : {value.Count}";
+            if(item.ChildrenByType is not null)
+                foreach (var value in item.ChildrenByType)
+                {
+                    x += 15;
+                    string str = $"{value.ChildType} : {value.Count}";
 
-                page.Graphics.DrawString(str, bodyFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
+                    page.Graphics.DrawString(str, bodyFont, PdfBrushes.Black, new Syncfusion.Drawing.PointF(x, y));
 
-                x -= 15;
-                y += 15;
-            }
-            y += 30;
+                    x -= 15;
+                    y += 15;
+                }
+                y += 30;
         }
 
         MemoryStream stream = new();

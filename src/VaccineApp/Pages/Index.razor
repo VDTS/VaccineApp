@@ -11,8 +11,8 @@
 
 @code {
 
-    double[] households;
-    string[] team;
+    double[]? households;
+    string[]? team;
 
     protected override async Task OnInitializedAsync()
     {
@@ -28,9 +28,10 @@
         team = new string[families.Count];
         foreach (var item in families)
         {
-            team[i] = item.TeamNo;
-            households[i] = item.FamiliesCount;
-            i++;
+            if(item.TeamNo is not null)
+                team[i] = item.TeamNo;
+                households[i] = item.FamiliesCount;
+                i++;
         }
 
         await Task.Run(async () => { await js.InvokeVoidAsync("GenerateChart", team, households); });

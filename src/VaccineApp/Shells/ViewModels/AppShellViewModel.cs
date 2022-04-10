@@ -20,7 +20,9 @@ public class AppShellViewModel
     {
         SecureStorage.RemoveAll();
         Preferences.Clear();
-        Application.Current.MainPage = new Accessshell();
+
+        if(Application.Current is not null)
+            Application.Current.MainPage = new Accessshell();
     }
 
     private async void Profile()

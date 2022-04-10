@@ -2,5 +2,5 @@
 
 public class AppSettings
 {
-    public string Env { get; set; }
+    public string? Env { get; set; }
 }
