@@ -31,9 +31,9 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
 
             if (s.IsSuccessStatusCode)
             {
-#nullable disable
-                await client.PutAsJsonAsync(DbNodePath.PeriodActiveField(activePeriod.First().Key), false);
-#nullable enable
+                if (activePeriod is not null)
+                    await client.PutAsJsonAsync(DbNodePath.PeriodActiveField(activePeriod.First().Key), false);
+
                 return period;
             }
             else
@@ -53,9 +53,8 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
         try
         {
             var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{DbNodePath.ActivePeriods()}");
-#nullable disable
-            return activePeriod.FirstOrDefault().Value;
-#nullable enable
+
+            return activePeriod is not null ? activePeriod.FirstOrDefault().Value : throw new Exception("No active period");
         }
         catch (Exception)
         {

@@ -4,25 +4,70 @@ using DAL.Persistence.Repositories;
 using DAL.Repositories;
 
 namespace DAL.Persistence;
-#nullable disable
+
 public class UnitOfWork
 {
-    private readonly IMasjeedRepository<MasjeedModel> _masjeedRepository;
-    private readonly ChildRepository _childRepository;
-    private readonly ClusterRepository _clusterRepository;
-    private readonly TeamRepository _teamRepository;
-    private readonly FamilyRepository _familyRepository;
-    private readonly ClinicRepository _clinicRepository;
-    private readonly DoctorRepository _doctorRepository;
-    private readonly InfluencerRepository _influencerRepository;
-    private readonly SchoolRepository _schoolRepository;
-    private readonly AnnouncementRepository _announcementRepository;
-    private readonly PeriodRepository _periodRepository;
-    private readonly AnonymousChildRepository _anonymousChildRepository;
-    private readonly VaccineRepository _vaccineRepository;
-    private string _clusterId;
-    private string _teamId;
-    private string _familyId;
+    readonly IMasjeedRepository<MasjeedModel> _masjeedRepository;
+    readonly ChildRepository _childRepository;
+    readonly ClusterRepository _clusterRepository;
+    readonly TeamRepository _teamRepository;
+    readonly FamilyRepository _familyRepository;
+    readonly ClinicRepository _clinicRepository;
+    readonly DoctorRepository _doctorRepository;
+    readonly InfluencerRepository _influencerRepository;
+    readonly SchoolRepository _schoolRepository;
+    readonly AnnouncementRepository _announcementRepository;
+    readonly PeriodRepository _periodRepository;
+    readonly AnonymousChildRepository _anonymousChildRepository;
+    readonly VaccineRepository _vaccineRepository;
+    string? clusterId;
+    string _clusterId
+    {
+        get
+        {
+            if (clusterId is not null)
+            {
+                return clusterId;
+            }
+            else
+            {
+                throw new Exception("The AddClaims function must be called before any part execution of the object.");
+            }
+        }
+        set { clusterId = value; }
+    }
+    string? teamId;
+    string _teamId
+    {
+        get
+        {
+            if (teamId is not null)
+            {
+                return teamId;
+            }
+            else
+            {
+                throw new Exception("The AddClaims function must be called before any part execution of the object.");
+            }
+        }
+        set { teamId = value; }
+    }
+    string? familyId;
+    string _familyId
+    {
+        get
+        {
+            if (familyId is not null)
+            {
+                return familyId;
+            }
+            else
+            {
+                throw new Exception("The AddClaims function must be called before any part execution of the object.");
+            }
+        }
+        set { familyId = value; }
+    }
 
     public UnitOfWork(
         MasjeedRepository masjeedRepository,
@@ -54,7 +99,7 @@ public class UnitOfWork
         _vaccineRepository = vaccineRepository;
     }
 
-    public void AddClaims(string clusterId = null, string teamId = null, string familyId = null)
+    public void AddClaims(string clusterId, string teamId, string familyId)
     {
         _clusterId = clusterId;
         _teamId = teamId;
@@ -100,7 +145,7 @@ public class UnitOfWork
         return await _clusterRepository.GetClusters();
     }
 
-    public async Task<IEnumerable<TeamModel>> GetTeams(string clusterId = null)
+    public async Task<IEnumerable<TeamModel>> GetTeams(string? clusterId = null)
     {
         if (clusterId == null)
         {
@@ -125,7 +170,7 @@ public class UnitOfWork
 
         return allTeams;
     }
-    public async Task<FamilyModel> AddFamily(FamilyModel family, string teamId = null)
+    public async Task<FamilyModel> AddFamily(FamilyModel family, string? teamId = null)
     {
         if (teamId == null)
         {
@@ -137,7 +182,7 @@ public class UnitOfWork
         }
     }
 
-    public async Task<IEnumerable<FamilyModel>> GetFamilies(string teamId = null)
+    public async Task<IEnumerable<FamilyModel>> GetFamilies(string? teamId = null)
     {
         if (teamId == null)
         {
@@ -219,7 +264,7 @@ public class UnitOfWork
         return await _periodRepository.GetPeriods();
     }
 
-    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild, string teamId = null)
+    public async Task<AnonymousChildModel> AddAnonymousChild(AnonymousChildModel anonymousChild, string? teamId = null)
     {
         if(teamId == null)
         {
@@ -231,7 +276,7 @@ public class UnitOfWork
         }
     }
 
-    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren(string teamId = null)
+    public async Task<IEnumerable<AnonymousChildModel>> GetAnonymousChildren(string? teamId = null)
     {
         if(teamId == null)
         {

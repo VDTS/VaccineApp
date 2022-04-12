@@ -72,18 +72,18 @@ public partial class SignInViewModel : ObservableObject
         if (c.Role == "Admin")
         {
             // No claims to store for admin
-            _unitOfWork.AddClaims();
+            _unitOfWork.AddClaims(null!, null!, null!);
         }
         else if (c.Role == "Supervisor")
         {
             Preferences.Set(nameof(c.ClusterId), c.ClusterId);
-            _unitOfWork.AddClaims(c.ClusterId);
+            _unitOfWork.AddClaims(c.ClusterId, null!, null!);
         }
         else if (c.Role == "Mobilizer")
         {
             Preferences.Set(nameof(c.ClusterId), c.ClusterId);
             Preferences.Set(nameof(c.TeamId), c.TeamId);
-            _unitOfWork.AddClaims(c.ClusterId, c.TeamId);
+            _unitOfWork.AddClaims(c.ClusterId, c.TeamId, null!);
         }
         else if (c.Role == "Parent")
         {

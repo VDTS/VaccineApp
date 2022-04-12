@@ -64,8 +64,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
         {
             var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
 
-#nullable disable
-            return s.Values.FirstOrDefault(x => x.Id.ToString() == familyId);
+            return s is not null ? s.Values.First(x => x.Id.ToString() == familyId) : throw new Exception("No family attached to this accound");
         }
         catch (Exception)
         {

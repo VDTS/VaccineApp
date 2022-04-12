@@ -12,11 +12,11 @@ public partial class App : Application
 
 		InitializeComponent();
 
-		unitOfWork.AddClaims(
-			Preferences.Get("ClusterId", "AnonymousCluster"),
-			Preferences.Get("TeamId", "AnonymousTeam"),
-			Preferences.Get("FamilyId", "AnonymousFamily"));
+        unitOfWork.AddClaims(
+            Preferences.Get("ClusterId", null!),
+            Preferences.Get("TeamId", null!),
+            Preferences.Get("FamilyId", null!));
 
-		MainPage = RolesList.Roles.Contains(role) ? new Appshell(role) : new Accessshell();
+        MainPage = RolesList.Roles.Contains(role) ? new Appshell(role) : new Accessshell();
     }
 }
