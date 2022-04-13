@@ -31,16 +31,15 @@ public partial class UsersListViewModel : ObservableObject
                             UId = user.Uid,
                             DisplayName = user.DisplayName,
                             Email = user.Email,
-                            Role = user.CustomClaims["Role"]?.ToString(),
+                            Role = user.CustomClaims.ContainsKey("Role") ? user.CustomClaims["Role"].ToString() : "",
                             EmailVerified = user.EmailVerified
                         }
-                        );
+                    );
                 }
             }
         }
         catch (Exception)
         {
-
             throw;
         }
     }
