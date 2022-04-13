@@ -9,7 +9,7 @@ namespace VaccineApp.ViewModels.Access.ForgotPassword;
 public partial class ForgotPasswordViewModel : ObservableObject
 {
     [ObservableProperty]
-    string _email;
+    string? _email;
 
     private readonly AccountService _accountService;
     private readonly IToast _toast;
@@ -25,6 +25,9 @@ public partial class ForgotPasswordViewModel : ObservableObject
     {
         try
         {
+            if (Email is null)
+                return; 
+
             _ = _accountService.SendPasswordResetCode(Email);
             await Shell.Current.GoToAsync("..");
             _toast.MakeToast("Password Changed");
