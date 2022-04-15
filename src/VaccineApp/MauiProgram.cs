@@ -3,7 +3,6 @@ using Core.Factory;
 using DAL.Factory;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
-using Microsoft.AspNetCore.Components.WebView.Maui;
 using Microsoft.Extensions.Configuration;
 using RealCache.Factory;
 using System.Reflection;
@@ -18,7 +17,6 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .RegisterBlazorMauiWebView()
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
@@ -37,7 +35,7 @@ public static class MauiProgram
         builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
         builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
 
-        builder.Services.AddBlazorWebView();
+        builder.Services.AddMauiBlazorWebView();
         builder.Services.AddViewModels();
         builder.Services.AddPages();
         builder.Services.AddDeviceSpecificFeatures();
