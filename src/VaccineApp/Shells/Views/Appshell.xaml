@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VaccineApp.Shells.Views.Appshell"
              xmlns:ViewModel="clr-namespace:VaccineApp.Shells.ViewModels"
+             xmlns:components="clr-namespace:VaccineApp.Shells.Components"
              x:DataType="ViewModel:AppShellViewModel"
              FlyoutBackground="{DynamicResource PageCardColor}">
 
@@ -10,6 +11,12 @@
         <ViewModel:AppShellViewModel/>
     </Shell.BindingContext>
 
+    <!--Shell header-->
+    <Shell.FlyoutHeader>
+        <components:FlyoutHeaderComponent/>
+    </Shell.FlyoutHeader>
+
+    <!--Shell Menu Items-->
     <MenuItem Text="Profile"
               IconImageSource="userprofile.png"
               Command="{Binding ProfileCommand}"/>

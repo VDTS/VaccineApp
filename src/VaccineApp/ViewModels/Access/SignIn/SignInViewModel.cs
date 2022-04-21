@@ -63,6 +63,9 @@ public partial class SignInViewModel : ObservableObject
         if (s is null || s.IdToken is null || s.RefreshToken is null)
             throw new Exception("Can't fetch tokens");
 
+        // Save ProfilePicture for Shell Flyout Header
+        Preferences.Set("ProfilePicture", s.ProfilePicture);
+
         SecureStorage.SetAsync(nameof(s.IdToken), s.IdToken);
         SecureStorage.SetAsync(nameof(s.RefreshToken), s.RefreshToken);
 
@@ -72,12 +75,16 @@ public partial class SignInViewModel : ObservableObject
     {
         var s = JsonConvert.DeserializeObject<AccountInfoLookupModel>(json);
 
+        // Save DisplayName for Shell Flyout Header
+        Preferences.Set("DisplayName", s.users[0].displayName);
+
 #nullable disable
         var c = JsonConvert.DeserializeObject<CustomAttributes>(s.users[0].customAttributes);
 #nullable enable
         if (c is null || c.Role is null)
             throw new Exception("Can't fetch user's role");
 
+        // Save Role for Shell Flyout Header
         Preferences.Set(nameof(c.Role), c.Role);
 
         if (c.Role == "Admin")

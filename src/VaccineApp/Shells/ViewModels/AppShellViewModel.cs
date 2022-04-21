@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using VaccineApp.Shells.Views;
 using VaccineApp.Views.App.HelpSupport;
 using VaccineApp.Views.App.Profile;
@@ -6,14 +7,27 @@ using VaccineApp.Views.App.Settings;
 
 namespace VaccineApp.Shells.ViewModels;
 
-public class AppShellViewModel
+public partial class AppShellViewModel : ObservableObject
 {
+    [ObservableProperty]
+    string? userName;
+
+    [ObservableProperty]
+    string? role;
+
+    [ObservableProperty]
+    string? photoUrl;
+
     public AppShellViewModel()
     {
         LogoutCommand = new Command(Logout);
         ProfileCommand = new Command(Profile);
         HelpSupportCommand = new Command(HelpSupport);
         SettingsCommand = new Command(Settings);
+
+        UserName = Preferences.Get("DisplayName", null!);
+        Role = Preferences.Get("Role", null!);
+        PhotoUrl = Preferences.Get("ProfilePicture", null!);
     }
 
     private void Logout()

@@ -102,6 +102,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="Shells\Components\FlyoutHeaderComponent.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Shells\Views\Accessshell.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
