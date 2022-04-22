@@ -8,10 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class VaccineRepository : IVaccineRepository<VaccineModel>
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly DbNodePath _dbNodePath;
 
-    public VaccineRepository(IHttpClientFactory clientFactory)
+    public VaccineRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
     public async Task<VaccineModel> AddVaccine(VaccineModel vaccine, string childId)
     {
@@ -24,7 +26,7 @@ public class VaccineRepository : IVaccineRepository<VaccineModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Vaccine(childId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Vaccine(childId), byteContent);
 
             return s.IsSuccessStatusCode ? vaccine : throw new Exception(s.ReasonPhrase);
         }
@@ -40,7 +42,7 @@ public class VaccineRepository : IVaccineRepository<VaccineModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, VaccineModel>>(DbNodePath.Vaccine(childId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, VaccineModel>>(_dbNodePath.Vaccine(childId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<VaccineModel>();
         }

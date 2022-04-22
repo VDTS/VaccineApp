@@ -9,9 +9,12 @@ namespace DAL.Repositories;
 public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-    public MasjeedRepository(IHttpClientFactory clientFactory)
+    private readonly DbNodePath _dbNodePath;
+
+    public MasjeedRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<MasjeedModel> AddMasjeed(MasjeedModel masjeed, string teamId)
@@ -25,7 +28,7 @@ public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Masjeed(teamId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Masjeed(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -48,7 +51,7 @@ public class MasjeedRepository : IMasjeedRepository<MasjeedModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>(DbNodePath.Masjeed(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, MasjeedModel>>(_dbNodePath.Masjeed(teamId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<MasjeedModel>();
         }

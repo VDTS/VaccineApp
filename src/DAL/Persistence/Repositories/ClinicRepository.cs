@@ -8,9 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class ClinicRepository : IClinicRepository<ClinicModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-    public ClinicRepository(IHttpClientFactory clientFactory)
+    private readonly DbNodePath _dbNodePath;
+
+    public ClinicRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<ClinicModel> AddClinic(ClinicModel clinic, string teamId)
@@ -24,7 +27,7 @@ public class ClinicRepository : IClinicRepository<ClinicModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Clinic(teamId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Clinic(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -47,7 +50,7 @@ public class ClinicRepository : IClinicRepository<ClinicModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, ClinicModel>>(DbNodePath.Clinic(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, ClinicModel>>(_dbNodePath.Clinic(teamId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<ClinicModel>();
         }

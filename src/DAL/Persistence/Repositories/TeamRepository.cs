@@ -7,10 +7,12 @@ namespace DAL.Persistence.Repositories;
 public class TeamRepository : ITeamRepository<TeamModel>
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly DbNodePath _dbNodePath;
 
-    public TeamRepository(IHttpClientFactory clientFactory)
+    public TeamRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<TeamModel> AddTeam(TeamModel team, string Id)
@@ -24,7 +26,7 @@ public class TeamRepository : ITeamRepository<TeamModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Team(Id), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Team(Id), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -47,7 +49,7 @@ public class TeamRepository : ITeamRepository<TeamModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, TeamModel>>(DbNodePath.Team(clusterId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, TeamModel>>(_dbNodePath.Team(clusterId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<TeamModel>();
         }

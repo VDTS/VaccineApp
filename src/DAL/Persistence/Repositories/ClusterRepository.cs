@@ -7,10 +7,12 @@ namespace DAL.Persistence.Repositories;
 public class ClusterRepository : IClusterRepository<ClusterModel>
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly DbNodePath _dbNodePath;
 
-    public ClusterRepository(IHttpClientFactory clientFactory)
+    public ClusterRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<ClusterModel> AddCluster(ClusterModel cluster)
@@ -24,7 +26,7 @@ public class ClusterRepository : IClusterRepository<ClusterModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Cluster(), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Cluster(), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -47,7 +49,7 @@ public class ClusterRepository : IClusterRepository<ClusterModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, ClusterModel>>(DbNodePath.Cluster());
+            var s = await client.GetFromJsonAsync<Dictionary<string, ClusterModel>>(_dbNodePath.Cluster());
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<ClusterModel>();
         }

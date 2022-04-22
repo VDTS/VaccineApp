@@ -8,9 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class DoctorRepository : IDoctorRepository<DoctorModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-    public DoctorRepository(IHttpClientFactory clientFactory)
+    private readonly DbNodePath _dbNodePath;
+
+    public DoctorRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<DoctorModel> AddDoctor(DoctorModel doctor, string teamId)
@@ -24,7 +27,7 @@ public class DoctorRepository : IDoctorRepository<DoctorModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Doctor(teamId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Doctor(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -47,7 +50,7 @@ public class DoctorRepository : IDoctorRepository<DoctorModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, DoctorModel>>(DbNodePath.Doctor(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, DoctorModel>>(_dbNodePath.Doctor(teamId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<DoctorModel>();
         }

@@ -8,10 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class AnnouncementRepository : IAnnouncementRepository<AnnouncementModel>
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly DbNodePath _dbNodePath;
 
-    public AnnouncementRepository(IHttpClientFactory clientFactory)
+    public AnnouncementRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<AnnouncementModel> AddAnnouncement(AnnouncementModel announcement)
@@ -25,7 +27,7 @@ public class AnnouncementRepository : IAnnouncementRepository<AnnouncementModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Announcement(), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Announcement(), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -48,7 +50,7 @@ public class AnnouncementRepository : IAnnouncementRepository<AnnouncementModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, AnnouncementModel>>(DbNodePath.Announcement());
+            var s = await client.GetFromJsonAsync<Dictionary<string, AnnouncementModel>>(_dbNodePath.Announcement());
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<AnnouncementModel>();
         }

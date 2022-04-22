@@ -7,10 +7,12 @@ namespace DAL.Persistence.Repositories;
 public class FamilyRepository : IFamilyRepository<FamilyModel>
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly DbNodePath _dbNodePath;
 
-    public FamilyRepository(IHttpClientFactory clientFactory)
+    public FamilyRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
     public async Task<FamilyModel> AddFamily(FamilyModel family, string teamId)
     {
@@ -23,7 +25,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Family(teamId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Family(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -46,7 +48,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(_dbNodePath.Family(teamId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<FamilyModel>();
         }
@@ -62,7 +64,7 @@ public class FamilyRepository : IFamilyRepository<FamilyModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(DbNodePath.Family(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, FamilyModel>>(_dbNodePath.Family(teamId));
 
             return s is not null ? s.Values.First(x => x.Id.ToString() == familyId) : throw new Exception("No family attached to this accound");
         }

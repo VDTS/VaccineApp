@@ -8,9 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class SchoolRepository : ISchoolRepository<SchoolModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-    public SchoolRepository(IHttpClientFactory clientFactory)
+    private readonly DbNodePath _dbNodePath;
+
+    public SchoolRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<SchoolModel> AddSchool(SchoolModel school, string teamId)
@@ -24,7 +27,7 @@ public class SchoolRepository : ISchoolRepository<SchoolModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.School(teamId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.School(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -47,7 +50,7 @@ public class SchoolRepository : ISchoolRepository<SchoolModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, SchoolModel>>(DbNodePath.School(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, SchoolModel>>(_dbNodePath.School(teamId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<SchoolModel>();
         }

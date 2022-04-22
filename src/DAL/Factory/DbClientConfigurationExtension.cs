@@ -20,6 +20,7 @@ public static class DbClientConfigurationExtension
         DALConfigs.Env = appSettings.Env;
 
         service.AddSingleton<UnitOfWork>();
+        service.AddSingleton<DbNodePath>();
         service.AddSingleton<MasjeedRepository>();
         service.AddSingleton<ChildRepository>();
         service.AddSingleton<ClusterRepository>();

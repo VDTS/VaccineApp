@@ -7,10 +7,12 @@ namespace DAL.Persistence.Repositories;
 public class ChildRepository : IChildRepository<ChildModel>
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly DbNodePath _dbNodePath;
 
-    public ChildRepository(IHttpClientFactory clientFactory)
+    public ChildRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
     public async Task<ChildModel> AddChild(ChildModel child, string familyId)
     {
@@ -23,7 +25,7 @@ public class ChildRepository : IChildRepository<ChildModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Child(familyId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Child(familyId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -46,7 +48,7 @@ public class ChildRepository : IChildRepository<ChildModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, ChildModel>>(DbNodePath.Child(familyId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, ChildModel>>(_dbNodePath.Child(familyId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<ChildModel>();
         }

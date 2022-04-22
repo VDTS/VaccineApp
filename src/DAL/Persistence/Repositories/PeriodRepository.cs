@@ -8,9 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class PeriodRepository : IPeriodRepository<PeriodModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-    public PeriodRepository(IHttpClientFactory clientFactory)
+    private readonly DbNodePath _dbNodePath;
+
+    public PeriodRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<PeriodModel> AddPeriod(PeriodModel period)
@@ -25,14 +28,14 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
             var byteContent = new ByteArrayContent(buffer);
 
             // Fetch current active Period
-            var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{DbNodePath.ActivePeriods()}");
+            var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{_dbNodePath.ActivePeriods()}");
 
-            var s = await client.PostAsync(DbNodePath.Periods(), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Periods(), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
                 if (activePeriod is not null)
-                    await client.PutAsJsonAsync(DbNodePath.PeriodActiveField(activePeriod.First().Key), false);
+                    await client.PutAsJsonAsync(_dbNodePath.PeriodActiveField(activePeriod.First().Key), false);
 
                 return period;
             }
@@ -52,7 +55,7 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
         var client = _clientFactory.CreateClient("meta");
         try
         {
-            var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{DbNodePath.ActivePeriods()}");
+            var activePeriod = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>($"{_dbNodePath.ActivePeriods()}");
 
             return activePeriod is not null ? activePeriod.FirstOrDefault().Value : throw new Exception("No active period");
         }
@@ -68,7 +71,7 @@ public class PeriodRepository : IPeriodRepository<PeriodModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>(DbNodePath.Periods());
+            var s = await client.GetFromJsonAsync<Dictionary<string, PeriodModel>>(_dbNodePath.Periods());
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<PeriodModel>();
         }

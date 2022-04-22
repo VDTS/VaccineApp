@@ -8,9 +8,12 @@ namespace DAL.Persistence.Repositories;
 public class InfluencerRepository : IInfluencerRepository<InfluencerModel>
 {
     private readonly IHttpClientFactory _clientFactory;
-    public InfluencerRepository(IHttpClientFactory clientFactory)
+    private readonly DbNodePath _dbNodePath;
+
+    public InfluencerRepository(IHttpClientFactory clientFactory, DbNodePath dbNodePath)
     {
         _clientFactory = clientFactory;
+        _dbNodePath = dbNodePath;
     }
 
     public async Task<InfluencerModel> AddInfluencer(InfluencerModel influencer, string teamId)
@@ -24,7 +27,7 @@ public class InfluencerRepository : IInfluencerRepository<InfluencerModel>
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
 
-            var s = await client.PostAsync(DbNodePath.Influencer(teamId), byteContent);
+            var s = await client.PostAsync(_dbNodePath.Influencer(teamId), byteContent);
 
             if (s.IsSuccessStatusCode)
             {
@@ -47,7 +50,7 @@ public class InfluencerRepository : IInfluencerRepository<InfluencerModel>
 
         try
         {
-            var s = await client.GetFromJsonAsync<Dictionary<string, InfluencerModel>>(DbNodePath.Influencer(teamId));
+            var s = await client.GetFromJsonAsync<Dictionary<string, InfluencerModel>>(_dbNodePath.Influencer(teamId));
 
             return s != null ? s.Values.ToList() : Enumerable.Empty<InfluencerModel>();
         }
