@@ -1,6 +1,7 @@
 @page "/signin"
 @layout AccessLayout
-
+@inject IJSRuntime _jsRuntime
+@inject UnitOfWork _unitOfWork
 @inject NavigationManager _navigationManager
 @inject SignInService signInService
 @inject IJSRuntime JsRuntime
@@ -33,6 +34,12 @@
             {
                 var s = await signInService.SignIn(UserEmailInput, UserPasswordInput);
 
+                var idToken = await StoreTokens(s);
+                
+                var i = await signInService.AccountInfoLookup(idToken);
+
+                var role = StoreClaims(i);
+
                 _navigationManager.NavigateTo("/");
             }
         }
@@ -40,5 +47,75 @@
         {
             await JsRuntime.InvokeVoidAsync("alert", ex.Message);
         }
+    }
+
+    async Task<string> StoreTokens(string json)
+    {
+        var s = JsonConvert.DeserializeObject<SecureTokensModel>(json);
+
+        if (s is null || s.IdToken is null || s.RefreshToken is null)
+            throw new Exception("Can't fetch tokens");
+
+        // Save ProfilePicture for Shell Flyout Header
+        await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "profilePicture", System.Text.Json.JsonSerializer.Serialize(s.ProfilePicture));
+        
+        await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(s.IdToken), System.Text.Json.JsonSerializer.Serialize(s.IdToken));
+        await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(s.RefreshToken), System.Text.Json.JsonSerializer.Serialize(s.RefreshToken));
+       
+        return s.IdToken;
+    }
+
+    async Task<string> StoreClaims(string json)
+    {
+        var s = JsonConvert.DeserializeObject<AccountInfoLookupModel>(json);
+
+        // Save DisplayName for Shell Flyout Header
+        await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "DisplayName", System.Text.Json.JsonSerializer.Serialize(s.users[0].displayName));
+
+#nullable disable
+        var c = JsonConvert.DeserializeObject<CustomAttributes>(s.users[0].customAttributes);
+#nullable enable
+        if (c is null || c.Role is null)
+            throw new Exception("Can't fetch user's role");
+
+        // Save Role for Shell Flyout Header
+        await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.Role), System.Text.Json.JsonSerializer.Serialize(c.Role));
+
+        if (c.Role == "Admin")
+        {
+            // No claims to store for admin
+            _unitOfWork.AddClaims(null!, null!, null!);
+        }
+        else if (c.Role == "Supervisor")
+        {
+            if(c.ClusterId is null)
+                throw new Exception("Supervisor should have cluster Id");
+
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.ClusterId), System.Text.Json.JsonSerializer.Serialize(c.ClusterId));
+            _unitOfWork.AddClaims(c.ClusterId, null!, null!);
+        }
+        else if (c.Role == "Mobilizer")
+        {
+            if (c.ClusterId is null || c.TeamId is null)
+                throw new Exception("Mobilizer should have cluster and team Ids");
+
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.ClusterId), System.Text.Json.JsonSerializer.Serialize(c.ClusterId));
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.TeamId), System.Text.Json.JsonSerializer.Serialize(c.TeamId));
+            _unitOfWork.AddClaims(c.ClusterId, c.TeamId, null!);
+        }
+        else if (c.Role == "Parent")
+        {
+            if (c.ClusterId is null || c.TeamId is null || c.FamilyId is null)
+                throw new Exception("Parent should have cluster, team and family Ids");
+
+            
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.ClusterId), System.Text.Json.JsonSerializer.Serialize(c.ClusterId));
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.TeamId), System.Text.Json.JsonSerializer.Serialize(c.TeamId));
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", nameof(c.FamilyId), System.Text.Json.JsonSerializer.Serialize(c.FamilyId));
+            
+            _unitOfWork.AddClaims(c.ClusterId, c.TeamId, c.FamilyId);
+        }
+
+        return c.Role;
     }
 }
