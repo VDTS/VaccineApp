@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using VaccineApp.BlazorPWA;
 using DAL.Factory;
 using Core.Factory;
+using Auth.Factory;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -39,5 +40,21 @@ builder.Services.AddDAL(
 
 // Adding Core Library
 builder.Services.AddCoreServices();
+
+builder.Services.AddAuth(
+            options =>
+            {
+                if (builder.Configuration.GetSection("AppSettings:Env").Value == "online")
+                {
+                    options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                    options.FirebaseAuthAddress = "https://identitytoolkit.googleapis.com/";
+                }
+                else if (builder.Configuration.GetSection("AppSettings:Env").Value == "offline")
+                {
+                    options.FirebaseApiKey = builder.Configuration.GetSection("AppSecrets:FirebaseApiKey").Value;
+                    options.FirebaseAuthAddress = builder.Configuration.GetSection("AppSecrets:FirebaseAuthAddress_Offline").Value;
+                }
+            }
+        );
 
 await builder.Build().RunAsync();

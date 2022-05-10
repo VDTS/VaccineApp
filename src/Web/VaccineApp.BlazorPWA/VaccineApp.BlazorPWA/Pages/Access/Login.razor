@@ -1,0 +1,44 @@
+@page "/signin"
+@layout AccessLayout
+
+@inject NavigationManager _navigationManager
+@inject SignInService signInService
+@inject IJSRuntime JsRuntime
+
+
+<div class="p-4">
+    <div class="col-md-3">
+        <label class="form-label">Email</label>
+        <input placeholder="Email" class="form-control" @bind-value="UserEmailInput">
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Password</label>
+        <input type="Password" placeholder="Password" class="form-control" @bind-value="UserPasswordInput">
+    </div>
+    <br>
+    <button class="btn btn-primary" @onclick="SignIn">Sign In</button>
+</div>
+
+
+@code
+{
+    public string UserEmailInput { get; set; }
+    public string UserPasswordInput { get; set; }
+
+    async void SignIn()
+    {
+        try
+        {
+            if (UserEmailInput is not null && UserPasswordInput is not null)
+            {
+                var s = await signInService.SignIn(UserEmailInput, UserPasswordInput);
+
+                _navigationManager.NavigateTo("/");
+            }
+        }
+        catch (Exception ex)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", ex.Message);
+        }
+    }
+}
