@@ -1,12 +1,51 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@inject IJSRuntime _jsRuntime
+
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <RouteView RouteData="@routeData" DefaultLayout="@SelectLayout" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(MainLayout)">
+        <LayoutView Layout="@SelectLayout">
             <p role="alert">Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>
 </Router>
+
+
+@code 
+{
+
+    public Type SelectLayout { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        var s = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "Role");
+        await GoToPage(s);
+    }
+
+    async Task GoToPage(string role)
+    {
+        if(role == "Admin")
+        {
+            SelectLayout = typeof(AdminLayout);
+        }
+        else if(role == "Supervisor")
+        {
+            SelectLayout = typeof(SupervisorLayout);
+        }
+        else if(role == "Mobilizer")
+        {
+            SelectLayout = typeof(MobilizerLayout);
+        }
+        else if(role == "Parent")
+        {
+            SelectLayout = typeof(ParentLayout);
+        }
+        else
+        {
+            SelectLayout = typeof(MainLayout);
+        }
+    }
+}
