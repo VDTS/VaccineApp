@@ -38,9 +38,9 @@
                 
                 var i = await signInService.AccountInfoLookup(idToken);
 
-                var role = StoreClaims(i);
+                var role = await StoreClaims(i);
 
-                _navigationManager.NavigateTo("/");
+                GoToPage(role);
             }
         }
         catch (Exception ex)
@@ -117,5 +117,29 @@
         }
 
         return c.Role;
+    }
+
+    void GoToPage(string role)
+    {
+        if(role == "Admin")
+        {
+            _navigationManager.NavigateTo("/admin");
+        }
+        else if(role == "Supervisor")
+        {
+            _navigationManager.NavigateTo("/supervisor");
+        }
+        else if(role == "Mobilizer")
+        {
+            _navigationManager.NavigateTo("/mobilizer");
+        }
+        else if(role == "Parent")
+        {
+            _navigationManager.NavigateTo("/parent");
+        }
+        else
+        {
+            _navigationManager.NavigateTo("/signin");
+        }
     }
 }
