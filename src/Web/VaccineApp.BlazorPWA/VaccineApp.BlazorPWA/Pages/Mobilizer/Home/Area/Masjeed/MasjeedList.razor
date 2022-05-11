@@ -1,0 +1,37 @@
+@page "/mobilizer/masjeed-list"
+@inject UnitOfWork _unitOfwork
+@layout MobilizerLayout
+@inject IJSRuntime _jsRuntime
+
+<h2>Masjeeds</h2>
+@foreach (var item in Masjeeds)
+{
+    <p>@item.MasjeedName</p>
+}
+
+
+@code
+{
+    public IEnumerable<MasjeedModel> Masjeeds { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Masjeeds = new List<MasjeedModel>();
+        Get();
+    }
+
+    public async void Get()
+    {
+        try
+        {
+            Masjeeds = await _unitOfwork.GetMasjeeds();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
