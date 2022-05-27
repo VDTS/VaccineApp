@@ -13,12 +13,14 @@
 		<EnableDefaultCssItems>false</EnableDefaultCssItems>
 
 		<!-- Display name -->
-		<ApplicationTitle>VaccineApp</ApplicationTitle>
+		<ApplicationTitle>Vaccine App</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.naveedhematmal.vaccineapp</ApplicationId>
+        <ApplicationIdGuid>DE3757F2-39E7-4142-92E1-6AE0BF15E920</ApplicationIdGuid>
 
-		<!-- Versions -->
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<!-- Required for C# Hot Reload -->
@@ -33,16 +35,20 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="none" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="none" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#FFFFFF" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+        
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +93,7 @@
 		<None Remove="Resources\Images\twitter.svg" />
 		<None Remove="Resources\Images\userprofile.svg" />
 		<None Remove="Resources\Images\windows.svg" />
+		<None Remove="Resources\Splash\splash.svg" />
 		<None Remove="SecretFiles\github_app_private_key.pem" />
 		<None Remove="SecretFiles\AppSecrets.json" />
 		<None Remove="SecretFiles\firebase_private_key.json" />
@@ -102,6 +109,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="Resources\Styles\Colors.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\Styles.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Shells\Components\FlyoutHeaderComponent.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
