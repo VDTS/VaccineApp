@@ -15,7 +15,7 @@ public partial class SchoolDetailsViewModel : ObservableObject
         _school = school;
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoToMap()
     {
         if (School.Latitude != null && School.Longitude != null)

@@ -21,7 +21,7 @@ public partial class AddPeriodViewModel : ObservableObject
         Period = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post(object obj)
     {
         try

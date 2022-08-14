@@ -112,7 +112,7 @@ public partial class AddUserViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         try

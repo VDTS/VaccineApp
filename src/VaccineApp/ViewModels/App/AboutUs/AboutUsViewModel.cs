@@ -51,14 +51,14 @@ public partial class AboutUsViewModel : ObservableObject
         };
     }
 
-    [ICommand]
+    [RelayCommand]
     private async void GoToTwitter(string url)
     {
         Uri uri = new Uri(url);
         await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
     }
 
-    [ICommand]
+    [RelayCommand]
     private async void GoToLinkedIn(string url)
     {
         Uri uri = new Uri(url);

@@ -32,7 +32,7 @@ public partial class ProfileViewModel : ObservableObject
         Get();
     }
 
-    [ICommand]
+    [RelayCommand]
     private async void Edit()
     {
         // The below line remove PhotoUrl because Route Query can't route urls

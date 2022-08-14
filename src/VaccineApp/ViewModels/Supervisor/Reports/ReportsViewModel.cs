@@ -39,7 +39,7 @@ public partial class ReportsViewModel : ObservableObject
         _dbContext = dbContext;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void GenerateVaccinePeriodReport()
     {
         await GetChildrenCountPerVaccineStatusPerTeam();
@@ -123,7 +123,7 @@ public partial class ReportsViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void GenerateNonResedentialChildrenReport()
     {
         await GetAnonymousChildren();

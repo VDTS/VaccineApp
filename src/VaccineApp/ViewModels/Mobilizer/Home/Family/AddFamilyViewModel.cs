@@ -22,7 +22,7 @@ public partial class AddFamilyViewModel : ObservableObject
         _familyValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _familyValidator.Validate(Family);

@@ -20,7 +20,7 @@ public partial class PeriodsListViewModel : ObservableObject
         _unitOfWork = unitOfWork;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddPeriod(object obj)
     {
         var route = $"{nameof(AddPeriodPage)}";

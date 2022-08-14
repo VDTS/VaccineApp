@@ -35,7 +35,7 @@ public partial class ParentFamilyViewModel : ObservableObject
         _familyId = Guid.Parse(Preferences.Get("FamilyId", "AnonymousFamilyId"));
     }
 
-    [ICommand]
+    [RelayCommand]
     async void GenerateandGotoThatePage()
     {
         await ShareDataWithQRCode();
@@ -102,7 +102,7 @@ public partial class ParentFamilyViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     private async void ChildDetails()
     {
         if (SelectedChild == null)

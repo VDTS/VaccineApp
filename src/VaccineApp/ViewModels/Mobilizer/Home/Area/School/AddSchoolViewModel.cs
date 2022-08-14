@@ -26,7 +26,7 @@ public partial class AddSchoolViewModel : ObservableObject
         _schoolValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _schoolValidator.Validate(School);

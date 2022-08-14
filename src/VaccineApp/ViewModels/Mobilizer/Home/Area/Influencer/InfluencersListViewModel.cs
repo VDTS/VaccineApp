@@ -21,7 +21,7 @@ public partial class InfluencersListViewModel : ObservableObject
         Influencers = new ObservableCollection<InfluencerModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddInfluencer(object obj)
     {
         var route = $"{nameof(AddInfluencerPage)}";

@@ -29,7 +29,7 @@ public partial class AddAnonymousChildViewModel : ObservableObject
         AnonymousChild = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         try

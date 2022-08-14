@@ -23,7 +23,7 @@ public partial class ClustersListViewModel : ObservableObject
         Clusters = new ObservableCollection<ClusterModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddCluster(object obj)
     {
         var route = $"{nameof(AddClusterPage)}";

@@ -31,7 +31,7 @@ public partial class AddChildViewModel : ObservableObject
         _familyId = familyId;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         Child.DOB = DateTime.SpecifyKind(Child.DOB, DateTimeKind.Utc);

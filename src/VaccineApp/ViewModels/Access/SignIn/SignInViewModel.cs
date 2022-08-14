@@ -25,14 +25,14 @@ public partial class SignInViewModel : ObservableObject
         _unitOfWork = unitOfWork;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void ForgotPassword()
     {
         var route = $"{nameof(ForgotPasswordPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    [ICommand]
+    [RelayCommand]
     async void SignIn()
     {
         try

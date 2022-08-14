@@ -24,7 +24,7 @@ public partial class FamiliesListViewModel : ObservableObject
         Families = new ObservableCollection<FamilyModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void FamilyDetails()
     {
         if (SelectedFamily != null)
@@ -37,7 +37,7 @@ public partial class FamiliesListViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddFamily(object obj)
     {
         var route = $"{nameof(AddFamilyPage)}";

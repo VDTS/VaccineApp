@@ -93,7 +93,7 @@ public partial class EditProfileViewModel : ObservableObject
 
     }
 
-    [ICommand]
+    [RelayCommand]
     async void PhotoPickingMenu()
     {
         var action = await Application.Current.MainPage.DisplayActionSheet("Open photo", "Cancel", null, "Gallery", "Camera");
@@ -108,7 +108,7 @@ public partial class EditProfileViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void ChangePassword()
     {
         var validationResult = _validationRules.Validate(EditProfile);
@@ -132,7 +132,7 @@ public partial class EditProfileViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void ChangeProfile(object obj)
     {
         UserRecordArgs args = new UserRecordArgs()

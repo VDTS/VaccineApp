@@ -50,7 +50,7 @@ public partial class UsersListViewModel : ObservableObject
     }
 
 
-    [ICommand]
+    [RelayCommand]
     async void AddUser()
     {
         var route = $"{nameof(AddUserPage)}";

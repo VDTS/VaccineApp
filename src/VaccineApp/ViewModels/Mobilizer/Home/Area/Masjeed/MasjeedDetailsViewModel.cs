@@ -16,7 +16,7 @@ public partial class MasjeedDetailsViewModel : ObservableObject
     }
 
 
-    [ICommand]
+    [RelayCommand]
     async void GoToMap()
     {
         if (Masjeed.Latitude != null && Masjeed.Longitude != null)

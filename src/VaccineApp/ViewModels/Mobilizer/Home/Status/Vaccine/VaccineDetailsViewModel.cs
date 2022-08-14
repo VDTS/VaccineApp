@@ -15,7 +15,7 @@ public partial class VaccineDetailsViewModel : ObservableObject
         _vaccine = vaccine;
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoToMap()
     {
         if (Vaccine.Latitude != null && Vaccine.Longitude != null)

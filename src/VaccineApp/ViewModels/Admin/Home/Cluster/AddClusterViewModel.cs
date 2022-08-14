@@ -22,7 +22,7 @@ public partial class AddClusterViewModel : ObservableObject
         _clusterValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     private async void Post(object obj)
     {
         var validationResult = _clusterValidator.Validate(_cluster);

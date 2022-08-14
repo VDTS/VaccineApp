@@ -29,14 +29,14 @@ public partial class MasjeedListViewModel : ObservableObject
         SelectedMasjeed = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddMasjeed(object obj)
     {
         var route = $"{nameof(AddMasjeedPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    [ICommand]
+    [RelayCommand]
     async void MasjeedDetails()
     {
         if (SelectedMasjeed == null)

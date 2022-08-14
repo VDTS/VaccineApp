@@ -45,7 +45,7 @@ public partial class AnonymousChildrenListViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddChild(object obj)
     {
         var route = $"{nameof(AddAnonymousChildPage)}";

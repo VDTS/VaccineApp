@@ -15,7 +15,7 @@ public partial class ClinicDetailsViewModel : ObservableObject
         _clinic = clinic;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void GoToMap()
     {
         if (Clinic.Latitude != null && Clinic.Longitude != null)

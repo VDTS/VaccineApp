@@ -14,7 +14,7 @@ public partial class SettingsViewModel : ObservableObject
         _defaultSettings = defaultSettings;
     }
 
-    [ICommand]
+    [RelayCommand]
     void ResetAppSettignsDefault(object obj)
     {
 

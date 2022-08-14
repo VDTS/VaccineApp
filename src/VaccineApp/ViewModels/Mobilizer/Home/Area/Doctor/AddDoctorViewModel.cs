@@ -23,7 +23,7 @@ public partial class AddDoctorViewModel : ObservableObject
         _doctorValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _doctorValidator.Validate(Doctor);

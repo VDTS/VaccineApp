@@ -21,7 +21,7 @@ public partial class AddAnnouncementViewModel : ObservableObject
         _toast = toast;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post(object obj)
     {
         try

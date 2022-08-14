@@ -20,7 +20,7 @@ public partial class TeamsListViewModel : ObservableObject
         TeamsGroupByCluster = new ObservableCollection<TeamsGroupByClusterModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddTeam(object obj)
     {
         var route = $"{nameof(AddTeamPage)}";

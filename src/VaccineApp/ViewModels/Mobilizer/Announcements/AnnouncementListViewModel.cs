@@ -38,7 +38,7 @@ public partial class AnnouncementListViewModel : ObservableObject
         Announcements = new ObservableCollection<AnnouncementModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddAnnouncement()
     {
         var route = $"{nameof(AddAnnouncementPage)}";

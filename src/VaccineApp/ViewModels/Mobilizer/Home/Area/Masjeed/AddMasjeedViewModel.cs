@@ -26,7 +26,7 @@ public partial class AddMasjeedViewModel : ObservableObject
         _clinicValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _clinicValidator.Validate(Masjeed);

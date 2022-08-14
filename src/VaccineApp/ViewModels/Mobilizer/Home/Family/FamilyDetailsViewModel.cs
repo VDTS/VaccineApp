@@ -35,7 +35,7 @@ public partial class FamilyDetailsViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddChild()
     {
         var route = $"{nameof(AddChildPage)}?FamilyId={Family.Id.ToString()}";

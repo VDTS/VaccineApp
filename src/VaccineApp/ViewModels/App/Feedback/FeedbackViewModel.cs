@@ -64,7 +64,7 @@ public partial class FeedbackViewModel : ObservableObject
         IsParentChecked = false;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void SubmitIssue()
     {
         var jwtToken = GenerateToken();

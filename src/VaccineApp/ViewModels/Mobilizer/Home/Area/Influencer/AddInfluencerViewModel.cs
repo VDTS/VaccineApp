@@ -24,7 +24,7 @@ public partial class AddInfluencerViewModel : ObservableObject
         _influencerValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _influencerValidator.Validate(Influencer);

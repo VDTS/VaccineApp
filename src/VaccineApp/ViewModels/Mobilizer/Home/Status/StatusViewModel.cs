@@ -49,7 +49,7 @@ public partial class StatusViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void ChildDetails()
     {
         if (SelectedChild == null)

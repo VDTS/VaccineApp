@@ -32,14 +32,14 @@ public partial class ChildDetailsViewModel : ObservableObject
         Child = child;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddVaccine()
     {
         var route = $"{nameof(AddVaccinePage)}?ChildId={Child.Id.ToString()}";
         await Shell.Current.GoToAsync(route);
     }
 
-    [ICommand]
+    [RelayCommand]
     async void VaccineDetails()
     {
         if (SelectedVaccine == null)

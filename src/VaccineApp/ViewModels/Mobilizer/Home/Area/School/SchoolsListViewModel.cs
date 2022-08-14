@@ -27,14 +27,14 @@ public partial class SchoolsListViewModel : ObservableObject
         Schools = new ObservableCollection<SchoolModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddSchool(object obj)
     {
         var route = $"{nameof(AddSchoolPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    [ICommand]
+    [RelayCommand]
     async void SchoolDetails()
     {
         if (SelectedSchool == null)

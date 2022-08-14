@@ -44,7 +44,7 @@ public partial class AddTeamViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _teamValidator.Validate(_team);

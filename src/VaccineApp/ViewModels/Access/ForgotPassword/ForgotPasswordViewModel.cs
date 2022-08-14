@@ -20,7 +20,7 @@ public partial class ForgotPasswordViewModel : ObservableObject
         _toast = toast;
     }
 
-    [ICommand]
+    [RelayCommand]
     private async void ResetPasswordByEmail()
     {
         try

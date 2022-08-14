@@ -28,7 +28,7 @@ public partial class AddClinicViewModel : ObservableObject
         _clinicValidator = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         var validationResult = _clinicValidator.Validate(Clinic);

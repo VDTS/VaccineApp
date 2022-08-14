@@ -23,14 +23,14 @@ public partial class ClinicsListViewModel : ObservableObject
         Clinics = new ObservableCollection<ClinicModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddClinic(object obj)
     {
         var route = $"{nameof(AddClinicPage)}";
         await Shell.Current.GoToAsync(route);
     }
 
-    [ICommand]
+    [RelayCommand]
     async void ClinicDetails()
     {
         if (SelectedClinic == null)

@@ -36,7 +36,7 @@ public partial class AddVaccineViewModel : ObservableObject
         _dbContext = dbContext;
     }
 
-    [ICommand]
+    [RelayCommand]
     async void Post()
     {
         _dbContext.CreateDB("mobilizer", "user");

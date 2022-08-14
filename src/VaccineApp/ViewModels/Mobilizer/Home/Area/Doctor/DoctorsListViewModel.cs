@@ -20,7 +20,7 @@ public partial class DoctorsListViewModel : ObservableObject
         Doctors = new ObservableCollection<DoctorModel>();
     }
 
-    [ICommand]
+    [RelayCommand]
     async void AddDoctor(object obj)
     {
         var route = $"{nameof(AddDoctorPage)}";
