@@ -20,13 +20,15 @@ public class SignInService
 
         try
         {
-            var identityModel = new SignInModel() { Email = email, Password = password, ReturnSecureToken = true };
-            var content = JsonConvert.SerializeObject(identityModel);
+            var parameters = new Dictionary<string, string>
+                {
+                    {"email", email},
+                    {"password", password},
+                    {"returnSecureToken", "true"}
+                };
 
-            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-            var byteContent = new ByteArrayContent(buffer);
-
-            var s = await client.PostAsync(requestUri, byteContent);
+            var urlEncodedParameters = new FormUrlEncodedContent(parameters);
+            var s = await client.PostAsync(requestUri, urlEncodedParameters);
 
             if (s.IsSuccessStatusCode)
             {
@@ -53,13 +55,13 @@ public class SignInService
 
         try
         {
-            IdTokenModel accessToken = new() { IdToken = idToken };
-            var content = JsonConvert.SerializeObject(accessToken);
+            var parameters = new Dictionary<string, string>
+                {
+                    {"idToken", idToken}
+                };
 
-            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-            var byteContent = new ByteArrayContent(buffer);
-
-            var s = await client.PostAsync(requestUri, byteContent);
+            var urlEncodedParameters = new FormUrlEncodedContent(parameters);
+            var s = await client.PostAsync(requestUri, urlEncodedParameters);
 
             if (s.IsSuccessStatusCode)
             {
