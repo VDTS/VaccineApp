@@ -21,6 +21,7 @@ public static class MauiProgram
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
         using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("VaccineApp.AppConfigs.SettingsDefaultsValues.json"))
@@ -35,7 +36,6 @@ public static class MauiProgram
         builder.Services.Configure<AppSecrets>(builder.Configuration.GetSection("AppSecrets"));
         builder.Services.Configure<SettingsDefaultsValues>(builder.Configuration.GetSection("SettingsDefaultsValues"));
 
-        builder.Services.AddMauiBlazorWebView();
         builder.Services.AddViewModels();
         builder.Services.AddPages();
         builder.Services.AddDeviceSpecificFeatures();
