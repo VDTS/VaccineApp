@@ -66,6 +66,7 @@ public partial class SignInViewModel : ObservableObject
         // Save ProfilePicture for Shell Flyout Header
         Preferences.Set("ProfilePicture", s.ProfilePicture);
 
+        _unitOfWork.AddTokens(s.IdToken, s.RefreshToken);
         SecureStorage.SetAsync(nameof(s.IdToken), s.IdToken);
         SecureStorage.SetAsync(nameof(s.RefreshToken), s.RefreshToken);
 

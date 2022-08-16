@@ -17,6 +17,10 @@ public partial class App : Application
             Preferences.Get("TeamId", null!),
             Preferences.Get("FamilyId", null!));
 
+       unitOfWork.AddTokens(
+            SecureStorage.GetAsync("IdToken").Result,
+            SecureStorage.GetAsync("RefreshToken").Result);
+
         MainPage = RolesList.Roles.Contains(role) ? new Appshell(role) : new Accessshell();
     }
 }

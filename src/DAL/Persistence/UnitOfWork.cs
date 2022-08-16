@@ -68,7 +68,38 @@ public class UnitOfWork
         }
         set { familyId = value; }
     }
-
+    static string? idToken;
+    public static string _idToken
+    {
+        get
+        {
+            if (idToken is not null)
+            {
+                return idToken;
+            }
+            else
+            {
+                throw new Exception("The AddTokens function must be called before any part execution of the object.");
+            }
+        }
+        set { idToken = value; }
+    }
+    static string? refreshToken;
+    public static string _refreshToken
+    {
+        get
+        {
+            if (refreshToken is not null)
+            {
+                return refreshToken;
+            }
+            else
+            {
+                throw new Exception("The AddTokens function must be called before any part execution of the object.");
+            }
+        }
+        set { refreshToken = value; }
+    }
     public UnitOfWork(
         MasjeedRepository masjeedRepository,
         ChildRepository childRepository,
@@ -104,6 +135,12 @@ public class UnitOfWork
         _clusterId = clusterId;
         _teamId = teamId;
         _familyId = familyId;
+    }
+
+    public void AddTokens(string idToken, string refreshToken)
+    {
+        _idToken = idToken;
+        _refreshToken = refreshToken;
     }
 
     public async Task<IEnumerable<MasjeedModel>> GetMasjeeds()
