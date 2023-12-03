@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-        <TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
         <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-        <!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+        <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
         <OutputType>Exe</OutputType>
 		<RootNamespace>VaccineApp</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -24,9 +24,6 @@
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
-
-		<!-- Required for C# Hot Reload -->
-		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -55,6 +52,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Remove="AppConfigs\AppSecrets.json" />
+	  <Content Remove="AppConfigs\firebase_private_key.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="RawText\VaccineGuides.txt" />
 		<None Remove="Resources\Fonts\OpenSans-Regular.ttf" />
 		<None Remove="Resources\Fonts\OpenSans-Semibold.ttf" />
@@ -64,7 +66,7 @@
 		<None Remove="Resources\Images\admin.svg" />
 		<None Remove="Resources\Images\android.svg" />
 		<None Remove="Resources\Images\announcement.svg" />
-		<None Remove="Resources\Images\appicon.svg" />
+		<None Remove="Resources\Images\appicon2.svg" />
 		<None Remove="Resources\Images\area.svg" />
 		<None Remove="Resources\Images\bug.svg" />
 		<None Remove="Resources\Images\chart.svg" />
@@ -107,9 +109,15 @@
 		<EmbeddedResource Include="AppConfigs\AppSettings.json" />
 		<EmbeddedResource Include="AppConfigs\SettingsDefaultsValues.json" />
 		<EmbeddedResource Include="RawText\VaccineGuides.txt" />
-		<EmbeddedResource Include="SecretFiles\AppSecrets.json" />
-		<EmbeddedResource Include="SecretFiles\firebase_private_key.json" />
-		<EmbeddedResource Include="SecretFiles\github_app_private_key.pem" />
+		<EmbeddedResource Include="SecretFiles\AppSecrets.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SecretFiles\firebase_private_key.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SecretFiles\github_app_private_key.pem">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -276,7 +284,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiImage Update="Resources\Images\appicon.svg">
+		<MauiImage Update="Resources\Images\appicon2.svg">
 			<Color>#FFFFFF</Color>
 		</MauiImage>
 	</ItemGroup>
@@ -286,14 +294,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="11.0.1" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-		<PackageReference Include="FirebaseAdmin" Version="2.3.0" />
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="FirebaseAdmin" Version="2.4.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
-		<PackageReference Include="GitHubJwt" Version="0.0.5" />
+		<PackageReference Include="GitHubJwt" Version="0.0.6" />
 		<PackageReference Include="SkiaSharp.QrCode" Version="0.6.0" />
-		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="20.1.0.48" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+		<PackageReference Include="Syncfusion.Xamarin.Pdf" Version="23.2.6" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

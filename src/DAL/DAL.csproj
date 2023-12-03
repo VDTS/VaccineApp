@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -11,11 +11,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="FluentValidation" Version="10.4.0" />
-	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.22.0" />
-	  <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+	  <PackageReference Include="FluentValidation" Version="11.8.1" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+	  <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>
